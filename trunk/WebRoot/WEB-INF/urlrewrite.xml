@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
+        "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+
+<urlrewrite default-match-type="wildcard">
+
+	<rule match-type="regex">
+		<from>^/admin/?$</from>
+		<to type="forward">/admin/index.html</to>
+	</rule>
+	
+	<rule match-type="regex">
+		<from>^/admin/([A-Za-z0-9]+)/?$</from>
+		<to type="forward">/admin/$1/index.html</to>
+	</rule>
+	
+	<rule match-type="regex">
+		<from>^/admin/([A-Za-z0-9]+)/([A-Za-z0-9]+)/?$</from>
+		<to type="forward">/admin/$1/$2.html</to>
+	</rule>
+	
+	<rule match-type="regex">
+		<from>^/admin/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)/?$</from>
+		<to type="forward">/admin/$1/$2.html?id=$3</to>
+	</rule>
+
+	<rule match-type="regex">
+		<from>^/admin/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)/?$</from>
+		<to type="forward">/admin/$1/$2.html?id=$3</to>
+	</rule>
+	
+	<rule match-type="regex">
+		<from>^/info/([A-Za-z0-9]+)/?$</from>
+		<to type="forward">/info/browse.jsp?info.url=$1</to>
+	</rule>
+
+	<rule match-type="regex">
+		<from>^/([A-Za-z0-9]+)/?$</from>
+		<to type="forward">/$1.jsp</to>
+	</rule>
+	
+	<rule match-type="regex">
+		<from>^/([A-Za-z0-9]+)/([A-Za-z0-9]+)/?$</from>
+		<to type="forward">/$1/$2.jsp</to>
+	</rule>
+	
+	<rule match-type="regex">
+		<from>^/user/([A-Za-z0-9]+)/([A-Za-z0-9]+)/?$</from>
+		<to type="forward">/user/$1?username=$2</to>
+	</rule>
+
+	<rule match-type="regex">
+		<from>^/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)/?$</from>
+		<to type="forward">/$1/$2.jsp?id=$3</to>
+	</rule>
+	
+	<!-- Override default validation.js from WebWork -->
+    <rule match-type="regex">
+        <from>^/struts/css_xhtml/validation.js$</from>
+        <to type="forward">/template/css_xhtml/validation.js</to>
+    </rule>
+
+	<!-- The following fixes a CSS bug in CXF. -->
+    <rule match-type="regex">
+        <from>^/services//(.*)$</from>
+        <to type="forward">/services/$1</to>
+    </rule>
+</urlrewrite>
+

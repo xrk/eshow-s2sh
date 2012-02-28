@@ -82,7 +82,7 @@
 				<p>
 					Copyright &copy; 2009 www.eshow.org.cn All rights reserved.
 					&nbsp;&nbsp;&nbsp;&nbsp;典型案例：
-					<a href="http://www.fanbao.com" target="_blank">翻宝网</a>
+					<a href="http://www.fanbao.cn" target="_blank">翻宝网</a> <a href="http://www.mileshu.com" target="_blank">米乐鼠</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;支持公司：
 					<a href="http://www.daoqun.net" target="_blank">无锡到群软件科技有限公司 </a>
 					&nbsp;&nbsp;&nbsp;&nbsp;开源伙伴：

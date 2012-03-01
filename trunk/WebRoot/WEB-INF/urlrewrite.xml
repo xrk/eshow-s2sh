@@ -33,10 +33,20 @@
 		<from>^/info/([A-Za-z0-9]+)/?$</from>
 		<to type="forward">/info/browse.jsp?info.url=$1</to>
 	</rule>
+	
+	<rule match-type="regex">
+		<from>^/?$</from>
+		<to type="forward">/index.jsp</to>
+	</rule>
 
 	<rule match-type="regex">
-		<from>^/([A-Za-z0-9]+)/?$</from>
+		<from>^/([A-Za-z0-9]+)?$</from>
 		<to type="forward">/$1.jsp</to>
+	</rule>
+	
+	<rule match-type="regex">
+		<from>^/([A-Za-z0-9]+)/?$</from>
+		<to type="forward">/$1/index.jsp</to>
 	</rule>
 	
 	<rule match-type="regex">

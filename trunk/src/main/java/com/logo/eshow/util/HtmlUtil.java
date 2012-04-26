@@ -1,16 +1,7 @@
 package com.logo.eshow.util;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.htmlparser.Node;
@@ -20,11 +11,14 @@ import org.htmlparser.nodes.TagNode;
 import org.htmlparser.nodes.TextNode;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
-import org.w3c.dom.Document;
-import org.w3c.tidy.Tidy;
+
+import com.logo.eshow.components.parser.http.HttpClientManager;
+import com.logo.eshow.components.parser.http.HttpResponseWrapper;
+
 
 /**
- * Utility class to espace HTML chars and other HTML related stuff can be added in the future.
+ * Utility class to espace HTML chars and other HTML related stuff can be added
+ * in the future.
  * 
  * @author legend
  */
@@ -37,51 +31,16 @@ public final class HtmlUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static final String getContent(String path, String encoding) throws Exception {
-		StringBuffer sb = new StringBuffer();
-		URL url = new URL(path);
+	public static final String getContent(String path, String encoding)
+			throws Exception {
 
-		URLConnection connection = url.openConnection();
+		// 读取HTML
+		Map<String, String> httpHeaderMap = new HashMap<String, String>();
+		HttpClientManager manager = new HttpClientManager();
+		HttpResponseWrapper res = manager.execute(path, encoding, "", "",
+				httpHeaderMap);
 
-		if (StringUtils.isNotBlank(connection.getContentEncoding())) {
-			encoding = connection.getContentEncoding();
-		}
-		else if (StringUtils.isNotBlank(connection.getContentType())) {
-			String[] contentTypes = connection.getContentType().split(";");
-			if (contentTypes.length >= 2) {
-				encoding = contentTypes[1].split("=")[1];
-			}
-		}
-
-		BufferedReader br = new BufferedReader(new InputStreamReader(new DataInputStream(connection
-				.getInputStream()), encoding));
-		String lineText;
-		while ((lineText = br.readLine()) != null) {
-			sb.append(lineText).append("\n");
-		}
-
-		Tidy tidy = new Tidy();
-		Document doc = tidy.parseDOM(url.openConnection().getInputStream(), null);
-
-		// XML转字符串
-
-		TransformerFactory tf = TransformerFactory.newInstance();
-
-		Transformer t = tf.newTransformer();
-
-		t.setOutputProperty("encoding", encoding);// 解决中文问题，试过用GBK不行
-
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-
-		t.transform(new DOMSource(doc), new StreamResult(bos));
-
-		t.transform(new DOMSource(doc), new StreamResult("a.xml"));
-
-		String xmlStr = bos.toString();
-
-		System.out.println(xmlStr);
-
-		return sb.toString();
+		return new String(res.getBody(), encoding);
 	}
 
 	public static final String clearHtml(Object obj) {
@@ -99,11 +58,12 @@ public final class HtmlUtil {
 	/**
 	 * 去掉字符串的html代码
 	 * 
-	 * @param htmlStr 字符串
-	 * @param max_count 
+	 * @param htmlStr
+	 *            字符串
+	 * @param max_count
 	 * @return 结果
 	 */
-	public static String htmlToStr(String htmlStr,int max_count) {
+	public static String htmlToStr(String htmlStr, int max_count) {
 		String result = "";
 		boolean flag = true;
 		if (htmlStr == null) {
@@ -126,14 +86,16 @@ public final class HtmlUtil {
 		}
 		if (result.toString().length() <= max_count * 1.1)
 			return result.toString();
-		return result.toString().substring(0,max_count)+"...";
+		return result.toString().substring(0, max_count) + "...";
 	}
 
 	/**
-	 * Escapes characters that have an HTML entity representation and returns new copy with entities escaped. It uses a
-	 * quick string to array mapping to avoid creating thousands of temporary objects.
+	 * Escapes characters that have an HTML entity representation and returns
+	 * new copy with entities escaped. It uses a quick string to array mapping
+	 * to avoid creating thousands of temporary objects.
 	 * 
-	 * @param nonHTML String containing the text to make HTML-safe
+	 * @param nonHTML
+	 *            String containing the text to make HTML-safe
 	 * @return String containing new copy of string with entities escaped
 	 */
 	public static final String escapeHTMLChars(String nonHTML) {
@@ -151,8 +113,7 @@ public final class HtmlUtil {
 			idx = entityMap.indexOf(c);
 			if (idx == -1) {
 				res.append(c);
-			}
-			else {
+			} else {
 				res.append(quickEntities[idx]);
 			}
 		}
@@ -160,58 +121,70 @@ public final class HtmlUtil {
 	}
 
 	/**
-	 * These are probably HTML 3.2 level... as it looks like some HTML 4 entities are not present.
+	 * These are probably HTML 3.2 level... as it looks like some HTML 4
+	 * entities are not present.
 	 */
 	private static final String[][] ENTITIES = {
 	/* We probably don't want to filter regular ASCII chars so we leave them out */
 	{ "&", "amp" }, { "<", "lt" }, { ">", "gt" }, { "\"", "quot" },
 
-	{ "\u0083", "#131" }, { "\u0084", "#132" }, { "\u0085", "#133" }, { "\u0086", "#134" },
-			{ "\u0087", "#135" }, { "\u0089", "#137" }, { "\u008A", "#138" }, { "\u008B", "#139" },
-			{ "\u008C", "#140" }, { "\u0091", "#145" }, { "\u0092", "#146" }, { "\u0093", "#147" },
-			{ "\u0094", "#148" }, { "\u0095", "#149" }, { "\u0096", "#150" }, { "\u0097", "#151" },
-			{ "\u0099", "#153" }, { "\u009A", "#154" }, { "\u009B", "#155" }, { "\u009C", "#156" },
-			{ "\u009F", "#159" },
+	{ "\u0083", "#131" }, { "\u0084", "#132" }, { "\u0085", "#133" },
+			{ "\u0086", "#134" }, { "\u0087", "#135" }, { "\u0089", "#137" },
+			{ "\u008A", "#138" }, { "\u008B", "#139" }, { "\u008C", "#140" },
+			{ "\u0091", "#145" }, { "\u0092", "#146" }, { "\u0093", "#147" },
+			{ "\u0094", "#148" }, { "\u0095", "#149" }, { "\u0096", "#150" },
+			{ "\u0097", "#151" }, { "\u0099", "#153" }, { "\u009A", "#154" },
+			{ "\u009B", "#155" }, { "\u009C", "#156" }, { "\u009F", "#159" },
 
 			{ "\u00A0", "nbsp" }, { "\u00A1", "iexcl" }, { "\u00A2", "cent" },
 			{ "\u00A3", "pound" }, { "\u00A4", "curren" }, { "\u00A5", "yen" },
 			{ "\u00A6", "brvbar" }, { "\u00A7", "sect" }, { "\u00A8", "uml" },
-			{ "\u00A9", "copy" }, { "\u00AA", "ordf" }, { "\u00AB", "laquo" }, { "\u00AC", "not" },
-			{ "\u00AD", "shy" }, { "\u00AE", "reg" }, { "\u00AF", "macr" }, { "\u00B0", "deg" },
-			{ "\u00B1", "plusmn" }, { "\u00B2", "sup2" }, { "\u00B3", "sup3" },
+			{ "\u00A9", "copy" }, { "\u00AA", "ordf" }, { "\u00AB", "laquo" },
+			{ "\u00AC", "not" }, { "\u00AD", "shy" }, { "\u00AE", "reg" },
+			{ "\u00AF", "macr" }, { "\u00B0", "deg" }, { "\u00B1", "plusmn" },
+			{ "\u00B2", "sup2" }, { "\u00B3", "sup3" },
 
 			{ "\u00B4", "acute" }, { "\u00B5", "micro" }, { "\u00B6", "para" },
-			{ "\u00B7", "middot" }, { "\u00B8", "cedil" }, { "\u00B9", "sup1" },
-			{ "\u00BA", "ordm" }, { "\u00BB", "raquo" }, { "\u00BC", "frac14" },
-			{ "\u00BD", "frac12" }, { "\u00BE", "frac34" }, { "\u00BF", "iquest" },
+			{ "\u00B7", "middot" }, { "\u00B8", "cedil" },
+			{ "\u00B9", "sup1" }, { "\u00BA", "ordm" }, { "\u00BB", "raquo" },
+			{ "\u00BC", "frac14" }, { "\u00BD", "frac12" },
+			{ "\u00BE", "frac34" }, { "\u00BF", "iquest" },
 
-			{ "\u00C0", "Agrave" }, { "\u00C1", "Aacute" }, { "\u00C2", "Acirc" },
-			{ "\u00C3", "Atilde" }, { "\u00C4", "Auml" }, { "\u00C5", "Aring" },
-			{ "\u00C6", "AElig" }, { "\u00C7", "CCedil" }, { "\u00C8", "Egrave" },
-			{ "\u00C9", "Eacute" }, { "\u00CA", "Ecirc" }, { "\u00CB", "Euml" },
-			{ "\u00CC", "Igrave" }, { "\u00CD", "Iacute" }, { "\u00CE", "Icirc" },
+			{ "\u00C0", "Agrave" }, { "\u00C1", "Aacute" },
+			{ "\u00C2", "Acirc" }, { "\u00C3", "Atilde" },
+			{ "\u00C4", "Auml" }, { "\u00C5", "Aring" }, { "\u00C6", "AElig" },
+			{ "\u00C7", "CCedil" }, { "\u00C8", "Egrave" },
+			{ "\u00C9", "Eacute" }, { "\u00CA", "Ecirc" },
+			{ "\u00CB", "Euml" }, { "\u00CC", "Igrave" },
+			{ "\u00CD", "Iacute" }, { "\u00CE", "Icirc" },
 			{ "\u00CF", "Iuml" },
 
-			{ "\u00D0", "ETH" }, { "\u00D1", "Ntilde" }, { "\u00D2", "Ograve" },
-			{ "\u00D3", "Oacute" }, { "\u00D4", "Ocirc" }, { "\u00D5", "Otilde" },
-			{ "\u00D6", "Ouml" }, { "\u00D7", "times" }, { "\u00D8", "Oslash" },
-			{ "\u00D9", "Ugrave" }, { "\u00DA", "Uacute" }, { "\u00DB", "Ucirc" },
-			{ "\u00DC", "Uuml" }, { "\u00DD", "Yacute" }, { "\u00DE", "THORN" },
-			{ "\u00DF", "szlig" },
+			{ "\u00D0", "ETH" }, { "\u00D1", "Ntilde" },
+			{ "\u00D2", "Ograve" }, { "\u00D3", "Oacute" },
+			{ "\u00D4", "Ocirc" }, { "\u00D5", "Otilde" },
+			{ "\u00D6", "Ouml" }, { "\u00D7", "times" },
+			{ "\u00D8", "Oslash" }, { "\u00D9", "Ugrave" },
+			{ "\u00DA", "Uacute" }, { "\u00DB", "Ucirc" },
+			{ "\u00DC", "Uuml" }, { "\u00DD", "Yacute" },
+			{ "\u00DE", "THORN" }, { "\u00DF", "szlig" },
 
-			{ "\u00E0", "agrave" }, { "\u00E1", "aacute" }, { "\u00E2", "acirc" },
-			{ "\u00E3", "atilde" }, { "\u00E4", "auml" }, { "\u00E5", "aring" },
-			{ "\u00E6", "aelig" }, { "\u00E7", "ccedil" }, { "\u00E8", "egrave" },
-			{ "\u00E9", "eacute" }, { "\u00EA", "ecirc" }, { "\u00EB", "euml" },
-			{ "\u00EC", "igrave" }, { "\u00ED", "iacute" }, { "\u00EE", "icirc" },
+			{ "\u00E0", "agrave" }, { "\u00E1", "aacute" },
+			{ "\u00E2", "acirc" }, { "\u00E3", "atilde" },
+			{ "\u00E4", "auml" }, { "\u00E5", "aring" }, { "\u00E6", "aelig" },
+			{ "\u00E7", "ccedil" }, { "\u00E8", "egrave" },
+			{ "\u00E9", "eacute" }, { "\u00EA", "ecirc" },
+			{ "\u00EB", "euml" }, { "\u00EC", "igrave" },
+			{ "\u00ED", "iacute" }, { "\u00EE", "icirc" },
 			{ "\u00EF", "iuml" },
 
-			{ "\u00F0", "eth" }, { "\u00F1", "ntilde" }, { "\u00F2", "ograve" },
-			{ "\u00F3", "oacute" }, { "\u00F4", "ocirc" }, { "\u00F5", "otilde" },
-			{ "\u00F6", "ouml" }, { "\u00F7", "divid" }, { "\u00F8", "oslash" },
-			{ "\u00F9", "ugrave" }, { "\u00FA", "uacute" }, { "\u00FB", "ucirc" },
-			{ "\u00FC", "uuml" }, { "\u00FD", "yacute" }, { "\u00FE", "thorn" },
-			{ "\u00FF", "yuml" } };
+			{ "\u00F0", "eth" }, { "\u00F1", "ntilde" },
+			{ "\u00F2", "ograve" }, { "\u00F3", "oacute" },
+			{ "\u00F4", "ocirc" }, { "\u00F5", "otilde" },
+			{ "\u00F6", "ouml" }, { "\u00F7", "divid" },
+			{ "\u00F8", "oslash" }, { "\u00F9", "ugrave" },
+			{ "\u00FA", "uacute" }, { "\u00FB", "ucirc" },
+			{ "\u00FC", "uuml" }, { "\u00FD", "yacute" },
+			{ "\u00FE", "thorn" }, { "\u00FF", "yuml" } };
 
 	private static String entityMap;
 	private static String[] quickEntities;
@@ -259,8 +232,8 @@ public final class HtmlUtil {
 						TagNode tmp_node = (TagNode) node;
 						boolean isEnd = tmp_node.isEndTag();
 						if (!isEnd) {
-							prvContent.setLength(prvContent.length() - tmp_node.getText().length()
-									- 2);
+							prvContent.setLength(prvContent.length()
+									- tmp_node.getText().length() - 2);
 						}
 					}
 					// 补齐所有未关闭的标签
@@ -276,9 +249,9 @@ public final class HtmlUtil {
 							continue;
 						// System.out.println("Parent node is no ended. "
 						// + parent.getText());
-						prvContent.append(((TagNode) parent).getEndTag().toHtml());
-					}
-					while (true);
+						prvContent.append(((TagNode) parent).getEndTag()
+								.toHtml());
+					} while (true);
 					break;
 				}
 				node = nodes.elementAt(i);
@@ -287,35 +260,34 @@ public final class HtmlUtil {
 					prvContent.append('<');
 					prvContent.append(tag.getText());
 					prvContent.append('>');
-					// System.out.println("TAG测试: " + '<' + tag.getText() + '>');
-				}
-				else if (node instanceof TextNode) {
+					// System.out.println("TAG测试: " + '<' + tag.getText() +
+					// '>');
+				} else if (node instanceof TextNode) {
 					int space = max_count - prvContent.length();
 					if (space > 10) {
 						TextNode text = (TextNode) node;
 						if (text.getText().length() < 10)
 							prvContent.append(text.getText());
 						else
-							prvContent.append(StringUtils.abbreviate(text.getText(), max_count
-									- prvContent.length()));
+							prvContent.append(StringUtils
+									.abbreviate(text.getText(), max_count
+											- prvContent.length()));
 						// System.out.println("TEXT测试: " + text.getText());
 					}
 				}
 			}
 			return prvContent.toString();
-		}
-		catch (ParserException e) {
+		} catch (ParserException e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			parser = null;
 		}
 		return html;
 	}
 
 	public static void main(String[] args) throws Exception {
-		HtmlUtil.getContent("http://www.douban.com/group/Derridada/", "utf-8");
-		System.out.println(HtmlUtil.htmlToStr("<a ></a>fdfd",20));
+		System.out.println(HtmlUtil.getContent("http://www.douban.com/group/Derridada/", "utf-8"));
+		System.out.println(HtmlUtil.htmlToStr("<a ></a>fdfd", 20));
 		System.out.println("");
 	}
 

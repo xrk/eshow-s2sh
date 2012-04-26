@@ -21,8 +21,7 @@ public class StringUtil {
 		}
 		if (StringUtils.isBlank(content.toString())) {
 			return StringUtils.EMPTY;
-		}
-		else {
+		} else {
 			return content.toString();
 		}
 	}
@@ -35,16 +34,20 @@ public class StringUtil {
 		if (StringUtils.isBlank(str)) {
 			return StringUtils.EMPTY;
 		}
-		str = str.replaceAll("\t", StringUtils.EMPTY).replaceAll("\n", StringUtils.EMPTY).trim();
+		str = str.replaceAll("\t", StringUtils.EMPTY).replaceAll("\n",
+				StringUtils.EMPTY).trim();
 		return str;
 	}
 
 	/**
 	 * 取字符串的前toCount个字符
 	 * 
-	 * @param str 被处理字符串
-	 * @param toCount 截取长度
-	 * @param more 后缀字符串
+	 * @param str
+	 *            被处理字符串
+	 * @param toCount
+	 *            截取长度
+	 * @param more
+	 *            后缀字符串
 	 * @return String
 	 */
 	@SuppressWarnings("static-access")
@@ -71,19 +74,22 @@ public class StringUtil {
 		}
 		try {
 			return URLEncoder.encode(obj.toString(), "UTF-8");
-		}
-		catch (UnsupportedEncodingException e) {
+		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		return obj.toString();
 	}
 
 	/**
-	 * Encode a string using algorithm specified in web.xml and return the resulting encrypted password. If exception,
-	 * the plain credentials string is returned
+	 * Encode a string using algorithm specified in web.xml and return the
+	 * resulting encrypted password. If exception, the plain credentials string
+	 * is returned
 	 * 
-	 * @param password Password or other credentials to use in authenticating this username
-	 * @param algorithm Algorithm used to do the digest
+	 * @param password
+	 *            Password or other credentials to use in authenticating this
+	 *            username
+	 * @param algorithm
+	 *            Algorithm used to do the digest
 	 * @return encypted password based on the algorithm.
 	 */
 	public static String encodePassword(String password, String algorithm) {
@@ -94,8 +100,7 @@ public class StringUtil {
 		try {
 			// first create an instance, given the provider
 			md = MessageDigest.getInstance(algorithm);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Exception: " + e);
 
 			return password;
@@ -124,10 +129,12 @@ public class StringUtil {
 	}
 
 	/**
-	 * Encode a string using Base64 encoding. Used when storing passwords as cookies. This is weak encoding in that
-	 * anyone can use the decodeString routine to reverse the encoding.
+	 * Encode a string using Base64 encoding. Used when storing passwords as
+	 * cookies. This is weak encoding in that anyone can use the decodeString
+	 * routine to reverse the encoding.
 	 * 
-	 * @param str the string to encode
+	 * @param str
+	 *            the string to encode
 	 * @return the encoded string
 	 */
 	public static String encodeString(String str) {
@@ -138,20 +145,17 @@ public class StringUtil {
 	/**
 	 * Decode a string using Base64 encoding.
 	 * 
-	 * @param str the string to decode
+	 * @param str
+	 *            the string to decode
 	 * @return the decoded string
 	 */
 	public static String decodeString(String str) {
 		Base64 dec = new Base64();
-		try {
-			return String.valueOf(dec.decode(str));
-		}
-		catch (DecoderException de) {
-			throw new RuntimeException(de.getMessage(), de.getCause());
-		}
+		return String.valueOf(dec.decode(str));
 	}
-	
+
 	public static void main(String[] args) {
-		System.out.println(decodeString("a5a86401ff25d8e78cd5f4deeb5bf7a07eb3bf4f"));
+		System.out
+				.println(decodeString("a5a86401ff25d8e78cd5f4deeb5bf7a07eb3bf4f"));
 	}
 }

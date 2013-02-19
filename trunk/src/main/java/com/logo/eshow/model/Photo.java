@@ -19,10 +19,6 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import org.compass.annotations.Searchable;
-import org.compass.annotations.SearchableComponent;
-import org.compass.annotations.SearchableId;
-import org.compass.annotations.SearchableProperty;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -36,21 +32,16 @@ import java.io.Serializable;
 @Entity
 @Table(name = "photo")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Searchable(alias = "Photo")
 public class Photo extends BaseObject implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4417313563984109261L;
-	@SearchableId
 	private Integer id;
 	private User user;
-	@SearchableComponent
 	private Album album;
 	private Date addTime;
-	@SearchableProperty
 	private String name;
-	@SearchableProperty
 	private String description;
 	private String img;
 	private Integer commentSize;

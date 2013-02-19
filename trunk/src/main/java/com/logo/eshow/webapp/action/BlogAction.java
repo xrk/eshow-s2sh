@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.BlogQueryBean;
+import com.logo.eshow.bean.query.BlogQuery;
 import com.logo.eshow.model.Blog;
 import com.logo.eshow.model.Category;
 import com.logo.eshow.service.BlogManager;
@@ -16,7 +16,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -29,24 +29,23 @@ public class BlogAction extends BaseAction {
 	private CategoryManager categoryManager;
 	private List<Blog> blogs;
 	private Blog blog;
-	private BlogQueryBean queryBean;
+	private BlogQuery query;
 	private Integer categoryId;
-	
+
 	public String list() {
-		blogs = blogManager.list(queryBean);
+		blogs = blogManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Blog> page = blogManager.search(queryBean, getOffset(), pagesize);
+		Page<Blog> page = blogManager.search(query);
 		blogs = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
 	}
 
 	public String category() {
-		Page<Blog> page = blogManager
-				.search(queryBean, getOffset(), pagesize);
+		Page<Blog> page = blogManager.search(query);
 		blogs = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -73,7 +72,7 @@ public class BlogAction extends BaseAction {
 	public String view() {
 		if (id != null) {
 			blog = blogManager.get(id);
-			blog.setCount(blog.getCount()+CommonVar.STEP);
+			blog.setCount(blog.getCount() + CommonVar.STEP);
 			blog = blogManager.save(blog);
 		} else {
 			blog = new Blog();
@@ -141,12 +140,12 @@ public class BlogAction extends BaseAction {
 		this.blog = blog;
 	}
 
-	public BlogQueryBean getQueryBean() {
-		return queryBean;
+	public BlogQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(BlogQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(BlogQuery query) {
+		this.query = query;
 	}
 
 	public Integer getCategoryId() {

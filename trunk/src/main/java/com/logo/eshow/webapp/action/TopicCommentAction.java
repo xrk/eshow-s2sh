@@ -1,7 +1,7 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.TopicCommentQueryBean;
-import com.logo.eshow.bean.query.TopicQueryBean;
+import com.logo.eshow.bean.query.TopicCommentQuery;
+import com.logo.eshow.bean.query.TopicQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Topic;
 import com.logo.eshow.model.TopicComment;
@@ -18,7 +18,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -31,19 +31,18 @@ public class TopicCommentAction extends BaseAction {
 	private TopicManager topicManager;
 	private List<TopicComment> topicComments;
 	private TopicComment topicComment;
-	private TopicCommentQueryBean queryBean;
-	private TopicQueryBean topicQueryBean;
+	private TopicCommentQuery query;
+	private TopicQuery topicQuery;
 	private Integer topicId;
 	private Integer boardId;
 
 	public String list() {
-		topicComments = topicCommentManager.list(queryBean);
+		topicComments = topicCommentManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<TopicComment> page = topicCommentManager.search(queryBean,
-				getOffset(), pagesize);
+		Page<TopicComment> page = topicCommentManager.search(query);
 		topicComments = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -58,12 +57,12 @@ public class TopicCommentAction extends BaseAction {
 		List<Topic> topics = new ArrayList<Topic>();
 		List<TopicComment> list = new ArrayList<TopicComment>();// 存放查找出来的回复
 		Page<TopicComment> page = null;
-		topicQueryBean = new TopicQueryBean();
-		topicQueryBean.setBoardId(boardId);
-		topics = topicManager.list(topicQueryBean);
+		topicQuery = new TopicQuery();
+		topicQuery.setBoardId(boardId);
+		topics = topicManager.list(topicQuery);
 		for (Topic tc : topics) {
-			queryBean.setTopicId(tc.getId());
-			page = topicCommentManager.search(queryBean, getOffset(), pagesize);
+			query.setTopicId(tc.getId());
+			page = topicCommentManager.search(query);
 			topicComments = page.getDataList();
 			if (!topicComments.isEmpty()) { // 去掉同一话题的多次回复，取一个
 				list.add(topicComments.get(0));
@@ -152,20 +151,20 @@ public class TopicCommentAction extends BaseAction {
 		this.topicComment = topicComment;
 	}
 
-	public TopicCommentQueryBean getQueryBean() {
-		return queryBean;
+	public TopicCommentQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(TopicCommentQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(TopicCommentQuery query) {
+		this.query = query;
 	}
 
-	public TopicQueryBean getTopicQueryBean() {
-		return topicQueryBean;
+	public TopicQuery getTopicQuery() {
+		return topicQuery;
 	}
 
-	public void setTopicQueryBean(TopicQueryBean topicQueryBean) {
-		this.topicQueryBean = topicQueryBean;
+	public void setTopicQuery(TopicQuery topicQuery) {
+		this.topicQuery = topicQuery;
 	}
 
 	public Integer getTopicId() {

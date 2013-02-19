@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.TwitterQueryBean;
+import com.logo.eshow.bean.query.TwitterQuery;
 import com.logo.eshow.model.Twitter;
 import com.logo.eshow.service.TwitterManager;
 import com.logo.eshow.webapp.action.BaseAction;
@@ -14,7 +14,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -26,23 +26,22 @@ public class TwitterAction extends BaseAction {
 	private TwitterManager twitterManager;
 	private List<Twitter> twitters;
 	private Twitter twitter;
-	private TwitterQueryBean queryBean;
-	
+	private TwitterQuery query;
+
 	@Override
 	public String execute() throws Exception {
-		twitters = twitterManager.list(queryBean);
+		twitters = twitterManager.list(query);
 		System.out.println("execute");
 		return LIST;
 	}
 
 	public String list() {
-		twitters = twitterManager.list(queryBean);
+		twitters = twitterManager.list(query);
 		return LIST;
 	}
-	
+
 	public String search() {
-		Page<Twitter> page = twitterManager.search(queryBean, getOffset(),
-				pagesize);
+		Page<Twitter> page = twitterManager.search(query);
 		twitters = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -116,12 +115,12 @@ public class TwitterAction extends BaseAction {
 		this.twitter = twitter;
 	}
 
-	public TwitterQueryBean getQueryBean() {
-		return queryBean;
+	public TwitterQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(TwitterQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(TwitterQuery query) {
+		this.query = query;
 	}
 
 }

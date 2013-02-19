@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.AppQueryBean;
+import com.logo.eshow.bean.query.AppQuery;
 import com.logo.eshow.model.App;
 import com.logo.eshow.service.AppManager;
 import com.logo.eshow.webapp.action.BaseAction;
@@ -13,7 +13,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -25,15 +25,15 @@ public class AppAction extends BaseAction {
 	private AppManager appManager;
 	private List<App> apps;
 	private App app;
-	private AppQueryBean queryBean;
+	private AppQuery query;
 
 	public String list() {
-		apps = appManager.list(queryBean);
+		apps = appManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<App> page = appManager.search(queryBean, getOffset(), pagesize);
+		Page<App> page = appManager.search(query);
 		apps = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -97,12 +97,12 @@ public class AppAction extends BaseAction {
 		this.app = app;
 	}
 
-	public AppQueryBean getQueryBean() {
-		return queryBean;
+	public AppQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(AppQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(AppQuery query) {
+		this.query = query;
 	}
 
 }

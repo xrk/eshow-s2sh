@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.PhotoCommentQueryBean;
+import com.logo.eshow.bean.query.PhotoCommentQuery;
 import com.logo.eshow.model.Photo;
 import com.logo.eshow.model.PhotoComment;
 import com.logo.eshow.service.PhotoCommentManager;
@@ -17,7 +17,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -30,17 +30,16 @@ public class PhotoCommentAction extends BaseAction {
 	private PhotoManager photoManager;
 	private List<PhotoComment> photoComments;
 	private PhotoComment photoComment;
-	private PhotoCommentQueryBean queryBean;
+	private PhotoCommentQuery query;
 	private Integer photoId;
 
 	public String list() {
-		photoComments = photoCommentManager.list(queryBean);
+		photoComments = photoCommentManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<PhotoComment> page = photoCommentManager.search(queryBean,
-				getOffset(), pagesize);
+		Page<PhotoComment> page = photoCommentManager.search(query);
 		photoComments = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -126,12 +125,12 @@ public class PhotoCommentAction extends BaseAction {
 		this.photoComment = photoComment;
 	}
 
-	public PhotoCommentQueryBean getQueryBean() {
-		return queryBean;
+	public PhotoCommentQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(PhotoCommentQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(PhotoCommentQuery query) {
+		this.query = query;
 	}
 
 	public Integer getPhotoId() {

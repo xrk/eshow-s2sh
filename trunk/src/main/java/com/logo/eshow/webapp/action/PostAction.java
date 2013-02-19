@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.PostQueryBean;
+import com.logo.eshow.bean.query.PostQuery;
 import com.logo.eshow.model.Post;
 import com.logo.eshow.service.PostManager;
 import com.logo.eshow.webapp.action.BaseAction;
@@ -13,7 +13,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -25,15 +25,15 @@ public class PostAction extends BaseAction {
 	private PostManager postManager;
 	private List<Post> posts;
 	private Post post;
-	private PostQueryBean queryBean;
+	private PostQuery query;
 
 	public String list() {
-		posts = postManager.list(queryBean);
+		posts = postManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Post> page = postManager.search(queryBean, getOffset(), pagesize);
+		Page<Post> page = postManager.search(query);
 		posts = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -97,12 +97,12 @@ public class PostAction extends BaseAction {
 		this.post = post;
 	}
 
-	public PostQueryBean getQueryBean() {
-		return queryBean;
+	public PostQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(PostQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(PostQuery query) {
+		this.query = query;
 	}
 
 }

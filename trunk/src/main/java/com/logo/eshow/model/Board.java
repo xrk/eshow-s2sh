@@ -15,9 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import org.compass.annotations.Searchable;
-import org.compass.annotations.SearchableId;
-import org.compass.annotations.SearchableProperty;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -31,18 +28,14 @@ import java.io.Serializable;
 @Entity
 @Table(name = "board")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Searchable(alias = "Board")
 public class Board extends BaseObject implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6191125134212611571L;
-	@SearchableId
 	private Integer id;
 	private Date addTime;
-	@SearchableProperty
 	private String name;
-	@SearchableProperty
 	private String description;
 	private Integer sequence;
 	private Set<Topic> topics = new HashSet<Topic>(0);

@@ -1,7 +1,7 @@
 ﻿package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.ProductQueryBean;
-import com.logo.eshow.bean.query.ThumbQueryBean;
+import com.logo.eshow.bean.query.ProductQuery;
+import com.logo.eshow.bean.query.ThumbQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Product;
 import com.logo.eshow.model.Thumb;
@@ -18,7 +18,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -32,17 +32,16 @@ public class ProductAction extends BaseFileUploadAction {
 	private ThumbManager thumbManager;
 	private List<Product> products;
 	private Product product;
-	private ProductQueryBean queryBean;
+	private ProductQuery query;
 	private Integer productCategoryId;
 
 	public String list() {
-		products = productManager.list(queryBean);
+		products = productManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Product> page = productManager.search(queryBean, getOffset(),
-				pagesize);
+		Page<Product> page = productManager.search(query);
 		products = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -69,23 +68,21 @@ public class ProductAction extends BaseFileUploadAction {
 		old.setName(product.getName());
 		old.setContent(product.getContent());
 		if (productCategoryId != null) {
-			old.setProductCategory(productCategoryManager
-					.get(productCategoryId));
+			old.setProductCategory(productCategoryManager.get(productCategoryId));
 		}
 
 		if (file != null) {
-			String path = "upload/product/"
-					+ DateUtil.getDateTime("yyyyMMdd", old.getAddTime()) + "/";
+			String path = "upload/product/" + DateUtil.getDateTime("yyyyMMdd", old.getAddTime())
+					+ "/";
 			ImageUtil.uploadImage(path, old.getId().toString(), file);
 			old.setImg(old.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQueryBean thumbQueryBean = new ThumbQueryBean();
-			thumbQueryBean.setModel("product");
-			List<Thumb> list = thumbManager.list(thumbQueryBean);
+			ThumbQuery thumbQuery = new ThumbQuery();
+			thumbQuery.setModel("product");
+			List<Thumb> list = thumbManager.list(thumbQuery);
 			for (Thumb thumb : list) {
-				ImageUtil.resizeImage(path + "view/" + old.getId() + "-"
-						+ thumb.getWidth() + "-" + thumb.getHeight() + ".jpg",
-						path + "orig/" + old.getId() + ".jpg",
+				ImageUtil.resizeImage(path + "view/" + old.getId() + "-" + thumb.getWidth() + "-"
+						+ thumb.getHeight() + ".jpg", path + "orig/" + old.getId() + ".jpg",
 						thumb.getWidth(), thumb.getHeight(), thumb.getType());
 			}
 		}
@@ -97,28 +94,23 @@ public class ProductAction extends BaseFileUploadAction {
 	public String save() throws Exception {
 		product.setAddTime(new Date());
 		if (productCategoryId != null) {
-			product.setProductCategory(productCategoryManager
-					.get(productCategoryId));
+			product.setProductCategory(productCategoryManager.get(productCategoryId));
 		}
 		product.setUser(getSessionUser());
 		product = productManager.save(product);
 		if (file != null) {
 			String path = "upload/product/"
-					+ DateUtil.getDateTime("yyyyMMdd", product.getAddTime())
-					+ "/";
+					+ DateUtil.getDateTime("yyyyMMdd", product.getAddTime()) + "/";
 			ImageUtil.uploadImage(path, product.getId().toString(), file);
 			product.setImg(product.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQueryBean thumbQueryBean = new ThumbQueryBean();
-			thumbQueryBean.setModel("product");
-			List<Thumb> list = thumbManager.list(thumbQueryBean);
+			ThumbQuery thumbQuery = new ThumbQuery();
+			thumbQuery.setModel("product");
+			List<Thumb> list = thumbManager.list(thumbQuery);
 			for (Thumb thumb : list) {
-				ImageUtil
-						.resizeImage(path + "view/" + product.getId() + "-"
-								+ thumb.getWidth() + "-" + thumb.getHeight()
-								+ ".jpg", path + "orig/" + product.getId()
-								+ ".jpg", thumb.getWidth(), thumb.getHeight(),
-								thumb.getType());
+				ImageUtil.resizeImage(path + "view/" + product.getId() + "-" + thumb.getWidth()
+						+ "-" + thumb.getHeight() + ".jpg", path + "orig/" + product.getId()
+						+ ".jpg", thumb.getWidth(), thumb.getHeight(), thumb.getType());
 			}
 			productManager.save(product);
 		}
@@ -160,8 +152,7 @@ public class ProductAction extends BaseFileUploadAction {
 		this.productCategoryId = productCategoryId;
 	}
 
-	public void setProductCategoryManager(
-			ProductCategoryManager productCategoryManager) {
+	public void setProductCategoryManager(ProductCategoryManager productCategoryManager) {
 		this.productCategoryManager = productCategoryManager;
 	}
 
@@ -173,12 +164,12 @@ public class ProductAction extends BaseFileUploadAction {
 		this.product = product;
 	}
 
-	public ProductQueryBean getQueryBean() {
-		return queryBean;
+	public ProductQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(ProductQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(ProductQuery query) {
+		this.query = query;
 	}
 
 	public ProductCategoryManager getProductCategoryManager() {

@@ -5,7 +5,6 @@ import java.net.URLEncoder;
 import java.security.MessageDigest;
 
 import org.apache.commons.beanutils.ConvertUtils;
-import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -34,8 +33,7 @@ public class StringUtil {
 		if (StringUtils.isBlank(str)) {
 			return StringUtils.EMPTY;
 		}
-		str = str.replaceAll("\t", StringUtils.EMPTY).replaceAll("\n",
-				StringUtils.EMPTY).trim();
+		str = str.replaceAll("\t", StringUtils.EMPTY).replaceAll("\n", StringUtils.EMPTY).trim();
 		return str;
 	}
 
@@ -139,7 +137,7 @@ public class StringUtil {
 	 */
 	public static String encodeString(String str) {
 		Base64 encoder = new Base64();
-		return String.valueOf(encoder.encode(str.getBytes())).trim();
+		return new String(encoder.encode(str.getBytes())).trim();
 	}
 
 	/**
@@ -151,11 +149,23 @@ public class StringUtil {
 	 */
 	public static String decodeString(String str) {
 		Base64 dec = new Base64();
-		return String.valueOf(dec.decode(str));
+		return new String(dec.decode(str.getBytes()));
+	}
+
+	public static char ascii2Char(int ASCII) {   
+        return (char) ASCII;   
+    }   
+	
+	public static String ascii2String(String ASCIIs) {
+		String[] ASCIIss = ASCIIs.split(",");
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < ASCIIss.length; i++) {
+			sb.append((char) ascii2Char(Integer.parseInt(ASCIIss[i])));
+		}
+		return sb.toString();
 	}
 
 	public static void main(String[] args) {
-		System.out
-				.println(decodeString("a5a86401ff25d8e78cd5f4deeb5bf7a07eb3bf4f"));
+		System.out.println(decodeString("a5a86401ff25d8e78cd5f4deeb5bf7a07eb3bf4f"));
 	}
 }

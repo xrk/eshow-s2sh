@@ -1,7 +1,7 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.ServiceTypeQueryBean;
-import com.logo.eshow.bean.query.ServiceQueryBean;
+import com.logo.eshow.bean.query.ServiceTypeQuery;
+import com.logo.eshow.bean.query.ServiceQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.ServiceType;
 import com.logo.eshow.service.ServiceTypeManager;
@@ -15,7 +15,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -28,16 +28,15 @@ public class ServiceTypeAction extends BaseAction {
 	private ServiceManager serviceManager;
 	private List<ServiceType> serviceTypes;
 	private ServiceType serviceType;
-	private ServiceTypeQueryBean queryBean;
+	private ServiceTypeQuery query;
 
 	public String list() {
-		serviceTypes = serviceTypeManager.list(queryBean);
+		serviceTypes = serviceTypeManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<ServiceType> page = serviceTypeManager.search(queryBean,
-				getOffset(), pagesize);
+		Page<ServiceType> page = serviceTypeManager.search(query);
 		serviceTypes = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -48,10 +47,10 @@ public class ServiceTypeAction extends BaseAction {
 		ServiceType serviceType = serviceTypeManager.get(id);
 		if (serviceType != null) {
 			// 查询当前服务分类的服务类别
-			ServiceQueryBean serviceQueryBean = new ServiceQueryBean();
-			serviceQueryBean.setServiceTypeId(id);
+			ServiceQuery serviceQuery = new ServiceQuery();
+			serviceQuery.setServiceTypeId(id);
 			// 查询出当前分类所有的服务
-			List<Service> services = serviceManager.list(serviceQueryBean);
+			List<Service> services = serviceManager.list(serviceQuery);
 			// 循环每一条服务,后更改服务的ID为NULL
 			for (Service service : services) {
 				service.setServiceType(null);
@@ -112,12 +111,12 @@ public class ServiceTypeAction extends BaseAction {
 		this.serviceType = serviceType;
 	}
 
-	public ServiceTypeQueryBean getQueryBean() {
-		return queryBean;
+	public ServiceTypeQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(ServiceTypeQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(ServiceTypeQuery query) {
+		this.query = query;
 	}
 
 }

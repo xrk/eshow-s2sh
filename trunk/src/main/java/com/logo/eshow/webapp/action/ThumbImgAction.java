@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.ThumbImgQueryBean;
+import com.logo.eshow.bean.query.ThumbImgQuery;
 import com.logo.eshow.model.ThumbImg;
 import com.logo.eshow.service.ThumbImgManager;
 import com.logo.eshow.common.page.Page;
@@ -11,10 +11,10 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
-	@Result(name = "list", type = "redirect", location = ""),
-	@Result(name = "success", type = "redirect", location = "view/${id}"),
-	@Result(name = "redirect", type = "redirect", location = "${redirect}") })
+@Results({ @Result(name = "input", location = "add"),
+		@Result(name = "list", type = "redirect", location = ""),
+		@Result(name = "success", type = "redirect", location = "view/${id}"),
+		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class ThumbImgAction extends BaseAction {
 	/**
 	 * 
@@ -23,17 +23,15 @@ public class ThumbImgAction extends BaseAction {
 	private ThumbImgManager thumbImgManager;
 	private List<ThumbImg> thumbImgs;
 	private ThumbImg thumbImg;
-	private ThumbImgQueryBean queryBean;
-	
-	public String list()
-	{
-		thumbImgs = thumbImgManager.list(queryBean);
+	private ThumbImgQuery query;
+
+	public String list() {
+		thumbImgs = thumbImgManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<ThumbImg> page = thumbImgManager.search(queryBean, getOffset(),
-				pagesize);
+		Page<ThumbImg> page = thumbImgManager.search(query);
 		thumbImgs = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -61,7 +59,7 @@ public class ThumbImgAction extends BaseAction {
 	 */
 
 	public String thumb() {
-		thumbImg = thumbImgManager.thumb(queryBean);
+		thumbImg = thumbImgManager.thumb(query);
 		return SUCCESS;
 
 	}
@@ -90,12 +88,12 @@ public class ThumbImgAction extends BaseAction {
 		this.thumbImg = thumbImg;
 	}
 
-	public ThumbImgQueryBean getQueryBean() {
-		return queryBean;
+	public ThumbImgQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(ThumbImgQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(ThumbImgQuery query) {
+		this.query = query;
 	}
 
 }

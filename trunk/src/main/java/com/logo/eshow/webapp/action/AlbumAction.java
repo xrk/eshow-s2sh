@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.AlbumQueryBean;
+import com.logo.eshow.bean.query.AlbumQuery;
 import com.logo.eshow.model.Album;
 import com.logo.eshow.service.AlbumManager;
 import com.logo.eshow.webapp.action.BaseAction;
@@ -13,7 +13,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.convention.annotation.Result;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -25,16 +25,15 @@ public class AlbumAction extends BaseAction {
 	private AlbumManager albumManager;
 	private List<Album> albums;
 	private Album album;
-	private AlbumQueryBean queryBean;
+	private AlbumQuery query;
 
 	public String list() {
-		albums = albumManager.list(queryBean);
+		albums = albumManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Album> page = albumManager
-				.search(queryBean, getOffset(), pagesize);
+		Page<Album> page = albumManager.search(query);
 		albums = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -98,12 +97,12 @@ public class AlbumAction extends BaseAction {
 		this.album = album;
 	}
 
-	public AlbumQueryBean getQueryBean() {
-		return queryBean;
+	public AlbumQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(AlbumQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(AlbumQuery query) {
+		this.query = query;
 	}
 
 }

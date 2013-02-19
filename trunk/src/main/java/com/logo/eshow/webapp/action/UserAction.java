@@ -7,8 +7,8 @@ import org.apache.struts2.convention.annotation.Results;
 import org.springframework.security.access.AccessDeniedException;
 
 import com.logo.eshow.Constants;
-import com.logo.eshow.bean.query.ThumbQueryBean;
-import com.logo.eshow.bean.query.UserQueryBean;
+import com.logo.eshow.bean.query.ThumbQuery;
+import com.logo.eshow.bean.query.UserQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Role;
 import com.logo.eshow.model.Thumb;
@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -38,7 +38,7 @@ public class UserAction extends BaseFileUploadAction {
 	private List<User> users;
 	private ThumbManager thumbManager;
 	private User user;
-	private UserQueryBean queryBean;
+	private UserQuery query;
 
 	/**
 	 * Constant for photo result String
@@ -51,7 +51,7 @@ public class UserAction extends BaseFileUploadAction {
 	 * @return String
 	 */
 	public String search() {
-		Page<User> page = userManager.search(queryBean, getOffset(), pagesize);
+		Page<User> page = userManager.search(query);
 		users = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -63,8 +63,7 @@ public class UserAction extends BaseFileUploadAction {
 	public String view() {
 		if (id == null) {
 			if (getRequest().getRemoteUser() != null) {
-				user = userManager.getUserByUsername(getRequest()
-						.getRemoteUser());
+				user = userManager.getUserByUsername(getRequest().getRemoteUser());
 			} else {
 				return INPUT;
 			}
@@ -83,11 +82,9 @@ public class UserAction extends BaseFileUploadAction {
 	 * @throws IOException
 	 * @throws UserExistsException
 	 */
-	public String photo() throws MagickException, IOException,
-			UserExistsException {
+	public String photo() throws MagickException, IOException, UserExistsException {
 		user = userManager.getUser(id);
-		String path = "upload/user/"
-				+ DateUtil.getDateTime("yyyyMMdd", user.getAddTime()) + "/";
+		String path = "upload/user/" + DateUtil.getDateTime("yyyyMMdd", user.getAddTime()) + "/";
 		user.setPhoto(user.getId() + ".jpg");
 
 		userManager.saveUser(user);
@@ -99,21 +96,18 @@ public class UserAction extends BaseFileUploadAction {
 		Integer h = Integer.valueOf(getRequest().getParameter("height"));
 
 		// 裁剪头像
-		ImageUtil.cropImage(path + "view/" + user.getId() + "-" + w + "-" + h
-				+ ".jpg", path + "crop/" + user.getId() + "-450-450.jpg", x, y,
-				w, h);
+		ImageUtil.cropImage(path + "view/" + user.getId() + "-" + w + "-" + h + ".jpg", path
+				+ "crop/" + user.getId() + "-450-450.jpg", x, y, w, h);
 
-		ThumbQueryBean thumbQueryBean = new ThumbQueryBean();
-		thumbQueryBean.setModel("user");
-		List<Thumb> list = thumbManager.list(thumbQueryBean);
+		ThumbQuery thumbQuery = new ThumbQuery();
+		thumbQuery.setModel("user");
+		List<Thumb> list = thumbManager.list(thumbQuery);
 		// 根据缩略图规则进行缩略图生成
 		for (Thumb thumb : list) {
 			if (!thumb.getWidth().equals(w) && !thumb.getHeight().equals(h)) {
-				ImageUtil.resizeImage(path + "view/" + user.getId() + "-"
-						+ thumb.getWidth() + "-" + thumb.getWidth() + ".jpg",
-						path + "view/" + user.getId() + "-" + w + "-" + h
-								+ ".jpg", thumb.getWidth(), thumb.getHeight(),
-						thumb.getType());
+				ImageUtil.resizeImage(path + "view/" + user.getId() + "-" + thumb.getWidth() + "-"
+						+ thumb.getWidth() + ".jpg", path + "view/" + user.getId() + "-" + w + "-"
+						+ h + ".jpg", thumb.getWidth(), thumb.getHeight(), thumb.getType());
 			}
 		}
 		return PHOTO;
@@ -281,9 +275,8 @@ public class UserAction extends BaseFileUploadAction {
 				// Send an account information e-mail
 				mailMessage.setSubject(getText("signup.email.subject"));
 				try {
-					sendUserMessage(user,
-							getText("newuser.email.message", args), RequestUtil
-									.getAppURL(getRequest()));
+					sendUserMessage(user, getText("newuser.email.message", args),
+							RequestUtil.getAppURL(getRequest()));
 				} catch (MailException me) {
 					addActionError(me.getCause().getLocalizedMessage());
 				}
@@ -293,17 +286,6 @@ public class UserAction extends BaseFileUploadAction {
 				return INPUT;
 			}
 		}
-	}
-
-	/**
-	 * Fetch all users from database and put into local "users" variable for
-	 * retrieval in the UI.
-	 * 
-	 * @return "success" if no exceptions thrown
-	 */
-	public String list() {
-		users = userManager.getUsers();
-		return SUCCESS;
 	}
 
 	public List<User> getUsers() {
@@ -330,12 +312,12 @@ public class UserAction extends BaseFileUploadAction {
 		this.user = user;
 	}
 
-	public UserQueryBean getQueryBean() {
-		return queryBean;
+	public UserQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(UserQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(UserQuery query) {
+		this.query = query;
 	}
 
 }

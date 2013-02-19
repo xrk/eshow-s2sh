@@ -185,7 +185,4 @@
 
     <!-- Add new Actions here -->
     
-    <bean id="compassSearchService" class="com.logo.eshow.components.compass.CompassSearchService">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
 </beans>

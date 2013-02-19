@@ -1,18 +1,18 @@
 package com.logo.eshow.common;
 
-import com.logo.eshow.bean.query.AlbumQueryBean;
-import com.logo.eshow.bean.query.BlogCommentQueryBean;
-import com.logo.eshow.bean.query.BlogQueryBean;
-import com.logo.eshow.bean.query.BoardQueryBean;
-import com.logo.eshow.bean.query.CategoryQueryBean;
-import com.logo.eshow.bean.query.InfoQueryBean;
-import com.logo.eshow.bean.query.PhotoCommentQueryBean;
-import com.logo.eshow.bean.query.PhotoQueryBean;
-import com.logo.eshow.bean.query.ServiceQueryBean;
-import com.logo.eshow.bean.query.ServiceTypeQueryBean;
-import com.logo.eshow.bean.query.TopicCommentQueryBean;
-import com.logo.eshow.bean.query.TopicQueryBean;
-import com.logo.eshow.bean.query.UserQueryBean;
+import com.logo.eshow.bean.query.AlbumQuery;
+import com.logo.eshow.bean.query.BlogCommentQuery;
+import com.logo.eshow.bean.query.BlogQuery;
+import com.logo.eshow.bean.query.BoardQuery;
+import com.logo.eshow.bean.query.CategoryQuery;
+import com.logo.eshow.bean.query.InfoQuery;
+import com.logo.eshow.bean.query.PhotoCommentQuery;
+import com.logo.eshow.bean.query.PhotoQuery;
+import com.logo.eshow.bean.query.ServiceQuery;
+import com.logo.eshow.bean.query.ServiceTypeQuery;
+import com.logo.eshow.bean.query.TopicCommentQuery;
+import com.logo.eshow.bean.query.TopicQuery;
+import com.logo.eshow.bean.query.UserQuery;
 
 /**
  * 查询Bean的变量定义
@@ -25,65 +25,65 @@ public final class QueryBean {
 	/**
 	 * 事务查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static AlbumQueryBean ALBUM_QUERY_BEAN = new AlbumQueryBean();
+	public static AlbumQuery ALBUM_QUERY = new AlbumQuery();
 
 	/**
 	 * 日志查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static BlogQueryBean BLOG_QUERY_BEAN = new BlogQueryBean();
+	public static BlogQuery BLOG_QUERY = new BlogQuery();
 
 	/**
 	 * 日志评论查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static BlogCommentQueryBean BLOGCOMMENT_QUERY_BEAN = new BlogCommentQueryBean();
+	public static BlogCommentQuery BLOGCOMMENT_QUERY = new BlogCommentQuery();
 
 	/**
 	 * 版块查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static BoardQueryBean BOARD_QUERY_BEAN = new BoardQueryBean();
+	public static BoardQuery BOARD_QUERY = new BoardQuery();
 
 	/**
 	 * 分类查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static CategoryQueryBean CATEGORY_QUERY_BEAN = new CategoryQueryBean();
+	public static CategoryQuery CATEGORY_QUERY = new CategoryQuery();
 
 	/**
 	 * 信息查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static InfoQueryBean INFO_QUERY_BEAN = new InfoQueryBean();
+	public static InfoQuery INFO_QUERY = new InfoQuery();
 
 	/**
 	 * 图片查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static PhotoQueryBean PHOTO_QUERY_BEAN = new PhotoQueryBean();
+	public static PhotoQuery PHOTO_QUERY = new PhotoQuery();
 
 	/**
 	 * 图片评论查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static PhotoCommentQueryBean PHOTOCOMMENT_QUERY_BEAN = new PhotoCommentQueryBean();
+	public static PhotoCommentQuery PHOTOCOMMENT_QUERY = new PhotoCommentQuery();
 
 	/**
 	 * 服务查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static ServiceQueryBean SERVICE_QUERY_BEAN = new ServiceQueryBean();
+	public static ServiceQuery SERVICE_QUERY = new ServiceQuery();
 
 	/**
 	 * 服务类型查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static ServiceTypeQueryBean SERVICETYPE_QUERY_BEAN = new ServiceTypeQueryBean();
+	public static ServiceTypeQuery SERVICETYPE_QUERY = new ServiceTypeQuery();
 
 	/**
 	 * 帖子查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static TopicQueryBean TOPIC_QUERY_BEAN = new TopicQueryBean();
+	public static TopicQuery TOPIC_QUERY = new TopicQuery();
 
 	/**
 	 * 帖子评论查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static TopicCommentQueryBean TOPICCOMMENT_QUERY_BEAN = new TopicCommentQueryBean();
+	public static TopicCommentQuery TOPICCOMMENT_QUERY = new TopicCommentQuery();
 
 	/**
 	 * 用户查询字段的关键字对象，使用在request或session或appliction中。
 	 */
-	public static UserQueryBean User_QUERY_BEAN = new UserQueryBean();
+	public static UserQuery USER_QUERY = new UserQuery();
 }

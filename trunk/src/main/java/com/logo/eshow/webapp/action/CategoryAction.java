@@ -1,7 +1,7 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.CategoryQueryBean;
-import com.logo.eshow.bean.query.BlogQueryBean;
+import com.logo.eshow.bean.query.CategoryQuery;
+import com.logo.eshow.bean.query.BlogQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Category;
 import com.logo.eshow.model.Blog;
@@ -15,7 +15,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -28,16 +28,15 @@ public class CategoryAction extends BaseAction {
 	private BlogManager blogManager;
 	private List<Category> categories;
 	private Category category;
-	private CategoryQueryBean queryBean = new CategoryQueryBean();
+	private CategoryQuery query = new CategoryQuery();
 
 	public String list() {
-		categories = categoryManager.list(queryBean);
+		categories = categoryManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Category> page = categoryManager.search(queryBean, getOffset(),
-				pagesize);
+		Page<Category> page = categoryManager.search(query);
 		categories = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -47,9 +46,9 @@ public class CategoryAction extends BaseAction {
 		Category category = categoryManager.get(id);
 		if (category != null) {
 			// 查询当前分类下的日志
-			BlogQueryBean blogQueryBean = new BlogQueryBean();
-			blogQueryBean.setCategoryId(id);
-			List<Blog> blogs = blogManager.list(blogQueryBean);
+			BlogQuery blogQuery = new BlogQuery();
+			blogQuery.setCategoryId(id);
+			List<Blog> blogs = blogManager.list(blogQuery);
 			for (Blog blog : blogs) {
 				blog.setCategory(null);
 				blogManager.save(blog);
@@ -107,12 +106,12 @@ public class CategoryAction extends BaseAction {
 		this.category = category;
 	}
 
-	public CategoryQueryBean getQueryBean() {
-		return queryBean;
+	public CategoryQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(CategoryQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(CategoryQuery query) {
+		this.query = query;
 	}
 
 	public BlogManager getBlogManager() {

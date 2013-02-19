@@ -1,7 +1,7 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.ProductCategoryQueryBean;
-import com.logo.eshow.bean.query.ProductQueryBean;
+import com.logo.eshow.bean.query.ProductCategoryQuery;
+import com.logo.eshow.bean.query.ProductQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Product;
 import com.logo.eshow.model.ProductCategory;
@@ -15,7 +15,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -28,16 +28,15 @@ public class ProductCategoryAction extends BaseAction {
 	private ProductManager productManager;
 	private List<ProductCategory> productCategories;
 	private ProductCategory productCategory;
-	private ProductCategoryQueryBean queryBean;
+	private ProductCategoryQuery query;
 
 	public String list() {
-		productCategories = productCategoryManager.list(queryBean);
+		productCategories = productCategoryManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<ProductCategory> page = productCategoryManager.search(queryBean,
-				getOffset(), pagesize);
+		Page<ProductCategory> page = productCategoryManager.search(query);
 		productCategories = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -47,9 +46,9 @@ public class ProductCategoryAction extends BaseAction {
 		ProductCategory productCategory = productCategoryManager.get(id);
 		if (productCategory != null) {
 			// 查询当前分类下的产品类别
-			ProductQueryBean productQueryBean = new ProductQueryBean();
-			productQueryBean.setProductCategoryId(id);
-			List<Product> products = productManager.list(productQueryBean);
+			ProductQuery productQuery = new ProductQuery();
+			productQuery.setProductCategoryId(id);
+			List<Product> products = productManager.list(productQuery);
 			for (Product product : products) {
 				product.setProductCategory(null);
 				productManager.save(product);
@@ -117,12 +116,12 @@ public class ProductCategoryAction extends BaseAction {
 		this.productCategory = productCategory;
 	}
 
-	public ProductCategoryQueryBean getQueryBean() {
-		return queryBean;
+	public ProductCategoryQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(ProductCategoryQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(ProductCategoryQuery query) {
+		this.query = query;
 	}
 
 }

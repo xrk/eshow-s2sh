@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.BlogCommentQueryBean;
+import com.logo.eshow.bean.query.BlogCommentQuery;
 import com.logo.eshow.model.Blog;
 import com.logo.eshow.model.BlogComment;
 import com.logo.eshow.service.BlogCommentManager;
@@ -17,7 +17,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -30,17 +30,16 @@ public class BlogCommentAction extends BaseAction {
 	private BlogManager blogManager;
 	private List<BlogComment> blogComments;
 	private BlogComment blogComment;
-	private BlogCommentQueryBean queryBean;
+	private BlogCommentQuery query;
 	private Integer blogId;
 
 	public String list() {
-		blogComments = blogCommentManager.list(queryBean);
+		blogComments = blogCommentManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<BlogComment> page = blogCommentManager.search(queryBean,
-				getOffset(), pagesize);
+		Page<BlogComment> page = blogCommentManager.search(query);
 		blogComments = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -52,8 +51,7 @@ public class BlogCommentAction extends BaseAction {
 		if (blogComment != null) {
 			if (blogComment.getBlog().getUser().equals(getSessionUser())
 					|| blogComment.getUser().equals(getSessionUser())
-					|| getSessionUser().getUsername().equals(
-							"service@fanbao.com")) {
+					|| getSessionUser().getUsername().equals("service@fanbao.com")) {
 				Blog blog = blogComment.getBlog();
 				blog.setCommentSize(blog.getCommentSize() - CommonVar.STEP);
 				blogManager.save(blog);
@@ -135,12 +133,12 @@ public class BlogCommentAction extends BaseAction {
 		this.blogComment = blogComment;
 	}
 
-	public BlogCommentQueryBean getQueryBean() {
-		return queryBean;
+	public BlogCommentQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(BlogCommentQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(BlogCommentQuery query) {
+		this.query = query;
 	}
 
 	public Integer getBlogId() {

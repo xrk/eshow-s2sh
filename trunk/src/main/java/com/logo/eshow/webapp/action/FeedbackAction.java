@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.FeedbackQueryBean;
+import com.logo.eshow.bean.query.FeedbackQuery;
 import com.logo.eshow.model.Feedback;
 import com.logo.eshow.service.FeedbackManager;
 import com.logo.eshow.webapp.action.BaseAction;
@@ -13,7 +13,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -25,18 +25,17 @@ public class FeedbackAction extends BaseAction {
 	private FeedbackManager feedbackManager;
 	private List<Feedback> feedbacks;
 	private Feedback feedback;
-	private FeedbackQueryBean queryBean;
+	private FeedbackQuery query;
 	private Integer replyId;
 	private String reply;
 
 	public String list() {
-		feedbacks = feedbackManager.list(queryBean);
+		feedbacks = feedbackManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Feedback> page = feedbackManager.search(queryBean, getOffset(),
-				pagesize);
+		Page<Feedback> page = feedbackManager.search(query);
 		feedbacks = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -114,12 +113,12 @@ public class FeedbackAction extends BaseAction {
 		this.feedback = feedback;
 	}
 
-	public FeedbackQueryBean getQueryBean() {
-		return queryBean;
+	public FeedbackQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(FeedbackQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(FeedbackQuery query) {
+		this.query = query;
 	}
 
 	public String getReply() {

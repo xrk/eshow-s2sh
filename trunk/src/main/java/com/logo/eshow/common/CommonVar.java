@@ -1,5 +1,10 @@
 package com.logo.eshow.common;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.mail.SimpleMailMessage;
+
 /**
  * 
  * @author leida
@@ -69,4 +74,9 @@ public class CommonVar {
 	 * 未通过
 	 */
 	public final static Integer TOPIC_STATE_UNPASS = Integer.valueOf(2);
+	
+	/**
+	 * 邮件发送列表
+	 */
+	public static List<SimpleMailMessage> MAIL_SEND_LIST = new ArrayList<SimpleMailMessage>();
 }

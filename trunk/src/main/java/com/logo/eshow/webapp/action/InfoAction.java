@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.InfoQueryBean;
+import com.logo.eshow.bean.query.InfoQuery;
 import com.logo.eshow.model.Info;
 import com.logo.eshow.service.InfoManager;
 import com.logo.eshow.webapp.action.BaseAction;
@@ -12,7 +12,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -24,15 +24,15 @@ public class InfoAction extends BaseAction {
 	private InfoManager infoManager;
 	private List<Info> infos;
 	private Info info;
-	private InfoQueryBean queryBean;
+	private InfoQuery query;
 
 	public String list() {
-		infos = infoManager.list(queryBean);
+		infos = infoManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Info> page = infoManager.search(queryBean, getOffset(), pagesize);
+		Page<Info> page = infoManager.search(query);
 		infos = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -99,12 +99,12 @@ public class InfoAction extends BaseAction {
 		this.info = info;
 	}
 
-	public InfoQueryBean getQueryBean() {
-		return queryBean;
+	public InfoQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(InfoQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(InfoQuery query) {
+		this.query = query;
 	}
 
 }

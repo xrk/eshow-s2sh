@@ -3,8 +3,6 @@
     <wb-module deploy-name="eshow">
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/service"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/dao"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/components"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <property name="context-root" value="/eshow"/>

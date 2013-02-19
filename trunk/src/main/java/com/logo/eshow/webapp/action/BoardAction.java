@@ -1,7 +1,7 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.BoardQueryBean;
-import com.logo.eshow.bean.query.TopicQueryBean;
+import com.logo.eshow.bean.query.BoardQuery;
+import com.logo.eshow.bean.query.TopicQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Board;
 import com.logo.eshow.model.Topic;
@@ -16,7 +16,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -29,16 +29,15 @@ public class BoardAction extends BaseAction {
 	private TopicManager topicManager;
 	private List<Board> boards;
 	private Board board;
-	private BoardQueryBean queryBean;
+	private BoardQuery query;
 
 	public String list() {
-		boards = boardManager.list(queryBean);
+		boards = boardManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Board> page = boardManager
-				.search(queryBean, getOffset(), pagesize);
+		Page<Board> page = boardManager.search(query);
 		boards = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -47,9 +46,9 @@ public class BoardAction extends BaseAction {
 	public String delete() {
 		Board board = boardManager.get(id);
 		if (board != null) {
-			TopicQueryBean topicQueryBean = new TopicQueryBean();
-			topicQueryBean.setBoardId(id);
-			List<Topic> topics = topicManager.list(topicQueryBean);
+			TopicQuery topicQuery = new TopicQuery();
+			topicQuery.setBoardId(id);
+			List<Topic> topics = topicManager.list(topicQuery);
 			for (Topic topic : topics) {
 				topic.setBoard(null);
 				topicManager.save(topic);
@@ -118,12 +117,12 @@ public class BoardAction extends BaseAction {
 		this.board = board;
 	}
 
-	public BoardQueryBean getQueryBean() {
-		return queryBean;
+	public BoardQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(BoardQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(BoardQuery query) {
+		this.query = query;
 	}
 
 }

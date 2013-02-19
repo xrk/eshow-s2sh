@@ -14,9 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import org.compass.annotations.Searchable;
-import org.compass.annotations.SearchableId;
-import org.compass.annotations.SearchableProperty;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -30,17 +27,13 @@ import java.io.Serializable;
 @Entity
 @Table(name = "service_type")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Searchable(alias = "ServiceType")
 public class ServiceType extends BaseObject implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@SearchableId
 	private Integer id;
-	@SearchableProperty
 	private String name;
-	@SearchableProperty
 	private String remark;
 	private Integer sequence;
 	private Set<Service> services = new HashSet<Service>(0);

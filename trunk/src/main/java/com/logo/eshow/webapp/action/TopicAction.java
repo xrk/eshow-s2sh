@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.TopicQueryBean;
+import com.logo.eshow.bean.query.TopicQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Topic;
 import com.logo.eshow.service.TopicManager;
@@ -15,10 +15,10 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
-	@Result(name = "list", type = "redirect", location = ""),
-	@Result(name = "success", type = "redirect", location = "view/${id}"),
-	@Result(name = "redirect", type = "redirect", location = "${redirect}") })
+@Results({ @Result(name = "input", location = "add"),
+		@Result(name = "list", type = "redirect", location = ""),
+		@Result(name = "success", type = "redirect", location = "view/${id}"),
+		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class TopicAction extends BaseAction {
 	/**
 	 * 
@@ -28,17 +28,16 @@ public class TopicAction extends BaseAction {
 	private BoardManager boardManager;
 	private List<Topic> topics;
 	private Topic topic;
-	private TopicQueryBean queryBean;
+	private TopicQuery query;
 	private Integer boardId;
 
 	public String list() {
-		topics = topicManager.list(queryBean);
+		topics = topicManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Topic> page = topicManager
-				.search(queryBean, getOffset(), pagesize);
+		Page<Topic> page = topicManager.search(query);
 		topics = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -47,14 +46,13 @@ public class TopicAction extends BaseAction {
 	public String delete() {
 		Topic old = topicManager.get(id);
 		if (old.getUser().getId().equals(getSessionUser().getId())) {
-			if(old.getCommentSize() == 0){
+			if (old.getCommentSize() == 0) {
 				topicManager.remove(id);
 				saveMessage("删除成功");
-			}
-			else{
+			} else {
 				saveMessage("无权删除");
 			}
-		}else{
+		} else {
 			saveMessage("无权删除");
 		}
 		return LIST;
@@ -142,12 +140,12 @@ public class TopicAction extends BaseAction {
 		this.topic = topic;
 	}
 
-	public TopicQueryBean getQueryBean() {
-		return queryBean;
+	public TopicQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(TopicQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(TopicQuery query) {
+		this.query = query;
 	}
 
 	public Integer getBoardId() {

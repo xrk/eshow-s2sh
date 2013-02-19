@@ -2,9 +2,10 @@ package com.logo.eshow.webapp.listener;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.logo.eshow.Constants;
+import com.logo.eshow.service.GenericManager;
 import com.logo.eshow.service.LookupManager;
-import org.compass.gps.CompassGps;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -62,27 +63,19 @@ public class StartupListener implements ServletContextListener {
 		ApplicationContext ctx = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(context);
 
-		/*
-		 * String[] beans = ctx.getBeanDefinitionNames(); for (String bean :
-		 * beans) { log.debug(bean); }
-		 */
-
 		PasswordEncoder passwordEncoder = null;
 		try {
-			ProviderManager provider = (ProviderManager) ctx
-					.getBean("org.springframework.security.authentication.ProviderManager#0");
-			for (Object o : provider.getProviders()) {
-				AuthenticationProvider p = (AuthenticationProvider) o;
-				if (p instanceof RememberMeAuthenticationProvider) {
-					config.put("rememberMeEnabled", Boolean.TRUE);
-				} else if (ctx.getBean("passwordEncoder") != null) {
-					passwordEncoder = (PasswordEncoder) ctx
-							.getBean("passwordEncoder");
-				}
-			}
+			ProviderManager provider = (ProviderManager) ctx.getBean("org.springframework.security.authentication.ProviderManager#0");
+            for (Object o : provider.getProviders()) {
+                AuthenticationProvider p = (AuthenticationProvider) o;
+                if (p instanceof RememberMeAuthenticationProvider) {
+                    config.put("rememberMeEnabled", Boolean.TRUE);
+                } else if (ctx.getBean("passwordEncoder") != null) {
+                    passwordEncoder = (PasswordEncoder) ctx.getBean("passwordEncoder");
+                }
+            }
 		} catch (NoSuchBeanDefinitionException n) {
-			log
-					.debug("authenticationManager bean not found, assuming test and ignoring...");
+			log.debug("authenticationManager bean not found, assuming test and ignoring...");
 			// ignore, should only happen when testing
 		}
 
@@ -90,12 +83,9 @@ public class StartupListener implements ServletContextListener {
 
 		// output the retrieved values for the Init and Context Parameters
 		if (log.isDebugEnabled()) {
-			log
-					.debug("Remember Me Enabled? "
-							+ config.get("rememberMeEnabled"));
+			log.debug("Remember Me Enabled? " + config.get("rememberMeEnabled"));
 			if (passwordEncoder != null) {
-				log.debug("Password Encoder: "
-						+ passwordEncoder.getClass().getSimpleName());
+				log.debug("Password Encoder: " + passwordEncoder.getClass().getSimpleName());
 			}
 			log.debug("Populating drop-downs...");
 		}
@@ -104,30 +94,32 @@ public class StartupListener implements ServletContextListener {
 	}
 
 	/**
-	 * This method uses the LookupManager to lookup available roles from the
-	 * data layer.
+	 * This method uses the LookupManager to lookup available roles from the data layer.
 	 * 
-	 * @param context
-	 *            The servlet context
+	 * @param context The servlet context
 	 */
 	public static void setupContext(ServletContext context) {
-		ApplicationContext ctx = WebApplicationContextUtils
-				.getRequiredWebApplicationContext(context);
+		ApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context);
 		LookupManager mgr = (LookupManager) ctx.getBean("lookupManager");
 
 		// get list of possible roles
 		context.setAttribute(Constants.AVAILABLE_ROLES, mgr.getAllRoles());
 		log.debug("Drop-down initialization complete [OK]");
-
-		CompassGps compassGps = ctx.getBean(CompassGps.class);
-		compassGps.index();
+		
+		// Any manager extending GenericManager will do:
+        GenericManager manager = (GenericManager) ctx.getBean("userManager");
+        doReindexing(manager);
+        log.debug("Full text search reindexing complete [OK]");
 	}
+	
+	private static void doReindexing(GenericManager manager) {
+        //manager.reindexAll(false);
+    }
 
 	/**
 	 * Shutdown servlet context (currently a no-op method).
 	 * 
-	 * @param servletContextEvent
-	 *            The servlet context event
+	 * @param servletContextEvent The servlet context event
 	 */
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 		// LogFactory.release(Thread.currentThread().getContextClassLoader());
@@ -138,4 +130,5 @@ public class StartupListener implements ServletContextListener {
 		// invoked.
 		// WARN: Please see http://www.slf4j.org/codes.html for an explanation.
 	}
+
 }

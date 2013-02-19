@@ -29,9 +29,6 @@ import javax.persistence.GenerationType;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.compass.annotations.Searchable;
-import org.compass.annotations.SearchableId;
-import org.compass.annotations.SearchableProperty;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -45,27 +42,21 @@ import java.io.Serializable;
 @Entity
 @Table(name = "user", uniqueConstraints = { @UniqueConstraint(columnNames = "username") })
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Searchable
 public class User extends BaseObject implements Serializable, UserDetails {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@SearchableId
 	private Integer id;
 	private Integer version;
 	private Date addTime;
 	private Date updateTime;
-	@SearchableProperty
 	private String username;
-	@SearchableProperty
 	private String nickname;
 	private String password;
 	private String confirmPassword;
-	@SearchableProperty
 	private Integer age;
 	private String photo;
-	@SearchableProperty
 	private String realname;
 	private Boolean male;
 	private Date birthday;
@@ -73,9 +64,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 	private Short birthAttrib;
 	private Short bloodType;
 	private String hobby;
-	@SearchableProperty
 	private Short marital;
-	@SearchableProperty
 	private String intro;
 	private boolean accountExpired;
 	private boolean accountLocked;

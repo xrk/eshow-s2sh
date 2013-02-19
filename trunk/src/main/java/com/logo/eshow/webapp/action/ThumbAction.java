@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.ThumbQueryBean;
+import com.logo.eshow.bean.query.ThumbQuery;
 import com.logo.eshow.model.Thumb;
 import com.logo.eshow.service.ThumbManager;
 import com.logo.eshow.common.page.Page;
@@ -11,7 +11,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -23,17 +23,15 @@ public class ThumbAction extends BaseAction {
 	private ThumbManager thumbManager;
 	private List<Thumb> thumbs;
 	private Thumb thumb;
-	private ThumbQueryBean queryBean;
-	
-	public String list()
-	{
-		thumbs = thumbManager.list(queryBean);
+	private ThumbQuery query;
+
+	public String list() {
+		thumbs = thumbManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Thumb> page = thumbManager
-				.search(queryBean, getOffset(), pagesize);
+		Page<Thumb> page = thumbManager.search(query);
 		thumbs = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -81,7 +79,6 @@ public class ThumbAction extends BaseAction {
 		this.thumbManager = thumbManager;
 	}
 
-	
 	public void setThumbs(List<Thumb> thumbs) {
 		this.thumbs = thumbs;
 	}
@@ -98,13 +95,12 @@ public class ThumbAction extends BaseAction {
 		this.thumb = thumb;
 	}
 
-	
-	public ThumbQueryBean getQueryBean() {
-		return queryBean;
+	public ThumbQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(ThumbQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(ThumbQuery query) {
+		this.query = query;
 	}
 
 }

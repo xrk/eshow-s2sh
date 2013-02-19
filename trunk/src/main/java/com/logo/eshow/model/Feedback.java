@@ -11,10 +11,6 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import org.compass.annotations.Searchable;
-import org.compass.annotations.SearchableComponent;
-import org.compass.annotations.SearchableId;
-import org.compass.annotations.SearchableProperty;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -28,21 +24,15 @@ import java.io.Serializable;
 @Entity
 @Table(name = "feedback")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Searchable(alias = "Feedback")
 public class Feedback extends BaseObject implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@SearchableId
 	private Integer id;
-	@SearchableProperty
 	private String username;// 作者
-	@SearchableComponent
 	private Date addTime;// 添加时间
-	@SearchableProperty
 	private String title;// 标题
-	@SearchableProperty
 	private String content;// 正文
 	private String reply;// 回复
 	private Integer state;// 状态

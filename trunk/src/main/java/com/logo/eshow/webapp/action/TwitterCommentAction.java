@@ -1,6 +1,6 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.TwitterCommentQueryBean;
+import com.logo.eshow.bean.query.TwitterCommentQuery;
 import com.logo.eshow.model.Twitter;
 import com.logo.eshow.model.TwitterComment;
 import com.logo.eshow.service.TwitterCommentManager;
@@ -16,7 +16,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -29,17 +29,16 @@ public class TwitterCommentAction extends BaseAction {
 	private TwitterManager twitterManager;
 	private List<TwitterComment> twitterComments;
 	private TwitterComment twitterComment;
-	private TwitterCommentQueryBean queryBean;
+	private TwitterCommentQuery query;
 	private Integer twitterId;
 
 	public String list() {
-		twitterComments = twitterCommentManager.list(queryBean);
+		twitterComments = twitterCommentManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<TwitterComment> page = twitterCommentManager.search(queryBean,
-				getOffset(), pagesize);
+		Page<TwitterComment> page = twitterCommentManager.search(query);
 		twitterComments = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -94,8 +93,7 @@ public class TwitterCommentAction extends BaseAction {
 		return twitterCommentManager;
 	}
 
-	public void setTwitterCommentManager(
-			TwitterCommentManager twitterCommentManager) {
+	public void setTwitterCommentManager(TwitterCommentManager twitterCommentManager) {
 		this.twitterCommentManager = twitterCommentManager;
 	}
 
@@ -123,12 +121,12 @@ public class TwitterCommentAction extends BaseAction {
 		this.twitterComment = twitterComment;
 	}
 
-	public TwitterCommentQueryBean getQueryBean() {
-		return queryBean;
+	public TwitterCommentQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(TwitterCommentQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(TwitterCommentQuery query) {
+		this.query = query;
 	}
 
 	public Integer getTwitterId() {

@@ -1,7 +1,7 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.PhotoQueryBean;
-import com.logo.eshow.bean.query.ThumbQueryBean;
+import com.logo.eshow.bean.query.PhotoQuery;
+import com.logo.eshow.bean.query.ThumbQuery;
 import com.logo.eshow.model.Photo;
 import com.logo.eshow.service.AlbumManager;
 import com.logo.eshow.service.PhotoManager;
@@ -22,7 +22,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -36,17 +36,16 @@ public class PhotoAction extends BaseFileUploadAction {
 	private ThumbManager thumbManager;
 	private List<Photo> photos;
 	private Photo photo;
-	private PhotoQueryBean queryBean = new PhotoQueryBean();
+	private PhotoQuery query = new PhotoQuery();
 	private Integer albumId;
 
 	public String list() {
-		photos = photoManager.list(queryBean);
+		photos = photoManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Photo> page = photoManager
-				.search(queryBean, getOffset(), pagesize);
+		Page<Photo> page = photoManager.search(query);
 		photos = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -86,9 +85,9 @@ public class PhotoAction extends BaseFileUploadAction {
 			ImageUtil.uploadImage(path, old.getId().toString(), file);
 			old.setImg(old.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQueryBean thumbQueryBean = new ThumbQueryBean();
-			thumbQueryBean.setModel("photo");
-			List<Thumb> list = thumbManager.list(thumbQueryBean);
+			ThumbQuery thumbQuery = new ThumbQuery();
+			thumbQuery.setModel("photo");
+			List<Thumb> list = thumbManager.list(thumbQuery);
 			for (Thumb thumb : list) {
 				ImageUtil.resizeImage(path + "view/" + old.getId() + "-"
 						+ thumb.getWidth() + "-" + thumb.getHeight() + ".jpg",
@@ -118,16 +117,14 @@ public class PhotoAction extends BaseFileUploadAction {
 			ImageUtil.uploadImage(path, photo.getId().toString(), file);
 			photo.setImg(photo.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQueryBean thumbQueryBean = new ThumbQueryBean();
-			thumbQueryBean.setModel("photo");
-			List<Thumb> list = thumbManager.list(thumbQueryBean);
+			ThumbQuery thumbQuery = new ThumbQuery();
+			thumbQuery.setModel("photo");
+			List<Thumb> list = thumbManager.list(thumbQuery);
 			for (Thumb thumb : list) {
-				ImageUtil
-						.resizeImage(path + "view/" + photo.getId() + "-"
-								+ thumb.getWidth() + "-" + thumb.getHeight()
-								+ ".jpg", path + "orig/" + photo.getId()
-								+ ".jpg", thumb.getWidth(), thumb.getHeight(),
-								thumb.getType());
+				ImageUtil.resizeImage(path + "view/" + photo.getId() + "-"
+						+ thumb.getWidth() + "-" + thumb.getHeight() + ".jpg",
+						path + "orig/" + photo.getId() + ".jpg",
+						thumb.getWidth(), thumb.getHeight(), thumb.getType());
 			}
 			album.setPhotoSize(CommonUtil.count(album.getPhotoSize()));
 			album.setPhoto(photo);
@@ -181,12 +178,12 @@ public class PhotoAction extends BaseFileUploadAction {
 		this.photo = photo;
 	}
 
-	public PhotoQueryBean getQueryBean() {
-		return queryBean;
+	public PhotoQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(PhotoQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(PhotoQuery query) {
+		this.query = query;
 	}
 
 	public Integer getAlbumId() {

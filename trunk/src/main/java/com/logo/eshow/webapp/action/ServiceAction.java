@@ -1,7 +1,7 @@
 package com.logo.eshow.webapp.action;
 
-import com.logo.eshow.bean.query.ServiceQueryBean;
-import com.logo.eshow.bean.query.ThumbQueryBean;
+import com.logo.eshow.bean.query.ServiceQuery;
+import com.logo.eshow.bean.query.ThumbQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Service;
 import com.logo.eshow.model.Thumb;
@@ -18,7 +18,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
-@Results( { @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
@@ -32,17 +32,16 @@ public class ServiceAction extends BaseFileUploadAction {
 	private ThumbManager thumbManager;
 	private List<Service> services;
 	private Service service;
-	private ServiceQueryBean queryBean;
+	private ServiceQuery query;
 	private Integer serviceTypeId;
 
 	public String list() {
-		services = serviceManager.list(queryBean);
+		services = serviceManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-		Page<Service> page = serviceManager.search(queryBean, getOffset(),
-				pagesize);
+		Page<Service> page = serviceManager.search(query);
 		services = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
@@ -72,18 +71,17 @@ public class ServiceAction extends BaseFileUploadAction {
 			old.setServiceType(serviceTypeManager.get(serviceTypeId));
 		}
 		if (file != null) {
-			String path = "upload/service/"
-					+ DateUtil.getDateTime("yyyyMMdd", old.getAddTime()) + "/";
+			String path = "upload/service/" + DateUtil.getDateTime("yyyyMMdd", old.getAddTime())
+					+ "/";
 			ImageUtil.uploadImage(path, old.getId().toString(), file);
 			old.setImg(old.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQueryBean thumbQueryBean = new ThumbQueryBean();
-			thumbQueryBean.setModel("photo");
-			List<Thumb> list = thumbManager.list(thumbQueryBean);
+			ThumbQuery thumbQuery = new ThumbQuery();
+			thumbQuery.setModel("photo");
+			List<Thumb> list = thumbManager.list(thumbQuery);
 			for (Thumb thumb : list) {
-				ImageUtil.resizeImage(path + "view/" + old.getId() + "-"
-						+ thumb.getWidth() + "-" + thumb.getHeight() + ".jpg",
-						path + "orig/" + old.getId() + ".jpg",
+				ImageUtil.resizeImage(path + "view/" + old.getId() + "-" + thumb.getWidth() + "-"
+						+ thumb.getHeight() + ".jpg", path + "orig/" + old.getId() + ".jpg",
 						thumb.getWidth(), thumb.getHeight(), thumb.getType());
 			}
 		}
@@ -102,21 +100,17 @@ public class ServiceAction extends BaseFileUploadAction {
 		service = serviceManager.save(service);
 		if (file != null) {
 			String path = "upload/service/"
-					+ DateUtil.getDateTime("yyyyMMdd", service.getAddTime())
-					+ "/";
+					+ DateUtil.getDateTime("yyyyMMdd", service.getAddTime()) + "/";
 			ImageUtil.uploadImage(path, service.getId().toString(), file);
 			service.setImg(service.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQueryBean thumbQueryBean = new ThumbQueryBean();
-			thumbQueryBean.setModel("service");
-			List<Thumb> list = thumbManager.list(thumbQueryBean);
+			ThumbQuery thumbQuery = new ThumbQuery();
+			thumbQuery.setModel("service");
+			List<Thumb> list = thumbManager.list(thumbQuery);
 			for (Thumb thumb : list) {
-				ImageUtil
-						.resizeImage(path + "view/" + service.getId() + "-"
-								+ thumb.getWidth() + "-" + thumb.getHeight()
-								+ ".jpg", path + "orig/" + service.getId()
-								+ ".jpg", thumb.getWidth(), thumb.getHeight(),
-								thumb.getType());
+				ImageUtil.resizeImage(path + "view/" + service.getId() + "-" + thumb.getWidth()
+						+ "-" + thumb.getHeight() + ".jpg", path + "orig/" + service.getId()
+						+ ".jpg", thumb.getWidth(), thumb.getHeight(), thumb.getType());
 			}
 			serviceManager.save(service);
 		}
@@ -166,12 +160,12 @@ public class ServiceAction extends BaseFileUploadAction {
 		this.service = service;
 	}
 
-	public ServiceQueryBean getQueryBean() {
-		return queryBean;
+	public ServiceQuery getQuery() {
+		return query;
 	}
 
-	public void setQueryBean(ServiceQueryBean queryBean) {
-		this.queryBean = queryBean;
+	public void setQuery(ServiceQuery query) {
+		this.query = query;
 	}
 
 	public Integer getServiceTypeId() {

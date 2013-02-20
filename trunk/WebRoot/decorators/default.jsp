@@ -17,7 +17,6 @@
 	<body
 		<decorator:getProperty property="body.id" writeEntireProperty="true"/>
 		<decorator:getProperty property="body.class" writeEntireProperty="true"/>>
-        
         <div class="w980 header">
               <div class="logo left"> <a href="<c:url value='/'/>" title="返回首页"><img
 									src="<c:url value='/images/logo.png'/>" width="230" height="50"

@@ -26,8 +26,8 @@
 					href="job">加入我们</a>
 			</div>
 		</div>
-		<p class="reser">www.daoqun.com 2009-2013 © All Rights Reserved.</p>
-		<p class="icp">苏ICP备10018847号</p>
+		<p class="reser">www.daoqun.com 2009-2013 © All Rights Reserved. Power by <a href="http://www.eshow.org.cn">EShow开源框架</a></p>
+		<p class="icp">苏ICP备10018847号<script type="text/javascript" src="http://js.tongji.linezing.com/1278593/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/1278593/tongji.gif"/></a></noscript></p>
 	</div>
 </body>
 </html>

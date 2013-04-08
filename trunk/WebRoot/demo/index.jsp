@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
 	<header id="header">
 		<div class="hero-unit showcase">
 			<div class="container">

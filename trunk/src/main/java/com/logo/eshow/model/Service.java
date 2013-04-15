@@ -29,18 +29,19 @@ import java.io.Serializable;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Service extends BaseObject implements Serializable {
 	/**
-	 * 
+	 * 服务
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private User user;
-	private ServiceType serviceType;
-	private Date addTime;
-	private Date updateTime;
-	private String title;
-	private String content;
-	private String img;
-	private Integer sequence;
+	private Integer id;//服务ID
+	private User user;//用户
+	private ServiceType serviceType;//服务类型
+	private Date addTime;//添加时间
+	private Date updateTime;//更新时间
+	private String title;//标题
+	private String content;//内容
+	private String img;//图片
+	private Integer sequence;//序号
+	private String website;//网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -126,6 +127,14 @@ public class Service extends BaseObject implements Serializable {
 		this.sequence = sequence;
 	}
 
+	@Column(name = "website",length=20)
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -147,6 +156,8 @@ public class Service extends BaseObject implements Serializable {
 			return false;
 		if (img != null ? !img.equals(pojo.img) : pojo.img != null)
 			return false;
+		if (website != null ? !website.equals(pojo.img) : pojo.website != null)
+			return false;
 
 		return true;
 	}
@@ -158,6 +169,7 @@ public class Service extends BaseObject implements Serializable {
 		result = 31 * result + (title != null ? title.hashCode() : 0);
 		result = 31 * result + (content != null ? content.hashCode() : 0);
 		result = 31 * result + (img != null ? img.hashCode() : 0);
+		result = 31 * result + (website != null ? website.hashCode() : 0);
 
 		return result;
 	}
@@ -173,6 +185,7 @@ public class Service extends BaseObject implements Serializable {
 		sb.append("title").append("='").append(getTitle()).append("', ");
 		sb.append("content").append("='").append(getContent()).append("', ");
 		sb.append("img").append("='").append(getImg()).append("', ");
+		sb.append("website").append("='").append(getWebsite()).append("', ");
 
 		sb.append("]");
 

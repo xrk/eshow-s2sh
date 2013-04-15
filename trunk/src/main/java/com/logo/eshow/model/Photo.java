@@ -37,15 +37,16 @@ public class Photo extends BaseObject implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4417313563984109261L;
-	private Integer id;
-	private User user;
-	private Album album;
-	private Date addTime;
-	private String name;
-	private String description;
-	private String img;
-	private Integer commentSize;
-	private Set<PhotoComment> photoComments = new HashSet<PhotoComment>(0);
+	private Integer id;//图片
+	private User user;//用户
+	private Album album;//相册
+	private Date addTime;//添加时间
+	private String name;//名称
+	private String description;//描述
+	private String img;//图片
+	private Integer commentSize;//评论次数
+	private String website;//网站
+	private Set<PhotoComment> photoComments = new HashSet<PhotoComment>(0);//图片评论
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -121,7 +122,16 @@ public class Photo extends BaseObject implements Serializable {
 	public void setCommentSize(Integer commentSize) {
 		this.commentSize = commentSize;
 	}
-
+	
+	@Column(name = "website",length=20)
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "photo")
 	public Set<PhotoComment> getPhotoComments() {
 		return photoComments;
@@ -152,6 +162,8 @@ public class Photo extends BaseObject implements Serializable {
 			return false;
 		if (img != null ? !img.equals(pojo.img) : pojo.img != null)
 			return false;
+		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
+			return false;
 		return true;
 	}
 
@@ -164,6 +176,7 @@ public class Photo extends BaseObject implements Serializable {
 		result = 31 * result
 				+ (description != null ? description.hashCode() : 0);
 		result = 31 * result + (img != null ? img.hashCode() : 0);
+		result = 31 * result + (website != null ? website.hashCode() : 0);
 		return result;
 	}
 
@@ -179,6 +192,7 @@ public class Photo extends BaseObject implements Serializable {
 		sb.append("description").append("='").append(getDescription()).append(
 				"', ");
 		sb.append("photo").append("='").append(getImg()).append("', ");
+		sb.append("website").append("='").append(getWebsite()).append("', ");
 		sb.append("]");
 
 		return sb.toString();

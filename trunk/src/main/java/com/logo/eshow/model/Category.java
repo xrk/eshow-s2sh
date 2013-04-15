@@ -30,16 +30,17 @@ import java.io.Serializable;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Category extends BaseObject implements Serializable {
 	/**
-	 * 
+	 * 种类
 	 */
 	private static final long serialVersionUID = -8900865569034536533L;
-	private Integer id;
-	private Date addTime;
-	private Date updateTime;
-	private String name;
-	private String remark;
-	private Integer sequence;
-	private Set<Blog> blogs = new HashSet<Blog>(0);
+	private Integer id;//种类ID
+	private Date addTime;//添加时间
+	private Date updateTime;//更新时间
+	private String name;//名称
+	private String remark;//注释
+	private Integer sequence;//序号
+	private Set<Blog> blogs = new HashSet<Blog>(0);//博客列表
+	private String website;//网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -105,6 +106,15 @@ public class Category extends BaseObject implements Serializable {
 		this.blogs = blogs;
 	}
 
+	@Column(name="website",length=20)
+	public String getWebsite() {
+		return website;
+	}
+	
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -114,6 +124,8 @@ public class Category extends BaseObject implements Serializable {
 		Category pojo = (Category) o;
 
 		if (name != null ? !name.equals(pojo.name) : pojo.name != null)
+			return false;
+		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
 			return false;
 		if (remark != null ? !remark.equals(pojo.remark) : pojo.remark != null)
 			return false;
@@ -127,6 +139,7 @@ public class Category extends BaseObject implements Serializable {
 		result = 31 * result + (addTime != null ? addTime.hashCode() : 0);
 		result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
 		result = 31 * result + (remark != null ? remark.hashCode() : 0);
+		result = 31 * result + (website != null ? website.hashCode() : 0);
 
 		return result;
 	}
@@ -141,7 +154,7 @@ public class Category extends BaseObject implements Serializable {
 				"', ");
 		sb.append("name").append("='").append(getName()).append("', ");
 		sb.append("remark").append("='").append(getRemark()).append("', ");
-
+		sb.append("website").append("='").append(getWebsite()).append("', ");
 		sb.append("]");
 
 		return sb.toString();

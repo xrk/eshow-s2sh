@@ -26,22 +26,19 @@ import java.io.Serializable;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Feedback extends BaseObject implements Serializable {
 	/**
-	 * 
+	 * 回复
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
+	private Integer id;//回复ID
 	private String username;// 作者
 	private Date addTime;// 添加时间
 	private String title;// 标题
 	private String content;// 正文
 	private String reply;// 回复
 	private Integer state;// 状态
-	private String ip;
-	private String im;
-	private String phone;
-	private String email;
-	private String website;
-	private Integer replyId;
+	private String phone;//电话
+	private String website;//网站
+	private Integer replyId;//回复ID
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -107,24 +104,6 @@ public class Feedback extends BaseObject implements Serializable {
 		this.state = state;
 	}
 
-	@Column(name = "ip", length = 100)
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
-	@Column(name = "im", length = 100)
-	public String getIm() {
-		return im;
-	}
-
-	public void setIm(String im) {
-		this.im = im;
-	}
-
 	@Column(name = "phone", length = 100)
 	public String getPhone() {
 		return phone;
@@ -132,15 +111,6 @@ public class Feedback extends BaseObject implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	@Column(name = "email", length = 100)
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	@Column(name = "website", length = 100)
@@ -177,6 +147,8 @@ public class Feedback extends BaseObject implements Serializable {
 			return false;
 		if (title != null ? !title.equals(pojo.title) : pojo.title != null)
 			return false;
+		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
+			return false;
 		if (content != null ? !content.equals(pojo.content)
 				: pojo.content != null)
 			return false;
@@ -190,6 +162,7 @@ public class Feedback extends BaseObject implements Serializable {
 		result = 31 * result + (addTime != null ? addTime.hashCode() : 0);
 		result = 31 * result + (title != null ? title.hashCode() : 0);
 		result = 31 * result + (content != null ? content.hashCode() : 0);
+		result = 31 * result + (website != null ? website.hashCode() : 0);
 
 		return result;
 	}
@@ -202,6 +175,7 @@ public class Feedback extends BaseObject implements Serializable {
 		sb.append("addTime").append("='").append(getAddTime()).append("', ");
 		sb.append("title").append("='").append(getTitle()).append("', ");
 		sb.append("content").append("='").append(getContent()).append("', ");
+		sb.append("website").append("='").append(getWebsite()).append("', ");
 
 		sb.append("]");
 

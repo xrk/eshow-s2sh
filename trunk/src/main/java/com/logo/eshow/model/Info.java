@@ -24,15 +24,16 @@ import java.io.Serializable;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Info extends BaseObject implements Serializable {
 	/**
-	 * 
+	 * 信息
 	 */
 	private static final long serialVersionUID = 8595503517379467249L;
-	private Integer id;
-	private String type;
-	private String title;
-	private String url;
-	private String content;
-	private Boolean enable;
+	private Integer id;//信息ID
+	private String type;//类型
+	private String title;//标题
+	private String url;//链接
+	private String content;//内容
+	private Boolean enabled;//是否可用
+	private String website;//网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -80,15 +81,22 @@ public class Info extends BaseObject implements Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "enable")
-	public Boolean getEnable() {
-		return enable;
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
 	}
-
-	public void setEnable(Boolean enable) {
-		this.enable = enable;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
-
+	
+	@Column(name = "website",length=20)
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -106,7 +114,9 @@ public class Info extends BaseObject implements Serializable {
 		if (content != null ? !content.equals(pojo.content)
 				: pojo.content != null)
 			return false;
-		if (enable != null ? !enable.equals(pojo.enable) : pojo.enable != null)
+		if (enabled != null ? !enabled.equals(pojo.enabled) : pojo.enabled != null)
+			return false;
+		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
 			return false;
 
 		return true;
@@ -118,7 +128,8 @@ public class Info extends BaseObject implements Serializable {
 		result = 31 * result + (type != null ? type.hashCode() : 0);
 		result = 31 * result + (url != null ? url.hashCode() : 0);
 		result = 31 * result + (content != null ? content.hashCode() : 0);
-		result = 31 * result + (enable != null ? enable.hashCode() : 0);
+		result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
+		result = 31 * result + (website != null ? website.hashCode() : 0);
 
 		return result;
 	}
@@ -132,7 +143,8 @@ public class Info extends BaseObject implements Serializable {
 		sb.append("url").append("='").append(getUrl()).append("', ");
 		sb.append("title").append("='").append(getTitle()).append("', ");
 		sb.append("content").append("='").append(getContent()).append("', ");
-		sb.append("enable").append("='").append(getEnable()).append("', ");
+		sb.append("enabled").append("='").append(getEnabled()).append("', ");
+		sb.append("website").append("='").append(getWebsite()).append("', ");
 		sb.append("]");
 
 		return sb.toString();

@@ -30,16 +30,16 @@ import java.io.Serializable;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class TopicComment extends BaseObject implements Serializable {
 	/**
-	 * 
+	 * 主题评论
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private User user;
-	private Topic topic;
-	private Date addTime;
-	private String name;
-	private String content;
-	private String ip;
+	private Integer id;//主题评论ID
+	private User user;//用户
+	private Topic topic;//主题
+	private Date addTime;//添加时间
+	private String name;//名称
+	private String content;//内容
+	private String website;//网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -98,13 +98,13 @@ public class TopicComment extends BaseObject implements Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "ip", length = 20)
-	public String getIp() {
-		return this.ip;
+	
+	@Column(name = "website", length = 20)
+	public String getWebsite() {
+		return website;
 	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 
 	public boolean equals(Object o) {
@@ -125,7 +125,7 @@ public class TopicComment extends BaseObject implements Serializable {
 		if (content != null ? !content.equals(pojo.content)
 				: pojo.content != null)
 			return false;
-		if (ip != null ? !ip.equals(pojo.ip) : pojo.ip != null)
+		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
 			return false;
 
 		return true;
@@ -137,7 +137,7 @@ public class TopicComment extends BaseObject implements Serializable {
 		result = 31 * result + (addTime != null ? addTime.hashCode() : 0);
 		result = 31 * result + (name != null ? name.hashCode() : 0);
 		result = 31 * result + (content != null ? content.hashCode() : 0);
-		result = 31 * result + (ip != null ? ip.hashCode() : 0);
+		result = 31 * result + (website != null ? website.hashCode() : 0);
 
 		return result;
 	}
@@ -151,7 +151,7 @@ public class TopicComment extends BaseObject implements Serializable {
 		sb.append("addTime").append("='").append(getAddTime()).append("', ");
 		sb.append("name").append("='").append(getName()).append("', ");
 		sb.append("content").append("='").append(getContent()).append("', ");
-		sb.append("ip").append("='").append(getIp()).append("', ");
+		sb.append("website").append("='").append(getWebsite()).append("', ");
 		sb.append("]");
 
 		return sb.toString();

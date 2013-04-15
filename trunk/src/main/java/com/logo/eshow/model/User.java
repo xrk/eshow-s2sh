@@ -44,42 +44,42 @@ import java.io.Serializable;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class User extends BaseObject implements Serializable, UserDetails {
 	/**
-	 * 
+	 * 用户
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private Integer version;
-	private Date addTime;
-	private Date updateTime;
-	private String username;
-	private String nickname;
-	private String password;
-	private String confirmPassword;
-	private Integer age;
-	private String photo;
-	private String realname;
-	private Boolean male;
-	private Date birthday;
-	private Short constellation;
-	private Short birthAttrib;
-	private Short bloodType;
-	private String hobby;
-	private Short marital;
-	private String intro;
-	private boolean accountExpired;
-	private boolean accountLocked;
-	private boolean credentialsExpired;
-	private boolean enabled;
-	private Set<Album> albums = new HashSet<Album>(0);
-	private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);
-	private Set<Blog> blogs = new HashSet<Blog>(0);
-	private Set<Photo> photos = new HashSet<Photo>(0);
-	private Set<PhotoComment> photoComments = new HashSet<PhotoComment>(0);
-	private Set<Service> services = new HashSet<Service>(0);
-	private Set<Topic> topics = new HashSet<Topic>(0);
-	private Set<TopicComment> topicComments = new HashSet<TopicComment>(0);
+	private Integer id;//用户ID
+	private Integer version;//版本号
+	private Date addTime;//添加时间
+	private Date updateTime;//更新时间
+	private String username;//用户名
+	private String nickname;//昵称
+	private String password;//密码
+	private String confirmPassword;//确定密码
+	private Integer age;//年龄
+	private String photo;//头像
+	private String realname;//真实姓名
+	private Boolean male;//性别
+	private Date birthday;//生日
+	private Short constellation;//星座
+	private Short birthAttrib;//
+	private Short bloodType;//血型
+	private String hobby;//爱好
+	private Short marital;//婚姻状况
+	private String intro;//自我介绍
+	private boolean accountExpired;//帐号是否过期
+	private boolean accountLocked;//帐号是否锁住
+	private boolean credentialsExpired;//凭证是否过期
+	private boolean enabled;//是否可用
+	private Set<Album> albums = new HashSet<Album>(0);//相册列表
+	private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);//博客评论列表
+	private Set<Blog> blogs = new HashSet<Blog>(0);//博客列表
+	private Set<Photo> photos = new HashSet<Photo>(0);//图片列表
+	private Set<PhotoComment> photoComments = new HashSet<PhotoComment>(0);//图片评论列表
+	private Set<Service> services = new HashSet<Service>(0);//服务列表
+	private Set<Topic> topics = new HashSet<Topic>(0);//主题列表
+	private Set<TopicComment> topicComments = new HashSet<TopicComment>(0);//主题评论列表
 
-	private Set<Role> roles = new HashSet<Role>(0);
+	private Set<Role> roles = new HashSet<Role>(0);//角色列表
 
 	/**
 	 * Default constructor - creates a new instance with no values set.

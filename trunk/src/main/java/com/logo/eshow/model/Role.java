@@ -27,9 +27,9 @@ import java.io.Serializable;
 @NamedQueries( { @NamedQuery(name = "findRoleByName", query = "select r from Role r where r.name = :name ") })
 public class Role extends BaseObject implements Serializable, GrantedAuthority {
 	private static final long serialVersionUID = 3690197650654049848L;
-	private Integer id;
-	private String name;
-	private String description;
+	private Integer id;//角色ID
+	private String name;//名称
+	private String description;//描述
 
 	/**
 	 * Default constructor - creates a new instance with no values set.

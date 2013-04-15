@@ -44,8 +44,9 @@ public class Blog extends BaseObject implements Serializable {
 	private String title;//标题
 	private String content;//正文
 	private Integer commentSize;//回复数
-	private Integer count;//浏览
+	private Integer count;//浏览次数
 	private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);//回复列表
+	private String website;//网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -140,6 +141,14 @@ public class Blog extends BaseObject implements Serializable {
 		this.blogComments = blogComments;
 	}
 	
+	@Column(name = "website",length=20)
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -157,6 +166,8 @@ public class Blog extends BaseObject implements Serializable {
 			return false;
 		if (title != null ? !title.equals(pojo.title) : pojo.title != null)
 			return false;
+		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
+			return false;
 		if (content != null ? !content.equals(pojo.content)
 				: pojo.content != null)
 			return false;
@@ -170,6 +181,7 @@ public class Blog extends BaseObject implements Serializable {
 		result = 31 * result + (category != null ? category.hashCode() : 0);
 		result = 31 * result + (addTime != null ? addTime.hashCode() : 0);
 		result = 31 * result + (title != null ? title.hashCode() : 0);
+		result = 31 * result + (website != null ? website.hashCode() : 0);
 		result = 31 * result
 				+ (content != null ? content.hashCode() : 0);
 
@@ -185,6 +197,7 @@ public class Blog extends BaseObject implements Serializable {
 		sb.append("category").append("='").append(getCategory()).append("', ");
 		sb.append("addTime").append("='").append(getAddTime()).append("', ");
 		sb.append("title").append("='").append(getTitle()).append("', ");
+		sb.append("website").append("='").append(getWebsite()).append("', ");
 		sb.append("content").append("='").append(getContent()).append(
 				"', ");
 

@@ -32,16 +32,17 @@ public class Product extends BaseObject implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private User user;
-	private ProductCategory productCategory;
-	private Date addTime;
-	private String name;
-	private String content;
-	private String img;
-	private Integer sequence;
-	private Boolean enabled;
-	private Date updateTime;
+	private Integer id;//商品ID
+	private User user;//用户
+	private ProductCategory productCategory;//商品类型
+	private Date addTime;//添加时间
+	private String name;//名称
+	private String content;//内容
+	private String img;//图片
+	private Integer sequence;//序号
+	private Boolean enabled;//是否可用
+	private Date updateTime;//更新时间
+	private String website;//网站
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer getId() {
@@ -134,6 +135,14 @@ public class Product extends BaseObject implements Serializable {
 		this.updateTime = updateTime;
 	}
 	
+	@Column(name = "website",length=20)
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -152,6 +161,8 @@ public class Product extends BaseObject implements Serializable {
 			return false;
 		if (img != null ? !img.equals(pojo.img) : pojo.img != null)
 			return false;
+		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
+			return false;
 
 		return true;
 	}
@@ -162,6 +173,7 @@ public class Product extends BaseObject implements Serializable {
 		result = 31 * result + (name != null ? name.hashCode() : 0);
 		result = 31 * result + (content != null ? content.hashCode() : 0);
 		result = 31 * result + (img != null ? img.hashCode() : 0);
+		result = 31 * result + (website != null ? website.hashCode() : 0);
 
 		return result;
 	}
@@ -176,6 +188,7 @@ public class Product extends BaseObject implements Serializable {
 		sb.append("content").append("='").append(getContent()).append("', ");
 		sb.append("img").append("='").append(getImg()).append("', ");
 		sb.append("updateTime").append("='").append(getUpdateTime()).append("', ");
+		sb.append("website").append("='").append(getWebsite()).append("', ");
 		sb.append("]");
 
 		return sb.toString();

@@ -32,14 +32,15 @@ import java.io.Serializable;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class TwitterComment extends BaseObject implements Serializable {
 	/**
-	 * 
+	 * 微博评论
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
-	private User user;
-	private Twitter twitter;
-	private Date addTime;
-	private String content;
+	private Integer id;//微博评论ID
+	private User user;//用户
+	private Twitter twitter;//微博
+	private Date addTime;//添加时间
+	private String content;//内容
+	private String website;//网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -84,6 +85,14 @@ public class TwitterComment extends BaseObject implements Serializable {
 	public String getContent() {
 		return content;
 	}
+	
+	@Column(name = "website",length=20)
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 
 	public void setContent(String content) {
 		this.content = content;
@@ -98,6 +107,8 @@ public class TwitterComment extends BaseObject implements Serializable {
 		TwitterComment pojo = (TwitterComment) o;
 
 		if (user != null ? !user.equals(pojo.user) : pojo.user != null)
+			return false;
+		if (website != null ? !website.equals(pojo.user) : pojo.website != null)
 			return false;
 		if (addTime != null ? !addTime.equals(pojo.addTime)
 				: pojo.addTime != null)
@@ -114,6 +125,7 @@ public class TwitterComment extends BaseObject implements Serializable {
 		result = result + (user != null ? user.hashCode() : 0);
 		result = 31 * result + (addTime != null ? addTime.hashCode() : 0);
 		result = 31 * result + (content != null ? content.hashCode() : 0);
+		result = 31 * result + (website != null ? website.hashCode() : 0);
 
 		return result;
 	}
@@ -126,6 +138,7 @@ public class TwitterComment extends BaseObject implements Serializable {
 		sb.append("user").append("='").append(getUser()).append("', ");
 		sb.append("addTime").append("='").append(getAddTime()).append("', ");
 		sb.append("content").append("='").append(getContent()).append("', ");
+		sb.append("website").append("='").append(getWebsite()).append("', ");
 
 		sb.append("]");
 

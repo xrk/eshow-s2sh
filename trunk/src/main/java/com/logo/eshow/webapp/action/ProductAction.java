@@ -65,6 +65,7 @@ public class ProductAction extends BaseFileUploadAction {
 
 	public String update() throws Exception {
 		Product old = productManager.get(id);
+		old.setUpdateTime(new Date());
 		old.setName(product.getName());
 		old.setContent(product.getContent());
 		if (productCategoryId != null) {
@@ -93,6 +94,7 @@ public class ProductAction extends BaseFileUploadAction {
 
 	public String save() throws Exception {
 		product.setAddTime(new Date());
+		product.setUpdateTime(new Date());
 		if (productCategoryId != null) {
 			product.setProductCategory(productCategoryManager.get(productCategoryId));
 		}

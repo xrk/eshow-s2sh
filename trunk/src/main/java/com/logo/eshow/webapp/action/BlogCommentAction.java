@@ -78,11 +78,7 @@ public class BlogCommentAction extends BaseAction {
 
 	public String update() throws Exception {
 		BlogComment old = blogCommentManager.get(id);
-		old.setName(blogComment.getName());
 		old.setContent(blogComment.getContent());
-		old.setEmail(blogComment.getEmail());
-		old.setIm(blogComment.getIm());
-		old.setIp(blogComment.getIp());
 		old.setWebsite(blogComment.getWebsite());
 		blogCommentManager.save(old);
 		saveMessage("修改成功");

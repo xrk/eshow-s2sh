@@ -99,7 +99,6 @@ public class TopicCommentAction extends BaseAction {
 	public String update() throws Exception {
 		TopicComment old = topicCommentManager.get(id);
 		old.setName(topicComment.getName());
-		old.setIp(topicComment.getIp());
 		old.setContent(topicComment.getContent());
 		topicCommentManager.save(old);
 		saveMessage("修改成功");

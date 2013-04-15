@@ -66,6 +66,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 	private String hobby;//爱好
 	private Short marital;//婚姻状况
 	private String intro;//自我介绍
+	private String website;//网站
 	private boolean accountExpired;//帐号是否过期
 	private boolean accountLocked;//帐号是否锁住
 	private boolean credentialsExpired;//凭证是否过期
@@ -392,6 +393,14 @@ public class User extends BaseObject implements Serializable, UserDetails {
 	public void setTopics(Set<Topic> topics) {
 		this.topics = topics;
 	}
+	
+	@Column(name="website",length=200)
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<TopicComment> getTopicComments() {
@@ -497,6 +506,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
 			return false;
 		if (intro != null ? !intro.equals(pojo.intro) : pojo.intro != null)
 			return false;
+		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
+			return false;
 
 		return true;
 	}
@@ -518,6 +529,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 				+ (birthAttrib != null ? birthAttrib.hashCode() : 0);
 		result = 31 * result + (marital != null ? marital.hashCode() : 0);
 		result = 31 * result + (intro != null ? intro.hashCode() : 0);
+		result = 31 * result + (website != null ? website.hashCode() : 0);
 		return result;
 	}
 
@@ -542,6 +554,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
 				"', ");
 		sb.append("marital").append("='").append(getMarital()).append("', ");
 		sb.append("intro").append("='").append(getIntro()).append("', ");
+		sb.append("website").append("='").append(getWebsite()).append("', ");
 		sb.append("]");
 
 		if (roles != null) {

@@ -8,7 +8,7 @@
 			<a class="btn btn-navbar" data-target=".nav-collapse"
 				data-toggle="collapse"> <span class="icon-bar"></span> <span
 				class="icon-bar"></span> <span class="icon-bar"></span> </a> <a
-				class="logo" href="/" title="Fleetio homepage"> <img alt="logo"
+				class="logo" href="${ctx}/" title="Fleetio homepage"> <img alt="logo"
 				width="155" height="22" src="${ctx }/images/logo.png" />
 			</a>
 			<div class="pull-right">

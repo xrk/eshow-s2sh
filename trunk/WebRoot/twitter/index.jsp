@@ -95,7 +95,8 @@
 											<a id="name" href="/sql">刘小春</a> 不错<span>(29秒前)</span> <a
 												id="reply_comment" name="reply_comment" class="reply"
 												href="javascript:;" data-model="blog">回复</a>
-										</p></li>
+										</p>
+									</li>
 								</ul>
 							</div>
 						</div>

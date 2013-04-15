@@ -670,6 +670,27 @@ div.aligncenter {
 	padding: 0 4px 5px;
 	margin: 0;
 }
+body{padding-top:50px;}
+h3{font-weight: normal;margin:0;font-size:17px;}
+.yahei{font-family: microsoft yahei}
+.mt{margin-top:50px;}
+li{list-style:none}
+ 
+ 
+.com{background: #fff;}
+.com li{line-height:26px;border-bottom: 1px dashed #eee}
+.com .page-header{margin:10px 0 20px;padding:0 0 10px;} 
+
+.phto-list{padding:0;margin:0}
+.phto-list li{width:200px; float:left;margin:0 20px 10px 0;}
+.phto-list li img{width:200px;height:200px;}
+
+/*login*/
+.login-c{margin:50px 0; }
+.login-right{margin:90px 0;padding:30px 20px;}
+
+/*footer*/
+.footer{border-top:1px solid #eee;padding:15px 0 20px;margin-top:50px;background:#fbfbfb}
 /* End captions */
 
 

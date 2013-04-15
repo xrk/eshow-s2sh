@@ -32,9 +32,6 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
      
-    <bean id="feedbackDao" class="com.logo.eshow.dao.hibernate.FeedbackDaoHibernate">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
     
     <bean id="infoDao" class="com.logo.eshow.dao.hibernate.InfoDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -112,9 +109,6 @@
         <constructor-arg ref="categoryDao"/>
     </bean>
     
-    <bean id="feedbackManager" class="com.logo.eshow.service.impl.FeedbackManagerImpl">
-        <constructor-arg ref="feedbackDao"/>
-    </bean>
     
     <bean id="infoManager" class="com.logo.eshow.service.impl.InfoManagerImpl">
         <constructor-arg ref="infoDao"/>

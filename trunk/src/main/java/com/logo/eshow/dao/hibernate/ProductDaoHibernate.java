@@ -42,6 +42,7 @@ public class ProductDaoHibernate extends GenericDaoHibernate<Product, Integer> i
 		return page(rule);
 	}
 
+	
 	public EnhancedRule setRule(EnhancedRule rule, ProductQuery query) {
 		if (query != null) {
 			if (query.addTime != null) {

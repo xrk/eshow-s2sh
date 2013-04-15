@@ -41,7 +41,8 @@ public class TwitterComment extends BaseObject implements Serializable {
 	private Date addTime;//添加时间
 	private String content;//内容
 	private String website;//网站
-
+	private Boolean enabled;//是否可用
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer getId() {
@@ -96,6 +97,15 @@ public class TwitterComment extends BaseObject implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public boolean equals(Object o) {

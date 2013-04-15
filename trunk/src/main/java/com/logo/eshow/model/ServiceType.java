@@ -37,6 +37,7 @@ public class ServiceType extends BaseObject implements Serializable {
 	private String remark;//注释
 	private Integer sequence;//序号
 	private String website;//网站
+	private Boolean enabled;//是否可用
 	private Set<Service> services = new HashSet<Service>(0);//服务列表
 
 	@Id
@@ -92,6 +93,16 @@ public class ServiceType extends BaseObject implements Serializable {
 	public void setWebsite(String website) {
 		this.website = website;
 	}
+	
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+	
 
 	public boolean equals(Object o) {
 		if (this == o)

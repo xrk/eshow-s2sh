@@ -44,6 +44,7 @@ public class Album extends BaseObject implements Serializable {
 	private Integer photoSize;// 照片的总数
 	private Integer count;// 访问次数
 	private String website;// 网站
+	private Boolean enabled;//是否可用 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -136,6 +137,14 @@ public class Album extends BaseObject implements Serializable {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public boolean equals(Object o) {

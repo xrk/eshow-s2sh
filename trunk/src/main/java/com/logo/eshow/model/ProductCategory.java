@@ -38,6 +38,7 @@ public class ProductCategory extends BaseObject implements Serializable {
 	private String description;//描述
 	private Integer sequence;//序号
 	private String website;//网站
+	private Boolean enabled;//是否可用
 	private Set<Product> products = new HashSet<Product>(0);//商品列表
 
 	@Id
@@ -75,6 +76,15 @@ public class ProductCategory extends BaseObject implements Serializable {
 
 	public void setSequence(Integer sequence) {
 		this.sequence = sequence;
+	}
+	
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Column(name = "website",length=20)

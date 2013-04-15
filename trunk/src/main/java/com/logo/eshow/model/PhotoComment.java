@@ -41,7 +41,8 @@ public class PhotoComment extends BaseObject implements Serializable {
 	private Date addTime;// 添加时间
 	private String content;// 内容
 	private String website;// 网站
-
+	private Boolean enabled;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer getId() {
@@ -52,6 +53,15 @@ public class PhotoComment extends BaseObject implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userId")
 	public User getUser() {
@@ -98,6 +108,7 @@ public class PhotoComment extends BaseObject implements Serializable {
 	public void setWebsite(String website) {
 		this.website = website;
 	}
+	
 
 	public boolean equals(Object o) {
 		if (this == o)

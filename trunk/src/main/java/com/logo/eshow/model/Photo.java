@@ -46,6 +46,7 @@ public class Photo extends BaseObject implements Serializable {
 	private String img;//图片
 	private Integer commentSize;//评论次数
 	private String website;//网站
+	private Boolean enabled;// 是否可用
 	private Set<PhotoComment> photoComments = new HashSet<PhotoComment>(0);//图片评论
 
 	@Id
@@ -122,6 +123,16 @@ public class Photo extends BaseObject implements Serializable {
 	public void setCommentSize(Integer commentSize) {
 		this.commentSize = commentSize;
 	}
+	
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	
 	@Column(name = "website",length=20)
 	public String getWebsite() {

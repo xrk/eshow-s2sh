@@ -41,7 +41,7 @@ public class Product extends BaseObject implements Serializable {
 	private String img;
 	private Integer sequence;
 	private Boolean enabled;
-
+	private Date updateTime;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer getId() {
@@ -126,6 +126,14 @@ public class Product extends BaseObject implements Serializable {
 		this.enabled = enabled;
 	}
 
+	@Column(name = "updateTime")
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -167,7 +175,7 @@ public class Product extends BaseObject implements Serializable {
 		sb.append("name").append("='").append(getName()).append("', ");
 		sb.append("content").append("='").append(getContent()).append("', ");
 		sb.append("img").append("='").append(getImg()).append("', ");
-
+		sb.append("updateTime").append("='").append(getUpdateTime()).append("', ");
 		sb.append("]");
 
 		return sb.toString();

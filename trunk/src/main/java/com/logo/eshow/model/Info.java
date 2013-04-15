@@ -15,6 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import java.io.Serializable;
 
 /**
+ * 信息页表
  * 
  * @author leida
  * 
@@ -23,17 +24,15 @@ import java.io.Serializable;
 @Table(name = "info")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Info extends BaseObject implements Serializable {
-	/**
-	 * 信息
-	 */
+
 	private static final long serialVersionUID = 8595503517379467249L;
-	private Integer id;//信息ID
-	private String type;//类型
-	private String title;//标题
-	private String url;//链接
-	private String content;//内容
-	private Boolean enabled;//是否可用
-	private String website;//网站
+	private Integer id;// 信息ID
+	private String type;// 类型
+	private String title;// 标题
+	private String url;// 链接
+	private String content;// 内容
+	private Boolean enabled;// 是否可用
+	private String website;// 网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -85,18 +84,20 @@ public class Info extends BaseObject implements Serializable {
 	public Boolean getEnabled() {
 		return enabled;
 	}
+
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
-	
-	@Column(name = "website",length=20)
+
+	@Column(name = "website", length = 20)
 	public String getWebsite() {
 		return website;
 	}
+
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	
+
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -111,8 +112,7 @@ public class Info extends BaseObject implements Serializable {
 			return false;
 		if (title != null ? !title.equals(pojo.title) : pojo.title != null)
 			return false;
-		if (content != null ? !content.equals(pojo.content)
-				: pojo.content != null)
+		if (content != null ? !content.equals(pojo.content) : pojo.content != null)
 			return false;
 		if (enabled != null ? !enabled.equals(pojo.enabled) : pojo.enabled != null)
 			return false;

@@ -4,8 +4,6 @@ import com.logo.eshow.model.BaseObject;
 import com.logo.eshow.model.User;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javax.persistence.GeneratedValue;
@@ -23,10 +20,12 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.io.Serializable;
+
 /**
+ * 博文表
  * 
  * @author leida
- *
+ * 
  */
 @Entity
 @Table(name = "blog")
@@ -37,16 +36,16 @@ public class Blog extends BaseObject implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private User user;//作者
-	private Category category;//关联分类
-	private Date addTime;//添加时间
-	private Date updateTime;//更新时间
-	private String title;//标题
-	private String content;//正文
-	private Integer commentSize;//回复数
-	private Integer count;//浏览次数
-	private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);//回复列表
-	private String website;//网站
+	private User user;// 作者
+	private Category category;// 关联分类
+	private Date addTime;// 添加时间
+	private Date updateTime;// 更新时间
+	private String title;// 标题
+	private String content;// 正文
+	private Integer commentSize;// 回复数
+	private Integer count;// 浏览次数
+	private Boolean enabled;// 是否可用
+	private String website;// 网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -68,7 +67,7 @@ public class Blog extends BaseObject implements Serializable {
 		this.user = user;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "categoryId")
 	public Category getCategory() {
 		return this.category;
@@ -122,7 +121,7 @@ public class Blog extends BaseObject implements Serializable {
 	public void setCommentSize(Integer commentSize) {
 		this.commentSize = commentSize;
 	}
-	
+
 	@Column(name = "count")
 	public Integer getCount() {
 		return count;
@@ -132,23 +131,24 @@ public class Blog extends BaseObject implements Serializable {
 		this.count = count;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "blog")
-	public Set<BlogComment> getBlogComments() {
-		return blogComments;
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
 	}
 
-	public void setBlogComments(Set<BlogComment> blogComments) {
-		this.blogComments = blogComments;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
-	
-	@Column(name = "website",length=20)
+
+	@Column(name = "website", length = 20)
 	public String getWebsite() {
 		return website;
 	}
+
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	
+
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -161,15 +161,13 @@ public class Blog extends BaseObject implements Serializable {
 			return false;
 		if (category != null ? !category.equals(pojo.category) : pojo.category != null)
 			return false;
-		if (addTime != null ? !addTime.equals(pojo.addTime)
-				: pojo.addTime != null)
+		if (addTime != null ? !addTime.equals(pojo.addTime) : pojo.addTime != null)
 			return false;
 		if (title != null ? !title.equals(pojo.title) : pojo.title != null)
 			return false;
 		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
 			return false;
-		if (content != null ? !content.equals(pojo.content)
-				: pojo.content != null)
+		if (content != null ? !content.equals(pojo.content) : pojo.content != null)
 			return false;
 
 		return true;
@@ -182,8 +180,7 @@ public class Blog extends BaseObject implements Serializable {
 		result = 31 * result + (addTime != null ? addTime.hashCode() : 0);
 		result = 31 * result + (title != null ? title.hashCode() : 0);
 		result = 31 * result + (website != null ? website.hashCode() : 0);
-		result = 31 * result
-				+ (content != null ? content.hashCode() : 0);
+		result = 31 * result + (content != null ? content.hashCode() : 0);
 
 		return result;
 	}
@@ -198,8 +195,7 @@ public class Blog extends BaseObject implements Serializable {
 		sb.append("addTime").append("='").append(getAddTime()).append("', ");
 		sb.append("title").append("='").append(getTitle()).append("', ");
 		sb.append("website").append("='").append(getWebsite()).append("', ");
-		sb.append("content").append("='").append(getContent()).append(
-				"', ");
+		sb.append("content").append("='").append(getContent()).append("', ");
 
 		sb.append("]");
 

@@ -2,14 +2,9 @@ package com.logo.eshow.model;
 
 import com.logo.eshow.model.BaseObject;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javax.persistence.GeneratedValue;
@@ -21,6 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import java.io.Serializable;
 
 /**
+ * 博文分类表
  * 
  * @author leida
  * 
@@ -29,18 +25,16 @@ import java.io.Serializable;
 @Table(name = "category")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Category extends BaseObject implements Serializable {
-	/**
-	 * 种类
-	 */
+
 	private static final long serialVersionUID = -8900865569034536533L;
-	private Integer id;//种类ID
-	private Date addTime;//添加时间
-	private Date updateTime;//更新时间
-	private String name;//名称
-	private String remark;//注释
-	private Integer sequence;//序号
-	private Set<Blog> blogs = new HashSet<Blog>(0);//博客列表
-	private String website;//网站
+	private Integer id;// 分类ID
+	private Date addTime;// 添加时间
+	private Date updateTime;// 更新时间
+	private String name;// 名称
+	private String remark;// 注释
+	private Integer sequence;// 序号
+	private Boolean enabled;// 是否可用
+	private String website;// 网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -97,24 +91,24 @@ public class Category extends BaseObject implements Serializable {
 		this.sequence = sequence;
 	}
 
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "category")
-	public Set<Blog> getBlogs() {
-		return blogs;
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
 	}
 
-	public void setBlogs(Set<Blog> blogs) {
-		this.blogs = blogs;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	@Column(name="website",length=20)
+	@Column(name = "website", length = 20)
 	public String getWebsite() {
 		return website;
 	}
-	
+
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	
+
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -150,8 +144,7 @@ public class Category extends BaseObject implements Serializable {
 		sb.append(" [");
 		sb.append("id").append("='").append(getId()).append("', ");
 		sb.append("addTime").append("='").append(getAddTime()).append("', ");
-		sb.append("updateTime").append("='").append(getUpdateTime()).append(
-				"', ");
+		sb.append("updateTime").append("='").append(getUpdateTime()).append("', ");
 		sb.append("name").append("='").append(getName()).append("', ");
 		sb.append("remark").append("='").append(getRemark()).append("', ");
 		sb.append("website").append("='").append(getWebsite()).append("', ");

@@ -23,6 +23,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import java.io.Serializable;
 
 /**
+ * 博文评论表
  * 
  * @author leida
  * 
@@ -35,12 +36,13 @@ public class BlogComment extends BaseObject implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5032303242094188729L;
-	private Integer id;//评论ID
-	private User user;//用户
-	private Blog blog;//日志
-	private Date addTime;//添加时间
-	private String content;//内容
-	private String website;//网站
+	private Integer id;// 评论ID
+	private User user;// 用户
+	private Blog blog;// 日志
+	private Date addTime;// 添加时间
+	private String content;// 内容
+	private Boolean enabled;// 是否可用
+	private String website;// 网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -81,7 +83,6 @@ public class BlogComment extends BaseObject implements Serializable {
 		this.addTime = addTime;
 	}
 
-
 	@Column(name = "content", length = 400)
 	public String getContent() {
 		return this.content;
@@ -91,7 +92,14 @@ public class BlogComment extends BaseObject implements Serializable {
 		this.content = content;
 	}
 
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
+	}
 
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	@Column(name = "website", length = 20)
 	public String getWebsite() {
@@ -114,8 +122,7 @@ public class BlogComment extends BaseObject implements Serializable {
 			return false;
 		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
 			return false;
-		if (addTime != null ? !addTime.equals(pojo.addTime)
-				: pojo.addTime != null)
+		if (addTime != null ? !addTime.equals(pojo.addTime) : pojo.addTime != null)
 			return false;
 		return true;
 	}

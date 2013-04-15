@@ -21,6 +21,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import java.io.Serializable;
 
 /**
+ * 相册表
  * 
  * @author leida
  * 
@@ -33,16 +34,16 @@ public class Album extends BaseObject implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;//ID
-	private User user;//用户
-	private Photo photo;//默认图地址
-	private Date addTime;//添加时间
-	private Date updateTime;//更新时间
-	private String name;//相册名称
-	private String description;//相册描述
-	private Integer photoSize;//照片的总数
+	private Integer id;// ID
+	private User user;// 用户
+	private Photo photo;// 默认图地址
+	private Date addTime;// 添加时间
+	private Date updateTime;// 更新时间
+	private String name;// 相册名称
+	private String description;// 相册描述
+	private Integer photoSize;// 照片的总数
 	private Integer count;// 访问次数
-	private String website;//网站
+	private String website;// 网站
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -127,15 +128,15 @@ public class Album extends BaseObject implements Serializable {
 	public void setCount(Integer count) {
 		this.count = count;
 	}
-	
-	@Column(name = "website",length = 20)
+
+	@Column(name = "website", length = 20)
 	public String getWebsite() {
 		return website;
 	}
+
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	
 
 	public boolean equals(Object o) {
 		if (this == o)
@@ -147,18 +148,15 @@ public class Album extends BaseObject implements Serializable {
 
 		if (user != null ? !user.equals(pojo.user) : pojo.user != null)
 			return false;
-		if (addTime != null ? !addTime.equals(pojo.addTime)
-				: pojo.addTime != null)
+		if (addTime != null ? !addTime.equals(pojo.addTime) : pojo.addTime != null)
 			return false;
-		if (updateTime != null ? !updateTime.equals(pojo.updateTime)
-				: pojo.updateTime != null)
+		if (updateTime != null ? !updateTime.equals(pojo.updateTime) : pojo.updateTime != null)
 			return false;
 		if (name != null ? !name.equals(pojo.name) : pojo.name != null)
 			return false;
 		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
 			return false;
-		if (description != null ? !description.equals(pojo.description)
-				: pojo.description != null)
+		if (description != null ? !description.equals(pojo.description) : pojo.description != null)
 			return false;
 
 		return true;
@@ -171,8 +169,7 @@ public class Album extends BaseObject implements Serializable {
 		result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
 		result = 31 * result + (website != null ? website.hashCode() : 0);
 		result = 31 * result + (name != null ? name.hashCode() : 0);
-		result = 31 * result
-				+ (description != null ? description.hashCode() : 0);
+		result = 31 * result + (description != null ? description.hashCode() : 0);
 
 		return result;
 	}
@@ -185,12 +182,10 @@ public class Album extends BaseObject implements Serializable {
 		sb.append("user").append("='").append(getUser()).append("', ");
 		sb.append("addTime").append("='").append(getAddTime()).append("', ");
 		sb.append("website").append("='").append(getWebsite()).append("', ");
-		sb.append("updateTime").append("='").append(getUpdateTime()).append(
-				"', ");
+		sb.append("updateTime").append("='").append(getUpdateTime()).append("', ");
 		sb.append("name").append("='").append(getName()).append("', ");
 		sb.append("website").append("='").append(getWebsite()).append("', ");
-		sb.append("description").append("='").append(getDescription()).append(
-				"', ");
+		sb.append("description").append("='").append(getDescription()).append("', ");
 
 		sb.append("]");
 

@@ -17,6 +17,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import java.io.Serializable;
 
 /**
+ * 反馈表
  * 
  * @author leida
  * 
@@ -25,20 +26,18 @@ import java.io.Serializable;
 @Table(name = "feedback")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Feedback extends BaseObject implements Serializable {
-	/**
-	 * 回复
-	 */
+
 	private static final long serialVersionUID = 1L;
-	private Integer id;//回复ID
+	private Integer id;// 反馈ID
 	private String username;// 作者
 	private Date addTime;// 添加时间
 	private String title;// 标题
 	private String content;// 正文
 	private String reply;// 回复
 	private Integer state;// 状态
-	private String phone;//电话
-	private String website;//网站
-	private Integer replyId;//回复ID
+	private String phone;// 电话
+	private String website;// 网站
+	private Integer replyId;// 回复ID
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -139,18 +138,15 @@ public class Feedback extends BaseObject implements Serializable {
 
 		Feedback pojo = (Feedback) o;
 
-		if (username != null ? !username.equals(pojo.username)
-				: pojo.username != null)
+		if (username != null ? !username.equals(pojo.username) : pojo.username != null)
 			return false;
-		if (addTime != null ? !addTime.equals(pojo.addTime)
-				: pojo.addTime != null)
+		if (addTime != null ? !addTime.equals(pojo.addTime) : pojo.addTime != null)
 			return false;
 		if (title != null ? !title.equals(pojo.title) : pojo.title != null)
 			return false;
 		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
 			return false;
-		if (content != null ? !content.equals(pojo.content)
-				: pojo.content != null)
+		if (content != null ? !content.equals(pojo.content) : pojo.content != null)
 			return false;
 
 		return true;

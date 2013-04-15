@@ -3,40 +3,26 @@
 <%@ include file="/common/taglibs.jsp"%>
 <s:action name="info!browse" id="view" executeResult="false" />
 <head>
-	<title>${view.info.title }</title>
-	<meta name="keywords" content=${view.info.title } />
-	<link rel="stylesheet" href="<c:url value='/styles/info.css'/>"
-		type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${view.info.title }_EShow开源框架</title>
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+<link href="styles/style.css" rel="stylesheet" />
 </head>
 <body>
-	<div id="page-wrapper">
-		<img src="../images/top-hr.png"
-			style="height: 12px; margin-top: 10px; width: 980px;" />
-		<table cellspacing="0" cellpadding="0"
-			style="background: url(../images/bg-body.png) repeat-y top; width: 980px;">
-			<tr>
-				<td width="2"></td>
-				<td valign="top"
-					style="background: url(../images/bg-sec-12.png) repeat-x top; padding: 40px 40px;">
-					<div id="introcontainer">
-						<div class="introshadow">
-							<div class="realintro">
-								<h1 id="firstHeading">
-									${view.info.title}
-								</h1>
-								${view.info.content }
-							</div>
-						</div>
-					</div>
-				</td>
-				<td width="3"></td>
-			</tr>
-		</table>
-		<table cellspacing="0" cellpadding="0"
-			style="background: url(../images/bg-btm-hr.png) repeat-y top; width: 980px; height: 9px;">
-			<tr>
-				<td></td>
-			</tr>
-		</table>
+	<header id="header">
+		<div class="hero-unit showcase">
+			<div class="container">
+				<h1 class="yahei">${view.info.title }</h1>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				${view.info.content }
+			</div>
+		</div>
 	</div>
 </body>
+</html>

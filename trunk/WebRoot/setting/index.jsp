@@ -28,9 +28,9 @@
 							<c:if test="${view.user.id != myid}">个人资料</c:if>
 							<c:if test="${view.user.id == myid}">${view.user.nickname}个人资料</c:if>
 							<c:if test="${view.user.id == myid}">
-								<a href="<c:url value='/user/edit'/>" style="cursor: pointer;text-decoration:none;">完善资料</a>
-								<a href="<c:url value='/user/setphoto'/>" style="cursor: pointer;text-decoration:none;">修改头像</a>
-								<a href="<c:url value='/user/editpassword'/>"
+								<a href="<c:url value='/setting/edit'/>" style="cursor: pointer;text-decoration:none;">完善资料</a>
+								<a href="<c:url value='/setting/photo'/>" style="cursor: pointer;text-decoration:none;">修改头像</a>
+								<a href="<c:url value='/setting/password'/>"
 									style="cursor: pointer;text-decoration:none;">修改密码</a>
 							</c:if>
 							<br />
@@ -84,7 +84,7 @@
 									</li>
 									<li>
 										<span class="l">注册邮箱：</span>
-										<span class="r"> ${view.user.email} </span>
+										<span class="r"> ${view.user.username} </span>
 									</li>
 								</ul>
 							</div>

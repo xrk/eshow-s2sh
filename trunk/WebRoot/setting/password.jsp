@@ -48,11 +48,11 @@
 					<div>
 						<div id="mainTop">
 							<h3 style="margin-left: 10px;">
-								<a href="<c:url value='/user/'/>"
+								<a href="<c:url value='/setting/'/>"
 									style="cursor: pointer; text-decoration: none;">个人资料</a>
-								<a href="<c:url value='/user/edit'/>"
+								<a href="<c:url value='/setting/edit'/>"
 									style="cursor: pointer; text-decoration: none;">完善资料</a>
-								<a href="<c:url value='/user/setphoto'/>"
+								<a href="<c:url value='/setting/photo'/>"
 									style="cursor: pointer; text-decoration: none;">修改头像</a> 修改密码
 								<br />
 							</h3>

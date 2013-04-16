@@ -21,10 +21,9 @@
 						<div id="mainTop">
 							<h3 style="margin-left: 10px;">
 								${view.user.nickname}的资料
-								<a href="<c:url value='/user/setphoto'/>" style="cursor: pointer;">修改头像</a>
-								<a href="<c:url value='/user/edit'/>" style="cursor: pointer;">完善资料</a>
-								<a href="<c:url value='/user/editpassword'/>"
-									style="cursor: pointer;">修改密码</a>
+								<a href="<c:url value='/setting/photo'/>" style="cursor: pointer;">修改头像</a>
+								<a href="<c:url value='/setting/edit'/>" style="cursor: pointer;">完善资料</a>
+								<a href="<c:url value='/setting/password'/>" style="cursor: pointer;">修改密码</a>
 								<br />
 							</h3>
 							<hr />
@@ -62,7 +61,7 @@
 									</li>
 									<li>
 										<span class="l">注册邮箱：</span>
-										<span class="r"> ${view.user.email} </span>
+										<span class="r"> ${view.user.username} </span>
 									</li>
 								</ul>
 							</div>

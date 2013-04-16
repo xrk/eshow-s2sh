@@ -9,6 +9,7 @@
 		href="<c:url value='/styles/user.css'/>" type="text/css" />
 </head>
 <body>
+<section id="content">
 	<div id="page-wrapper">
 		<img alt="" src="../images/top-hr.png"
 			style="height: 12px; margin-top: 10px; width: 980px;" />
@@ -18,13 +19,12 @@
 				<td width="2"></td>
 				<td valign="top"
 					style="background: url(../images/bg-sec-12.png) repeat-x top; padding: 40px 40px; align: center;">
-					<div>
 						<div id="mainTab">
 							<h3 style="margin-left: 10px;">
-								<a href="<c:url value='/user/'/>" style="cursor: pointer;text-decoration:none;">个人资料</a>
-								<a href="<c:url value='/user/edit'/>" style="cursor: pointer;text-decoration:none;">完善资料</a>
+								<a href="<c:url value='/setting/'/>" style="cursor: pointer;text-decoration:none;">个人资料</a>
+								<a href="<c:url value='/setting/edit'/>" style="cursor: pointer;text-decoration:none;">完善资料</a>
 								修改头像
-								<a href="<c:url value='/user/editpassword'/>"
+								<a href="<c:url value='/setting/password'/>"
 									style="cursor: pointer;text-decoration:none;">修改密码</a>
 								<br />
 							</h3>
@@ -162,4 +162,5 @@
 			</tr>
 		</table>
 	</div>
+	</section>
 </body>

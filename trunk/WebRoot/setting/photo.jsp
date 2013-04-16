@@ -10,7 +10,7 @@
 </head>
 <body>
 <section id="content">
-	<div id="page-wrapper">
+<!-- 	<div id="page-wrapper"> -->
 		<img alt="" src="../images/top-hr.png"
 			style="height: 12px; margin-top: 10px; width: 980px;" />
 		<table cellspacing="0" cellpadding="0"
@@ -106,7 +106,6 @@
 										</table>
 									</div>
 								</div>
-								<div>
 									<div class="l" id="div_Upload"
 										style="float: right; margin: -260px 90px 0px -100px;">
 										<form action="user!photo.html" method="post"
@@ -150,7 +149,6 @@
 								</div>
 								<!--/上传头像-->
 							</div>
-						</div>
 				</td>
 				<td width="3"></td>
 			</tr>

@@ -1,13 +1,10 @@
 package com.logo.eshow.webapp.action;
 
 import com.logo.eshow.bean.query.ServiceQuery;
-import com.logo.eshow.bean.query.ThumbQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Service;
-import com.logo.eshow.model.Thumb;
 import com.logo.eshow.service.ServiceManager;
 import com.logo.eshow.service.ServiceTypeManager;
-import com.logo.eshow.service.ThumbManager;
 import com.logo.eshow.util.DateUtil;
 import com.logo.eshow.util.ImageUtil;
 import com.logo.eshow.util.PageUtil;
@@ -29,7 +26,6 @@ public class ServiceAction extends BaseFileUploadAction {
 	private static final long serialVersionUID = 1L;
 	private ServiceManager serviceManager;
 	private ServiceTypeManager serviceTypeManager;
-	private ThumbManager thumbManager;
 	private List<Service> services;
 	private Service service;
 	private ServiceQuery query;
@@ -76,14 +72,6 @@ public class ServiceAction extends BaseFileUploadAction {
 			ImageUtil.uploadImage(path, old.getId().toString(), file);
 			old.setImg(old.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQuery thumbQuery = new ThumbQuery();
-			thumbQuery.setModel("photo");
-			List<Thumb> list = thumbManager.list(thumbQuery);
-			for (Thumb thumb : list) {
-				ImageUtil.resizeImage(path + "view/" + old.getId() + "-" + thumb.getWidth() + "-"
-						+ thumb.getHeight() + ".jpg", path + "orig/" + old.getId() + ".jpg",
-						thumb.getWidth(), thumb.getHeight(), thumb.getType());
-			}
 		}
 		serviceManager.save(old);
 		saveMessage("修改成功");
@@ -104,14 +92,6 @@ public class ServiceAction extends BaseFileUploadAction {
 			ImageUtil.uploadImage(path, service.getId().toString(), file);
 			service.setImg(service.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQuery thumbQuery = new ThumbQuery();
-			thumbQuery.setModel("service");
-			List<Thumb> list = thumbManager.list(thumbQuery);
-			for (Thumb thumb : list) {
-				ImageUtil.resizeImage(path + "view/" + service.getId() + "-" + thumb.getWidth()
-						+ "-" + thumb.getHeight() + ".jpg", path + "orig/" + service.getId()
-						+ ".jpg", thumb.getWidth(), thumb.getHeight(), thumb.getType());
-			}
 			serviceManager.save(service);
 		}
 
@@ -136,13 +116,6 @@ public class ServiceAction extends BaseFileUploadAction {
 		this.serviceTypeManager = serviceTypeManager;
 	}
 
-	public ThumbManager getThumbManager() {
-		return thumbManager;
-	}
-
-	public void setThumbManager(ThumbManager thumbManager) {
-		this.thumbManager = thumbManager;
-	}
 
 	public List<Service> getServices() {
 		return services;

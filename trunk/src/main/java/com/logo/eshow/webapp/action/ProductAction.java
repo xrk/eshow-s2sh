@@ -1,13 +1,10 @@
 ﻿package com.logo.eshow.webapp.action;
 
 import com.logo.eshow.bean.query.ProductQuery;
-import com.logo.eshow.bean.query.ThumbQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Product;
-import com.logo.eshow.model.Thumb;
 import com.logo.eshow.service.ProductManager;
 import com.logo.eshow.service.ProductCategoryManager;
-import com.logo.eshow.service.ThumbManager;
 import com.logo.eshow.util.DateUtil;
 import com.logo.eshow.util.ImageUtil;
 import com.logo.eshow.util.PageUtil;
@@ -29,7 +26,6 @@ public class ProductAction extends BaseFileUploadAction {
 	private static final long serialVersionUID = 1L;
 	private ProductManager productManager;
 	private ProductCategoryManager productCategoryManager;
-	private ThumbManager thumbManager;
 	private List<Product> products;
 	private Product product;
 	private ProductQuery query;
@@ -78,14 +74,6 @@ public class ProductAction extends BaseFileUploadAction {
 			ImageUtil.uploadImage(path, old.getId().toString(), file);
 			old.setImg(old.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQuery thumbQuery = new ThumbQuery();
-			thumbQuery.setModel("product");
-			List<Thumb> list = thumbManager.list(thumbQuery);
-			for (Thumb thumb : list) {
-				ImageUtil.resizeImage(path + "view/" + old.getId() + "-" + thumb.getWidth() + "-"
-						+ thumb.getHeight() + ".jpg", path + "orig/" + old.getId() + ".jpg",
-						thumb.getWidth(), thumb.getHeight(), thumb.getType());
-			}
 		}
 		productManager.save(old);
 		saveMessage("修改成功");
@@ -106,14 +94,6 @@ public class ProductAction extends BaseFileUploadAction {
 			ImageUtil.uploadImage(path, product.getId().toString(), file);
 			product.setImg(product.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQuery thumbQuery = new ThumbQuery();
-			thumbQuery.setModel("product");
-			List<Thumb> list = thumbManager.list(thumbQuery);
-			for (Thumb thumb : list) {
-				ImageUtil.resizeImage(path + "view/" + product.getId() + "-" + thumb.getWidth()
-						+ "-" + thumb.getHeight() + ".jpg", path + "orig/" + product.getId()
-						+ ".jpg", thumb.getWidth(), thumb.getHeight(), thumb.getType());
-			}
 			productManager.save(product);
 		}
 
@@ -130,13 +110,6 @@ public class ProductAction extends BaseFileUploadAction {
 		this.productManager = productManager;
 	}
 
-	public ThumbManager getThumbManager() {
-		return thumbManager;
-	}
-
-	public void setThumbManager(ThumbManager thumbManager) {
-		this.thumbManager = thumbManager;
-	}
 
 	public List<Product> getProducts() {
 		return products;

@@ -7,13 +7,10 @@ import org.apache.struts2.convention.annotation.Results;
 import org.springframework.security.access.AccessDeniedException;
 
 import com.logo.eshow.Constants;
-import com.logo.eshow.bean.query.ThumbQuery;
 import com.logo.eshow.bean.query.UserQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.Role;
-import com.logo.eshow.model.Thumb;
 import com.logo.eshow.model.User;
-import com.logo.eshow.service.ThumbManager;
 import com.logo.eshow.service.UserExistsException;
 import com.logo.eshow.util.DateUtil;
 import com.logo.eshow.util.ImageUtil;
@@ -36,7 +33,6 @@ import java.util.List;
 public class UserAction extends BaseFileUploadAction {
 	private static final long serialVersionUID = 6776558938712115191L;
 	private List<User> users;
-	private ThumbManager thumbManager;
 	private User user;
 	private UserQuery query;
 
@@ -99,17 +95,7 @@ public class UserAction extends BaseFileUploadAction {
 		ImageUtil.cropImage(path + "view/" + user.getId() + "-" + w + "-" + h + ".jpg", path
 				+ "crop/" + user.getId() + "-450-450.jpg", x, y, w, h);
 
-		ThumbQuery thumbQuery = new ThumbQuery();
-		thumbQuery.setModel("user");
-		List<Thumb> list = thumbManager.list(thumbQuery);
 		// 根据缩略图规则进行缩略图生成
-		for (Thumb thumb : list) {
-			if (!thumb.getWidth().equals(w) && !thumb.getHeight().equals(h)) {
-				ImageUtil.resizeImage(path + "view/" + user.getId() + "-" + thumb.getWidth() + "-"
-						+ thumb.getWidth() + ".jpg", path + "view/" + user.getId() + "-" + w + "-"
-						+ h + ".jpg", thumb.getWidth(), thumb.getHeight(), thumb.getType());
-			}
-		}
 		return PHOTO;
 	}
 
@@ -296,13 +282,6 @@ public class UserAction extends BaseFileUploadAction {
 		this.users = users;
 	}
 
-	public ThumbManager getThumbManager() {
-		return thumbManager;
-	}
-
-	public void setThumbManager(ThumbManager thumbManager) {
-		this.thumbManager = thumbManager;
-	}
 
 	public User getUser() {
 		return user;

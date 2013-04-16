@@ -1,13 +1,10 @@
 package com.logo.eshow.webapp.action;
 
 import com.logo.eshow.bean.query.PhotoQuery;
-import com.logo.eshow.bean.query.ThumbQuery;
 import com.logo.eshow.model.Photo;
 import com.logo.eshow.service.AlbumManager;
 import com.logo.eshow.service.PhotoManager;
-import com.logo.eshow.service.ThumbManager;
 import com.logo.eshow.model.Album;
-import com.logo.eshow.model.Thumb;
 import com.logo.eshow.model.User;
 import com.logo.eshow.util.CommonUtil;
 import com.logo.eshow.util.DateUtil;
@@ -33,7 +30,6 @@ public class PhotoAction extends BaseFileUploadAction {
 	private static final long serialVersionUID = 1L;
 	private PhotoManager photoManager;
 	private AlbumManager albumManager;
-	private ThumbManager thumbManager;
 	private List<Photo> photos;
 	private Photo photo;
 	private PhotoQuery query = new PhotoQuery();
@@ -85,15 +81,6 @@ public class PhotoAction extends BaseFileUploadAction {
 			ImageUtil.uploadImage(path, old.getId().toString(), file);
 			old.setImg(old.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQuery thumbQuery = new ThumbQuery();
-			thumbQuery.setModel("photo");
-			List<Thumb> list = thumbManager.list(thumbQuery);
-			for (Thumb thumb : list) {
-				ImageUtil.resizeImage(path + "view/" + old.getId() + "-"
-						+ thumb.getWidth() + "-" + thumb.getHeight() + ".jpg",
-						path + "orig/" + old.getId() + ".jpg",
-						thumb.getWidth(), thumb.getHeight(), thumb.getType());
-			}
 		}
 		photoManager.save(old);
 		saveMessage("图片修改成功");
@@ -117,15 +104,6 @@ public class PhotoAction extends BaseFileUploadAction {
 			ImageUtil.uploadImage(path, photo.getId().toString(), file);
 			photo.setImg(photo.getId() + ".jpg");
 			// 根据缩略图规则进行缩略图生成
-			ThumbQuery thumbQuery = new ThumbQuery();
-			thumbQuery.setModel("photo");
-			List<Thumb> list = thumbManager.list(thumbQuery);
-			for (Thumb thumb : list) {
-				ImageUtil.resizeImage(path + "view/" + photo.getId() + "-"
-						+ thumb.getWidth() + "-" + thumb.getHeight() + ".jpg",
-						path + "orig/" + photo.getId() + ".jpg",
-						thumb.getWidth(), thumb.getHeight(), thumb.getType());
-			}
 			album.setPhotoSize(CommonUtil.count(album.getPhotoSize()));
 			album.setPhoto(photo);
 			album.setUpdateTime(new Date());
@@ -154,13 +132,6 @@ public class PhotoAction extends BaseFileUploadAction {
 		this.albumManager = albumManager;
 	}
 
-	public ThumbManager getThumbManager() {
-		return thumbManager;
-	}
-
-	public void setThumbManager(ThumbManager thumbManager) {
-		this.thumbManager = thumbManager;
-	}
 
 	public List<Photo> getPhotos() {
 		return photos;

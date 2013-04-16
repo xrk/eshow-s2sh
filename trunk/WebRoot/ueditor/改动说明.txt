@@ -1,0 +1,7 @@
+﻿1. dialogs/image/image.js  368行 去除格式过滤
+2. Uploader.java savePath变量为空
+3. dialogs/image/image.js  272行
+4. imageUp.jsp
+5. getRemoteImage.jsp
+6. editor_config.js 默认宽度initialFrameWidth
+7. editor_config.js autotypeset自动排版设置

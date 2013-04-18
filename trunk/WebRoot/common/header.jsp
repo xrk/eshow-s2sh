@@ -12,7 +12,7 @@
 				width="155" height="22" src="${ctx }/images/logo.png" />
 			</a>
 			<div class="pull-right">
-				<a class="btn btn-inverse" href="${ctx}/login" title="Log in to Fleetio">
+				<a class="btn btn-inverse" href="${ctx}/user/login" title="Log in to Fleetio">
 					登陆 </a>
 			</div>
 			<div class="nav-collapse collapse">

@@ -10,11 +10,10 @@
 	<meta name="description" content="${view.info.title }" />
 </head>
 <body>
-
-    <c:set var="current">about</c:set>
+    <c:set var="current">support</c:set>
 	<section>
-		<%@ include file="common/header.jsp"%>
-		<div class="w1000 pt10 clearfix">
+	<%@ include file="common/header.jsp"%>
+	<div class="w1000 pt10 clearfix">
 	  <s:action name="product-category!list" id="productCategorys" executeResult="false" />
       <div class="side fl">
           <div class="yahei cate">

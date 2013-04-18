@@ -54,13 +54,6 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
-    <bean id="thumbDao" class="com.logo.eshow.dao.hibernate.ThumbDaoHibernate">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
-    <bean id="thumbImgDao" class="com.logo.eshow.dao.hibernate.ThumbImgDaoHibernate">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
     
     <bean id="topicDao" class="com.logo.eshow.dao.hibernate.TopicDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -129,14 +122,6 @@
     
     <bean id="serviceTypeManager" class="com.logo.eshow.service.impl.ServiceTypeManagerImpl">
         <constructor-arg ref="serviceTypeDao"/>
-    </bean>
-    
-    <bean id="thumbManager" class="com.logo.eshow.service.impl.ThumbManagerImpl">
-        <constructor-arg ref="thumbDao"/>
-    </bean>
-    
-    <bean id="thumbImgManager" class="com.logo.eshow.service.impl.ThumbImgManagerImpl">
-        <constructor-arg ref="thumbImgDao"/>
     </bean>
     
     <bean id="topicManager" class="com.logo.eshow.service.impl.TopicManagerImpl">

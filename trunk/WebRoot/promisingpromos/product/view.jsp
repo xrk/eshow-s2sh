@@ -2,16 +2,20 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
+<s:action name="info!browse" id="productview" executeResult="false" >
+	<s:param name="info.url">productview</s:param>
+</s:action>
 <s:action name="product!view" id="view" executeResult="false"/>
 <head>
-	<title>开发日志</title>
-	<meta name="keywords" content="开发日志" />
-	<meta name="description" content="开发日志" />
-	<link rel="stylesheet" href="<c:url value='/styles/blog.css'/>"
-		type="text/css" media="screen" />
+	
+	<title>${productview.info.title }</title>
+	<meta name="keywords" content="${productview.info.title }" />
+	<meta name="description" content="${productview.info.title }" />
 </head>
 <body>
+<c:set var="current">product</c:set>
 	<section>
+	<%@ include file="../common/header.jsp"%>
 		<div class="w1000 pt10 clearfix">
 	  <s:action name="product-category!list" id="productCategorys" executeResult="false" />
       <div class="side fl">
@@ -39,9 +43,8 @@
       </div>
       <div class="main fr"> 
           <div class="crumbnav yahei">
-            <a href="">Home</a> > 
-            <a href="">Catgories</a> > 
-            <a href="">Catgories</a>
+             <a href="${ctx}/promisingpromos/">Home</a> > 
+             <a href="${ctx}/promisingpromos/product/">${productview.info.title}</a>  
 
           </div>
           <div class="view clearfix yahei">

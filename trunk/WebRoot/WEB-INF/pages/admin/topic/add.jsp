@@ -1,7 +1,7 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<%@ taglib uri="http://java.fckeditor.net" prefix="FCK"%>
+<%@ taglib uri="http://fckeditor.net/tags-fckeditor" prefix="FCK"%>
 <head>
 	<title>讨论区</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/topic.css'/>"

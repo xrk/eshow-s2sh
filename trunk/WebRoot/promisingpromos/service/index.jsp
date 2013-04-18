@@ -1,17 +1,19 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
+<s:action name="info!browse" id="view" executeResult="false" >
+	<s:param name="info.url">service</s:param>
+</s:action>
 <head>
-	<title>开发日志</title>
-	<meta name="keywords" content="开发日志" />
-	<meta name="description" content="开发日志" />
-	<link rel="stylesheet" href="<c:url value='/styles/blog.css'/>"
-		type="text/css" media="screen" />
+	<c:set var="current">service</c:set>
+	<title>${view.info.title}</title>
+	<meta name="keywords" content="${view.info.title}" />
+	<meta name="description" content="${view.info.title}" />
 </head>
 <body>
 	<section>
-		<div class="w1000 pt10 clearfix">
+	<%@ include file="../common/header.jsp"%>
+	<div class="w1000 pt10 clearfix">
 	  <s:action name="product-category!list" id="productCategorys" executeResult="false" />
       <div class="side fl">
           <div class="yahei cate">
@@ -39,16 +41,15 @@
 
       <div class="main fr"> 
           <div class="crumbnav yahei">
-            <a href="">Home</a> > 
-            <a href="">Service</a> 
+             <a href="${ctx}/promisingpromos/">Home</a> > 
+             <a href="${ctx}/promisingpromos/${view.info.url}/">${view.info.url}</a>  
 
           </div>
           <div class="text clearfix yahei">
-                  <h1>ABOUT US</h1>
+                  <h1>${view.info.title}</h1>
                <div class="text-c">
                 <p  class="t-c"><img src="${ctx }/promisingpromos/images/bud.jpg"/></p>
-                  <p>Whether you are promoting a new product, looking for sales incentives, custom products or common gifts, you’re come to the right site. With more than 250 skilled account executives and over 17,000 cooperating factories in China. Speed Promotional Inc. is able to help customers for every need. We ensure every customer timely response, on time delivery, super customer services and other aspects. Here at Speed Promotional Inc, we are proud to be able to offer different sorts of promotional products other companies find difficult to match. However, if you can’t find the type of product you required, please don’t hesitate to contact our customer service staff and we will do everything to provide you with the item you need. Moreover, ordering your promotional products from us, couldn’t be any easier, you can either send inquiry of your custom promotional product online or speak to our friendly staff directly on the phone. If you do have any queries regarding our huge range of promotional items or our service, please feel free to contact us at any time, our team of experts are always ready to help.</p>
-                  <p>Whatever your specific needs are for promotional products, whether you’re after printed promotional products for your next exhibition, or you are launching a new service, you’re bound to find your requirements here.</p>
+                  ${view.info.content}
                </div>
           </div>
 

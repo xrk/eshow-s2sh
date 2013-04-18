@@ -20,4 +20,8 @@
 		<pattern>/daoqun/*</pattern>
 	</decorator>
 	
+	<decorator name="promisingpromos" page="promisingpromos.jsp">
+		<pattern>/promisingpromos/*</pattern>
+	</decorator>
+	
 </decorators>

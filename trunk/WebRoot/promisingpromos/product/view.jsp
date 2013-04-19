@@ -3,7 +3,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
 <s:action name="info!browse" id="productview" executeResult="false" >
-	<s:param name="info.url">productview</s:param>
+	<s:param name="query.url">productview</s:param>
+	<s:param name="query.website">promisingpromos</s:param>
 </s:action>
 <s:action name="product!view" id="view" executeResult="false"/>
 <head>

@@ -54,7 +54,11 @@ public class InfoAction extends BaseAction {
 	}
 
 	public String browse() {
-		info = infoManager.getBy("url", info.getUrl());
+		infos = infoManager.list(query);
+		if(!infos.isEmpty())
+		{
+			info = infos.get(0);
+		}
 		return NONE;
 	}
 

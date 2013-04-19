@@ -12,6 +12,7 @@ public class InfoQuery extends BaseQuery {
 	public String title;
 	public String content;
 	public Boolean enable;
+	public String website;
 
 	public String getType() {
 		return type;
@@ -53,4 +54,11 @@ public class InfoQuery extends BaseQuery {
 		this.enable = enable;
 	}
 
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 }

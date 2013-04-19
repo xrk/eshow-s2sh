@@ -2,7 +2,8 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <s:action name="info!browse" id="view" executeResult="false" >
-	<s:param name="info.url">service</s:param>
+	<s:param name="query.url">service</s:param>
+	<s:param name="query.website">promisingpromos</s:param>
 </s:action>
 <head>
 	<c:set var="current">service</c:set>

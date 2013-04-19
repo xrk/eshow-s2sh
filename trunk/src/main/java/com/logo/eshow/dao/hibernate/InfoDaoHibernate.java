@@ -57,6 +57,10 @@ public class InfoDaoHibernate extends GenericDaoHibernate<Info, Integer>
 				rule.add(Restrictions.like("title", query.title,
 						MatchMode.ANYWHERE));
 			}
+			if (query.website != null) {
+				rule.add(Restrictions.like("website", query.website,
+						MatchMode.ANYWHERE));
+			}
 			if (query.content != null) {
 				rule.add(Restrictions.like("content", query.content,
 						MatchMode.ANYWHERE));
@@ -64,6 +68,7 @@ public class InfoDaoHibernate extends GenericDaoHibernate<Info, Integer>
 			if (query.enable != null) {
 				rule.add(Restrictions.eq("enable", query.enable));
 			}
+			
 			if (query.getOrder() != null) {
 				rule.addOrder(query.getDesc() ? Order.desc(query
 						.getOrder()) : Order.asc(query.getOrder()));

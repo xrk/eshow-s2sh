@@ -117,7 +117,7 @@
 										<p style="margin-top: 5px;">
 											<input type="submit" class="botton" value="发表"
 												onMouseOut="this.className='botton';"
-												onMouseOver="this.className='botton2';" />
+												 onMouseOver="this.className='botton2';"></input>
 										</p>
 									</div>
 									<div class="c h5"></div>

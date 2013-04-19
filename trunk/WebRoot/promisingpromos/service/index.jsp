@@ -50,7 +50,12 @@
                   <h1>${view.info.title}</h1>
                <div class="text-c">
                 <p  class="t-c"><img src="${ctx }/promisingpromos/images/bud.jpg"/></p>
-                  ${view.info.content}
+                ${view.info.content}
+                 <s:action name="service!list" id="services"></s:action>
+                 <s:iterator value="%{#services.services}">
+                 	<p>${id}.&nbsp; <a href="${ctx }/promisingpromos/service/view/${id}">${title}</a></p>
+                 	<p>${content}</p>
+                 </s:iterator>
                </div>
           </div>
 

@@ -50,7 +50,7 @@
                  <h1>${view.info.title}</h1>
                <div class="text-c">
                 <p  class="t-c"><img src="${ctx }/promisingpromos/images/bud.jpg"/></p>
-                	${view.info.content}
+              ${view.info.content}
                </div>
           </div>
 

@@ -21,9 +21,27 @@
         <a href="${ctx}/promisingpromos/contact"  <c:if test="${current=='contact'}">class="active"</c:if>>CONTACT US</a> 
       </div>
       <div class="search fr">
-        <input type="text" class="text fl" name=""/>
-        <input type="submit" class="btn fl" value=""/>
-      </div>
+			<s:form action="product!serachproduct.action" method="post"
+				id="productForm" namespace="">
+				<input type="hidden" name="REDIRECT"
+					value="${ctx }/promisingpromos/product/search" />
+				<input type="text" class="text fl" name="query.name" />
+				<input type="submit" class="btn fl" name="" value="" />
+			</s:form>
+<!-- 			<form id="searchForm" name="searchForm" action="${ctx}/search/" -->
+<!-- 				method="get" class="navbar-form pull-left"> -->
 
+<!-- 				<input type="text" class="fl s_input" hidefocus name="keyword" -->
+<!-- 					placeholder="<fmt:message key="search.header.tip" />" -->
+<!-- 					x-webkit-speech x-webkit-grammar="builtin:translate" -->
+<!-- 					value="${param.keyword}"> -->
+<!-- 				<button class="lsb fl none" -->
+<!-- 					value="<fmt:message key="button.search" />" type="hidden"></button> -->
+<!-- 				<div id="top_search_loader clearfix" class="none"> -->
+<!-- 					<span class="tip"><fmt:message key="search.header.tip" /> -->
+<!-- 					</span> -->
+<!-- 				</div> -->
+<!-- 			</form> -->
+		</div>
     </div>
  </div>

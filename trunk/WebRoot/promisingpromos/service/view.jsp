@@ -1,20 +1,23 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<s:action name="info!browse" id="view" executeResult="false" >
-	<s:param name="query.url">service</s:param>
+<%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
+<s:action name="info!browse" id="serviceview" executeResult="false" >
+	<s:param name="query.url">serviceview</s:param>
 	<s:param name="query.website">promisingpromos</s:param>
 </s:action>
+<s:action name="product!view" id="view" executeResult="false"/>
 <head>
-	<c:set var="current">service</c:set>
-	<title>${view.info.title}</title>
-	<meta name="keywords" content="${view.info.title}" />
-	<meta name="description" content="${view.info.title}" />
+	
+	<title>${serviceview.info.title }</title>
+	<meta name="keywords" content="${serviceview.info.title }" />
+	<meta name="description" content="${serviceview.info.title }" />
 </head>
 <body>
+<c:set var="current">service</c:set>
 	<section>
 	<%@ include file="../common/header.jsp"%>
-	<div class="w1000 pt10 clearfix">
+		<div class="w1000 pt10 clearfix">
 	  <s:action name="product-category!list" id="productCategorys" executeResult="false" />
       <div class="side fl">
           <div class="yahei cate">
@@ -34,30 +37,25 @@
               <h3 class="yahei">HOT PRODUCTS</h3>
               <ul class="clearfix">
                <s:iterator value="%{#productsByCount.products}">
-               	<li> <a href="${ctx}/promisingpromos/product/view/${id}"><img src="${img }"/></a></li>
+               	<li><a href="${ctx}/promisingpromos/product/view/${id}"><img src="${img }"/></a></li>
                 </s:iterator>
               </ul>
           </div>
       </div>
-
       <div class="main fr"> 
           <div class="crumbnav yahei">
              <a href="${ctx}/promisingpromos/">Home</a> > 
-             <a href="${ctx}/promisingpromos/${view.info.url}/">${view.info.url}</a>  
+             <a href="${ctx}/promisingpromos/service/">${serviceview.info.title}</a>  
 
           </div>
+                <s:action name="service!view" id="serviceview">
+                </s:action>
           <div class="text clearfix yahei">
-                  <h1>${view.info.title}</h1>
                <div class="text-c">
-                ${view.info.content}
-                 <s:action name="service!list" id="services"></s:action>
-                 <s:iterator value="%{#services.services}">
-                 	<p>${id}.&nbsp; <a href="${ctx }/promisingpromos/service/view/${id}">${title}</a></p>
-                 	<p>${content}</p>
-                 </s:iterator>
+                <p>${serviceview.service.id}.&nbsp; <a href="${ctx }/promisingpromos/service/view/${serviceview.service.id}">${serviceview.service.title}</a></p>
+                ${serviceview.service.content}
                </div>
           </div>
-
       </div>
       
 

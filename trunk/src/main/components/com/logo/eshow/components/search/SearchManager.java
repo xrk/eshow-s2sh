@@ -1,6 +1,5 @@
 package com.logo.eshow.components.search;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

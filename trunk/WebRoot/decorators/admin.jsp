@@ -18,9 +18,9 @@
 			href="<c:url value='/admin/styles/layout.css'/>" type="text/css" />
 		<decorator:head />
 	</head>
-	<body
+	<body>
 		<decorator:getProperty property="body.id" writeEntireProperty="true"/>
-		<decorator:getProperty property="body.class" writeEntireProperty="true"/>>
+		<decorator:getProperty property="body.class" writeEntireProperty="true"/>
 		<!--header-->
 		<div id="header">
 			<div class="logo">

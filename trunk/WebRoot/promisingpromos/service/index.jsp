@@ -53,7 +53,7 @@
                  <s:action name="service!list" id="services"></s:action>
                  <s:iterator value="%{#services.services}">
                  	<p>${id}.&nbsp; <a href="${ctx }/promisingpromos/service/view/${id}">${title}</a></p>
-                 	<p>${content}</p>
+     
                  </s:iterator>
                </div>
           </div>

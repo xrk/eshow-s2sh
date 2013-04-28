@@ -15,6 +15,25 @@ public class ProductQuery extends BaseQuery{
 	public Integer sequence;
 	public Integer productCategoryId;
 	public Integer userId;
+	public Integer count;
+	public Double price;
+	public String code;
+	
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
 	public Date getAddTime() {
 		return addTime;
@@ -63,5 +82,13 @@ public class ProductQuery extends BaseQuery{
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-
+	
+	public String getCode() {
+		return code;
+	}
+	
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
 }

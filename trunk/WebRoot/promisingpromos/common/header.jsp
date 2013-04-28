@@ -23,14 +23,12 @@
       <div class="search fr">
 			<s:form action="product!serachproduct.action" method="post"
 				id="productForm" namespace="">
-				<input type="hidden" name="REDIRECT"
-					value="${ctx }/promisingpromos/product/search" />
+				<input type="hidden" name="redirect" value="/promisingpromos/product/search.jsp" />
 				<input type="text" class="text fl" name="query.name" />
 				<input type="submit" class="btn fl" name="" value="" />
 			</s:form>
 <!-- 			<form id="searchForm" name="searchForm" action="${ctx}/search/" -->
 <!-- 				method="get" class="navbar-form pull-left"> -->
-
 <!-- 				<input type="text" class="fl s_input" hidefocus name="keyword" -->
 <!-- 					placeholder="<fmt:message key="search.header.tip" />" -->
 <!-- 					x-webkit-speech x-webkit-grammar="builtin:translate" -->

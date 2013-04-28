@@ -63,6 +63,15 @@ public class ProductDaoHibernate extends GenericDaoHibernate<Product, Integer> i
 			if (query.userId != null) {
 				rule.add(Restrictions.eq("user.id", query.userId));
 			}
+			if (query.price != null) {
+				rule.add(Restrictions.eq("price", query.price));
+			}
+			if (query.count != null) {
+				rule.add(Restrictions.eq("count", query.count));
+			}
+			if (query.code != null) {
+				rule.add(Restrictions.eq("code", query.code));
+			}
 			if (query.getOrder() != null) {
 				rule.addOrder(query.getDesc() ? Order.desc(query.getOrder()) : Order.asc(query
 						.getOrder()));

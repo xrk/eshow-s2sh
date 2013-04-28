@@ -43,6 +43,9 @@ public class Product extends BaseObject implements Serializable {
 	private Boolean enabled;//是否可用
 	private Date updateTime;//更新时间
 	private String website;//网站
+	private Integer count;//访问次数
+	private Double price;//商品价格
+	private String code;//商品型号
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer getId() {
@@ -143,6 +146,32 @@ public class Product extends BaseObject implements Serializable {
 		this.website = website;
 	}
 	
+	@Column(name = "price")
+	public Double getPrice() {
+		return price;
+	}
+	
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	
+	@Column(name = "count",length=11)
+	public Integer getCount() {
+		return count;
+	}
+	
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+	
+	@Column(name = "code",length=11)
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -163,6 +192,12 @@ public class Product extends BaseObject implements Serializable {
 			return false;
 		if (website != null ? !website.equals(pojo.website) : pojo.website != null)
 			return false;
+		if (count != null ? !count.equals(pojo.count) : pojo.count != null)
+			return false;
+		if (price != null ? !price.equals(pojo.price) : pojo.price != null)
+			return false;
+		if (code != null ? !code.equals(pojo.code) : pojo.code != null)
+			return false;
 
 		return true;
 	}
@@ -174,6 +209,9 @@ public class Product extends BaseObject implements Serializable {
 		result = 31 * result + (content != null ? content.hashCode() : 0);
 		result = 31 * result + (img != null ? img.hashCode() : 0);
 		result = 31 * result + (website != null ? website.hashCode() : 0);
+		result = 31 * result + (price != null ? price.hashCode() : 0);
+		result = 31 * result + (count != null ? count.hashCode() : 0);
+		result = 31 * result + (code != null ? code.hashCode() : 0);
 
 		return result;
 	}
@@ -189,6 +227,9 @@ public class Product extends BaseObject implements Serializable {
 		sb.append("img").append("='").append(getImg()).append("', ");
 		sb.append("updateTime").append("='").append(getUpdateTime()).append("', ");
 		sb.append("website").append("='").append(getWebsite()).append("', ");
+		sb.append("count").append("='").append(getCount()).append("', ");
+		sb.append("price").append("='").append(getPrice()).append("', ");
+		sb.append("code").append("='").append(getCode()).append("', ");
 		sb.append("]");
 
 		return sb.toString();

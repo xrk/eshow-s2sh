@@ -32,17 +32,22 @@ public class ProductAction extends BaseFileUploadAction {
 	private Integer productCategoryId;
 
 	public String list() {
-		System.out.println("进入list()方法");	
 		products = productManager.list(query);
 		return LIST;
 	}
 
 	public String search() {
-System.out.println("进入search()方法");
 		Page<Product> page = productManager.search(query);
 		products = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
 		return LIST;
+	}
+	
+	public String serachproduct(){
+		Page<Product> page = productManager.search(query);
+		products = page.getDataList();
+		saveRequest("page", PageUtil.conversion(page));
+		return REDIRECT;
 	}
 
 	public String delete() {

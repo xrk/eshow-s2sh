@@ -5,31 +5,6 @@
 <urlrewrite>
 
 	<rule>
-		<from>^/admin/?$</from>
-		<to type="forward">/admin/index.html</to>
-	</rule>
-	
-	<rule>
-		<from>^/admin/([A-Za-z0-9]+)/?$</from>
-		<to type="forward">/admin/$1/index.html</to>
-	</rule>
-	
-	<rule>
-		<from>^/admin/([A-Za-z0-9]+)/([A-Za-z0-9]+)/?$</from>
-		<to type="forward">/admin/$1/$2.html</to>
-	</rule>
-	
-	<rule>
-		<from>^/admin/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)/?$</from>
-		<to type="forward">/admin/$1/$2.html?id=$3</to>
-	</rule>
-
-	<rule>
-		<from>^/admin/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)/?$</from>
-		<to type="forward">/admin/$1/$2.html?id=$3</to>
-	</rule>
-	
-	<rule>
 		<from>^/info/([A-Za-z0-9]+)/?$</from>
 		<to type="forward">/info/browse.jsp?info.url=$1</to>
 	</rule>

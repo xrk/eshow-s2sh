@@ -65,10 +65,6 @@
 									年龄：
 									<span >${view.user.age}</span>
 								</p>
-								<p>
-									邮箱：
-									<span>${view.user.email}</span>
-								</p>
 							</div>
 						</div>
 						<!--/个人信息-->

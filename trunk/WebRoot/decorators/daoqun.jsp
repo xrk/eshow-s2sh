@@ -19,7 +19,10 @@
 			<div class="fl">
 				到群软件旗下产品： <a href="http://bangqu.com" target="_blank">帮趣网</a> <a
 					href="http://baobao.bangqu.com" target="_blank">帮趣宝宝</a> <a
-					href="http://www.mileshu.com" target="_blank">米乐鼠</a>
+					href="http://tracker.bangqu.com" target="_blank">屏幕跟踪系统</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				技术支持产品： <a href="http://www.jiequtao.com" target="_blank">街区淘</a> <a
+					href="http://touchu.daoqun.com" target="_blank">Touch U</a>
 			</div>
 			<div class="link fr">
 				<a href="about">关于我们</a> | <a href="contact">联系方式</a> | <a

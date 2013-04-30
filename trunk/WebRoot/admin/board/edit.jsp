@@ -8,40 +8,18 @@
 		href="<c:url value='/admin/styles/board.css'/>" type="text/css" />
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
+<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
 
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_topic.gif'/>" />
-							基本设置
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/topic'/>">讨论区</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/topic/mine'/>">我发表的话题</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/topic/replied'/>">我参与的话题</a> </span>
-							</li>
-							<li class="on">
-								<span class="txt6"><a
-									href="<c:url value='/admin/board'/>">话题板块</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/board/add'/>">添加话题板块</a>
-							</li>
-						</ul>
+				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="<c:url value='/admin/board/add'/>" class="btn btn-primary">  添加</a>
+						</div>
+						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_info.gif'/>" />  修改基本设置</h3>
 					</div>
 					<div id="securitiesTxt">
 						<form action="<c:url value='/admin/board/board!update.html'/>" method="post">
@@ -78,7 +56,6 @@
 						<div class="c"></div>
 					</div>
 				</div>
-				<div class="c"></div>
 			</div>
 		</div>
 	</div>

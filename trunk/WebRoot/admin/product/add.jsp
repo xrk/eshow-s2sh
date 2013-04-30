@@ -19,16 +19,14 @@
     </script>
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_product.gif'/>" />
-							产品
-						</h2>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+				<div class="well com">
+					<div class="page-header">
+						<h3 class="yahei">产品信息添加</h3>
 					</div>
 					<div id="mainTab">
 						<ul>
@@ -40,8 +38,12 @@
 								<span class="txt6"><a
 									href="<c:url value='/admin/productCategory'/>">产品分类</a> </span>
 							</li>
+
+							<li class="on">
+								<span class="txt6"><a>产品详细</a> </span>
+							</li>
 							<li class="navtxt">
-								<a href="<c:url value='/admin/productCategory/add'/>" style="text-decoration:none;">添加产品</a>
+								<a href="<c:url value='/admin/product/add'/>" style="text-decoration:none;">添加产品</a>
 							</li>
 						</ul>
 					</div>
@@ -107,9 +109,7 @@
 						</s:form>
 					</div>
 				</div>
-				<div class="c"></div>
 			</div>
-			<div class="c"></div>
 		</div>
 	</div>
 </body>

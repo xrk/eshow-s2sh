@@ -14,6 +14,57 @@
     </script>
 </head>
 <body>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<h3 class="yahei">
+							<img src="<c:url value='/admin/images/app_list_system.gif'/>" />
+							服务类型管理
+						</h3>
+					</div>
+					<div id="edit">
+						<form id="serviceTypeForm" action="serviceType!update.html" method="post">
+							<s:hidden name="id" value="%{#view.serviceType.id}"></s:hidden>
+							<p>
+								<span class="l">类型名称：</span><span class="r"><input
+										style="width: 150px;" class="inputtext text-input validate['required']"  type="text"
+										onblur="this.className='inputtext'"
+										onfocus="this.className='inputtext2'" id="name"
+										name="serviceType.name" value="${view.serviceType.name}" /> </span><span
+									class="t"><font color="red">*</font >必填</span>
+							</p>
+							<p>
+								<span class="l">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span><span class="r"><textarea
+										class="inputtext text-input validate['required']"  style="width: 400px; height: 60px;"
+										name="serviceType.remark" id="inputBox"
+										onblur="this.className='textarea'"
+										onfocus="this.className='textarea2'" />${view.serviceType.remark}</textarea>
+								</span><span class="t"><font color="red">*</font>必填</span>
+							</p>
+							<p>
+								<span class="l"></span><span class="r">
+								<input type="submit" class="botton" value="修改"
+										onMouseOut="this.className='botton';"
+										onMouseOver="this.className='botton2';" />
+								<input type="button" class="botton_close1" value="取消"
+									onmouseout="this.className='botton_close1';"
+									onmouseover="this.className='botton_close2';"
+									onclick="javascript:history.back();"/>
+										 </span>
+							</p>
+						</form>
+						<div class="c"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="main">
 		<s:include value="../left.jsp"></s:include>
 		<div id="mainarea">

@@ -9,35 +9,15 @@
 		href="<c:url value='/admin/styles/service.css'/>" type="text/css" />
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_service.gif'/>" />
-							服务
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a href="/eshow/admin/service">服务列表</a>
-								</span>
-							</li>
-							<li class="on">
-								<span class="txt6"><a>服务详细</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a href="/eshow/admin/serviceType">服务类型</a>
-								</span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/service/add'/>"
-									style="text-decoration: none;">添加服务</a>
-							</li>
-						</ul>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_service.gif'/>" />&nbsp;&nbsp;服务管理</h3>
 					</div>
 					<div id="serviceView">
 						<s:form action="service!view.html" method="post"
@@ -69,8 +49,8 @@
 							</div>
 						</s:form>
 					</div>
+					
 				</div>
-				<div class="c"></div>
 			</div>
 		</div>
 	</div>

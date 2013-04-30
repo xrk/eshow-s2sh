@@ -8,36 +8,15 @@
 		type="text/css" />
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-	  <div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<%@ include file="/common/messages.jsp"%>
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_system.gif'/>" />
-							系统管理
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li class="on">
-								<span class="txt6"><a>网站参数</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a href="<c:url value='/admin/role'/>">角色管理</a>
-								</span>
-							</li>
-							<li>
-								<span class="txt6"><a href="<c:url value='/admin/thumb'/>">缩略图</a>
-								</span>
-							</li>
-							<li>
-								<span class="txt6"><a href="<c:url value='/admin/app'/>">组件管理</a>
-								</span>
-							</li>
-						</ul>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<h3 class="yahei">系统管理</h3>
 					</div>
 					<div id="stockbuy">
 						<p>
@@ -87,10 +66,9 @@
 							<br />
 						</div>
 					</div>
+					
 				</div>
-				<div class="c"></div>
 			</div>
-			<div class="c"></div>
 		</div>
 	</div>
 </body>

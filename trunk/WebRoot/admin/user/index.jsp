@@ -1,45 +1,26 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title1"><a href="<c:url value='/admin/user'/>">用户管理</a></c:set>
+<c:set var="title2"><a href="<c:url value='/admin/user'/>">用户列表</a></c:set>
 <head>
 	<title>用户列表</title>
 	<link rel="stylesheet"
 		href="<c:url value='/admin/styles/user.css'/>" type="text/css" />
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_user.gif'/>" />
-							用户管理
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="on"><a href="<c:url value='/admin/user'/>">用户列表</a>
-								</span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/user/edit'/>">修改资料</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/user/password'/>">修改密码</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/user/setphoto'/>">修改头像</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/user/add'/>">添加用户</a>
-							</li>
-						</ul>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="<c:url value='/admin/user/add'/>" class="btn btn-primary">发布</a>
+						</div>
+						<h3 class="yahei">用户管理</h3>
 					</div>
 					<div id="celebrityList">
 					<%@ include file="/common/messages.jsp"%>
@@ -75,10 +56,11 @@
 						</div>
 						<div class="c"></div>
 					</div>
+					
 				</div>
-				<div class="c"></div>
 			</div>
 		</div>
 	</div>
+
 </body>
 

@@ -11,6 +11,80 @@
 		type="text/css" />
 </head>
 <body>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="<c:url value='/admin/blog'/>" class="btn btn-primary">发布</a>
+						</div>
+						<h3 class="yahei">博客</h3>
+					</div>
+					<div id="column">
+						<div id="blog">
+							<div class="subtitle">
+								<span class="l">最新日志 ${id}</span>
+							</div>
+							<s:action name="blog!search" id="newsBlogList"
+								executeResult="false">
+								<s:param name="queryBean.userId">${param.id}</s:param>
+								<s:param name="queryBean.order">addTime</s:param>
+								<s:param name="queryBean.desc">true</s:param>
+							</s:action>
+							<ul class="flist">
+								<s:iterator value="%{#newsBlogList.blogs}" status="rowStatus">
+									<li onmouseover='this.style.backgroundColor ="#f9f9f9"'
+										onmouseout='this.style.backgroundColor =""'>
+										<div class="avatar">
+											<a href="<c:url value='/user/view/${user.id}'/>">
+											<c:if test="${user.photo==null}">
+												<img  src="${pageContext.request.contextPath}/images/base/user50-50.jpg"
+													  alt="${user.nickname}" width="50" height="50" />
+											</c:if> <c:if test="${user.photo!=null}">
+												<img  src="${pageContext.request.contextPath}/upload/user/<s:date name='%{user.addTime}' format='yyyyMMdd' />/${user.photo}"
+													  alt="${user.nickname}" width="50" height="50" />
+											</c:if>
+											</a>
+										</div>
+										<div class="name">
+											<a href="<c:url value='/user/view/${user.id}'/>">${user.nickname}</a>
+										</div>
+										<div class="cont">
+											<div class="tips">
+												评论(${commentSize})&nbsp;&nbsp;|&nbsp;&nbsp;浏览(${count})
+											</div>
+											<div class="title">
+												<a href="<c:url value='/admin/blog/view/${id}'/>">${title}</a>
+											</div>
+											<div class="time">
+												<c:if test="${category.id==null}">[默认分类] </c:if>
+											     <c:if test="${category.id!=null}">
+												 <a href="<c:url value="/admin/blog/c/${category.id}"/>">[${category.name}]</a></c:if>&nbsp;&nbsp;|&nbsp;&nbsp;发表于
+												 <s:date name='%{addTime}' format='yyyy-MM-dd HH:mm:ss' />
+											</div>
+											<div class="contxt">
+												${util:preview(content,100)}
+												<p class="r">
+													<a href="<c:url value='/admin/blog/view/${id}'/>">查看全文</a>
+												</p>
+											</div>
+										</div>
+										<div class="c"></div>
+									</li>
+								</s:iterator>
+							</ul>
+						</div>
+						<%@ include file="/common/page.jsp"%>
+					</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
 	<div id="main">
 		<s:include value="../left.jsp"></s:include>
 		<div id="mainarea">

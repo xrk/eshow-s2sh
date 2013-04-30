@@ -19,31 +19,19 @@
     </script>
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_album.gif'/>" />
-							创建相册
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/album'/>">相册</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/photo'/>">图片列表</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/photo/add'/>">上传图片</a>
-							</li>
-						</ul>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="<c:url value='/admin/album/add'/>" class="btn btn-primary">发布</a>
+						</div>
+						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_album.gif'/>" />
+							创建相册</h3>
 					</div>
 					<div id="edit">
 						<s:form id="albumForm" action="album!save.html" method="post"
@@ -76,13 +64,9 @@
 							</p>
 						</s:form>
 					</div>
+					</div>
 				</div>
-				<div class="c"></div>
+
 			</div>
-			<div class="c"></div>
-			<div class="boxs3_rt"></div>
-			<div class="boxs3_lb"></div>
-			<div class="boxs3_rb"></div>
 		</div>
-	</div>
 </body>

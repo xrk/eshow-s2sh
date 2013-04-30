@@ -21,42 +21,17 @@
     </script>
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
 
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_user.gif'/>" />
-							用户管理
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a href="<c:url value='/admin/user'/>">用户列表</a>
-								</span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/user/edit'/>">修改资料</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/user/password'/>">修改密码</a> </span>
-							</li>
-							<li class="on">
-								<span class="txt6"><a>修改头像</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/user/add'/>">添加用户</a>
-							</li>
-						</ul>
-					</div>
-					<div style="width: 660px;">
-						<div id="uploadfaceimg">
+				<div class="well com">
+					<div class="page-header">
+						<h3 class="yahei">修改头像</h3>
+						<%@ include file="/common/messages.jsp"%>
+					<div id="uploadfaceimg">
 							<div class="l" id="div_Log">
 								<p class="title">
 									当前头像
@@ -167,14 +142,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="c"></div>
 				</div>
-				<div class="c"></div>
-				<div class="boxs3_rt"></div>
-				<div class="boxs3_lb"></div>
-				<div class="boxs3_rb"></div>
 			</div>
 		</div>
-	</DIV>
+	</div>
 </body>
 

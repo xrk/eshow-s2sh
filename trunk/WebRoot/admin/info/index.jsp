@@ -10,6 +10,52 @@
 		type="text/css" />
 </head>
 <body>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="<c:url value='/admin/info/add'/>" class="btn btn-primary">添加</a>
+						</div>
+						<h3 class="yahei">信息中心</h3>
+					</div>
+					<div id="celebrityList">
+						<div id="securitiesGroup">
+							<s:action name="info!search" id="infoList" executeResult="false">
+							</s:action>
+							<ul>
+								<li style="color: #666; line-height: 14px; background: #f1f1f1;">
+									<span class="l">标题</span><span class="l">URL</span><span class="r">操作</span>
+								</li>
+								<s:iterator value="%{#infoList.infos}" status="rowStatus">
+									<li id="info${id}"
+										onmouseover="this.style.backgroundColor='#f9f9f9'"
+										onmouseout="this.style.backgroundColor='#ffffff';">
+										<span class="l" style="font-size: 14px;"><a
+											href="<c:url value='/admin/info/view/${id}'/>" class="">${title}</a>
+										</span>
+										<span class="l c999">${url}</span>
+										<span class="r setting"><a
+											href="<c:url value='/admin/info/edit/${id}'/>">修改</a> </span>
+										<span class="r del"><a href="javascript:void(0);"
+											onclick="return deleteData('info',${id});">删除</a>
+										</span>
+									</li>
+								</s:iterator>
+							</ul>
+							<%@ include file="/common/page.jsp"%>
+						</div>
+						<div class="c"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="main">
 		<s:include value="../left.jsp"></s:include>
 		<div id="mainarea">

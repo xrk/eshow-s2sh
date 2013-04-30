@@ -7,31 +7,15 @@
 		href="<c:url value='/admin/styles/productCategory.css'/>" type="text/css" />
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_product.gif'/>" />
-							产品
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/product'/>">产品列表</a> </span>
-							</li>
-							<li  class="on">
-								<span class="txt6"><a href="<c:url value='/admin/productCategory'/>">产品分类</a>
-								</span>
-							</li>
-							<li class="navtxt">
-							<a href="<c:url value='/admin/productCategory/add'/>" style="text-decoration:none">添加分类</a>
-							</li>
-						</ul>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<h3 class="yahei">产品</h3>
 					</div>
 					<div id="celebrityList">
 						<div id="securitiesGroup">
@@ -61,6 +45,22 @@
 						</div>
 						<div class="c"></div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="main">
+		<s:include value="../left.jsp"></s:include>
+		<div id="mainarea">
+			<div id="mainarea_bg">
+				<div id="content">
+					<div id="mainTop">
+						<h2>
+							<img src="<c:url value='/admin/images/app_list_product.gif'/>" />
+							产品
+						</h2>
+					</div>
+					
 				</div>
 				<div class="c"></div>
 			</div>

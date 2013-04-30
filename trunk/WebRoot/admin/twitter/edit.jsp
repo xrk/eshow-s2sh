@@ -14,31 +14,18 @@
     </script>
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_twitter.gif'/>" />
-							微博
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt5"><a
-									href="<c:url value='/admin/twitter'/>">大家的微博</a> </span>
-							</li>
-							<li>
-								<span class="txt5"><a
-									href="<c:url value='/admin/twitter/mine'/>">我的微博</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/twitter/add'/>">继续说</a>
-							</li>
-						</ul>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="/admin/twitter/add" class="btn btn-primary">发布</a>
+						</div>
+						<h3 class="yahei">修改微博</h3>
 					</div>
 					<div id="content">
 						<s:form action="twitter!update.html" id="twitterForm"
@@ -61,9 +48,8 @@
 						</s:form>
 					</div>
 				</div>
-				<div class="c"></div>
+
 			</div>
-			<div class="c"></div>
 		</div>
 	</div>
 </body>

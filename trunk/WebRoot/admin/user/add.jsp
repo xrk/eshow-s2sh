@@ -14,45 +14,20 @@
 		src="<c:url value='/scripts/calendar/lang/calendar-zh_utf8.js'/>"></script>
 	<script type="text/javascript"
 		src="<c:url value='/scripts/calendar/calendar-setup.js'/>"></script>
+	
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_user.gif'/>" />
-							用户管理
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a href="<c:url value='/admin/user'/>">用户列表</a>
-								</span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/user/edit'/>">修改资料</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/user/password'/>">修改密码</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/user/setphoto'/>">修改头像</a> </span>
-							</li>
-							<li class="navtxt">
-								<a>添加用户</a>
-							</li>
-						</ul>
-					</div>
-					<div id="profile_form">
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<h3 class="yahei">添加用户</h3>
 						<%@ include file="/common/messages.jsp"%>
-						<s:form id="userForm" action="user!save.html" method="post">
+					<s:form id="userForm" action="user!save.html" method="post">
 							<div id="profile_form">
 								<ul>
 									<li>
@@ -275,21 +250,18 @@
 							</div>
 						</s:form>
 					</div>
-					<div class="c"></div>
 				</div>
-				<div class="c"></div>
 			</div>
-			<script type="text/javascript">
-	var MINUTE = 60 * 1000;
-	var HOUR = 60 * MINUTE;
-	var DAY = 24 * HOUR;
-
-	Calendar.setup( {
-		inputField : "birthday",
-		button : "triggerBirthdayTime"
-	});
-	
-</script>
 		</div>
-	</DIV>
+		<script type="text/javascript">
+			var MINUTE = 60 * 1000;
+			var HOUR = 60 * MINUTE;
+			var DAY = 24 * HOUR;
+
+			Calendar.setup({
+				inputField : "birthday",
+				button : "triggerBirthdayTime"
+			});
+		</script>
+	</div>
 </body>

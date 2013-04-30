@@ -11,7 +11,7 @@
 			new FormCheck('twitterForm');
 		});
     </script>
-   <script type="text/javascript">
+<script type="text/javascript">
 　　function checkLength(which) {
 　　var maxChars = 200;
 　　if (which.value.length > maxChars)
@@ -22,61 +22,45 @@
 　　</script>
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_twitter.gif'/>" />
-							微博
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt5"><a
-									href="<c:url value='/admin/twitter'/>">大家的微博</a></span>
-							</li>
-							<li>
-								<span class="txt5"><a
-									href="<c:url value='/admin/twitter/mine'/>">我的微博</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/twitter/add'/>">继续说</a>
-							</li>
-						</ul>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="/admin/twitter/add" class="btn btn-primary">发布</a>
+						</div>
+						<h3 class="yahei">添加微博</h3>
 					</div>
 					<div id="content">
-					   <s:form action="twitter!save.html" id="twitterForm" method="post">
-							    <div id="top">
-									心情点滴，我要记录...(<span id="chLeft">200</span>/200字内)
-								</div>
-								<div style="padding-top: 10px;">
-									<textarea class="inputtext text-input validate['required']"
-									    class="textarea" style="width: 400px; height: 80px;"
-										name="twitter.content" id="inputBox" 
-										cols="" rows=""  onkeyup="checkLength(this);"
-										onblur="this.className='textarea'"
-										onfocus="this.className='textarea2'" /></textarea>
-										<br/>
-								</div>
-								<div style="padding: 5px 0;">
-									<span><input type="submit" class="botton"
-											value="提交" onMouseOut="this.className='botton';"
-											onMouseOver="this.className='botton2';" /> </span>
-								</div>
+						<s:form action="twitter!save.html" id="twitterForm" method="post">
+							<div id="top">
+								心情点滴，我要记录...(<span id="chLeft">200</span>/200字内)
+							</div>
+							<div style="padding-top: 10px;">
+								<textarea class="inputtext text-input validate['required']"
+									class="textarea" style="width: 400px; height: 80px;"
+									name="twitter.content" id="inputBox" cols="" rows=""
+									onkeyup="checkLength(this);" onblur="this.className='textarea'"
+									onfocus="this.className='textarea2'" /></textarea>
+								<br />
+							</div>
+							<div style="padding: 5px 0;">
+								<span><input type="submit" class="botton" value="提交"
+									onMouseOut="this.className='botton';"
+									onMouseOver="this.className='botton2';" /> </span>
+							</div>
 						</s:form>
 					</div>
+
 				</div>
-				<div class="c"></div>
+
 			</div>
-			<div class="c"></div>
-			<div class="boxs3_rt"></div>
-			<div class="boxs3_lb"></div>
-			<div class="boxs3_rb"></div>
 		</div>
 	</div>
+
 </body>
 

@@ -9,41 +9,17 @@
 		href="<c:url value='/admin/styles/profile.css'/>" type="text/css" />
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_user.gif'/>" />
-							用户管理
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a href="<c:url value='/admin/user'/>">用户列表</a>
-								</span>
-							</li>
-							<li class="on">
-								<span class="txt6"><a>修改资料</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/user/password'/>">修改密码</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/user/setphoto'/>">修改头像</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/user/add'/>">添加用户</a>
-							</li>
-						</ul>
-					</div>
-					<%@ include file="/common/messages.jsp"%>
-					<s:form action="user!update.html" id="userForm" method="post"
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<h3 class="yahei">修改资料</h3>
+						<%@ include file="/common/messages.jsp"%>
+						<s:form action="user!update.html" id="userForm" method="post"
 						validate="false">
 						<input type="hidden" name="id" value="${view.user.id}" />
 						<s:hidden name="user.username" value="%{#view.user.username}"></s:hidden>
@@ -52,7 +28,7 @@
 						<div id="profile_form">
 							<ul>
 								<li>
-									<span class="l">注册邮箱：</span><span class="r">${view.user.email
+									<span class="l">注册邮箱：</span><span class="r">${view.user.username
 										}</span>
 								</li>
 								<li>
@@ -290,10 +266,9 @@
 							</ul>
 						</div>
 					</s:form>
+					</div>
 				</div>
-				<div class="c"></div>
 			</div>
-			<div class="c"></div>
 		</div>
 	</div>
 </body>

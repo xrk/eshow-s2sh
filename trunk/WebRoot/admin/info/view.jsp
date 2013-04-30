@@ -8,6 +8,34 @@
 		type="text/css" />
 </head>
 <body>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="<c:url value='/admin/info/add'/>" class="btn btn-primary">  添加</a>
+						</div>
+						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_info.gif'/>" />  信息修改</h3>
+					</div>
+					<div id="accContent">
+						<div class="title" style="margin-top: 10px;">
+							${view.info.title}
+							<div class="navtxt">
+								<a href="<c:url value='/admin/info/edit/${view.info.id}'/>">修改</a> | <a href="javascript:window.history.back()">返回上一级</a>
+							</div>
+						</div>
+						<div class="contxt">
+							${view.info.content}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="main">
 		<s:include value="../left.jsp"></s:include>
 		<div id="mainarea">

@@ -21,39 +21,18 @@
   </script>
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_blog.gif'/>" />
-							日志
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li class="txt6">
-								<span class="txt6"><a href="<c:url value='/admin/blog'/>">日志列表</a>
-								</span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/blog/our'/>">我的日志</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/category'/>">分类管理</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/blog/add'/>">发表文章</a>
-							</li>
-							<li class="bnt1">
-								<span class="txt6"><a
-									href="<c:url value='/admin/topic'/>">讨论区</a> </span>
-							</li>
-						</ul>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="<c:url value='/admin/blog/add'/>" class="btn btn-primary">发布</a>
+						</div>
+						<h3 class="yahei">修改博客</h3>
 					</div>
 					<div id="edit">
 						<s:form action="blog!update.html" method="post"
@@ -98,14 +77,10 @@
 							</p>
 						</s:form>
 					</div>
+					</div>
 				</div>
-				<div class="c"></div>
+
 			</div>
-			<div class="c"></div>
-			<div class="boxs3_rt"></div>
-			<div class="boxs3_lb"></div>
-			<div class="boxs3_rb"></div>
 		</div>
-	</div>
 </body>
 

@@ -20,39 +20,19 @@
     </script>
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_blog.gif'/>" />
-							分类管理——修改分类
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a href="<c:url value='/admin/blog'/>">日志列表</a>
-								</span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/blog/mine'/>">我的日志</a> </span>
-							</li>
-							<li class="on">
-								<span class="txt6"><a
-									href="<c:url value='/admin/category'/>">分类管理</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/category/add'/>">添加分类</a>
-							</li>
-							<li class="bnt1">
-								<span class="txt6"><a
-									href="<c:url value='/admin/topic'/>">讨论区</a> </span>
-							</li>
-						</ul>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<s:include value="../title.jsp"></s:include>
+
+				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="<c:url value='/admin/category/add'/>" class="btn btn-primary">发布</a>
+						</div>
+						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_blog.gif'/>" />
+							分类管理——修改分类</h3>
 					</div>
 					<div id="edit">
 						<s:form action="category!update.html"  id="categoryForm" method="post">
@@ -86,10 +66,10 @@
 						</s:form>
 						<div class="c"></div>
 					</div>
+					</div>
 				</div>
-				<div class="c"></div>
+
 			</div>
 		</div>
-	</div>
 </body>
 

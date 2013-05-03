@@ -6,10 +6,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>首页_EShow开源框架</title>
-<link href="${ctx}/promisingpromos/styles/style.css" rel="stylesheet"/> 
-<script src="${ctx}/promisingpromos/scripts/jquery-1.9.1.min.js"></script>   
-<script src="${ctx}/promisingpromos/scripts/bxslider/jquery.bxslider.min.js"></script>  
+<title>Home_Promising Promos</title>
+<link href="http://www.promisingpromos.com/styles/style.css" rel="stylesheet" />
+<script src="http://www.promisingpromos.com/scripts/jquery-1.9.1.min.js"></script>
+<script src="http://www.promisingpromos.com/scripts/bxslider/jquery.bxslider.min.js"></script>
 <script>
  $(document).ready(function() {
     $('.index_banner').bxSlider({
@@ -18,17 +18,16 @@
       auto: true
     }); 
 })
-</script> 
+</script>
 <decorator:head />
 </head>
 <body
 	<decorator:getProperty property="body.id" writeEntireProperty="true"/>
 	<decorator:getProperty property="body.class" writeEntireProperty="true"/>>
-	
 	<decorator:body />
 	<div class="footer gray">
 		<p>
-			Copyright © 2009 Promising Promos Inc All rights reserved.<br>
+			Copyright © 2013 Promising Promos Inc All rights reserved.<br>
 				Promising Promos Inc,26500 West Agoura Road, Suite 102-622
 				Calabasas, CA 91302Guaranteed 
 		</p>

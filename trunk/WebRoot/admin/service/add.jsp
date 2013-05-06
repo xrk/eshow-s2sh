@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title">服务中心</c:set>
+<c:set var="title1">添加服务</c:set>
 <head>
 	<title>添加服务</title>
 	<link rel="stylesheet"
@@ -24,162 +26,67 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
-				<s:include value="../title.jsp"></s:include>
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li><a href="${ctx}/admin/service/">${title}</a> <span
+						class="divider">/</span></li>
+					<li class="active">${title1}</li>
+				</ul>
 
 				<div class="well com">
-					<div class="page-header">
-						<h3 class="yahei">
-							<img src="<c:url value='/admin/images/app_list_system.gif'/>" />
-							系统管理
-						</h3>
-					</div>
-					<div id="serviceEdit">
-						<s:form id="serviceForm" action="service!save.html" method="post"
-							enctype="multipart/form-data">
-							<p>
-								<span class="l">服务标题：</span>
-								<span class="r">&nbsp; <input name="service.title"
-										class="inputtext text-input validate['required']"
-										style="width: 300px;" maxlength="50" type="text"
-										onblur="this.className='inputtext'" /> </span>
-							</p>
-
-							<p>
-								<span class="l">选择类型：</span>
-								<span class="r">&nbsp; <s:action name="serviceType!list"
-										id="serviceTypeList" executeResult="false" /> <select
-										name="serviceTypeId">
+					<ul id="myTab" class="nav nav-tabs">
+						<li><a href="<c:url value='/admin/service'/>" data-toggle="tab">服务列表</a>
+						</li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
+						</li>
+						<li  class="active"><a data-toggle="tab" href="<c:url value='/admin/service/add'/>">添加服务</a>
+						</li>
+					</ul>
+					<form class="form-horizontal" action="service!save" method="post"
+						id="infoForm">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label" for="input01">服务标题 </label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" id="title"
+										name="service.title" >
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="select01">服务类型</label>
+								<s:action name="serviceType!search" id="serviceTypeList"
+									executeResult="false" />
+								<div class="controls">
+									<select  id="serviceTypeId" name="serviceTypeId">
 										<s:iterator value="%{#serviceTypeList.serviceTypes}"
 											status="rowStatus">
-											<option value="${id}">
-												${name}
-											</option>
+											<option value="${id}">${name}</option>
 										</s:iterator>
-									</select> </span>
-							</p>
-							<p>
-								<span class="l">选择图片：</span>
-								<span class="r">&nbsp; <input type="file" name="file"
-										size="38" class="inputtext text-input validate['required']" />
-								</span>
-							</p>
-							<p>
-								<span class="l">内容：</span>
-								<span class="r"> <textarea id="ke-text"
-										name="service.content" style="width: 600px; height: 300px;"></textarea>
-								</span>
-							</p>
-							<p style="width: 640px; text-align: center;">
-								<input type="submit" class="botton" value="提交"
-									onmouseout="this.className='botton';"
-									onmouseover="this.className='botton2';" />
-								<input type="button" class="botton_close1" value="取消"
-									onmouseout="this.className='botton_close1';"
-									onmouseover="this.className='botton_close2';"
-									onclick="javascript:history.back();" />
-							</p>
-
-							<div class="c"></div>
-							<div class="c h5"></div>
-							<span class="l"></span>
-							<p>
-								<input type="hidden" id="securitiesIds" name="listSecuritiesIds" />
-							</p>
-							<div class="c h10"></div>
-						</s:form>
-					</div>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="fileInput">选择图片</label>
+								<div class="controls">
+									<input class="input-file" id="fileInput" type="file">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="textarea">服务内容</label>
+								<div class="controls">
+									<textarea class="input-xlarge" id="textarea" rows="3"
+										style="width: 600px; height: 100px;" name="info.content"></textarea>
+								</div>
+							</div>
+							<div class="form-actions">
+								<button type="submit" class="btn btn-primary">保存</button>
+								<button class="btn" onclick="javascript:history.back();">取消</button>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_service.gif'/>" />
-							服务
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/service'/>">服务列表</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/serviceType'/>">服务类型</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/service/add'/>">添加服务</a>
-							</li>
-						</ul>
-					</div>
-					<div id="serviceEdit">
-						<s:form id="serviceForm" action="service!save.html" method="post"
-							enctype="multipart/form-data">
-							<p>
-								<span class="l">服务标题：</span>
-								<span class="r">&nbsp; <input name="service.title"
-										class="inputtext text-input validate['required']"
-										style="width: 300px;" maxlength="50" type="text"
-										onblur="this.className='inputtext'" /> </span>
-							</p>
-
-							<p>
-								<span class="l">选择类型：</span>
-								<span class="r">&nbsp; <s:action name="serviceType!list"
-										id="serviceTypeList" executeResult="false" /> <select
-										name="serviceTypeId">
-										<s:iterator value="%{#serviceTypeList.serviceTypes}"
-											status="rowStatus">
-											<option value="${id}">
-												${name}
-											</option>
-										</s:iterator>
-									</select> </span>
-							</p>
-							<p>
-								<span class="l">选择图片：</span>
-								<span class="r">&nbsp; <input type="file" name="file"
-										size="38" class="inputtext text-input validate['required']" />
-								</span>
-							</p>
-							<p>
-								<span class="l">内容：</span>
-								<span class="r"> <textarea id="ke-text"
-										name="service.content" style="width: 600px; height: 300px;"></textarea>
-								</span>
-							</p>
-							<p style="width: 640px; text-align: center;">
-								<input type="submit" class="botton" value="提交"
-									onmouseout="this.className='botton';"
-									onmouseover="this.className='botton2';" />
-								<input type="button" class="botton_close1" value="取消"
-									onmouseout="this.className='botton_close1';"
-									onmouseover="this.className='botton_close2';"
-									onclick="javascript:history.back();" />
-							</p>
-
-							<div class="c"></div>
-							<div class="c h5"></div>
-							<span class="l"></span>
-							<p>
-								<input type="hidden" id="securitiesIds" name="listSecuritiesIds" />
-							</p>
-							<div class="c h10"></div>
-						</s:form>
-					</div>
-				</div>
-				<div class="c"></div>
-			</div>
-			<div class="c"></div>
-			<div class="boxs3_rt"></div>
-			<div class="boxs3_lb"></div>
-			<div class="boxs3_rb"></div>
 		</div>
 	</div>
 </body>

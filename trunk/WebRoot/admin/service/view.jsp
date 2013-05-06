@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title">服务中心</c:set>
+<c:set var="title1">查看服务</c:set>
 <s:action name="service!view" id="view" executeResult="false">
 </s:action>
 <head>
@@ -13,12 +15,26 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li><a href="${ctx}/admin/service/">${title}</a> <span
+						class="divider">/</span></li>
+					<li class="active">${title1}</li>
+				</ul>
 				<s:include value="../title.jsp"></s:include>
-
 				<div class="well com">
 					<div class="page-header">
 						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_service.gif'/>" />&nbsp;&nbsp;服务管理</h3>
 					</div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a href="<c:url value='/admin/service'/>" data-toggle="tab">服务列表</a>
+						</li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
+						</li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/service/add'/>">添加服务</a>
+						</li>
+					</ul>
 					<div id="serviceView">
 						<s:form action="service!view.html" method="post"
 							cssClass="creat_form clearfix">

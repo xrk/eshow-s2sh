@@ -1,7 +1,7 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-
+<c:set var="title">角色管理</c:set>
 <head>
 	<title>角色管理</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/role.css'/>"
@@ -12,8 +12,11 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
-				<s:include value="../title.jsp"></s:include>
-
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<h3 class="yahei">
@@ -21,6 +24,12 @@
 							系统管理
 						</h3>
 					</div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li><a data-toggle="tab" href="<c:url value='/admin/system'/>"> 网络参数</a></li>
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/role/index'/>"> 角色引导</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/role/add'/>"> 角色添加</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/role/edit'/>"> 角色修改</a></li>
+					</ul>
 					<div id="celebrityList">
 						<div id="securitiesGroup">
 							<s:action name="role!list" id="roleList" executeResult="false">

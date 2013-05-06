@@ -1,23 +1,32 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-
+<c:set var="title">系统管理</c:set>
 <head>
 	<title>网站参数</title>
-	<link rel="stylesheet" href="<c:url value='/admin/styles/system.css'/>"
-		type="text/css" />
 </head>
 <body>
 	<div class="container mt">
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 				<s:include value="../title.jsp"></s:include>
-
 				<div class="well com">
 					<div class="page-header">
 						<h3 class="yahei">系统管理</h3>
 					</div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/system'/>"> 网络参数</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/role/index'/>"> 角色引导</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/role/add'/>"> 角色添加</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/role/edit'/>"> 角色修改</a></li>
+					</ul>
+					
 					<div id="stockbuy">
 						<p>
 							<span class="r cf00" style="float: left"> 设置网站前后台基本参数及变量!</span>

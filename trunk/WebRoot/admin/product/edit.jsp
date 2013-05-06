@@ -24,28 +24,26 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 				<s:include value="../title.jsp"></s:include>
 				<div class="well com">
 					<div class="page-header">
 						<h3 class="yahei">产品信息修改</h3>
 					</div>
 					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/product'/>">产品列表</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/productCategory'/>">产品分类</a> </span>
-							</li>
-
-							<li class="on">
-								<span class="txt6"><a>产品详细</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/product/add'/>" style="text-decoration:none;">添加产品</a>
-							</li>
+						<ul id="myTab" class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab"
+								href="<c:url value='/admin/product'/>"> 产品列表</a></li>
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/productCategory'/>"> 产品分类</a></li>
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/product/view'/>"> 产品详细</a></li>
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/product/add'/>"> 添加产品</a></li>
 						</ul>
 					</div>
 					<div id="mainarea">

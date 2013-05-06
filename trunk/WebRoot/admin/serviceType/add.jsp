@@ -18,8 +18,12 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 				<s:include value="../title.jsp"></s:include>
-
 				<div class="well com">
 					<div class="page-header">
 						<h3 class="yahei">
@@ -27,6 +31,14 @@
 							系统管理
 						</h3>
 					</div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li><a href="<c:url value='/admin/service'/>" data-toggle="tab">服务列表</a>
+						</li>
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
+						</li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/service/add'/>">添加服务</a>
+						</li>
+					</ul>
 					<div id="serviceTypeEdit">
 						<form id="serviceTypeForm" action="serviceType!save.html"
 							method="post">

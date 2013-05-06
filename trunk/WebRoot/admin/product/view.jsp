@@ -1,6 +1,7 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title">产品列表</c:set>
 <s:action name="product!view" id="view" executeResult="false">
 </s:action>
 <head>
@@ -9,36 +10,30 @@
 		href="<c:url value='/admin/styles/product.css'/>" type="text/css" />
 </head>
 <body>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_product.gif'/>" />
-							产品
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/product'/>">产品列表</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/productCategory'/>">产品分类</a> </span>
-							</li>
+	<div class="container mt">
+		<div class="row-fluid">
+			<s:include value="../left.jsp"></s:include>
+			<div class="span10">
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">t首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 
-							<li class="on">
-								<span class="txt6"><a>产品详细</a> </span>
-							</li>
-							<li class="navtxt">
-								<a href="<c:url value='/admin/product/add'/>" style="text-decoration:none;">添加产品</a>
-							</li>
-						</ul>
+				<div class="well com">
+					<div class="page-header">
+						<h3 class="yahei">产品列表</h3>
 					</div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li><a data-toggle="tab"
+							href="<c:url value='/admin/product'/>"> 产品列表</a></li>
+						<li><a data-toggle="tab"
+							href="<c:url value='/admin/productCategory'/>"> 产品分类</a></li>
+						<li  class="active"><a data-toggle="tab"
+							href="<c:url value='/admin/product/view'/>"> 产品详细</a></li>
+						<li><a data-toggle="tab"
+							href="<c:url value='/admin/product/add'/>"> 添加产品</a></li>
+					</ul>
 					<div id="productView">
 						<s:form action="product!view.html" method="post"
 							cssClass="creat_form clearfix">
@@ -62,7 +57,6 @@
 						</s:form>
 					</div>
 				</div>
-				<div class="c"></div>
 			</div>
 		</div>
 	</div>

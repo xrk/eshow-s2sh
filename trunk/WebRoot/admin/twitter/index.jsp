@@ -14,14 +14,25 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
-				<s:include value="../title.jsp"></s:include>
-
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
 							<a href="/admin/twitter/add" class="btn btn-primary">发布</a>
 						</div>
 						<h3 class="yahei"> 微博中心</h3>
+						<ul id="myTab" class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/twitter'/>">微博列表</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/view'/>">查看微博</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/edit'/>">修改微博</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/add'/>">添加微博</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/mine'/>">我的微博</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/workmate'/>">别人的微博</a></li>
+						</ul>
 					</div>
 					<s:action name="twitter!search" id="twitterList"
 						executeResult="false">

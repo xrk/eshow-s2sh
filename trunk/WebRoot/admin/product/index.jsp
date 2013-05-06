@@ -12,12 +12,22 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
-				<s:include value="../title.jsp"></s:include>
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 
 				<div class="well com">
 					<div class="page-header">
 						<h3 class="yahei">产品列表</h3>
 					</div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/product'/>"> 产品列表</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/productCategory'/>"> 产品分类</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/product/view'/>"> 产品详细</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/product/add'/>"> 添加产品</a></li>
+					</ul>
 					<div id="celebrityList">
 						<s:action name="product!search" id="productList"
 							executeResult="false">

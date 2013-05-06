@@ -14,16 +14,22 @@
 		<div class="row-fluid">
 			<s:include value="left.jsp"></s:include>
 			<div class="span10">
-				<s:include value="title.jsp"></s:include>
-
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 				<div class="well com">
+					<div class="page-header">
+						<h3 class="yahei">个人资料</h3>
+					</div>
+					
 					<div class="page-header">
 						<h3 class="yahei">个人资料</h3>
 						<div id="mainarea">
 							<div id="mainarea_bg">
 								<div id="content2">
 									<div id="column">
-										<div class="c h5"></div>
 										<div id="composerHome">
 											<div class="l">
 												<div class="avatar">
@@ -76,71 +82,8 @@
 											</div>
 										</div>
 										<!--/个人信息-->
-										<div class="c h15"></div>
-										<div class="subTab">
-											<span class="l on">最近动态</span><span class="r"><a
-												href="">更多(2)</a> </span>
-										</div>
-										<div id="friendfeed" class="feed">
-											<ul>
-												<s:iterator value="%{#applicationScope.userNames}"
-													status="rowStatus">
-													<li class="feed1">
-														<div>
-															${user.nickname}${nickname} <BR> <span
-																class="conttxt">dsds</span>
-														</div>
-														<div class="time">2009-7-25 16:48:05</div>
-													</li>
-												</s:iterator>
-											</ul>
-											<div class="c h15"></div>
-										</div>
-										<div class="c h15"></div>
-										<div class="subTab">
-											<a class="on feeduser">在线用户</a><a class="more"
-												href="<c:url value='/admin/user'/>">更多用户</a>
-										</div>
-										<div id="friendfeed" class="feed">
-											<ul>
-												<s:iterator value="%{#applicationScope.userNames}"
-													status="rowStatus">
-													<li class="feed1">
-														<div>
-															${user.nickname}${nickname} <br /> <span class="conttxt"></span>
-														</div>
-														<div class="time"></div>
-													</li>
-												</s:iterator>
-											</ul>
-											<div class="c h15"></div>
-										</div>
-									</div>
-									<div id="sidebar">
-										<div class="c h5"></div>
-										<div id="notify">
-											<div class="top">
-												<a href="<c:url value='/admin/post'/>">内部公告</a>
-											</div>
-											<s:action name="post!search" id="postList"
-												executeResult="false"></s:action>
-											<ul>
-												<s:iterator value="%{#postList.posts}" status="rowStatus">
-													<LI><a href="<c:url value='/admin/post/view/${id}'/>"><B>${title}</B>
-													</a> [ <s:date name='%{addTime}' format='yyyy-MM-dd' /> ]</LI>
-												</s:iterator>
-											</ul>
-											<div class="clear"></div>
-										</div>
-									</div>
-									<div class="c"></div>
 								</div>
-								<div class="c"></div>
 							</div>
-							<div class="c"></div>
-							<div class="boxs3_rt"></div>
-							<div class="boxs3_lb"></div>
-							<div class="boxs3_rb"></div>
 						</div>
 					</div>
 				</div>

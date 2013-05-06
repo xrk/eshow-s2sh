@@ -20,14 +20,32 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
-				<s:include value="../title.jsp"></s:include>
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
 							<a href="<c:url value='/admin/tipic/add'/>" class="btn btn-primary">  添加</a>
 						</div>
-						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_info.gif'/>" />  我发表的话题</h3>
+						<h3 class="yahei">信息修改</h3>
+						<ul id="myTab" class="nav nav-tabs">
+							<li  class="active"><a data-toggle="tab"
+								href="<c:url value='/admin/topic/'/>">信息列表</a></li>
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/audit'/>">未审核</a></li>
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/board'/>">话题板块</a></li>
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/add'/>">发表话题</a></li>
+						</ul>
 					</div>
 				<div id="analysisEdit">
 						<s:form action="topic!update.html" method="post"

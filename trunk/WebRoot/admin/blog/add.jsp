@@ -30,14 +30,25 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
-				<s:include value="../title.jsp"></s:include>
-
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
 							<a href="<c:url value='/admin/blog/add'/>" class="btn btn-primary">发布</a>
 						</div>
 						<h3 class="yahei">博客</h3>
+						<ul id="myTab" class="nav nav-tabs">
+							<li><a data-toggle="tab" href="<c:url value='/admin/blog'/>">日志列表</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/blog/view'/>">查看日志</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/blog/edit'/>">修改日志</a></li>
+							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/blog/add'/>">添加日志</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/blog/mine'/>">我的日志</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/blog/workmate'/>">同事的日志</a></li>
+						</ul>
 					</div>
 					<div id="edit">
 						<s:form id="blogForm" action="blog!save.html" method="post"

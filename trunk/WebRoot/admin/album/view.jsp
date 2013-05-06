@@ -22,6 +22,12 @@
 						</div>
 						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_album.gif'/>" />
 							${view.album.name}相册</h3>
+						<ul id="myTab" class="nav nav-tabs">
+							<li><a data-toggle="tab" href="<c:url value='/admin/album'/>">相册列表</a></li>
+							<li  class="active"><a data-toggle="tab" href="<c:url value='/admin/album/view'/>">查看相册</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/album/edit'/>">修改相册</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/album/add'/>">创建相册</a></li>
+						</ul>
 					</div>
 					<div id="celebrity">
 						<div class="subnav">

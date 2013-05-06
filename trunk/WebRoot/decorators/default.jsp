@@ -27,10 +27,12 @@
 
 	<p>ICP备案编号：苏ICP备10018847号</p>
 	<p class="links">
-		<a href="/eshow/about.jsp">关于</a> <a href="/eshow/info/team">团队成员</a>
-		<a href="/eshow/info/feedback">汇报Bug</a> <a href="/eshow/info/donate">捐助开发</a>
-		<a href="/eshow/info/svn">源码</a> <a href="/eshow/info/joinus">加入我们</a>
-		<a href="/eshow/info/link">友情链接</a>
+		<a href="${ctx}/info/about">关于我们</a>
+		<a href="${ctx}/info/feedback">汇报Bug</a>
+		<a href="${ctx}/info/team">团队成员</a>
+		<a href="${ctx}/info/svn">源码</a> 
+		<a href="${ctx}/info/joinus">加入我们</a>
+		<a href="${ctx}/info/link">友情链接</a>
 	</p>
 	<p>
 		Copyright © 2009 www.eshow.org.cn All rights reserved.

@@ -23,15 +23,28 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
-				<s:include value="../title.jsp"></s:include>
-
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
+				
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
 							<a href="<c:url value='/admin/album/add'/>" class="btn btn-primary">发布</a>
 						</div>
-						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_album.gif'/>" />
-							创建相册</h3>
+						<h3 class="yahei"> 创建相册</h3>
+						<ul id="myTab" class="nav nav-tabs">
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/album'/>">相册列表</a></li>
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/album/view'/>">查看相册</a></li>
+							<li><a data-toggle="tab"
+								href="<c:url value='/admin/album/edit'/>">修改相册</a></li>
+							<li class="active"><a data-toggle="tab"
+								href="<c:url value='/admin/album/add'/>">创建相册</a></li>
+						</ul>
 					</div>
 					<div id="edit">
 						<s:form id="albumForm" action="album!save.html" method="post"

@@ -19,29 +19,24 @@
 <body
 		<decorator:getProperty property="body.id" writeEntireProperty="true"/>
 		<decorator:getProperty property="body.class" writeEntireProperty="true"/>>
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-
-				<a class="brand" href="./index.html">Bootstrap</a>
-				<div class="nav-collapse">
-					<ul class="nav">
-						<li class="active"><a href="./index.html">概述</a></li>
-						<li class=""><a href="./scaffolding.html">框架</a></li>
-						<li class=""><a href="./base-css.html">基础CSS</a></li>
-						<li class=""><a href="./components.html">组件</a></li>
-						<li class=""><a href="./javascript.html">Javascript插件</a></li>
-						<li class=""><a href="./less.html">使用LESS</a></li>
-						<li class="divider-vertical"></li>
-						<li class=""><a href="./download.html">定制</a></li>
-						<li class=""><a href="./examples.html">例子</a></li>
-						<li class=""><a href="./wrongway.html">译者言</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+     <a class="brand yahei" href="./index_files/index.html">EShow管理平台</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><a href="./index_files/index.html">首 页</a></li>
+          <li class=""><a href="./index_files/index.html">切换大学</a></li>
+        </ul>
+        <form class="navbar-search pull-left" action="">
+          <input type="text" class="search-query span2" placeholder="搜索"/>
+        </form>
+        <p class="navbar-text pull-right"> 欢迎： <a href="" class="navbar-link">管理员 </a>&nbsp;&nbsp; <a href="" class="navbar-link">退出</a> </p>
+      </div>
+    </div>
+  </div>
+</div>
+		
 	<decorator:body />
 	<div class="footer">
 		<footer class="container">

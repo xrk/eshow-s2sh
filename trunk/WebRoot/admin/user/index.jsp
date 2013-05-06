@@ -13,14 +13,24 @@
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
-				<s:include value="../title.jsp"></s:include>
-
+				<ul class="breadcrumb">
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
+					</li>
+					<li class="active">${title}</li>
+				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
 							<a href="<c:url value='/admin/user/add'/>" class="btn btn-primary">发布</a>
 						</div>
 						<h3 class="yahei">用户管理</h3>
+						<ul id="myTab" class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/user'/>">用户列表</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/user/edit'/>">修改资料</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/user/password'/>">修改密码</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/user/setphoto'/>">修改头像</a></li>
+							<li><a data-toggle="tab" href="<c:url value='/admin/user/add'/>">添加用户</a></li>
+						</ul>
 					</div>
 					<div id="celebrityList">
 					<%@ include file="/common/messages.jsp"%>

@@ -1,7 +1,9 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<s:action name="info!browse" id="view" executeResult="false" />
+<s:action name="info!browse" id="view" executeResult="false">
+	<s:param name="query.url">${param.url }</s:param>
+</s:action>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>${view.info.title }_EShow开源框架</title>

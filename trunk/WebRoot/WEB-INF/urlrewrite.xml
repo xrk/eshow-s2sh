@@ -6,7 +6,7 @@
 
 	<rule>
 		<from>^/info/([A-Za-z0-9]+)/?$</from>
-		<to type="forward">/info/browse.jsp?info.url=$1</to>
+		<to type="forward">/info/browse.jsp?url=$1</to>
 	</rule>
 	
 	<rule>

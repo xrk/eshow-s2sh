@@ -69,14 +69,14 @@ public class InfoAction extends BaseAction {
 		old.setUrl(info.getUrl());
 		infoManager.save(old);
 		saveMessage("修改成功");
-		return SUCCESS;
+		return REDIRECT;
 	}
 
 	public String save() throws Exception {
 		info = infoManager.save(info);
 		saveMessage("添加成功");
 		id = info.getId();
-		return SUCCESS;
+		return REDIRECT;
 	}
 
 	public InfoManager getInfoManager() {

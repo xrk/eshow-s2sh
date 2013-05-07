@@ -1,7 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title">角色管理</c:set>
+<c:set var="title1">角色管理</c:set>
+<c:set var="title2">角色列表</c:set>
 <head>
 	<title>角色管理</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/role.css'/>"
@@ -15,108 +16,54 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/role/">${title1}</a> <span class="divider">/</span></li>
+					<li class="active">${title2}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
-						<h3 class="yahei">
-							<img src="<c:url value='/admin/images/app_list_system.gif'/>" />
-							系统管理
-						</h3>
+						<div class="pull-right">
+							<a href="<c:url value='/admin/role/add'/>"
+								class="btn btn-primary"> 添加</a>
+						</div>
+						<h3 class="yahei">角色列表</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
 						<li><a data-toggle="tab" href="<c:url value='/admin/system'/>"> 网络参数</a></li>
-						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/role/index'/>"> 角色引导</a></li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/role/add'/>"> 角色添加</a></li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/role/edit'/>"> 角色修改</a></li>
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/role/index'/>"> 角色管理</a></li>
 					</ul>
-					<div id="celebrityList">
-						<div id="securitiesGroup">
-							<s:action name="role!list" id="roleList" executeResult="false">
+					<s:action name="role!list" id="roleList" executeResult="false">
 							</s:action>
-							<ul>
-								<li style="color: #666; line-height: 14px; background: #f1f1f1;">
-									<span class="l">角色代码</span><span class="l">角色描述</span></li>
-								<s:iterator value="%{#roleList.roles}" status="rowStatus">
-									<li onmouseover="this.style.backgroundColor='#f9f9f9';"
-										onmouseout="this.style.backgroundColor='#ffffff';"><span
-										class="l" style="font-size: 14px;">${name}</span><span
-										class="l c999">${description}</span><span class="r setting"><a
-											href="<c:url value='/admin/role/edit/${id}'/>" class="">修改</a>
-									</span> <span class="r del"><a href="javascript:void(0)"
-											onclick="">删除</a> </span></li>
+					<table class="table table-striped table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>角色代码</th>
+								<th>角色描述</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<s:iterator value="%{#roleList.roles}" status="rowStatus">
+								<tr id="market20">
+									<td><span class="l" style="font-size: 14px;"><a
+											href="<c:url value='/admin/info/view/${id}'/>" class="">${id}</a>
+									</span></td>
+									<td><span class="l c999">${name}</span>
+									</td>
+									<td><span class="l c999">${description}</span>
+									</td>
+									<td><a href="<c:url value='/admin/role/edit/${id}'/>">修改</a>
+										<a href="javascript:void(0);"
+										onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a>
+									</td>
+								</tr>
+							</s:iterator>
 
-								</s:iterator>
-							</ul>
-						</div>
-						<div class="c"></div>
-					</div>
-
+						</tbody>
+					</table>
+					<%@ include file="/common/page.jsp"%>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_system.gif'/>" />
-							系统管理
-						</h2>
-					</div>
-					<div id="mainTab">
-						<ul>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/system'/>">网站参数</a> </span>
-							</li>
-							<li class="on">
-								<span class="txt6"><a>角色管理</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a
-									href="<c:url value='/admin/thumb'/>">缩略图</a> </span>
-							</li>
-							<li>
-								<span class="txt6"><a href="<c:url value='/admin/app'/>">组件管理</a>
-								</span>
-							</li>
-						</ul>
-					</div>
-					<div id="celebrityList">
-						<div id="securitiesGroup">
-							<s:action name="role!list" id="roleList" executeResult="false">
-							</s:action>
-							<ul>
-								<li style="color: #666; line-height: 14px; background: #f1f1f1;">
-									<span class="l">角色代码</span><span class="l">角色描述</span>
-								</li>
-								<s:iterator value="%{#roleList.roles}" status="rowStatus">
-									<li onmouseover="this.style.backgroundColor='#f9f9f9';"
-										onmouseout="this.style.backgroundColor='#ffffff';">
-										<span class="l" style="font-size: 14px;">${name}</span><span
-											class="l c999">${description}</span><span class="r setting"><a
-											href="<c:url value='/admin/role/edit/${id}'/>" class="">修改</a>
-										</span>
-										<span class="r del"><a href="javascript:void(0)"
-											onclick="">删除</a> </span>
-									</li>
-
-								</s:iterator>
-							</ul>
-						</div>
-						<div class="c"></div>
-					</div>
-				</div>
-				<div class="c"></div>
-			</div>
-			<div class="c"></div>
-			<div class="boxs3_rt"></div>
-			<div class="boxs3_lb"></div>
-			<div class="boxs3_rb"></div>
 		</div>
 	</div>
 </body>

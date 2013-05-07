@@ -3,7 +3,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <s:action name="user!view" id="view" executeResult="false">
 </s:action>
-<c:set var="title">""</c:set>
 <head>
 	<title>后台</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/index.css'/>"
@@ -17,7 +16,6 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
@@ -25,7 +23,6 @@
 					</div>
 					
 					<div class="page-header">
-						<h3 class="yahei">个人资料</h3>
 						<div id="mainarea">
 							<div id="mainarea_bg">
 								<div id="content2">
@@ -89,6 +86,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 
 </body>

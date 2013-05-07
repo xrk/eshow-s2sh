@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title1">日志管理</c:set>
+<c:set var="title2">添加日志</c:set>
 <head>
 	<title>日志添加</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/blog.css'/>"
@@ -33,71 +35,67 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/blog/">${title1}</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">${title2}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/blog/add'/>" class="btn btn-primary">发布</a>
+							<a href="<c:url value='/admin/blog/add'/>" class="btn btn-primary">添加</a>
 						</div>
-						<h3 class="yahei">博客</h3>
-						<ul id="myTab" class="nav nav-tabs">
-							<li><a data-toggle="tab" href="<c:url value='/admin/blog'/>">日志列表</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/blog/view'/>">查看日志</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/blog/edit'/>">修改日志</a></li>
-							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/blog/add'/>">添加日志</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/blog/mine'/>">我的日志</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/blog/workmate'/>">同事的日志</a></li>
-						</ul>
+						<h3 class="yahei">添加日志</h3>
 					</div>
-					<div id="edit">
-						<s:form id="blogForm" action="blog!save.html" method="post"
-							enctype="multipart/form-data">
-							<p>
-								<span class="l">日志标题:&nbsp;</span>
-								<span class="r">&nbsp; <input name="blog.title"
-										class="inputtext text-input validate['required']" style="width: 300px;" maxlength="50"
-										type="text" onblur="this.className='inputtext'" /> </span>
-							</p>
-							<p>
-								<span class="l">选择分类:&nbsp;</span>
-								<span class="r">&nbsp; <s:action name="category!list"
-										id="categoryList" executeResult="false" /> <select
-										name="categoryId">
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/blog'/>">日志列表</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/blog/mine'/>">我的日志</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/blog/workmate'/>">同事的日志</a></li>
+					</ul>
+					<form class="form-horizontal" action="blog!save.html" method="post"
+						id="blogForm" enctype="multipart/form-data">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label" for="input01">日志标题</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" id="title"
+										name="blog.title">
+								</div>
+							</div>
+
+							<div class="control-group">
+								<label class="control-label" for="select01">选择分类</label>
+								<div class="controls">
+									<s:action name="category!list" id="categoryList"
+										executeResult="false" />
+									<select name="categoryId">
 										<s:iterator value="%{#categoryList.categories}"
 											status="rowStatus">
 											<option value="${id}">
-												${name}
-											</option>
+												${name}</option>
 										</s:iterator>
-									</select> </span>
-							</p>
-							<p>
-								<span class="l">内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容:&nbsp;</span>
-								<span class="l">
-								<textarea id="ke-text" name="blog.content"
-								           style="width: 600px; height: 300px;"></textarea>
-								</span>
-							</p>
-							<p style="width: 640px; text-align: center;">
-								<input type="submit" class="botton" value="发表"
-									onmouseout="this.className='botton';"
-									onmouseover="this.className='botton2';" />
-								<input type="button" class="botton_close1" value="取消"
-									onmouseout="this.className='botton_close1';"
-									onmouseover="this.className='botton_close2';"
-									onclick="javascript:history.back();" />
-							</p>
-							<div class="c"></div>
-							<div class="c h5"></div>
-							<span class="l"></span>
-							<div class="c h10"></div>
-						</s:form>
+									</select>
+								</div>
+							</div>
+
+
+							<div class="control-group">
+								<label class="control-label" for="textarea">内容</label>
+								<div class="controls">
+									<textarea class="input-xlarge" id="textarea" rows="3"
+										style="width: 600px; height: 100px;" name="blog.content"></textarea>
+								</div>
+							</div>
+							<div class="form-actions">
+								<button type="submit" class="btn btn-primary">发表</button>
+								<button class="btn" onclick="javascript:history.back();">取消</button>
+							</div>
+						</fieldset>
+					</form>
 					</div>
 					</div>
 				</div>
 
-			</div>
 		</div>
 </body>
 

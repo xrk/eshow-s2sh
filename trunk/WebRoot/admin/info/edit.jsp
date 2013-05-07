@@ -2,7 +2,7 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <s:action name="info!view" id="view" executeResult="false" />
-<c:set var="title">信息中心</c:set>
+<c:set var="title2">信息中心</c:set>
 <c:set var="title1">修改信息</c:set>
 <head>
 	<title>修改信息${view.info.title}</title>
@@ -25,24 +25,20 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/info/">${title}</a> <span
+					<li><a href="${ctx}/admin/info/">${title2}</a> <span
 						class="divider">/</span></li>
 					<li class="active">${title1}</li>
 				</ul>
 				<div class="well com">
 					<ul id="myTab" class="nav nav-tabs">
-						<li><a data-toggle="tab" href="<c:url value='/admin/info'/>">信息列表</a>
-						</li>
-						<li class="active"><a data-toggle="tab"
-							href="<c:url value='/admin/info/edit'/>">修改日志</a>
-						</li>
-						<li><a data-toggle="tab"
-							href="<c:url value='/admin/info/add'/>">添加日志</a>
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/info'/>">信息列表</a>
 						</li>
 					</ul>
 					
 					<form class="form-horizontal" action="info!update" method="post"
 						id="infoForm">
+						<s:hidden name="id" value="%{#view.info.id}"></s:hidden>
+						<input name="redirect" type="hidden" value="admin/info/" />
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="input01">信息URL</label>

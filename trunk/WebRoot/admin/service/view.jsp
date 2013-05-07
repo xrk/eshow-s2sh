@@ -22,17 +22,18 @@
 						class="divider">/</span></li>
 					<li class="active">${title1}</li>
 				</ul>
-				<s:include value="../title.jsp"></s:include>
 				<div class="well com">
 					<div class="page-header">
-						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_service.gif'/>" />&nbsp;&nbsp;服务管理</h3>
+						<div class="pull-right">
+							<a href="<c:url value='/admin/service/add'/>"
+								class="btn btn-primary"> 添加</a>
+						</div>
+						<h3 class="yahei">话题板块添加</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
 						<li class="active"><a href="<c:url value='/admin/service'/>" data-toggle="tab">服务列表</a>
 						</li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
-						</li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/service/add'/>">添加服务</a>
 						</li>
 					</ul>
 					<div id="serviceView">

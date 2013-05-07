@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title">产品管理</c:set>
+<c:set var="title1">产品信息添加</c:set>
 <head>
 	<title>产品</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/product.css'/>"
@@ -26,81 +28,79 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/product/">${title}</a> <span
+						class="divider">/</span></li>
+					<li class="active">${title1}</li>
 				</ul>
-				<s:include value="../title.jsp"></s:include>
 				<div class="well com">
 					<div class="page-header">
-						<h3 class="yahei">产品信息添加</h3>
+						<div class="pull-right">
+							<a href="<c:url value='/admin/product/add'/>" class="btn btn-primary">添加</a>
+						</div>
+						<h3 class="yahei">产品添加</h3>
 					</div>
 					<div id="mainTab">
 						<ul id="myTab" class="nav nav-tabs">
-						<li><a data-toggle="tab" href="<c:url value='/admin/product'/>"> 产品列表</a></li>
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/product'/>"> 产品列表</a></li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/productCategory'/>"> 产品分类</a></li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/product/view'/>"> 产品详细</a></li>
-						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/product/add'/>"> 添加产品</a></li>
 					</ul>
 					</div>
 					<div id="productEdit">
-						<s:form id="productForm" action="product!save.html" method="post"
+						<form class="form-horizontal" id="productForm" action="product!save" method="post"
 							enctype="multipart/form-data">
-							<p>
-								<span class="l">产品名称:&nbsp;</span>
-								<span class="r">&nbsp; <input name="product.name"
-										class="inputtext text-input validate['required']"  style="width: 300px;" maxlength="50"
-										type="text" onblur="this.className='inputtext'" /> </span>
-							</p>
-							<p>
-								<span class="l">选择分类:&nbsp;</span>
-								<span class="r">&nbsp; <s:action
-										name="productCategory!list" id="productCategoryList"
-										executeResult="false" /> <select name="productCategoryId">
-										<s:iterator value="%{#productCategoryList.productCategories}"
-											status="rowStatus">
-											<option value="${id}">
-												${name}
-											</option>
-										</s:iterator>
-									</select> </span>
-							</p>
-							<p>
-								<span class="l">选择图片:&nbsp;</span>
-								<span class="r">&nbsp; <input type="file" name="file"
-										size="38" class="inputtext text-input validate['required']" /> </span>
-							</p>
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="input01">产品名称</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" name="product.name">
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="select01">产品分类</label>
+									<div class="controls">
+										<s:action name="product-category!search"
+											id="productCategoryList" executeResult="false" />
+										<select id="productCategoryId" name="productCategoryId">
+											<s:iterator value="%{#productCategoryList.productCategories}"
+												status="rowStatus">
+												<option value="${id}">${name}</option>
+											</s:iterator>
+										</select>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="input01">选择图片</label>
+									<div class="controls">
+										<input type="file" class="input-xlarge" name="product.img"
+											id="password">
+										<p style="margin-top: 10px; color: #999;">图片大小不能超过2M，支持
+											.jpeg .jpg .gif .bmp .png 格式</p>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="textarea">信息内容</label>
+									<div class="controls">
+										<textarea class="input-xlarge" id="textarea" rows="3"
+											style="width: 600px; height: 300px;" name="product.content">${view.product.content}</textarea>
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-primary">修改</button>
+									<button class="btn">取消</button>
+								</div>
+							</fieldset>
 							<script language="javascript">
-							$(document).addEvent(function() {
-							    window.onbeforeunload = function() {
-							        if (getContentLength() >0)
-							        {
-							            return "文章还没发表，离开将丢失当前的内容";
-							        }
-							    };
-							});
+								$(document).addEvent(function() {
+									window.onbeforeunload = function() {
+										if (getContentLength() > 0) {
+											return "文章还没发表，离开将丢失当前的内容";
+										}
+									};
+								});
 							</script>
-							<p>
-								<span class="l">内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容:&nbsp;</span>
-								<span class="r"> <script type="text/javascript">
-								    KE.show({
-								        id : 'ke-text'
-								    });
-								 </script> <textarea id="ke-text" name="product.content"
-										style="width: 600px; height: 300px;"></textarea> </span>
-							</p>
-							<p style="width: 640px; text-align: center;">
-								<input type="submit" class="botton" value="提交"
-									onmouseout="this.className='botton';"
-									onmouseover="this.className='botton2';" />
-								<input type="button" class="botton_close1" value="取消"
-									onmouseout="this.className='botton_close1';"
-									onmouseover="this.className='botton_close2';"
-									onclick="javascript:history.back();"/>
-							</p>
-							<p>
-								<input type="hidden" id="securitiesIds" name="listSecuritiesIds" />
-							</p>
-							<div class="c h10"></div>
-						</s:form>
+						</form>
 					</div>
 				</div>
 			</div>

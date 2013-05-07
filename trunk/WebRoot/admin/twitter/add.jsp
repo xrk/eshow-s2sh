@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title1">微博管理</c:set>
+<c:set var="title2">添加微博</c:set>
 <head>
 	<title>微博</title>
 	<link rel="stylesheet"
@@ -29,25 +31,24 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/twitter/">${title1}</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">${title2}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="/admin/twitter/add" class="btn btn-primary">发布</a>
+							<a href="<c:url value='/admin/twitter/add'/>" class="btn btn-primary">添加</a>
 						</div>
 						<h3 class="yahei">添加微博</h3>
-						<ul id="myTab" class="nav nav-tabs">
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter'/>">微博列表</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/view'/>">查看微博</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/edit'/>">修改微博</a></li>
-							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/twitter/add'/>">添加微博</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/mine'/>">我的微博</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/workmate'/>">别人的微博</a></li>
-						</ul>
 					</div>
-					<div id="content">
-						<s:form action="twitter!save.html" id="twitterForm" method="post">
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/twitter'/>">微博列表</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/twitter/mine'/>">我的微博</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/twitter/workmate'/>">别人的微博</a></li>
+					</ul>
+					<s:form action="twitter!save.html" id="twitterForm" method="post">
 							<div id="top">
 								心情点滴，我要记录...(<span id="chLeft">200</span>/200字内)
 							</div>
@@ -59,12 +60,14 @@
 									onfocus="this.className='textarea2'" /></textarea>
 								<br />
 							</div>
-							<div style="padding: 5px 0;">
-								<span><input type="submit" class="botton" value="提交"
-									onMouseOut="this.className='botton';"
-									onMouseOver="this.className='botton2';" /> </span>
+							<div class="form-actions">
+								<button type="submit" class="btn btn-primary">发表</button>
+								<button class="btn" onclick="javascript:history.back();">取消</button>
 							</div>
 						</s:form>
+					</div>
+					<div id="content">
+						
 					</div>
 
 				</div>

@@ -22,17 +22,17 @@
 
 				<div class="well com">
 					<div class="page-header">
+						<div class="pull-right">
+							<a href="<c:url value='/admin/product/add'/>"
+								class="btn btn-primary">添加</a>
+						</div>
 						<h3 class="yahei">产品列表</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
-						<li><a data-toggle="tab"
+						<li class="active"><a data-toggle="tab"
 							href="<c:url value='/admin/product'/>"> 产品列表</a></li>
 						<li><a data-toggle="tab"
 							href="<c:url value='/admin/productCategory'/>"> 产品分类</a></li>
-						<li  class="active"><a data-toggle="tab"
-							href="<c:url value='/admin/product/view'/>"> 产品详细</a></li>
-						<li><a data-toggle="tab"
-							href="<c:url value='/admin/product/add'/>"> 添加产品</a></li>
 					</ul>
 					<div id="productView">
 						<s:form action="product!view.html" method="post"

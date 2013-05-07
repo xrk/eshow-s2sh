@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title1">微博管理</c:set>
+<c:set var="title2">我的微博</c:set>
 <s:action name="user!view" id="view" executeResult="false" />
 <head>
 	<title>我的微博客</title>
@@ -15,23 +17,23 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/twitter/">${title1}</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">${title2}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="/admin/twitter/add" class="btn btn-primary">发布</a>
+							<a href="<c:url value='/admin/twitter/add'/>" class="btn btn-primary">添加</a>
 						</div>
 						<h3 class="yahei">我的微博</h3>
-						<ul id="myTab" class="nav nav-tabs">
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter'/>">微博列表</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/view'/>">查看微博</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/edit'/>">修改微博</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/add'/>">添加微博</a></li>
-							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/twitter/mine'/>">我的微博</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/workmate'/>">别人的微博</a></li>
-						</ul>
 					</div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li><a data-toggle="tab" href="<c:url value='/admin/twitter'/>">微博列表</a></li>
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/twitter/mine'/>">我的微博</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/twitter/workmate'/>">别人的微博</a></li>
+					</ul>
 					<s:action name="twitter!search" id="twitterList"
 						executeResult="false">
 						<s:param name="queryBean.userId">${view.user.id }</s:param>
@@ -39,10 +41,7 @@
 						<s:param name="queryBean.desc">true</s:param>
 					</s:action>
 					<div id="friend">
-						<div id="top">
-							我说了什么......
-						</div>
-						<s:iterator value="%{#twitterList.twitters}">
+					<s:iterator value="%{#twitterList.twitters}">
 							<s:if test="%{#twitterList.twitters}==null">
 								<div class="mainMsg">
 									目前没有记录
@@ -77,7 +76,6 @@
 						</s:iterator>
 						<%@ include file="/common/page.jsp"%>
 					</div>
-
 				</div>
 
 			</div>

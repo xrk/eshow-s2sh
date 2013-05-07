@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title1">微博管理</c:set>
+<c:set var="title2">修改微博</c:set>
 <s:action name="twitter!view" id="view" executeResult="false"></s:action>
 <head>
 	<title>微博客</title>
@@ -21,25 +23,25 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/twitter/">${title1}</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">${title2}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="/admin/twitter/add" class="btn btn-primary">发布</a>
+							<a href="<c:url value='/admin/twitter/add'/>" class="btn btn-primary">添加</a>
 						</div>
 						<h3 class="yahei">修改微博</h3>
-						<ul id="myTab" class="nav nav-tabs">
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter'/>">微博列表</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/view'/>">查看微博</a></li>
-							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/twitter/edit'/>">修改微博</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/add'/>">添加微博</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/mine'/>">我的微博</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/twitter/workmate'/>">别人的微博</a></li>
-						</ul>
 					</div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/twitter'/>">微博列表</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/twitter/mine'/>">我的微博</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/twitter/workmate'/>">别人的微博</a></li>
+					</ul>
 					<div id="content">
-						<s:form action="twitter!update.html" id="twitterForm"
+						<s:form  class="form-horizontal" action="twitter!update.html" id="twitterForm"
 							method="post">
 							<input type="hidden" name="id" value="${view.twitter.id}" />
 							<div id="top">
@@ -51,10 +53,9 @@
 									onblur="this.className='textarea'"
 									onfocus="this.className='textarea2'" />${view.twitter.content}</textarea>
 							</div>
-							<div style="padding: 5px 0;">
-								<span><input type="submit" class="botton" value="修改"
-										onMouseOut="this.className='botton';"
-										onMouseOver="this.className='botton2';" /> </span>
+							<div class="form-actions">
+								<button type="submit" class="btn btn-primary">修改</button>
+								<button class="btn" onclick="javascript:history.back();">取消</button>
 							</div>
 						</s:form>
 					</div>

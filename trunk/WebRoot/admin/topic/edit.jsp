@@ -2,6 +2,8 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="http://java.fckeditor.net" prefix="FCK"%>
+<c:set var="title">话题管理</c:set>
+<c:set var="title1">话题修改</c:set>
 <s:action name="topic!view" id="view" executeResult="false" />
 <head>
 	<title>讨论区</title>
@@ -23,15 +25,19 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/topic/">${title}</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">${title1}</li>
 				</ul>
 
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/tipic/add'/>" class="btn btn-primary">  添加</a>
+							<a href="<c:url value='/admin/topic/add'/>" class="btn btn-primary">添加</a>
 						</div>
 						<h3 class="yahei">信息修改</h3>
+					</div>
 						<ul id="myTab" class="nav nav-tabs">
 							<li  class="active"><a data-toggle="tab"
 								href="<c:url value='/admin/topic/'/>">信息列表</a></li>
@@ -48,24 +54,24 @@
 						</ul>
 					</div>
 				<div id="analysisEdit">
-						<s:form action="topic!update.html" method="post"
+						
+						<form class="form-horizontal" action="topic!update.html" method="post"
 							cssClass="creat_form clearfix">
 							<input type="hidden" name="id" value="${view.topic.id}" />
-							<p>
-								<span class="l">
-									话题标题：
-								</span>
-								<input type="text" id="title" name="topic.title"
-									value="${view.topic.title}" maxlength="80" />
-							</p>
-							<br>
-							<p>
-								<span class="l">
-									话题分类：
-								</span>
+							<div class="control-group">
+								<label class="control-label" for="input01">话题标题</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge"
+										name="productCategory.name" value="${view.topic.title }">
+								</div>
+							</div>
+
+							<div class="control-group">
+								<label class="control-label" for="select01">话题分类</label>
 								<s:action name="board!search" id="boardList"
 									executeResult="false"/>
-								<select id="boardId" name="boardId">
+								<div class="controls">
+									<select id="boardId" name="boardId">
 									<s:iterator value="%{#boardList.boards}"
 										status="rowStatus">
 										<option value="${id}"
@@ -74,21 +80,19 @@
 										</option>
 									</s:iterator>
 								</select>
-							</p>	
-							<br>
-							<p>
-								<span class="l">话题内容：</span>
-								<span class="l">
-									<textarea id="ke-text" class="textarea text-input validate['required']"
-										name="topic.content" style="width: 600px; height: 300px;">${view.topic.content}</textarea>
-								</span>
-							</p>
-							<br>
-							<p style="width: 640px; text-align: center;">
-								<input name="submit1" class="bt_sub3w" type="submit"
-									value="修改成功" />
-							</p>
-						</s:form>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="textarea">话题内容</label>
+								<div class="controls">
+									<textarea class="input-xlarge" id="textarea" rows="3" name="topic.content">${view.topic.content}</textarea>
+								</div>
+							</div>
+							<div class="form-actions">
+								<button type="submit" class="btn btn-primary">修改</button>
+								<button class="btn">取消</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

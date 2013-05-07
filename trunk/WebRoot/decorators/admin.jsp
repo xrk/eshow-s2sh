@@ -25,8 +25,8 @@
      <a class="brand yahei" href="./index_files/index.html">EShow管理平台</a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li class="active"><a href="./index_files/index.html">首 页</a></li>
-          <li class=""><a href="./index_files/index.html">切换大学</a></li>
+          <li class="active"><a href="${ctx }/admin/index">首 页</a></li>
+          <li class=""><a href="${ctx }/index">返回前台</a></li>
         </ul>
         <form class="navbar-search pull-left" action="">
           <input type="text" class="search-query span2" placeholder="搜索"/>

@@ -4,8 +4,8 @@
 <c:set var="myid">
 	<authz:authentication operation='id' />
 </c:set>
-
 <c:set var="title">相册</c:set>
+<c:set var="title1">相册列表</c:set>
 <head>
 	<title>相册</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/album.css'/>"
@@ -19,26 +19,69 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/album/">${title}</a> <span class="divider">/</span></li>
+					<li class="active">${title1}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/album/add'/>" class="btn btn-primary">发布</a>
+							<a href="<c:url value='/admin/album/add'/>"
+								class="btn btn-primary"> 添加</a>
 						</div>
-						<h3 class="yahei">相册管理</h3>
-						<ul id="myTab" class="nav nav-tabs">
-							<li  class="active"><a data-toggle="tab" href="<c:url value='/admin/album'/>">相册列表</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/album/view'/>">查看相册</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/album/edit'/>">修改相册</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/album/add'/>">创建相册</a></li>
-						</ul>
+						<h3 class="yahei">相册列表</h3>
 					</div>
+						<ul id="myTab" class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/album'/>">相册列表</a></li>
+						</ul>
+
+
+					<s:action name="album!search" id="albumList" executeResult="false">
+						<s:param name="queryBean.order">addTime</s:param>
+						<s:param name="queryBean.desc">true</s:param>
+						<s:param name="pagesize">12</s:param>
+					</s:action>
+					<table class="table table-striped table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>名称</th>
+								<th>描述</th>
+								<th>创建于</th>
+								<th>数量(张)</th>
+								<th>图片</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<s:action name="album!search" id="albumList"
+								executeResult="false">
+								<s:param name="queryBean.order">addTime</s:param>
+								<s:param name="queryBean.desc">true</s:param>
+								<s:param name="pagesize">12</s:param>
+							</s:action>
+							<s:iterator value="%{#albumList.albums}" status="rowStatus">
+							
+							<tr id="market20">
+								<td>${id}</td>
+								<td>${name }</td>
+								<td>${description }</td>
+								<td><s:date name='%{addTime}' format='yyyy-MM-dd' /></td>
+								<td>${photoSize}</td>
+								<td><a href="<c:url value='/admin/album/view/${id}'/>"><img
+										width="120"
+										src="${pageContext.request.contextPath}/upload/photo/${photo}"
+										alt="${name}" /> </a>
+								</td>
+								<td><a href="<c:url value='/admin/album/edit/${id}'/>">修改</a> <a href="javascript:;"
+									onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a>
+								</td>
+							</tr></s:iterator>
+						</tbody>
+					</table>
+					<%@ include file="/common/page.jsp"%>
+
+
 					<div id="celebrity">
-						<div class="subnav">
-							<strong>相册列表</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
-							<a href="<c:url value='/admin/album/add.html'/>">创建相册</a>
-						</div>
 						<s:action name="album!search" id="albumList" executeResult="false">
 							<s:param name="queryBean.order">addTime</s:param>
 							<s:param name="queryBean.desc">true</s:param>
@@ -62,9 +105,8 @@
 										<s:date name='%{addTime}' format='yyyy-MM-dd' />
 										<br />
 										<a>(${photoSize}张)</a>
-										<c:if test="${user.id==myid}">
-											&nbsp;|&nbsp;<a
-												href="<c:url value='/admin/album/edit/${id}'/>">修改</a>&nbsp;|&nbsp;
+										<c:if test="true">
+											&nbsp;|&nbsp;<a href="<c:url value='/admin/album/edit/${id}'/>">修改</a>&nbsp;|&nbsp;
 										<a href="javascript:void(0);"
 												onclick="return deleteData('album',${id});">删除</a>
 										</c:if>
@@ -73,10 +115,10 @@
 								</li>
 							</s:iterator>
 						</ul>
-						<div class="c"></div>
 						<%@ include file="/common/page.jsp"%>
-						<div class="c"></div>
 					</div>
+					</div>
+					
 					</div>
 				</div>
 

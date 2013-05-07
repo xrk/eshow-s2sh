@@ -4,6 +4,8 @@
 <c:set var="myid">
 	<authz:authentication operation='id' />
 </c:set>
+<c:set var="title2">话题管理</c:set>
+<c:set var="title1">查看话题</c:set>
 <s:action name="topic!view" id="view" executeResult="false" />
 <head>
 <title>${view.topic.title}</title>
@@ -18,16 +20,19 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/topic/">${title2}</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">${title1}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/board/add'/>"
+							<a href="<c:url value='/admin/tipic/add'/>"
 								class="btn btn-primary"> 添加</a>
 						</div>
-						<h3 class="yahei"> <a href="<c:url value='/admin/topic'/>">讨论区</a></h3>
-						<h3 class="yahei">信息修改</h3>
+						<h3 class="yahei">我参与的话题</h3>
+					</div>
 						<ul id="myTab" class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab"
 								href="<c:url value='/admin/topic/'/>">信息列表</a></li>
@@ -39,11 +44,8 @@
 								href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/board'/>">话题板块</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/add'/>">发表话题</a></li>
 						</ul>
-					</div>
-					<div id="mainarea">
+						<div id="mainarea">
 						<div id="mainarea_bg">
 							<div id="content">
 								<div id="analysisView">
@@ -193,6 +195,8 @@
 							</div>
 						</c:if>
 					</div>
+					</div>
+					
 				</div>
 			</div>
 		</div>

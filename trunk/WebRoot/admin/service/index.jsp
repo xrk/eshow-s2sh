@@ -22,15 +22,20 @@
 					<li class="active">${title1}</li>
 				</ul>
 				<div class="well com">
+					<div class="page-header">
+						<div class="pull-right">
+							<a href="<c:url value='/admin/service/add'/>"
+								class="btn btn-primary"> 添加</a>
+						</div>
+						<h3 class="yahei">服务列表</h3>
+					</div>
 					<ul id="myTab" class="nav nav-tabs">
 						<li class="active"><a href="<c:url value='/admin/service'/>" data-toggle="tab">服务列表</a>
 						</li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
 						</li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/service/add'/>">添加服务</a>
-						</li>
 					</ul>
-					<div id="analysis" style="width: 780px;">
+					<div id="analysis">
 							<s:action name="service!search" id="serviceList"
 								executeResult="false">
 								<s:param name="queryBean.order">addTime</s:param>

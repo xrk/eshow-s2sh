@@ -49,6 +49,30 @@
 		<to type="forward">/$1/$2/$3.jsp?id=$4</to>
 	</rule>
 	
+	<rule>
+		<from>^/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)!([A-Za-z]+)/?$</from>
+		<to type="forward">/$3!$4.action</to>
+	</rule>
+	
+	
+	<rule>
+		<from>^/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)!([A-Za-z]+)/?$</from>
+		<to type="forward">/$4!$5.action</to>
+	</rule>
+	
+	
+	<rule>
+		<from>^/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)!([A-Za-z]+)/?$</from>
+		<to type="forward">/$4!$5.action</to>
+	</rule>
+	
+	<rule>
+		<from>^/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)-([A-Za-z0-9]+)!([A-Za-z]+)/?$</from>
+		<to type="forward">/$4-$5!$6.action</to>
+	</rule>
+	
+	
+	
 	<!-- Override default validation.js from WebWork -->
 	<rule>
 		<from>^/struts/css_xhtml/validation.js$</from>

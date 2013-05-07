@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title2">话题管理</c:set>
+<c:set var="title1">话题板块</c:set>
 <head>
 	<title>话题板块</title>
 	<link rel="stylesheet"
@@ -14,14 +16,19 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/topic/">${title2}</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">${title1}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/board/add'/>" class="btn btn-primary">  添加</a>
+							<a href="<c:url value='/admin/board/add'/>"
+								class="btn btn-primary"> 添加</a>
 						</div>
-						<h3 class="yahei"><img src="<c:url value='/admin/images/app_list_info.gif'/>" />  基本设置</h3>
+						<h3 class="yahei">话题板块列表</h3>
+					</div>
 						<ul id="myTab" class="nav nav-tabs">
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/topic/'/>">信息列表</a></li>
@@ -33,35 +40,39 @@
 								href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
 							<li  class="active"><a data-toggle="tab"
 								href="<c:url value='/admin/board'/>">话题板块</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/add'/>">发表话题</a></li>
 						</ul>
+						<s:action name="board!list" id="boardList" executeResult="false"></s:action>	
+				<table class="table table-striped table-bordered table-condensed">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>分类名称</th>
+							<th>备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<s:iterator value="%{#boardList.boards}" status="rowStatus">
+							<tr id="market20">
+								<td>${id }</td>
+								<td><span class="l" style="font-size: 14px;"><a
+										href="<c:url value='/admin/board/edit/${id}'/>" class="">${name}</a>
+								</span></td>
+								<td><span class="l c999">${description}</span>
+								</td>
+								<td><a href="<c:url value='/admin/board/edit/${id}'/>">修改</a>
+									<a href="javascript:void(0);"
+									onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a>
+								</td>
+							</tr>
+						</s:iterator>
+					</tbody>
+				</table>
+				<%@ include file="/common/page.jsp"%>
 					</div>
-					<div id="celebrityList">
-						<div id="securitiesGroup">
-							<s:action name="board!list" id="boardList" executeResult="false"></s:action>
-							<ul>
-								<li style="color: #666; line-height: 14px; background: #f1f1f1;">
-									<span class="l">分类名称</span><span class="l">备注</span></li>
-								<s:iterator value="%{#boardList.boards}" status="rowStatus">
-									<li onmouseover="this.style.backgroundColor='#f9f9f9';"
-										onmouseout="this.style.backgroundColor='#ffffff';"
-										id="board${id}"><span class="l" style="font-size: 14px;"
-										title="${name}">${name}</span> <span class="l c999"
-										title="${description}">${description}</span> <span
-										class="r setting"> <a
-											href="<c:url value='/admin/board/edit/${id}'/>" class="">修改</a>
-									</span> <span class="r del"> <a href="javascript:void(0);"
-											onclick="return deleteData('board',${id});">删除</a> </span></li>
-
-								</s:iterator>
-							</ul>
-						</div>
-						<div class="c"></div>
-					</div>
+				
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 

@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title">用户管理</c:set>
+<c:set var="title1">修改密码</c:set>
 <s:action name="user!view" id="view" executeResult="false">
 </s:action>
 <head>
@@ -42,65 +44,60 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/user/">${title}</a> <span class="divider">/</span></li>
+					<li class="active">${title1}</li>
 				</ul>
 
 				<div class="well com">
 					<div class="page-header">
-						<h3 class="yahei">修改密码</h3>
+						<div class="pull-right">
+							<a href="<c:url value='/admin/user/add'/>" class="btn btn-primary">添加</a>
+						</div>
+						<h3 class="yahei">修改资料</h3>
+					</div>
 						<ul id="myTab" class="nav nav-tabs">
 							<li><a data-toggle="tab" href="<c:url value='/admin/user'/>">用户列表</a></li>
 							<li><a data-toggle="tab" href="<c:url value='/admin/user/edit'/>">修改资料</a></li>
 							<li  class="active"><a data-toggle="tab" href="<c:url value='/admin/user/password'/>">修改密码</a></li>
 							<li><a data-toggle="tab" href="<c:url value='/admin/user/setphoto'/>">修改头像</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/user/add'/>">添加用户</a></li>
 						</ul>
 						<%@ include file="/common/messages.jsp"%>
-						<%@ include file="/common/messages.jsp"%>
-					<s:form action="user!password.html" id="userForm" method="post"
-						onsubmit="return validateForm();" validate="false">
-						<input type="hidden" name="redirect" value="password" />
-						<input type="hidden" name="id" value="${view.user.id}" />
-						<input type="hidden" name="user.username"
-							value="${view.user.username}" />
-						<input type="hidden" name="user.nickname"
-							value="${view.user.nickname}" />
-						<div id="profile_form">
-							<ul>
-								<li>
-									<span class="l">旧密码：</span><span class="r"><input
-											class="inputtext" name="oldPassword" id="oldPassword"
-											style="width: 150px" maxlength="20" type="password"
-											onblur="this.className='inputtext';"
-											onfocus="this.className='inputtext2';" /> </span>
-								</li>
-								<li>
-									<span class="l">新密码：</span><span class="r"><input
-											class="inputtext" name="user.password" id="password"
-											style="width: 150px" maxlength="20" type="password"
-											onblur="this.className='inputtext';"
-											onfocus="this.className='inputtext2';" /> </span>
-								</li>
-								<li>
-									<span class="l">确认密码：</span><span class="r"><input
-											class="inputtext" name="user.confirmPassword"
-											id="confirmPassword" style="width: 150px" maxlength="20"
-											type="password" onblur="this.className='inputtext';"
-											onfocus="this.className='inputtext2';" /> </span>
-								</li>
-								<li>
-									<span style="padding-left: 85px;"><input type="submit"
-											class="botton" value="保存设置"
-											onMouseOut="this.className='botton';"
-											onMouseOver="this.className='botton2';" /> </span>
-								</li>
-							</ul>
-						</div>
-					</s:form>
+						<form class="form-horizontal"  action="user!password.html" id="userForm" method="post" validate="false">
+							<input type="hidden" name="redirect" value="password" />
+							<input type="hidden" name="id" value="${view.user.id}" />
+							<input type="hidden" name="user.username"
+								value="${view.user.username}" />
+							<input type="hidden" name="user.nickname"
+								value="${view.user.nickname}" />
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="input01" >旧密码</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" name="oldPassword" id="oldPassword" >
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="input01" >新密码</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge"  name="user.password" id="password">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="input01" >确认密码</label>
+									<div class="controls">
+										<input type="password" class="input-xlarge" name="user.confirmPassword"
+											id="confirmPassword"  >
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-primary">保存</button>
+									<button class="btn">取消</button>
+								</div>
+							</fieldset>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 

@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title">相册</c:set>
+<c:set var="title1">相片列表</c:set>
 <head>
 	<title>相册</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/album.css'/>"
@@ -14,24 +16,20 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/album/">${title}</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">${title1}</li>
 				</ul>
-				<s:include value="../title.jsp"></s:include>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
 							<a href="<c:url value='/admin/photo/add'/>"
-								class="btn btn-primary">发布</a>
+								class="btn btn-primary"> 添加</a>
 						</div>
-						<h3 class="yahei">
-							<img src="<c:url value='/admin/images/app_list_album.gif'/>" />
-							添加相册
-						</h3>
+						<h3 class="yahei">相片列表</h3>
 					</div>
 					<div id="celebrity">
-						<div class="subnav">
-							<strong>全部图片</strong>
-						</div>
 						<s:action name="photo!search" id="photoList" executeResult="false">
 							<s:param name="queryBean.order">addTime</s:param>
 							<s:param name="queryBean.desc">true</s:param>

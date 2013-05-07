@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title">用户管理</c:set>
+<c:set var="title1">添加用户</c:set>
 <head>
 	<title>日志</title>
 	<link rel="stylesheet"
@@ -24,241 +26,208 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/user/">${title}</a> <span class="divider">/</span></li>
+					<li class="active">${title1}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<h3 class="yahei">添加用户</h3>
 						<ul id="myTab" class="nav nav-tabs">
 							<li><a data-toggle="tab" href="<c:url value='/admin/user'/>">用户列表</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/user/edit'/>">修改资料</a></li>
 							<li><a data-toggle="tab" href="<c:url value='/admin/user/password'/>">修改密码</a></li>
 							<li><a data-toggle="tab" href="<c:url value='/admin/user/setphoto'/>">修改头像</a></li>
 							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/user/add'/>">添加用户</a></li>
 						</ul>
 						<%@ include file="/common/messages.jsp"%>
-					<s:form id="userForm" action="user!save.html" method="post">
-							<div id="profile_form">
-								<ul>
-									<li>
-										<span class="l">登录名称：</span><span class="r"><input
-												style="width: 150px;" class="inputtext" type="text"
-												onblur="this.className='inputtext'"
-												onfocus="this.className='inputtext2'" id="username"
-												name="user.username" /> </span><span class="t">必填，填写后不能修改</span>
-									</li>
-									<li>
-										<span class="l">Email &nbsp;&nbsp;&nbsp;&nbsp;： </span><span
-											class="r"><input style="width: 280px;"
-												class="inputtext" type="text"
-												onblur="this.className='inputtext'"
-												onfocus="this.className='inputtext2'" id="email"
-												name="user.email" /> </span><span class="t">必填</span>
-									</li>
-									<li>
-										<span class="l">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span><span
-											class="r"><input style="width: 280px;"
-												class="inputtext" type="password"
-												onblur="this.className='inputtext'"
-												onfocus="this.className='inputtext2'" id="password" 
-												name="user.password" /> </span>
-									</li>
-									<li>
-										<span class="l">确认密码：</span><span class="r"><input
-												style="width: 280px;" class="inputtext" type="password"
-												onblur="this.className='inputtext'"
-												onfocus="this.className='inputtext2'" id="password"
-												name="user.confirmPassword" /> </span><span class="t">和密码一致</span>
-									</li>
-									<li>
-										<span class="l">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</span><span
-											class="r"><input style="width: 280px;"
-												class="inputtext" type="text"
-												onblur="this.className='inputtext'"
-												onfocus="this.className='inputtext2'" id="nickname"
-												name="user.nickname" /> </span><span class="t">必填</span>
-									</li>
-									<li>
-										<span class="l">真实姓名：</span><span class="r"><input
-												style="width: 280px;" class="inputtext" type="text"
-												onblur="this.className='inputtext'"
-												onfocus="this.className='inputtext2'" id="realname"
-												name="user.realname" /> </span><span class="1">必填</span>
-									</li>
-									<li>
-										<span class="l">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</span><span
-											class="r"><select id="user.male" style="width: 8em;"
-												name="user.male">
-												<option value="1">
-													男
-												</option>
-												<option value="0">
-													女
-												</option>
+						
+						
+						<form class="form-horizontal" action="user!save.html" id="userForm" method="post" validate="false">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="input01" >登录名称</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="title" name="user.username" >&nbsp;&nbsp;&nbsp;必填，填写后不能修改
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="input01" >Email </label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="title" name="user.username" >&nbsp;&nbsp;&nbsp;必填
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="input01" >密      码</label>
+									<div class="controls">
+										<input type="password" class="input-xlarge" id="title" name="user.password" >&nbsp;&nbsp;&nbsp;必填
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="input01" >确认密码 </label>
+									<div class="controls">
+										<input type="password" class="input-xlarge" id="title" name="user.confirmPassword"">&nbsp;&nbsp;&nbsp;和密码一致
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="input01" >昵称</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="title" name="user.nickname" >&nbsp;&nbsp;&nbsp;必填
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="input01" >真实姓名</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="title" name="user.realname" >&nbsp;&nbsp;&nbsp;必填
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="fileInput">头像更改</label>
+									<div class="controls">
+									<input class="input-file" id="fileInput" type="file" name="user.photo" value="${view.user.photo }">
+									</div>
+								</div>
 
-											</select> </span>
-									</li>
-									<li>
-										<span class="l">出生日期：</span><span class="r">
-											<input
-												class="inputtext" name="user.birthday" id="birthday"
-												style="width: 120px" type="text"
-												value="${view.user.birthday }" style="width:183px"
-												onblur="this.className='inputtext'"
-												onfocus="this.className='inputtext2'" />&nbsp; 
-												<a
-													href="javascript:;"><img
-														id="triggerBirthdayTime"
-														src="<c:url value='/scripts/calendar/img.gif'/>" border="0"
-														align="middle"></a> 
-										</span>
-									</li>
-									<li>
-										<span class="l">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：</span><span
-											class="r"><input class="inputtext" name="user.age"
-												id="age" style="width: 120px" value="${view.user.age }"
-												maxlength="20" type="text"
-												onblur="this.className='inputtext';"
-												onfocus="this.className='inputtext2';" /> </span>
-									</li>
-									<li>
-										<span class="l">血&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</span><span
-											class="r"> <select id="bloodType" style="width: 8em;"
-												name="user.bloodType">
-												<option value="1">
-													A型
-												</option>
-												<option value="2">
-													B型
-												</option>
-												<option value="3">
-													AB型
-												</option>
-												<option value="4">
-													O型
-												</option>
-											</select> </span>
-									</li>
-									<li>
-										<span class="l">星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;座：</span><span
-											class="r"> <select id="user.constellation"
-												style="width: 8em;" name="user.constellation">
-												<option value="1">
-													白羊座
-												</option>
-												<option value="2">
-													金牛座
-												</option>
-												<option value="3">
-													双子座
-												</option>
-												<option value="4">
-													巨蟹座
-												</option>
-												<option value="5">
-													狮子座
-												</option>
-												<option value="6">
-													处女座
-												</option>
-												<option value="7">
-													天秤座
-												</option>
-												<option value="8">
-													天蝎座
-												</option>
-												<option value="9">
-													射手座
-												</option>
-												<option value="10">
-													摩羯座
-												</option>
-												<option value="11">
-													水瓶座
-												</option>
-												<option value="12">
-													双鱼座
-												</option>
-											</select> </span>
-									</li>
-									<li>
-										<span class="l">属&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：</span><span
-											class="r"> <select id="birthAttrib"
-												style="width: 8em;" name="user.birthAttrib">
-												<option value="1">
-													鼠
-												</option>
-												<option value="2">
-													牛
-												</option>
-												<option value="3">
-													虎
-												</option>
-												<option value="4">
-													兔
-												</option>
-												<option value="5">
-													龙
-												</option>
-												<option value="6">
-													蛇
-												</option>
-												<option value="7">
-													马
-												</option>
-												<option value="8">
-													羊
-												</option>
-												<option value="9">
-													猴
-												</option>
-												<option value="10">
-													鸡
-												</option>
-												<option value="11">
-													狗
-												</option>
-												<option value="12">
-													猪
-												</option>
-											</select> </span>
-									</li>
-									<li>
-										<span class="l">婚烟状况：</span><span class="r"> <select
-												id="marital" style="width: 8em;" name="user.marital">
-												<option value="1">
-													单身
-												</option>
-												<option value="2">
-													已婚
-												</option>
-												<option value="3">
-													恋爱
-												</option>
-												<option value="4">
-													离异
-												</option>
-											</select> </span>
-									</li>
-									<li>
-										<span class="l">自我介绍：</span>
-										<textarea cols="60" rows="6" id="intro" name="user.intro">${view.user.intro}</textarea>
+							<div class="control-group">
+								<label class="control-label" for="select01">性别</label>
+								<div class="controls">
+									<select id="male" style="width: 8em;" name="user.male">
+										<option value="true" >
+											男</option>
+										<option value="false"}>
+											女</option>
 
-									</li>
-									<li>
-										<span class="l">爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好：</span>
-										<textarea cols="60" rows="6" id="intro" name="user.hobby">${view.user.hobby }</textarea>
-
-									</li>
-									<li>
-										<span class="l"></span><span class="r"><input
-												type="submit" class="botton" value="添加"
-												onmouseout="this.className='botton';"
-												onmouseover="this.className='botton2';" /> </span>
-									</li>
-								</ul>
+									</select>
+								</div>
 							</div>
-						</s:form>
+							<div class="control-group">
+								<label class="control-label" for="input01">出生日期</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" name="user.birthday" id="birthday"
+										name="user.birthday" value="${view.user.birthday}"><a
+											href="javascript:;"><img id="triggerBirthdayTime"
+											src="<c:url value='/scripts/calendar/img.gif'/>" border="0"
+											align="middle">
+										</a>
+									</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="input01">年龄</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" id="title"
+										name="user.age" value="${view.user.age}">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="select01">血型</label>
+								<div class="controls">
+									<select id="bloodType" style="width: 8em;" name="user.marital">
+										<option value="1" ${view.user.marital==1? "selected='selected'":""}>
+											A型</option>
+										<option value="2" ${view.user.marital==2? "selected='selected'":""}>
+											B型</option>
+										<option value="3" ${view.user.marital==3? "selected='selected'":""}>
+											AB型</option>
+										<option value="4" ${view.user.marital==4? "selected='selected'":""}>
+											O型</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="select01">星座</label>
+								<div class="controls">
+									<select id="constellation" style="width: 8em;"
+										name="user.constellation">
+										<option value="1" ${view.user.constellation==1?
+											"selected='selected'":""}>白羊座</option>
+										<option value="2" ${view.user.constellation==2?
+											"selected='selected'":""}>金牛座</option>
+										<option value="3" ${view.user.constellation==3?
+											"selected='selected'":""}>双子座</option>
+										<option value="4" ${view.user.constellation==4?
+											"selected='selected'":""}>巨蟹座</option>
+										<option value="5" ${view.user.constellation==5?
+											"selected='selected'":""}>狮子座</option>
+										<option value="6" ${view.user.constellation==6?
+											"selected='selected'":""}>处女座</option>
+										<option value="7" ${view.user.constellation==7?
+											"selected='selected'":""}>天秤座</option>
+										<option value="8" ${view.user.constellation==8?
+											"selected='selected'":""}>天蝎座</option>
+										<option value="9" ${view.user.constellation==9?
+											"selected='selected'":""}>射手座</option>
+										<option value="10" ${view.user.constellation==10?
+											"selected='selected'":""}>摩羯座</option>
+										<option value="11" ${view.user.constellation==11?
+											"selected='selected'":""}>水瓶座</option>
+										<option value="12" ${view.user.constellation==12?
+											"selected='selected'":""}>双鱼座</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="select01">属相</label>
+								<div class="controls">
+									<select id="birthAttrib" style="width: 8em;"
+										name="user.birthAttrib">
+										<option value="1" ${view.user.birthAttrib==1?
+											"selected='selected'":""}>鼠</option>
+										<option value="2" ${view.user.birthAttrib==2?
+											"selected='selected'":""}>牛</option>
+										<option value="3" ${view.user.birthAttrib==3?
+											"selected='selected'":""}>虎</option>
+										<option value="4" ${view.user.birthAttrib==4?
+											"selected='selected'":""}>兔</option>
+										<option value="5" ${view.user.birthAttrib==5?
+											"selected='selected'":""}>龙</option>
+										<option value="6" ${view.user.birthAttrib==6?
+											"selected='selected'":""}>蛇</option>
+										<option value="7" ${view.user.birthAttrib==7?
+											"selected='selected'":""}>马</option>
+										<option value="8" ${view.user.birthAttrib==8?
+											"selected='selected'":""}>羊</option>
+										<option value="9" ${view.user.birthAttrib==9?
+											"selected='selected'":""}>猴</option>
+										<option value="10" ${view.user.birthAttrib==10?
+											"selected='selected'":""}>鸡</option>
+										<option value="11" ${view.user.birthAttrib==11?
+											"selected='selected'":""}>狗</option>
+										<option value="12" ${view.user.birthAttrib==12?
+											"selected='selected'":""}>猪</option>
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="select01">婚烟状况</label>
+								<div class="controls">
+									<select id="marital" style="width: 8em;" name="user.marital">
+										<option value="1" ${view.user.marital==1? "selected='selected'":""}>
+											单身</option>
+										<option value="2" ${view.user.marital==2? "selected='selected'":""}>
+											已婚</option>
+										<option value="3" ${view.user.marital==3? "selected='selected'":""}>
+											恋爱</option>
+										<option value="4" ${view.user.marital==4? "selected='selected'":""}>
+											离异</option>
+									</select>
+								</div>
+							</div>
+								<div class="control-group">
+									<label class="control-label" for="textarea">自我介绍</label>
+									<div class="controls">
+										<textarea class="input-xlarge" id="textarea" rows="3" name="user.intro">${view.user.intro }</textarea>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="textarea">爱好</label>
+									<div class="controls">
+										<textarea class="input-xlarge" id="textarea" rows="3" name="user.hobby">${view.user.hobby }</textarea>
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-primary">保存</button>
+									<button class="btn">取消</button>
+								</div>
+							</fieldset>
+						</form>
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title">相册</c:set>
+<c:set var="title1">添加相册</c:set>
 <head>
 	<title>创建相册</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/album.css'/>"
@@ -26,56 +28,43 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/album/">${title}</a> <span class="divider">/</span></li>
+					<li class="active">${title1}</li>
 				</ul>
 				
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/album/add'/>" class="btn btn-primary">发布</a>
+							<a href="<c:url value='/admin/album/add'/>"
+								class="btn btn-primary"> 添加</a>
 						</div>
-						<h3 class="yahei"> 创建相册</h3>
-						<ul id="myTab" class="nav nav-tabs">
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/album'/>">相册列表</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/album/view'/>">查看相册</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/album/edit'/>">修改相册</a></li>
-							<li class="active"><a data-toggle="tab"
-								href="<c:url value='/admin/album/add'/>">创建相册</a></li>
-						</ul>
+						<h3 class="yahei">添加相册</h3>
 					</div>
-					<div id="edit">
-						<s:form id="albumForm" action="album!save.html" method="post"
-							enctype="multipart/form-data">
-							<p>
-								<span class="l">相册名称：</span><span class="r"><input
-										class="inputtext text-input validate['required']"
-										style="width: 150px;" class="inputtext" type="text"
-										onblur="this.className='inputtext'"
-										onfocus="this.className='inputtext2'" id="username"
-										name="album.name" /> </span><span class="t"><font color="red">*</font>必填</span>
-							</p>
-							<p>
-								<span class="l">相册描述：</span><span class="r"><textarea
-										class="inputtext text-input validate['required']"
-										class="textarea" style="width: 400px; height: 60px;"
-										name="album.description" id="inputBox"
-										onblur="this.className='textarea'"
-										onfocus="this.className='textarea2'" /></textarea> </span><span class="t"><font
-									color="red">*</font>必填</span>
-							</p>
-
-							<div class="c h10"></div>
-							<div class="c h10"></div>
-							<p>
-								<span class="l"></span><span class="r"><input
-										type="submit" class="botton" value="添加"
-										onMouseOut="this.className='botton';"
-										onMouseOver="this.className='botton2';" /> </span>
-							</p>
-						</s:form>
+						<ul id="myTab" class="nav nav-tabs">
+							<li  class="active"><a data-toggle="tab"
+								href="<c:url value='/admin/album'/>">相册列表</a></li>
+						</ul>
+						<form class="form-horizontal" id="albumForm" action="album!save.html" method="post"
+							cssClass="creat_form clearfix">
+							<div class="control-group">
+								<label class="control-label" for="input01">相册名称</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" id="title"
+										name="album.name" >
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="input01">相册描述</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" id="title"
+										name="album.description">
+								</div>
+							</div>
+							<div class="form-actions">
+								<button type="submit" class="btn btn-primary">保存</button>
+								<button class="btn" onclick="javascript:history.back();">取消</button>
+							</div>
+						</form>
 					</div>
 					</div>
 				</div>

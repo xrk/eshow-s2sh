@@ -1,8 +1,10 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<c:set var="title">产品类型管理</c:set>
+<c:set var="title1">产品类型列表</c:set>
 <head>
-	<title>产品分类</title>
+	<title>产品类型</title>
 	<link rel="stylesheet"
 		href="<c:url value='/admin/styles/productCategory.css'/>" type="text/css" />
 </head>
@@ -14,70 +16,53 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/productType/">${title}</a> <span
+						class="divider">/</span></li>
+					<li class="active">${title1}</li>
 				</ul>
-				<s:include value="../title.jsp"></s:include>
 
 				<div class="well com">
 					<div class="page-header">
-						<h3 class="yahei">产品</h3>
+						<div class="pull-right">
+							<a href="<c:url value='/admin/productCategory/add'/>" class="btn btn-primary">添加</a>
+						</div>
+						<h3 class="yahei">产品类型列表</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
 						<li><a data-toggle="tab"
 							href="<c:url value='/admin/product'/>"> 产品列表</a></li>
 						<li class="active"><a data-toggle="tab"
 							href="<c:url value='/admin/productCategory'/>"> 产品分类</a></li>
-						<li><a data-toggle="tab"
-							href="<c:url value='/admin/product/view'/>"> 产品详细</a></li>
-						<li><a data-toggle="tab"
-							href="<c:url value='/admin/product/add'/>"> 添加产品</a></li>
 					</ul>
-					<div id="celebrityList">
-						<div id="securitiesGroup">
-							<s:action name="productCategory!list" id="productCategoryList"
-								executeResult="false"/>
-							<ul>
-								<li style="color: #666; line-height: 14px; background: #f1f1f1;">
-									<span class="l">分类名称</span><span class="l">备注</span><span class="l">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;搜索</span>
-								</li>
-								
-								<s:iterator value="%{#productCategoryList.productCategories}"
-									status="rowStatus">
-									<li id="productCategory${id}"
-										onmouseover="this.style.backgroundColor='#f9f9f9';"
-										onmouseout="this.style.backgroundColor='#ffffff';">
-										<span class="l" style="font-size: 14px;">${name }</span><span
-											class="l c999">${description }</span>
-											<span class="r del"><a href="<c:url value='product/c/${id}'/>">进入</a></span>
-											<span
-											class="r setting"><a
-											href="<c:url value='/admin/productCategory/edit/${id}'/>">修改</a> </span>
-										<span class="r del"> <a href="javascript:void(0);"
-											onclick="return deleteData('productCategory',${id});">删除</a> </span>
-									</li>
-								</s:iterator>
-							</ul>
-						</div>
-						<div class="c"></div>
-					</div>
+					<table class="table table-striped table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>分类名称</th>
+								<th>备注 </th>
+								<th>搜索</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<s:action name="product-category!list" id="productCategoryList"
+								executeResult="false" />
+							<s:iterator value="%{#productCategoryList.productCategories}"
+								status="rowStatus">
+								<tr id="market20">
+									<td id="productCategory${id}">${id }</td>
+									<td>${name }</td>
+									<td>${description }</td>
+									<td><a href="<c:url value='/admin/product/c/${id}'/>">进入</a></td>
+									<td><a href="<c:url value='/admin/productCategory/edit/${id}'/>">修改</a> <a
+										href="href="javascript:void(0);"
+										onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a></td>
+								</tr>
+							</s:iterator>
+						</tbody>
+					</table>
+					<%@ include file="/common/page.jsp"%>		
 				</div>
-			</div>
-		</div>
-	</div>
-	<div id="main">
-		<s:include value="../left.jsp"></s:include>
-		<div id="mainarea">
-			<div id="mainarea_bg">
-				<div id="content">
-					<div id="mainTop">
-						<h2>
-							<img src="<c:url value='/admin/images/app_list_product.gif'/>" />
-							产品
-						</h2>
-					</div>
-					
-				</div>
-				<div class="c"></div>
 			</div>
 		</div>
 	</div>

@@ -2,12 +2,10 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <s:action name="info!view" id="view" executeResult="false" />
-<c:set var="title">信息中心</c:set>
+<c:set var="title2">信息中心</c:set>
 <c:set var="title1">查看信息</c:set>
 <head>
-	<title>${view.info.title}</title>
-	<link rel="stylesheet" href="<c:url value='/admin/styles/info.css'/>"
-		type="text/css" />
+	<title>${view.info.title}</title> 
 </head>
 <body>
 	<div class="container mt">
@@ -16,21 +14,25 @@
 			<div class="span10">
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span></li>
-					<li><a href="${ctx}/admin/info/">${title}</a> <span class="divider">/</span></li>
+					<li><a href="${ctx}/admin/info/">${title2}</a> <span class="divider">/</span></li>
 					<li class="active">${title1}</li>
 				</ul>
-				<div class="well com">
+				<div class="well com"> 
 					<div class="page-header">
-						<ul id="myTab" class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/info'/>">信息列表</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/info/edit'/>">修改信息</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/info/add'/>">添加信息</a></li>
-						</ul>
+						<div class="pull-right">
+							<a href="<c:url value='/admin/info/add'/>"
+								class="btn btn-primary"> 添加</a>
+						</div>
+						<h3 class="yahei">服务列表</h3>
 					</div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/info'/>">信息列表</a>
+					</li>
+					</ul>
 					<div id="accContent">
-						<div class="title" style="margin-top: 10px;">
-							${view.info.title}
-							<div class="navtxt">
+						<div class="title">
+							<div class="span6">${view.info.title}</div>
+							<div class="fr span3">
 								<a href="<c:url value='/admin/info/edit/${view.info.id}'/>">修改</a> | <a href="javascript:window.history.back()">返回上一级</a>
 							</div>
 						</div>

@@ -4,6 +4,8 @@
 <c:set var="myid">
 	<authz:authentication operation='id' />
 </c:set>
+<c:set var="title2">话题管理</c:set>
+<c:set var="title1">我参与的话题列表</c:set>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
 <head>
 	<title>我参与的话题</title>
@@ -18,7 +20,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/topic/">${title2}</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">${title1}</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
@@ -33,7 +38,6 @@
 						<li><a data-toggle="tab" href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
 						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/board'/>">话题板块</a></li>
-						<li ><a data-toggle="tab" href="<c:url value='/admin/topic/add'/>">发表话题</a></li>
 					</ul>
 				<div id="analysis">
 						<div class="subnav">
@@ -44,80 +48,45 @@
 								<a href="<c:url value='/admin/topic/d/${id}'/>">${name}</a>
 							</s:iterator>
 						</div>
-						<table class="forum-table">
-							<colgroup>
-								<col width="17" />
-								<col width="85" />
-								<col />
-								<col width="40" />
-								<col width="100" />
-								<col width="90" />
-								<col width="70" />
-								<col width="70" />
-								<col width="90" />
-							</colgroup>
-							<tbody>
+						
+						<table class="table table-striped table-bordered table-condensed">
+							<thead>
 								<tr>
-									<th></th>
-									<th align="left">
-										分类
-									</th>
-									<th align="left">
-										标题
-									</th>
-									<th align="center">
-										作者
-									</th>
-									<th align="center">
-										更新时间
-									</th>
-									<th align="center">
-										浏览/回复
-									</th>
-									<th align="center">
-										推荐/收藏
-									</th>
-									<th>
-										发表时间
-									</th>
+									<th>#</th>
+									<th>分类</th>
+									<th>标题</th>
+									<th>更新时间</th>
+									<th>浏览/回复</th>
+									<th>推荐/收藏</th>
+									<th>发表时间</th>
+									<th>操作</th>
 								</tr>
+							</thead>
+							<tbody>
 								<s:action name="topicComment!searchReply" id="topicCommentList">
 									<s:param name="queryBean.userId">${myid}</s:param>
 									<s:param name="queryBean.order">addTime</s:param>
 									<s:param name="queryBean.desc">true</s:param>
 								</s:action>
-								<s:iterator value="%{#topicCommentList.topicComments}"
-									status="rowStatus">
-									<tr onmouseover='this.style.backgroundColor ="#f9f9f9"'
-										onmouseout='this.style.backgroundColor =""'>
-										<td>
-											<img src="<c:url value='/admin/images/icon_page.gif'/>" />
-										</td>
-										<td align="left">
-											<em>${topic.board.name}</em>
-										</td>
-										<td>
-											<a href="<c:url value='/admin/topic/view/${topic.id}'/>"
-												title="${topic.title}">${util:preview(topic.title,22)}</a>
-										</td>										
-										<td align="center">
-											<a href="/eshow/admin/topic/workmate/${topic.user.id}">${topic.user.username}</a>
-										</td>
-										<td align="center" style="font-size: 11px;">
-											<s:date name='%{topic.updateTime}'
-												format='yyyy-MM-dd HH:mm' />
-										</td>
-										<td align="center">
-											${topic.count}/${topic.commentSize}
-										</td>
-										<td align="center">
-											6/0
-										</td>
-										<td align="center" style="font-size: 11px;">
-											<s:date name='addTime' format="yyyy-MM-dd" />
-										</td>
-									</tr>
-								</s:iterator>
+								<s:iterator value="%{#topicCommentList.topics}" status="rowStatus">
+								<tr id="market20">
+									<td>${id}</td>
+									<td>${board.name}</td>
+									<td><a href="<c:url value='/admin/topic/view/${id}'/>"
+										title="${title}">${util:preview(title,10)}</a>
+									</td>
+									<td><s:date name='%{updateTime}'
+											format='yyyy-MM-dd HH:mm' />
+									</td>
+									<td>${count}/${commentSize}</td>
+									<td>6/0</td>
+									<td><s:date name='%{addTime}' format='yyyy-MM-dd' />
+									</td>
+									<td><a href="${ctx }/admin/topic/edit/${id}">修改</a> <a
+										href="javascript:;"
+										onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a>
+									</td>
+								</tr></s:iterator>
 							</tbody>
 						</table>
 						<%@ include file="/common/page.jsp"%>

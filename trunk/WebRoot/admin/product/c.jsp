@@ -2,6 +2,8 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
+<c:set var="title">产品管理</c:set>
+<c:set var="title1">产品列表</c:set>
 <s:action name="productCategory!view" id="view" executeResult="false">
 </s:action>
 <head>
@@ -17,13 +19,20 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/product/">${title}</a> <span class="divider">/</span></li>
+					<li class="active">${title1}</li>
 				</ul>
-				<s:include value="../title.jsp"></s:include>
 				<div class="well com">
 					<div class="page-header">
-						<h3 class="yahei">产品信息添加</h3>
+						<div class="pull-right">
+							<a href="<c:url value='/admin/product/add'/>" class="btn btn-primary">添加</a>
+						</div>
+						<h3 class="yahei">产品列表</h3>
 					</div>
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/product'/>"> 产品列表</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/productCategory'/>"> 产品分类</a></li>
+					</ul>
 					<div id="celebrityList">
 						<s:action name="product!search" id="productList"
 							executeResult="false">
@@ -31,9 +40,6 @@
 							<s:param name="queryBean.order">addTime</s:param>
 							<s:param name="queryBean.desc">true</s:param>
 						</s:action>
-						<div class="mtop">
-							<span class="l">${view.productCategory.name}最新产品</span>
-						</div>
 						<ul>
 							<s:iterator value="%{#productList.products}" status="rowStatus">
 								<li class="list"

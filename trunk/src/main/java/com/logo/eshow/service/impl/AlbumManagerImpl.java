@@ -11,10 +11,17 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @WebService(serviceName = "AlbumService", endpointInterface = "com.logo.eshow.service.AlbumManager")
+@Service
 public class AlbumManagerImpl extends GenericManagerImpl<Album, Integer> implements AlbumManager {
+
+	@Autowired
 	AlbumDao albumDao;
 
+	@Autowired
 	public AlbumManagerImpl(AlbumDao albumDao) {
 		super(albumDao);
 		this.albumDao = albumDao;

@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
@@ -22,6 +23,7 @@ public class AlbumAction extends BaseAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 4663487175099570373L;
+	@Autowired
 	private AlbumManager albumManager;
 	private List<Album> albums;
 	private Album album;
@@ -71,14 +73,6 @@ public class AlbumAction extends BaseAction {
 		saveMessage("添加成功");
 		id = album.getId();
 		return SUCCESS;
-	}
-
-	public AlbumManager getAlbumManager() {
-		return albumManager;
-	}
-
-	public void setAlbumManager(AlbumManager albumManager) {
-		this.albumManager = albumManager;
 	}
 
 	public List<Album> getAlbums() {

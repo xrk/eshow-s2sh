@@ -11,11 +11,17 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @WebService(serviceName = "TwitterCommentService", endpointInterface = "com.logo.eshow.service.TwitterCommentManager")
+@Service
 public class TwitterCommentManagerImpl extends GenericManagerImpl<TwitterComment, Integer>
 		implements TwitterCommentManager {
+	@Autowired
 	TwitterCommentDao twitterCommentDao;
 
+	@Autowired
 	public TwitterCommentManagerImpl(TwitterCommentDao twitterCommentDao) {
 		super(twitterCommentDao);
 		this.twitterCommentDao = twitterCommentDao;

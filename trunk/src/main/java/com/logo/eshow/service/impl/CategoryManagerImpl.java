@@ -10,7 +10,10 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 import java.util.List;
 import javax.jws.WebService;
 
+import org.springframework.stereotype.Service;
+
 @WebService(serviceName = "CategoryService", endpointInterface = "com.logo.eshow.service.CategoryManager")
+@Service
 public class CategoryManagerImpl extends GenericManagerImpl<Category, Integer> implements
 		CategoryManager {
 	CategoryDao categoryDao;

@@ -11,7 +11,10 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 
 import javax.jws.WebService;
 
+import org.springframework.stereotype.Service;
+
 @WebService(serviceName = "BlogCommentService", endpointInterface = "com.logo.eshow.service.BlogCommentManager")
+@Service
 public class BlogCommentManagerImpl extends GenericManagerImpl<BlogComment, Integer> implements
 		BlogCommentManager {
 	BlogCommentDao blogCommentDao;

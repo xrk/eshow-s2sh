@@ -35,6 +35,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Integer> implement
 	@Autowired
 	private UserDao userDao;
 
+	@Autowired
 	public UserManagerImpl() {
 	}
 

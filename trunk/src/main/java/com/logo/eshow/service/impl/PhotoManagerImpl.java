@@ -11,10 +11,16 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @WebService(serviceName = "PhotoService", endpointInterface = "com.logo.eshow.service.PhotoManager")
+@Service
 public class PhotoManagerImpl extends GenericManagerImpl<Photo, Integer> implements PhotoManager {
+	@Autowired
 	PhotoDao photoDao;
 
+	@Autowired
 	public PhotoManagerImpl(PhotoDao photoDao) {
 		super(photoDao);
 		this.photoDao = photoDao;

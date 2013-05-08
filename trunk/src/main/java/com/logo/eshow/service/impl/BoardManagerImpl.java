@@ -10,7 +10,10 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 import java.util.List;
 import javax.jws.WebService;
 
+import org.springframework.stereotype.Service;
+
 @WebService(serviceName = "BoardService", endpointInterface = "com.logo.eshow.service.BoardManager")
+@Service
 public class BoardManagerImpl extends GenericManagerImpl<Board, Integer> implements
 		BoardManager {
 	BoardDao boardDao;

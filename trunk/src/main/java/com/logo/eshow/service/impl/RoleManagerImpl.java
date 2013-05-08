@@ -16,7 +16,7 @@ import com.logo.eshow.service.RoleManager;
  */
 @Service("roleManager")
 public class RoleManagerImpl extends GenericManagerImpl<Role, Integer> implements RoleManager {
-
+	@Autowired
 	RoleDao roleDao;
 
 	@Autowired

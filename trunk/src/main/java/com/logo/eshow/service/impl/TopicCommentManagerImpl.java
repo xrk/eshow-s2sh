@@ -10,11 +10,17 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 import java.util.List;
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @WebService(serviceName = "TopicCommentService", endpointInterface = "com.logo.eshow.service.TopicCommentManager")
+@Service
 public class TopicCommentManagerImpl extends GenericManagerImpl<TopicComment, Integer> implements
 		TopicCommentManager {
+	@Autowired
 	TopicCommentDao topicCommentDao;
 
+	@Autowired
 	public TopicCommentManagerImpl(TopicCommentDao topicCommentDao) {
 		super(topicCommentDao);
 		this.topicCommentDao = topicCommentDao;

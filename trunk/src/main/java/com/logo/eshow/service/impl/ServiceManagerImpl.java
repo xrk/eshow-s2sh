@@ -10,11 +10,16 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 import java.util.List;
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @WebService(serviceName = "ServiceService", endpointInterface = "com.logo.eshow.service.ServiceManager")
+@org.springframework.stereotype.Service
 public class ServiceManagerImpl extends GenericManagerImpl<Service, Integer> implements
 		ServiceManager {
+	@Autowired
 	ServiceDao serviceDao;
 
+	@Autowired
 	public ServiceManagerImpl(ServiceDao serviceDao) {
 		super(serviceDao);
 		this.serviceDao = serviceDao;

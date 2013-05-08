@@ -10,7 +10,10 @@ import com.logo.eshow.service.InfoManager;
 import com.logo.eshow.service.impl.GenericManagerImpl;
 import javax.jws.WebService;
 
+import org.springframework.stereotype.Service;
+
 @WebService(serviceName = "InfoService", endpointInterface = "com.logo.eshow.service.InfoManager")
+@Service
 public class InfoManagerImpl extends GenericManagerImpl<Info, Integer> implements InfoManager {
 	InfoDao infoDao;
 

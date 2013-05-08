@@ -10,11 +10,17 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 import java.util.List;
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @WebService(serviceName = "ProductService", endpointInterface = "com.logo.eshow.service.ProductManager")
+@Service
 public class ProductManagerImpl extends GenericManagerImpl<Product, Integer> implements
 		ProductManager {
+	@Autowired
 	ProductDao productDao;
 
+	@Autowired
 	public ProductManagerImpl(ProductDao productDao) {
 		super(productDao);
 		this.productDao = productDao;

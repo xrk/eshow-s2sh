@@ -11,11 +11,17 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @WebService(serviceName = "TwitterService", endpointInterface = "com.logo.eshow.service.TwitterManager")
+@Service
 public class TwitterManagerImpl extends GenericManagerImpl<Twitter, Integer> implements
 		TwitterManager {
+	@Autowired
 	TwitterDao twitterDao;
 
+	@Autowired
 	public TwitterManagerImpl(TwitterDao twitterDao) {
 		super(twitterDao);
 		this.twitterDao = twitterDao;

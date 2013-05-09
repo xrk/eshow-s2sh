@@ -44,7 +44,7 @@
 							<li  class="active"><a data-toggle="tab"
 								href="<c:url value='/admin/album'/>">相册列表</a></li>
 						</ul>
-						<form class="form-horizontal" id="albumForm" action="album!save.html" method="post"
+						<form class="form-horizontal" id="albumForm" action="album!save" method="post"
 							cssClass="creat_form clearfix">
 							<div class="control-group">
 								<label class="control-label" for="input01">相册名称</label>
@@ -61,7 +61,7 @@
 								</div>
 							</div>
 							<div class="form-actions">
-								<button type="submit" class="btn btn-primary">保存</button>
+								<button type="submit" class="btn btn-primary">添加</button>
 								<button class="btn" onclick="javascript:history.back();">取消</button>
 							</div>
 						</form>

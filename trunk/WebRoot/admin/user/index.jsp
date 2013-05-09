@@ -33,7 +33,7 @@
 						<li><a data-toggle="tab" href="<c:url value='/admin/user/setphoto'/>">修改头像</a></li>
 					</ul>
 					<s:action name="user!search" id="userList" executeResult="false">
-						<s:param name="userQueryBean.pagesize">10</s:param>
+						<s:param name="query.pagesize">10</s:param>
 					</s:action>
 					<table class="table table-striped table-bordered table-condensed">
 						<thead>
@@ -56,7 +56,7 @@
 									<td><span class="l" style="font-size: 14px;"><a  class=""><span  class="label label-success"><s:if test="%{enabled}">可用</s:if><s:else>不可用</s:else></span></a>
 									</span></td>
 									<td><a href="<c:url value='/admin/user/edit/${id}'/>">修改</a>
-										<a href="javascript:void(0);"
+										<a href="${ctx }/user!delete.action?id=${id}"
 										onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a>
 									</td>
 								</tr>

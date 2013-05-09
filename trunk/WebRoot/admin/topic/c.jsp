@@ -28,17 +28,17 @@
 						<h3 class="yahei">信息修改</h3>
 						<ul id="myTab" class="nav nav-tabs">
 							<li  class="active"><a data-toggle="tab"
-								href="<c:url value='/admin/topic/'/>">信息列表</a></li>
+								href="<c:url value='/admin/topic/'/>">话题列表</a></li>
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/topic/audit'/>">未审核</a></li>
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
+								<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/board'/>">话题板块</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/add'/>">发表话题</a></li>
 						</ul>
 					</div>
 					<div id="analysis">
@@ -90,9 +90,9 @@
 								</tr>
 								<s:action name="topic!search" id="topicList"
 									executeResult="false">
-									<s:param name="queryBean.state">1</s:param>
-									<s:param name="queryBean.order">addTime</s:param>
-									<s:param name="queryBean.desc">true</s:param>
+									<s:param name="query.state">1</s:param>
+									<s:param name="query.order">addTime</s:param>
+									<s:param name="query.desc">true</s:param>
 								</s:action>
 								<s:iterator value="%{#topicList.topics}" status="rowStatus">
 									<tr onmouseover='this.style.backgroundColor ="#f9f9f9"'
@@ -234,10 +234,10 @@
 								</tr>
 								<s:action name="topic!search" id="topicList"
 									executeResult="false">
-									<s:param name="queryBean.state">0</s:param>
-									<s:param name="queryBean.boardId">${param.id}</s:param>
-									<s:param name="queryBean.order">addTime</s:param>
-									<s:param name="queryBean.desc">true</s:param>
+									<s:param name="query.state">0</s:param>
+									<s:param name="query.boardId">${param.id}</s:param>
+									<s:param name="query.order">addTime</s:param>
+									<s:param name="query.desc">true</s:param>
 								</s:action>
 								<s:iterator value="%{#topicList.topics}" status="rowStatus">
 									<tr onmouseover='this.style.backgroundColor ="#f9f9f9"'

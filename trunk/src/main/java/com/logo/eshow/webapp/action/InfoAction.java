@@ -11,16 +11,19 @@ import java.util.List;
 
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "view/${id}"),
+		@Result(name = "success", type = "redirect", location = "admin/info/view/${id}"),
+		@Result(name = "delete", type = "redirect", location = "admin/info/"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class InfoAction extends BaseAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private InfoManager infoManager;
 	private List<Info> infos;
 	private Info info;
@@ -41,7 +44,7 @@ public class InfoAction extends BaseAction {
 	public String delete() {
 		infoManager.remove(id);
 		saveMessage("删除成功");
-		return INDEX;
+		return "delete";
 	}
 
 	public String view() {
@@ -65,14 +68,14 @@ public class InfoAction extends BaseAction {
 		old.setUrl(info.getUrl());
 		infoManager.save(old);
 		saveMessage("修改成功");
-		return REDIRECT;
+		return SUCCESS;
 	}
 
 	public String save() throws Exception {
 		info = infoManager.save(info);
 		saveMessage("添加成功");
 		id = info.getId();
-		return REDIRECT;
+		return SUCCESS;
 	}
 
 	public InfoManager getInfoManager() {

@@ -33,10 +33,12 @@
 						<h3 class="yahei">我参与的话题</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
-						<li><a data-toggle="tab" href="<c:url value='/admin/topic/'/>">信息列表</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/topic/'/>">话题列表</a></li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/topic/audit'/>">未审核</a></li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
 						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
+						<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/board'/>">话题板块</a></li>
 					</ul>
 				<div id="analysis">
@@ -63,10 +65,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<s:action name="topicComment!searchReply" id="topicCommentList">
-									<s:param name="queryBean.userId">${myid}</s:param>
-									<s:param name="queryBean.order">addTime</s:param>
-									<s:param name="queryBean.desc">true</s:param>
+								<s:action name="topic-comment!searchReply" id="topicCommentList">
+									<s:param name="query.userId">${myid}</s:param>
+									<s:param name="query.order">addTime</s:param>
+									<s:param name="query.desc">true</s:param>
 								</s:action>
 								<s:iterator value="%{#topicCommentList.topics}" status="rowStatus">
 								<tr id="market20">
@@ -83,7 +85,7 @@
 									<td><s:date name='%{addTime}' format='yyyy-MM-dd' />
 									</td>
 									<td><a href="${ctx }/admin/topic/edit/${id}">修改</a> <a
-										href="javascript:;"
+										href="${ctx }/topic!delete.action?id=${id}""
 										onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a>
 									</td>
 								</tr></s:iterator>

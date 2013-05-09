@@ -40,9 +40,9 @@
 						<div id="blog">
 							<s:action name="blog!search" id="newsBlogList"
 								executeResult="false">
-								<s:param name="queryBean.userId">${param.id}</s:param>
-								<s:param name="queryBean.order">addTime</s:param>
-								<s:param name="queryBean.desc">true</s:param>
+								<s:param name="query.userId">${param.id}</s:param>
+								<s:param name="query.order">addTime</s:param>
+								<s:param name="query.desc">true</s:param>
 							</s:action>
 							<ul class="flist">
 								<s:iterator value="%{#newsBlogList.blogs}" status="rowStatus">

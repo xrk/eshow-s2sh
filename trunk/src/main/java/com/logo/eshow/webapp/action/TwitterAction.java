@@ -13,16 +13,19 @@ import java.util.List;
 
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "view/${id}"),
+		@Result(name = "success", type = "redirect", location = "admin/twitter/view/${id}"),
+		@Result(name = "delete", type = "redirect", location = "admin/twitter/"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class TwitterAction extends BaseAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4663487175099570373L;
+	@Autowired
 	private TwitterManager twitterManager;
 	private List<Twitter> twitters;
 	private Twitter twitter;
@@ -59,7 +62,7 @@ public class TwitterAction extends BaseAction {
 		} else {
 			saveMessage("无权删除");
 		}
-		return LIST;
+		return "delete";
 	}
 
 	public String view() {
@@ -77,6 +80,7 @@ public class TwitterAction extends BaseAction {
 		old.setContent(twitter.getContent());
 		twitterManager.save(old);
 		saveMessage("修改成功");
+		id = twitter.getId();
 		return SUCCESS;
 	}
 

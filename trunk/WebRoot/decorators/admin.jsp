@@ -22,7 +22,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-     <a class="brand yahei" href="./index_files/index.html">EShow管理平台</a>
+     <a class="brand yahei" href="${ctx }/admin/index">EShow管理平台</a>
       <div class="nav-collapse">
         <ul class="nav">
           <li class="active"><a href="${ctx }/admin/index">首 页</a></li>
@@ -31,7 +31,7 @@
         <form class="navbar-search pull-left" action="">
           <input type="text" class="search-query span2" placeholder="搜索"/>
         </form>
-        <p class="navbar-text pull-right"> 欢迎： <a href="" class="navbar-link">管理员 </a>&nbsp;&nbsp; <a href="" class="navbar-link">退出</a> </p>
+        <p class="navbar-text pull-right"> 欢迎： <a href="" class="navbar-link"></a>&nbsp;&nbsp; <a href="" class="navbar-link">退出</a> </p>
       </div>
     </div>
   </div>

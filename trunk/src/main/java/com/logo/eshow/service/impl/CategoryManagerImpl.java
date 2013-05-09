@@ -10,14 +10,17 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 import java.util.List;
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @WebService(serviceName = "CategoryService", endpointInterface = "com.logo.eshow.service.CategoryManager")
 @Service
 public class CategoryManagerImpl extends GenericManagerImpl<Category, Integer> implements
 		CategoryManager {
+	@Autowired
 	CategoryDao categoryDao;
 
+	@Autowired
 	public CategoryManagerImpl(CategoryDao categoryDao) {
 		super(categoryDao);
 		this.categoryDao = categoryDao;

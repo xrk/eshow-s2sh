@@ -10,14 +10,17 @@ import com.logo.eshow.service.impl.GenericManagerImpl;
 import java.util.List;
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @WebService(serviceName = "BoardService", endpointInterface = "com.logo.eshow.service.BoardManager")
 @Service
 public class BoardManagerImpl extends GenericManagerImpl<Board, Integer> implements
 		BoardManager {
+	@Autowired
 	BoardDao boardDao;
 
+	@Autowired
 	public BoardManagerImpl(BoardDao boardDao) {
 		super(boardDao);
 		this.boardDao = boardDao;

@@ -15,7 +15,7 @@
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
 				<ul class="breadcrumb">
-					<li><a href="${ctx}/admin/index">t首页</a> <span class="divider">/</span>
+					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
 					<li class="active">${title}</li>
 				</ul>

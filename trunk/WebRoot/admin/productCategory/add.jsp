@@ -52,7 +52,7 @@
 					</ul>
 
 					<form class="form-horizontal" id="productCategoryForm"
-						action="productCategory!save.html" method="post">
+						action="product-category!save" method="post">
 						<div class="control-group">
 							<label class="control-label" for="input01">分类名称</label>
 							<div class="controls">

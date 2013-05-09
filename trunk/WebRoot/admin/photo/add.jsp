@@ -43,7 +43,7 @@
 							添加相册
 						</h3>
 					</div>
-					<form class="form-horizontal" id="photoForm" action="photo!save.html" method="post"
+					<form class="form-horizontal" id="photoForm" action="photo!save" method="post"
 							enctype="multipart/form-data">
 						<fieldset>
 							<div class="control-group">
@@ -77,10 +77,9 @@
 								<div class="control-group">
 								<label class="control-label" for="fileInput">选择图片</label>
 								<div class="controls">
-									<input class="input-file" id="fileInput" type="file">
+									<input class="input-file" id="fileInput" type="file" name="photo.img">
 									<span class="l"><c:if test="${view.photo.id!=null}">
-										<img
-											src="${pageContext.request.contextPath}/upload/photo/<s:date name='%{#view.photo.addTime}' format='yyyyMMdd' />/${view.photo.img}" />
+										<img src="${pageContext.request.contextPath}/upload/photo/<s:date name='%{#view.photo.addTime}' format='yyyyMMdd' />/${view.photo.img}" />
 									</c:if> </span>
 								</div>
 							</div>

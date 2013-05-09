@@ -73,13 +73,11 @@
 						</div>
 						<div class="info">
 							${view.blog.title}
-							<div class="r">
 								<c:if test="true">
 									<a href="<c:url value='/admin/blog/edit/${view.blog.id}'/>">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-									<a href="javascript:void(0);"
+									<a href="${ctx }/blog!delete.action?id=${view.blog.id}"
 										onclick="return deleteData('blog',${view.blog.id});">删除</a>&nbsp;&nbsp;
 								</c:if>
-							</div>
 						</div>
 						<div class="tips">
 							<span class="1"> 发表于:<s:date name='%{#view.blog.addTime}'
@@ -96,15 +94,15 @@
 						<div class="conttxt">${view.blog.content}</div>
 					</div>
 					<div class="comment_textarea" id="replay" style="margin-top: 10px;">
-						<form class="form-horizontal" action="blogComment!save.html" id="blogCommentForm"
+						<form class="form-horizontal" action="blog-comment!save" id="blogCommentForm"
 							method="post">
 							<input name="blogId" type="hidden" value="${view.blog.id }" />
 							
 							<div class="control-group">
 								<label class="control-label" for="input01">标题</label>
 								<div class="controls">
-									<input type="text" class="input-xlarge" id="title"
-										name="blogComment.name" value="回复:${view.blog.title }">
+									<input type="hidden" name="blogComment.blog.title" value="${view.blog.title }"/>
+									<input type="text" class="input-xlarge" id="title"  value="回复:${view.blog.title }">
 								</div>
 							</div>
 							

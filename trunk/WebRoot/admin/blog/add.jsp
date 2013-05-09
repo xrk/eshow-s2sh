@@ -52,7 +52,7 @@
 						<li><a data-toggle="tab" href="<c:url value='/admin/blog/mine'/>">我的日志</a></li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/blog/workmate'/>">同事的日志</a></li>
 					</ul>
-					<form class="form-horizontal" action="blog!save.html" method="post"
+					<form class="form-horizontal" action="blog!save" method="post"
 						id="blogForm" enctype="multipart/form-data">
 						<fieldset>
 							<div class="control-group">

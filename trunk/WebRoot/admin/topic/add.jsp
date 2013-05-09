@@ -49,22 +49,23 @@
 						<h3 class="yahei">添加话题</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
-						<li><a data-toggle="tab" href="<c:url value='/admin/topic/'/>">信息列表</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/topic/'/>">话题列表</a></li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/topic/audit'/>">未审核</a></li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
+						<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
 						<li><a data-toggle="tab" href="<c:url value='/admin/board'/>">话题板块</a></li>
-						<li  class="active"><a data-toggle="tab" href="<c:url value='/admin/topic/add'/>">发表话题</a></li>
 					</ul>
 					<div id="analysis">
 						<div id="analysisEdit">
-							<form class="form-horizontal" action="topic!save.html" method="post"
+							<form class="form-horizontal" action="topic!save" method="post"
 							cssClass="creat_form clearfix">
 							<div class="control-group">
 								<label class="control-label" for="input01">话题标题</label>
 								<div class="controls">
 									<input type="text" class="input-xlarge"
-										name="productCategory.name" >
+										name="topic.title" >
 								</div>
 							</div>
 
@@ -95,7 +96,6 @@
 							</div>
 						</form>
 						</div>
-						<input type="hidden" id="stype" value="" />
 						<div class="c"></div>
 					</div>
 				</div>

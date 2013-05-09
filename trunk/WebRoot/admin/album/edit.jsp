@@ -32,7 +32,7 @@
 						<ul id="myTab" class="nav nav-tabs">
 							<li  class="active"><a data-toggle="tab" href="<c:url value='/admin/album'/>">相册列表</a></li>
 						</ul>
-						<form class="form-horizontal" id="albumForm" action="album!update.html" method="post"
+						<form class="form-horizontal" id="albumForm" action="album!update" method="post"
 							cssClass="creat_form clearfix">
 							<s:hidden name="id" value="%{#view.album.id}"></s:hidden>
 							<div class="control-group">

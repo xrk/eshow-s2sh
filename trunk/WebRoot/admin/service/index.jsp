@@ -38,8 +38,8 @@
 					<div id="analysis">
 							<s:action name="service!search" id="serviceList"
 								executeResult="false">
-								<s:param name="queryBean.order">addTime</s:param>
-								<s:param name="queryBean.desc">true</s:param>
+								<s:param name="query.order">addTime</s:param>
+								<s:param name="query.desc">true</s:param>
 							</s:action>
 							<ul class="flist">
 								<s:iterator value="%{#serviceList.services}" status="rowStatus">
@@ -57,7 +57,7 @@
 											<div class="tips">
 												<a href="<c:url value='/admin/service/edit/${id }'/>">修改</a>
 												&nbsp;&nbsp;|&nbsp;&nbsp;
-												<a href="javascript:void(0);"
+												<a href="${ctx }/service!delete.action?id=${id}"
 													onclick="return deleteData('service',${id});">删除</a>
 											</div>
 											<div class="time">

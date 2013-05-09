@@ -37,7 +37,7 @@
 						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
 						</li>
 					</ul>
-					<s:action name="serviceType!list" id="serviceTypeList" executeResult="false"></s:action>
+					<s:action name="service-type!list" id="serviceTypeList" executeResult="false"></s:action>
 					<table class="table table-striped table-bordered table-condensed">
 						<thead>
 							<tr>
@@ -53,7 +53,7 @@
 									</span></td>
 									<td><span class="l c999">${remark}</span></td>
 									<td><a href="<c:url value='/admin/serviceType/edit/${id}'/>">修改</a>
-										<a href="javascript:void(0);"
+										<a href="${ctx }/service-type!delete.action?id=${id}"
 										onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a>
 									</td>
 								</tr>

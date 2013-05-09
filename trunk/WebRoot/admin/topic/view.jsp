@@ -21,8 +21,7 @@
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
 					<li><a href="${ctx}/admin/topic/">${title2}</a> <span
-						class="divider">/</span>
-					</li>
+						class="divider">/</span></li>
 					<li class="active">${title1}</li>
 				</ul>
 				<div class="well com">
@@ -33,19 +32,25 @@
 						</div>
 						<h3 class="yahei">我参与的话题</h3>
 					</div>
-						<ul id="myTab" class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab"
-								href="<c:url value='/admin/topic/'/>">信息列表</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/audit'/>">未审核</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/board'/>">话题板块</a></li>
-						</ul>
-						<div id="mainarea">
+					<ul id="myTab" class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab"
+							href="<c:url value='/admin/topic/'/>">话题列表</a>
+						</li>
+						<li><a data-toggle="tab"
+							href="<c:url value='/admin/topic/audit'/>">未审核</a>
+						</li>
+						<li><a data-toggle="tab"
+							href="<c:url value='/admin/topic/mine'/>">我发表的话题</a>
+						</li>
+						<li><a data-toggle="tab"
+							href="<c:url value='/admin/topic/replied'/>">我参与的话题</a>
+						</li>
+						<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
+						<li><a data-toggle="tab" href="<c:url value='/admin/board'/>">话题板块</a>
+						</li>
+					</ul>
+					<div id="mainarea">
 						<div id="mainarea_bg">
 							<div id="content">
 								<div id="analysisView">
@@ -86,11 +91,11 @@
 												<input type="button" class="botton" value="审核通过"
 													onmouseout="this.className='botton';"
 													onmouseover="this.className='botton2';"
-													onclick="javascript:location.href='<c:url value='/admin/topic/topic!state.html?id=${view.topic.id}&topic.state=1&topic.title=title&topic.content=content'/>'" />
+													onclick="javascript:location.href='<c:url value='/admin/topic/topic!state?id=${view.topic.id}&topic.state=1&topic.title=title&topic.content=content'/>'" />
 												<input type="button" class="botton_close1" value="审核不通过"
 													onmouseout="this.className='botton_close1';"
 													onmouseover="this.className='botton_close2';"
-													onclick="javascript:location.href='<c:url value='/admin/topic/topic!state.html?id=${view.topic.id}&topic.state=2'/>'" />
+													onclick="javascript:location.href='<c:url value='/admin/topic/topic!state?id=${view.topic.id}&topic.state=2'/>'" />
 											</c:if>
 										</div>
 									</div>
@@ -124,11 +129,11 @@
 								</div>
 							</div>
 							<c:if test="${view.topic.state==1}">
-								<s:action name="topicComment!search" id="topicCommentList"
+								<s:action name="topic-comment!search" id="topicCommentList"
 									executeResult="false">
-									<s:param name="queryBean.topicId">${view.topic.id }</s:param>
-									<s:param name="queryBean.order">addTime</s:param>
-									<s:param name="queryBean.desc">true</s:param>
+									<s:param name="query.topicId">${view.topic.id }</s:param>
+									<s:param name="query.order">addTime</s:param>
+									<s:param name="query.desc">true</s:param>
 								</s:action>
 								<s:iterator value="%{#topicCommentList.topicComments}"
 									status="rowStatus">
@@ -145,7 +150,7 @@
 											<div class="commenta_info">
 												<span class="l">${name} 于 <s:date name="addTime"
 														format="yyyy-MM-dd hh:mm" />回复</span> <span class="r"> <a
-													href="<c:url value='topicComment!delete.html?id=${id}'/>"
+													href="<c:url value='topic-comment!delete.action?id=${id}'/>"
 													onclick="return window.confirm('真的需要删除该信息吗?');"> 删除</a> </span>
 											</div>
 											<div class="commenta_contxt">${content}</div>
@@ -154,15 +159,11 @@
 									</div>
 								</s:iterator>
 								<div class="comment_textarea" id="replay">
-									<s:form action="topicComment!save.html" id="topicCommentForm"
-										method="post">
+									<form action="topic-comment!save" id="topicCommentForm" method="post">
 										<input name="topicId" type="hidden" value="${view.topic.id }" />
-										<br />
-										<br />
-						标题:
-						<input name="topicComment.name" class="inputtext"
-											style="width: 300px;" maxlength="100" type="text"
-											onblur="this.className='inputtext'"
+										<input type="hidden" name="topicComment.topic.title" value="${view.topic.title }"/>
+										<br /> <br /> 标题: <input class="inputtext" style="width: 300px;" maxlength="100"
+											type="text" onblur="this.className='inputtext'"
 											value="回复:${view.topic.title }" />
 										<div>&nbsp;</div>
 										<div>
@@ -185,7 +186,7 @@
 											</div>
 										</div>
 										<div class="c h5"></div>
-									</s:form>
+									</form>
 								</div>
 							</c:if>
 						</div>
@@ -195,10 +196,10 @@
 							</div>
 						</c:if>
 					</div>
-					</div>
-					
 				</div>
+
 			</div>
 		</div>
+	</div>
 	</div>
 </body>

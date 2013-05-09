@@ -37,8 +37,8 @@
 					<div id="celebrityList">
 						<s:action name="product!search" id="productList"
 							executeResult="false">
-							<s:param name="queryBean.order">addTime</s:param>
-							<s:param name="queryBean.desc">true</s:param>
+							<s:param name="query.order">addTime</s:param>
+							<s:param name="query.desc">true</s:param>
 						</s:action>
 						<ul>
 							<s:iterator value="%{#productList.products}" status="rowStatus">

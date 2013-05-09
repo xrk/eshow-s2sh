@@ -10,13 +10,16 @@ import com.logo.eshow.service.InfoManager;
 import com.logo.eshow.service.impl.GenericManagerImpl;
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @WebService(serviceName = "InfoService", endpointInterface = "com.logo.eshow.service.InfoManager")
 @Service
 public class InfoManagerImpl extends GenericManagerImpl<Info, Integer> implements InfoManager {
+	@Autowired
 	InfoDao infoDao;
 
+	@Autowired
 	public InfoManagerImpl(InfoDao infoDao) {
 		super(infoDao);
 		this.infoDao = infoDao;

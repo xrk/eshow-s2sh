@@ -39,11 +39,13 @@
 								href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
+								<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
 							<li  class="active"><a data-toggle="tab"
 								href="<c:url value='/admin/board'/>">话题板块</a></li>
 						</ul>
 						<div id="securitiesTxt">
-						<form class="form-horizontal" action="<c:url value='/admin/board/board!update.html'/>" method="post">
+						<form class="form-horizontal" action="<c:url value='/admin/board/board!update'/>" method="post">
 							<s:hidden name="id" value="%{#view.board.id}"></s:hidden>
 						<fieldset>
 							<div class="control-group">

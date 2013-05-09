@@ -38,6 +38,8 @@
 								href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
+								<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
 							<li  class="active"><a data-toggle="tab"
 								href="<c:url value='/admin/board'/>">话题板块</a></li>
 						</ul>
@@ -61,7 +63,7 @@
 								<td><span class="l c999">${description}</span>
 								</td>
 								<td><a href="<c:url value='/admin/board/edit/${id}'/>">修改</a>
-									<a href="javascript:void(0);"
+									<a href="${ctx }/board!delete.action?id=${id}"
 									onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a>
 								</td>
 							</tr>

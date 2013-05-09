@@ -49,7 +49,7 @@
 						</li>
 					</ul>
 					<form class="form-horizontal" action="service!save" method="post"
-						id="infoForm">
+						id="serviceForm">
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="input01">服务标题 </label>
@@ -60,10 +60,9 @@
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="select01">服务类型</label>
-								<s:action name="serviceType!search" id="serviceTypeList"
-									executeResult="false" />
+								<s:action name="service-type!list" id="serviceTypeList" executeResult="false" />
 								<div class="controls">
-									<select  id="serviceTypeId" name="serviceTypeId">
+									<select  id="serviceTypeId" name="service.serviceType.id">
 										<s:iterator value="%{#serviceTypeList.serviceTypes}"
 											status="rowStatus">
 											<option value="${id}">${name}</option>
@@ -74,14 +73,14 @@
 							<div class="control-group">
 								<label class="control-label" for="fileInput">选择图片</label>
 								<div class="controls">
-									<input class="input-file" id="fileInput" type="file">
+									<input class="input-file" id="fileInput" type="file" name="service.img">
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="textarea">服务内容</label>
 								<div class="controls">
 									<textarea class="input-xlarge" id="textarea" rows="3"
-										style="width: 600px; height: 100px;" name="info.content"></textarea>
+										style="width: 600px; height: 100px;" name="service.content"></textarea>
 								</div>
 							</div>
 							<div class="form-actions">

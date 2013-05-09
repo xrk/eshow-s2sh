@@ -3,7 +3,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 <c:set var="title">服务类型中心</c:set>
 <c:set var="title1">服务类型修改</c:set>
-<s:action name="serviceType!view" id="view" executeResult="false"></s:action>
+<s:action name="service-type!view" id="view" executeResult="false"></s:action>
 <head>
 	<title>修改服务类型</title>
 	<link rel="stylesheet"
@@ -41,8 +41,9 @@
 						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
 						</li>
 					</ul>
-					<form id="serviceTypeForm" class="form-horizontal" action="serviceType!update.html" method="post"
+					<form id="serviceTypeForm" class="form-horizontal" action="service-type!update" method="post"
 						id="infoForm">
+						<input type="hidden" name="id" value="${view.serviceType.id }"/>
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="input01">类型名称</label>

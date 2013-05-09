@@ -10,13 +10,16 @@ import com.logo.eshow.service.BlogManager;
 import com.logo.eshow.service.impl.GenericManagerImpl;
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @WebService(serviceName = "BlogService", endpointInterface = "com.logo.eshow.service.BlogManager")
 @Service
 public class BlogManagerImpl extends GenericManagerImpl<Blog, Integer> implements BlogManager {
+	@Autowired
 	BlogDao blogDao;
 
+	@Autowired
 	public BlogManagerImpl(BlogDao blogDao) {
 		super(blogDao);
 		this.blogDao = blogDao;

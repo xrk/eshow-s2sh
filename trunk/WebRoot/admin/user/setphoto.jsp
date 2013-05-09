@@ -47,7 +47,7 @@
 						</ul>
 						<%@ include file="/common/messages.jsp"%>
 						
-						<form class="form-horizontal"  action="user!photo.html" id="userForm" method="post" validate="false">
+						<form class="form-horizontal"  action="user!photo" id="userForm" method="post" validate="false">
 							<input type="hidden" name="id" value="${view.user.id}">
 							<fieldset>
 							<div class="control-group">

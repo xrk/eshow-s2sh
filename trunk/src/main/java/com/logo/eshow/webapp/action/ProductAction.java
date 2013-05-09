@@ -14,17 +14,21 @@ import java.util.List;
 
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "view/${id}"),
+		@Result(name = "success", type = "redirect", location = "admin/product/view/${id}"),
+		@Result(name = "delete", type = "redirect", location = "admin/product/index"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class ProductAction extends BaseFileUploadAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private ProductManager productManager;
+	@Autowired
 	private ProductCategoryManager productCategoryManager;
 	private List<Product> products;
 	private Product product;
@@ -53,7 +57,7 @@ public class ProductAction extends BaseFileUploadAction {
 	public String delete() {
 		productManager.remove(id);
 		saveMessage("删除成功");
-		return LIST;
+		return "delete";
 	}
 
 	public String view() {

@@ -32,9 +32,7 @@
 						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/info'/>">信息列表</a>
 						</li>
 					</ul>
-					<form class="form-horizontal" action="info!save" method="post"
-						id="infoForm">
-						<input name="redirect" type="hidden" value="admin/info/" />
+					<form class="form-horizontal" action="info!save" method="post" id="infoForm">
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="input01">信息URL</label>
@@ -58,7 +56,7 @@
 								</div>
 							</div>
 							<div class="form-actions">
-								<button type="submit" class="btn btn-primary">发表</button>
+								<button type="submit" class="btn btn-primary">保存</button>
 								<button class="btn" onclick="javascript:history.back();">取消</button>
 							</div>
 						</fieldset>

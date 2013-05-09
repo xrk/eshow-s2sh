@@ -14,17 +14,21 @@ import java.util.List;
 
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
+		@Result(name = "delete", type = "redirect", location = "admin/productCategory/"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class ProductCategoryAction extends BaseAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private ProductCategoryManager productCategoryManager;
+	@Autowired
 	private ProductManager productManager;
 	private List<ProductCategory> productCategories;
 	private ProductCategory productCategory;
@@ -56,7 +60,7 @@ public class ProductCategoryAction extends BaseAction {
 			productCategoryManager.remove(id);
 			saveMessage("删除成功");
 		}
-		return LIST;
+		return "delete";
 	}
 
 	public String view() {
@@ -74,13 +78,13 @@ public class ProductCategoryAction extends BaseAction {
 		old.setDescription(productCategory.getDescription());
 		productCategoryManager.save(old);
 		saveMessage("修改成功");
-		return LIST;
+		return "delete";
 	}
 
 	public String save() throws Exception {
 		productCategoryManager.save(productCategory);
 		saveMessage("添加成功");
-		return LIST;
+		return "delete";
 	}
 
 	public ProductCategoryManager getProductCategoryManager() {

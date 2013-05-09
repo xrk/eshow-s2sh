@@ -31,8 +31,8 @@
 					</div>
 					<div id="celebrity">
 						<s:action name="photo!search" id="photoList" executeResult="false">
-							<s:param name="queryBean.order">addTime</s:param>
-							<s:param name="queryBean.desc">true</s:param>
+							<s:param name="query.order">addTime</s:param>
+							<s:param name="query.desc">true</s:param>
 							<s:param name="pagesize">20</s:param>
 						</s:action>
 						<ul>
@@ -53,7 +53,7 @@
 										${name}
 										<br />
 										<a href="<c:url value='/admin/photo/edit/${id}'/>">修改</a>|
-										<a href="javascript:void(0);"
+										<a href="${ctx }/photo!delete.action?id=${id}"
 											onclick="return deleteData('photo',${id});">删除</a>
 									</div>
 									<div class="c"></div>
@@ -100,8 +100,8 @@
 							<strong>全部图片</strong>
 						</div>
 						<s:action name="photo!search" id="photoList" executeResult="false">
-							<s:param name="queryBean.order">addTime</s:param>
-							<s:param name="queryBean.desc">true</s:param>
+							<s:param name="query.order">addTime</s:param>
+							<s:param name="query.desc">true</s:param>
 							<s:param name="pagesize">20</s:param>
 						</s:action>
 						<ul>

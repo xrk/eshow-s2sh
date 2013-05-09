@@ -40,9 +40,9 @@
 						<div id="blog">
 							<s:action name="blog!search" id="newsBlogList"
 								executeResult="false">
-								<s:param name="queryBean.order">addTime</s:param>
-								<s:param name="queryBean.desc">true</s:param>
-								<s:param name="queryBean.pagesize">9</s:param>
+								<s:param name="query.order">addTime</s:param>
+								<s:param name="query.desc">true</s:param>
+								<s:param name="query.pagesize">9</s:param>
 							</s:action>
 						<ul class="flist">
 							<s:iterator value="%{#newsBlogList.blogs}" status="rowStatus">
@@ -68,10 +68,10 @@
 										<div class="tips">
 											评论(${commentSize
 											})&nbsp;&nbsp;|&nbsp;&nbsp;浏览(${count})&nbsp;&nbsp;|&nbsp;&nbsp;
-											<c:if test="${user.id==myid}">
+											<c:if test="true">
 												<span> <a
 													href="<c:url value='/admin/blog/edit/${id}'/>">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-													<a href="javascript:void(0);"
+													<a href="${ctx }/blog!delete.action?id=${id}"
 													onclick="return deleteData('blog',${id});">删除</a>&nbsp;&nbsp;
 												</span>
 											</c:if>

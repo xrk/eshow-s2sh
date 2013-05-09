@@ -62,8 +62,8 @@
 							<li><a data-toggle="tab" href="<c:url value='/admin/user/setphoto'/>">修改头像</a></li>
 						</ul>
 						<%@ include file="/common/messages.jsp"%>
-						<form class="form-horizontal"  action="user!password.html" id="userForm" method="post" validate="false">
-							<input type="hidden" name="redirect" value="password" />
+						<form class="form-horizontal"  action="user!password" id="userForm" method="post" validate="false">
+							<input type="hidden" name="redirect" value="admin/user/" />
 							<input type="hidden" name="id" value="${view.user.id}" />
 							<input type="hidden" name="user.username"
 								value="${view.user.username}" />

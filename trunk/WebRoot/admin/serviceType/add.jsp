@@ -40,7 +40,7 @@
 						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
 						</li>
 					</ul>
-					<form class="form-horizontal" action="serviceType!save" method="post"
+					<form class="form-horizontal" action="service-type!save" method="post"
 						id="infoForm">
 						<fieldset>
 							<div class="control-group">

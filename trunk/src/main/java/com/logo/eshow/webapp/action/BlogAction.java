@@ -15,17 +15,20 @@ import java.util.List;
 
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "view/${id}"),
+		@Result(name = "success", type = "redirect", location = "admin/blog/view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class BlogAction extends BaseAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private BlogManager blogManager;
+	@Autowired
 	private CategoryManager categoryManager;
 	private List<Blog> blogs;
 	private Blog blog;
@@ -105,7 +108,7 @@ public class BlogAction extends BaseAction {
 		blog = blogManager.save(blog);
 		saveMessage("添加成功");
 		id = blog.getId();
-		return LIST;
+		return SUCCESS;
 	}
 
 	public BlogManager getBlogManager() {

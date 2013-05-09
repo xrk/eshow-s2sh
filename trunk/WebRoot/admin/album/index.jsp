@@ -36,9 +36,9 @@
 
 
 					<s:action name="album!search" id="albumList" executeResult="false">
-						<s:param name="queryBean.order">addTime</s:param>
-						<s:param name="queryBean.desc">true</s:param>
-						<s:param name="pagesize">12</s:param>
+						<s:param name="query.order">addTime</s:param>
+						<s:param name="query.desc">true</s:param>
+						<s:param name="query.pagesize">12</s:param>
 					</s:action>
 					<table class="table table-striped table-bordered table-condensed">
 						<thead>
@@ -55,8 +55,8 @@
 						<tbody>
 							<s:action name="album!search" id="albumList"
 								executeResult="false">
-								<s:param name="queryBean.order">addTime</s:param>
-								<s:param name="queryBean.desc">true</s:param>
+								<s:param name="query.order">addTime</s:param>
+								<s:param name="query.desc">true</s:param>
 								<s:param name="pagesize">12</s:param>
 							</s:action>
 							<s:iterator value="%{#albumList.albums}" status="rowStatus">
@@ -72,7 +72,7 @@
 										src="${pageContext.request.contextPath}/upload/photo/${photo}"
 										alt="${name}" /> </a>
 								</td>
-								<td><a href="<c:url value='/admin/album/edit/${id}'/>">修改</a> <a href="javascript:;"
+								<td><a href="<c:url value='/admin/album/edit/${id}'/>">修改</a> <a href="${ctx}/album!delete.action?id=${id}"
 									onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a>
 								</td>
 							</tr></s:iterator>
@@ -83,8 +83,8 @@
 
 					<div id="celebrity">
 						<s:action name="album!search" id="albumList" executeResult="false">
-							<s:param name="queryBean.order">addTime</s:param>
-							<s:param name="queryBean.desc">true</s:param>
+							<s:param name="query.order">addTime</s:param>
+							<s:param name="query.desc">true</s:param>
 							<s:param name="pagesize">12</s:param>
 						</s:action>
 						<ul>
@@ -107,7 +107,7 @@
 										<a>(${photoSize}张)</a>
 										<c:if test="true">
 											&nbsp;|&nbsp;<a href="<c:url value='/admin/album/edit/${id}'/>">修改</a>&nbsp;|&nbsp;
-										<a href="javascript:void(0);"
+										<a href="${ctx}/album!delete.action?id=${id}"
 												onclick="return deleteData('album',${id});">删除</a>
 										</c:if>
 									</div>
@@ -123,6 +123,5 @@
 				</div>
 
 			</div>
-		</div>
 </body>
 

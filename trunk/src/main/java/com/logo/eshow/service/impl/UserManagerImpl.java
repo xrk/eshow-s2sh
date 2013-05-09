@@ -36,7 +36,9 @@ public class UserManagerImpl extends GenericManagerImpl<User, Integer> implement
 	private UserDao userDao;
 
 	@Autowired
-	public UserManagerImpl() {
+	public UserManagerImpl(UserDao userDao) {
+		super(userDao);
+		this.userDao = userDao;
 	}
 
 	@Autowired

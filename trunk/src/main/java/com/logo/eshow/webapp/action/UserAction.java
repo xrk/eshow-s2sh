@@ -26,9 +26,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Results({ @Result(name = "input", location = "add"),
+@Results({ @Result(name = "input", location = "/user/add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "view/${id}"),
+		@Result(name = "success", type = "redirect", location = "admin/user/view/${id}"),
+		@Result(name = "delete", type = "redirect", location = "admin/user/"),
+		@Result(name = "photo", type = "redirect", location = "admin/user/"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class UserAction extends BaseFileUploadAction {
 	private static final long serialVersionUID = 6776558938712115191L;
@@ -107,8 +109,8 @@ public class UserAction extends BaseFileUploadAction {
 	public String delete() {
 		userManager.removeUser(id);
 		saveMessage("用户" + user.getUsername() + "删除成功");
-
-		return SUCCESS;
+		
+		return "delete";
 	}
 
 	/**
@@ -149,7 +151,7 @@ public class UserAction extends BaseFileUploadAction {
 			user = new User();
 			user.addRole(new Role(Constants.USER_ROLE));
 		}
-
+		id=user.getId();
 		return SUCCESS;
 	}
 
@@ -199,7 +201,8 @@ public class UserAction extends BaseFileUploadAction {
 		old.setHobby(user.getHobby());
 		userManager.saveUser(old);
 		saveMessage("资料修改成功");
-		return LIST;
+		id=user.getId();
+		return SUCCESS;
 	}
 
 	/**
@@ -266,6 +269,7 @@ public class UserAction extends BaseFileUploadAction {
 				} catch (MailException me) {
 					addActionError(me.getCause().getLocalizedMessage());
 				}
+				id = user.getId();
 				return SUCCESS;
 			} else {
 				saveMessage(getText("user.updated.byAdmin", args));

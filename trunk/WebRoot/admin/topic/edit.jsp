@@ -40,7 +40,7 @@
 					</div>
 						<ul id="myTab" class="nav nav-tabs">
 							<li  class="active"><a data-toggle="tab"
-								href="<c:url value='/admin/topic/'/>">信息列表</a></li>
+								href="<c:url value='/admin/topic/'/>">话题列表</a></li>
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/topic/audit'/>">未审核</a></li>
 							<li><a data-toggle="tab"
@@ -49,20 +49,19 @@
 								href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/board'/>">话题板块</a></li>
+								<li><a data-toggle="tab"
+								href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
 							<li><a data-toggle="tab"
 								href="<c:url value='/admin/topic/add'/>">发表话题</a></li>
 						</ul>
-					</div>
-				<div id="analysisEdit">
-						
-						<form class="form-horizontal" action="topic!update.html" method="post"
+						<form class="form-horizontal" action="topic!update" method="post"
 							cssClass="creat_form clearfix">
 							<input type="hidden" name="id" value="${view.topic.id}" />
 							<div class="control-group">
 								<label class="control-label" for="input01">话题标题</label>
 								<div class="controls">
 									<input type="text" class="input-xlarge"
-										name="productCategory.name" value="${view.topic.title }">
+										name="topic.title" value="${view.topic.title }">
 								</div>
 							</div>
 
@@ -97,6 +96,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 

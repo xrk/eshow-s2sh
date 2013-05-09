@@ -38,8 +38,8 @@
 					</ul>
 					<s:action name="twitter!search" id="twitterList"
 						executeResult="false">
-						<s:param name="queryBean.order">addTime</s:param>
-						<s:param name="queryBean.desc">true</s:param>
+						<s:param name="query.order">addTime</s:param>
+						<s:param name="query.desc">true</s:param>
 					</s:action>
 					<div id="friend">
 						<s:iterator value="%{#twitterList.twitters}">
@@ -58,7 +58,7 @@
 										<c:if test="true">
 											<span class="tips"> <a
 												href="<c:url value='/admin/twitter/edit/${id}'/>">修改</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-												<a href="javascript:void(0);"
+												<a href="${ctx }/twitter!delete.action?id=${id}"
 												onclick="return deleteData('twitter',${id});">删除</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 											</span>
 										</c:if>

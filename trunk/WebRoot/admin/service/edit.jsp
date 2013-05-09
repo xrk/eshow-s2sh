@@ -50,6 +50,7 @@
 					</ul>
 					<form class="form-horizontal" action="service!update" method="post"
 						id="infoForm">
+						<input type="hidden" name="id" value="${view.service.id }"/>
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="input01">服务标题 </label>
@@ -60,10 +61,10 @@
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="select01">服务类型</label>
-								<s:action name="serviceType!search" id="serviceTypeList"
+								<s:action name="service-type!search" id="serviceTypeList"
 									executeResult="false" />
 								<div class="controls">
-									<select  id="serviceTypeId" name="serviceTypeId">
+									<select  id="serviceTypeId" name="service.serviceType.id">
 										<s:iterator value="%{#serviceTypeList.serviceTypes}"
 											status="rowStatus">
 											<option value="${id}"
@@ -76,7 +77,7 @@
 							<div class="control-group">
 								<label class="control-label" for="fileInput">选择图片</label>
 								<div class="controls">
-									<input class="input-file" id="fileInput" type="file">
+									<input class="input-file" id="fileInput" type="file" name="service.img">
 									<span class="l">&nbsp; <c:if test="${view.service.img == null}">
 										<img
 											src="${pageContext.request.contextPath}/images/base/user50-50.jpg" />
@@ -90,7 +91,7 @@
 								<label class="control-label" for="textarea">服务内容</label>
 								<div class="controls">
 									<textarea class="input-xlarge" id="textarea" rows="3"
-										style="width: 600px; height: 100px;" name="info.content">${view.service.content}</textarea>
+										style="width: 600px; height: 100px;" name="service.content">${view.service.content}</textarea>
 								</div>
 							</div>
 							<div class="form-actions">

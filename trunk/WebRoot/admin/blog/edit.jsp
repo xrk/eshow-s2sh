@@ -50,8 +50,8 @@
 						<li><a data-toggle="tab" href="<c:url value='/admin/blog/workmate'/>">同事的日志</a></li>
 					</ul>
 					
-					<form class="form-horizontal" action="blog!update.html" method="post"
-						id="infoForm">
+					<form class="form-horizontal" action="blog!update" method="post"
+						id="blogForm">
 						<input type="hidden" name="id" value="${view.blog.id}" />
 						<fieldset>
 							<div class="control-group">

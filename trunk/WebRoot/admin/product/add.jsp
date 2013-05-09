@@ -87,7 +87,7 @@
 									</div>
 								</div>
 								<div class="form-actions">
-									<button type="submit" class="btn btn-primary">修改</button>
+									<button type="submit" class="btn btn-primary">添加</button>
 									<button class="btn">取消</button>
 								</div>
 							</fieldset>

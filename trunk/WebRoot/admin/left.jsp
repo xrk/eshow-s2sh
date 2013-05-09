@@ -24,8 +24,6 @@
 
         <li><a href="<c:url value='/admin/user'/>"><i class="icon-user"></i>  用户</a></li>
         
-        <li><a href="<c:url value='/admin/system'/>"><i class="icon-lock"></i> 系统</a></li>
-        
         <li><a href="<c:url value='/admin/service'/>"><i class="icon-hand-right"></i>  服务</a></li>
         
 		<li><a href="<c:url value='/admin/info'/>"><i class="icon-book"></i>  信息页</a></li>

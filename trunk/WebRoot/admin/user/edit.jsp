@@ -40,14 +40,8 @@
 						<s:hidden name="user.username" value="%{#view.user.username}"></s:hidden>
 						<s:hidden name="user.password" value="password"></s:hidden>
 						<s:hidden name="user.confirmPassword" value="password"></s:hidden>
-						<form class="form-horizontal" action="user!update.html" id="userForm" method="post" validate="false">
+						<form class="form-horizontal" action="user!update" id="userForm" method="post" validate="false">
 							<fieldset>
-								<div class="control-group">
-									<label class="control-label" for="input01" >注册邮箱</label>
-									<div class="controls">
-										<input type="text" class="input-xlarge" id="title" name="user.username" value="${view.user.username}">
-									</div>
-								</div>
 								<div class="control-group">
 									<label class="control-label" for="input01" >登录名称</label>
 									<div class="controls">
@@ -89,9 +83,9 @@
 								<label class="control-label" for="select01">性别</label>
 								<div class="controls">
 									<select id="male" style="width: 8em;" name="user.male">
-										<option value="true" ${view.user.male?"selected='selected'":" "}>
+										<option value="1" ${view.user.male?"selected='selected'":" "}>
 											男</option>
-										<option value="false" ${!view.user.male?"selected='selected'":" "}>
+										<option value="0" ${!view.user.male?"selected='selected'":" "}>
 											女</option>
 
 									</select>
@@ -114,7 +108,7 @@
 							<div class="control-group">
 								<label class="control-label" for="select01">血型</label>
 								<div class="controls">
-									<select id="bloodType" style="width: 8em;" name="user.marital">
+									<select id="bloodType" style="width: 8em;" name="user.bloodType">
 										<option value="1" ${view.user.marital==1? "selected='selected'":""}>
 											A型</option>
 										<option value="2" ${view.user.marital==2? "selected='selected'":""}>

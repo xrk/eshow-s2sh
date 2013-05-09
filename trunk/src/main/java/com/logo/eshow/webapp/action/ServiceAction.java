@@ -14,17 +14,21 @@ import java.util.List;
 
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "view/${id}"),
+		@Result(name = "success", type = "redirect", location = "admin/service/view/${id}"),
+		@Result(name = "delete", type = "redirect", location = "admin/service/"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class ServiceAction extends BaseFileUploadAction {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private ServiceManager serviceManager;
+	@Autowired
 	private ServiceTypeManager serviceTypeManager;
 	private List<Service> services;
 	private Service service;
@@ -46,7 +50,7 @@ public class ServiceAction extends BaseFileUploadAction {
 	public String delete() {
 		serviceManager.remove(id);
 		saveMessage("删除成功");
-		return LIST;
+		return "delete";
 	}
 
 	public String view() {
@@ -97,7 +101,7 @@ public class ServiceAction extends BaseFileUploadAction {
 
 		saveMessage("添加成功");
 		id = service.getId();
-		return LIST;
+		return SUCCESS;
 	}
 
 	public ServiceManager getServiceManager() {

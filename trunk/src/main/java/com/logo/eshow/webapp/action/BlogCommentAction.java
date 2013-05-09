@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
@@ -26,7 +27,9 @@ public class BlogCommentAction extends BaseAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Autowired
 	private BlogCommentManager blogCommentManager;
+	@Autowired
 	private BlogManager blogManager;
 	private List<BlogComment> blogComments;
 	private BlogComment blogComment;

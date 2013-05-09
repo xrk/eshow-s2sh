@@ -55,7 +55,7 @@
 									<td>${description }</td>
 									<td><a href="<c:url value='/admin/product/c/${id}'/>">进入</a></td>
 									<td><a href="<c:url value='/admin/productCategory/edit/${id}'/>">修改</a> <a
-										href="href="javascript:void(0);"
+										href="${ctx }/product-category!delete.action?id=${id}"
 										onclick="deleteData('确定要删除该信息吗？','market',20);">删除</a></td>
 								</tr>
 							</s:iterator>

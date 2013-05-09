@@ -42,8 +42,9 @@
 						</div>
 						<h3 class="yahei">查看相片</h3>
 					</div>	
-						<form class="form-horizontal" id="photoForm" action="photo!update.html" method="post"
+						<form class="form-horizontal" id="photoForm" action="photo!update" method="post"
 							enctype="multipart/form-data">
+							<input name="id" value="${view.photo.id }" type="hidden"/>
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="input01">图片名称 </label>
@@ -77,7 +78,7 @@
 								<div class="control-group">
 								<label class="control-label" for="fileInput">选择图片</label>
 								<div class="controls">
-									<input class="input-file" id="fileInput" type="file">
+									<input class="input-file" id="fileInput" type="file" name="photo.img">
 									<span class="l"><c:if test="${view.photo.id!=null}">
 										<img
 											src="${pageContext.request.contextPath}/upload/photo/<s:date name='%{#view.photo.addTime}' format='yyyyMMdd' />/${view.photo.img}" />

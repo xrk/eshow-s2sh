@@ -1,9 +1,14 @@
 package com.logo.eshow.dao.hibernate;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.index.FieldInfo;
+import org.apache.lucene.index.FieldInfos;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
@@ -61,9 +66,16 @@ class HibernateSearchTools {
                 SearchFactory searchFactory = txtSession.getSearchFactory();
                 readerAccessor = searchFactory.getIndexReaderAccessor();
                 reader = readerAccessor.open(searchedEntity);
-                Collection<String> fieldNames = reader.getFieldNames(IndexReader.FieldOption.INDEXED);
-                fieldNames.remove("_hibernate_class");
+                FieldInfos fieldInfos = reader.getFieldInfos();
+                Iterator<FieldInfo> it = fieldInfos.iterator();
                 String[] fnames = new String[0];
+                List<String> fieldNames = new ArrayList<String>();
+                while(it.hasNext()){
+                	FieldInfo fi = it.next();
+                	if(fi.name.equals("_hibernate_class"))
+                		break;
+                	fieldNames.add(fi.name);
+                }
                 fnames = fieldNames.toArray(fnames);
 
                 // To search on all fields, search the term in all fields
@@ -72,7 +84,7 @@ class HibernateSearchTools {
                     queries[i] = searchTerm;
                 }
 
-                qry = MultiFieldQueryParser.parse(Version.LUCENE_35, queries, fnames, analyzer);
+                qry = MultiFieldQueryParser.parse(Version.LUCENE_36, queries, fnames, analyzer);
             } finally {
                 if (readerAccessor != null && reader != null) {
                     readerAccessor.close(reader);

@@ -31,7 +31,7 @@
         <form class="navbar-search pull-left" action="">
           <input type="text" class="search-query span2" placeholder="搜索"/>
         </form>
-        <p class="navbar-text pull-right"> 欢迎： <a href="" class="navbar-link"></a>&nbsp;&nbsp; <a href="" class="navbar-link">退出</a> </p>
+        <p class="navbar-text pull-right"> 欢迎： <a href="" class="navbar-link">管理员</a>&nbsp;&nbsp; <a href="" class="navbar-link">退出</a> </p>
       </div>
     </div>
   </div>

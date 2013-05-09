@@ -51,7 +51,7 @@
 											href="<c:url value='/admin/user/view/${id}'/>" class="">${id}</a>
 									</span></td>
 									<td><span class="l" style="font-size: 14px;"><a
-											href="<c:url value='/admin/user/view/${id}'/>" class="">${username}}</a>
+											href="<c:url value='/admin/user/view/${id}'/>" class="">${username}</a>
 									</span></td>
 									<td><span class="l" style="font-size: 14px;"><a  class=""><span  class="label label-success"><s:if test="%{enabled}">可用</s:if><s:else>不可用</s:else></span></a>
 									</span></td>

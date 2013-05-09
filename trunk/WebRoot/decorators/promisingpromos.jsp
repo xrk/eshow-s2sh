@@ -27,9 +27,8 @@
 	<decorator:body />
 	<div class="footer gray">
 		<p>
-			Copyright © 2013 Promising Promos Inc All rights reserved.<br>
-				Promising Promos Inc,26500 West Agoura Road, Suite 102-622
-				Calabasas, CA 91302Guaranteed 
+			Copyright © 2013 Promising Promos LLC All rights reserved.<br>
+				Promising Promos LLC, 7775 Camino Glorita，San Diego, CA 92122
 		</p>
 	</div>
 </body>

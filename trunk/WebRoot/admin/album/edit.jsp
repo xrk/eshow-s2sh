@@ -1,8 +1,6 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title">相册</c:set>
-<c:set var="title1">修改相册</c:set>
 <s:action name="album!view" id="view" executeResult="false" />
 <head>
 	<title>修改相册</title>
@@ -17,8 +15,8 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/album/">${title}</a> <span class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li><a href="${ctx}/admin/album/">相册</a> <span class="divider">/</span></li>
+					<li class="active">修改相册</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

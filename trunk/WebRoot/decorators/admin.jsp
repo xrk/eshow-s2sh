@@ -8,12 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href=" " />
-<title>首页_街区淘管理</title>
-<link href="${ctx}/bootstrap/css/bootstrap.css" rel="stylesheet" />
-<link href="${ctx}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+<link href="${ctx}/components/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="${ctx}/components/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
 <link rel="stylesheet" href="${ctx}/admin/styles/styleadmin.css" />
-<script src="${ctx}/admin/bootstrap/js/jquery-1.9.1.min.js"></script>
-<script src="${ctx}/admin/bootstrap/js/bootstrap-carousel.js"></script>
+<script src="${ctx}/components/bootstrap/js/jquery-1.9.1.min.js"></script>
+<script src="${ctx}/components/bootstrap/js/bootstrap-carousel.js"></script>
 <decorator:head />
 </head>
 <body
@@ -31,7 +30,9 @@
         <form class="navbar-search pull-left" action="">
           <input type="text" class="search-query span2" placeholder="搜索"/>
         </form>
-        <p class="navbar-text pull-right"> 欢迎： <a href="" class="navbar-link">管理员</a>&nbsp;&nbsp; <a href="" class="navbar-link">退出</a> </p>
+        <p class="navbar-text pull-right"> 欢迎： <a href="" class="navbar-link"><span>
+					<security:authentication property="principal.realname" />  
+				</span></a>&nbsp;&nbsp; <a href="" class="navbar-link">退出</a> </p>
       </div>
     </div>
   </div>

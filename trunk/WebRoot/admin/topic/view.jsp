@@ -161,7 +161,7 @@
 								<div class="comment_textarea" id="replay">
 									<form action="topic-comment!save" id="topicCommentForm" method="post">
 										<input name="topicId" type="hidden" value="${view.topic.id }" />
-										<input type="hidden" name="topicComment.topic.title" value="${view.topic.title }"/>
+										<input type="hidden" name="topicComment.name" value="回复：${view.topic.title }"/>
 										<br /> <br /> 标题: <input class="inputtext" style="width: 300px;" maxlength="100"
 											type="text" onblur="this.className='inputtext'"
 											value="回复:${view.topic.title }" />

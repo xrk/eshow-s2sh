@@ -1,10 +1,9 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title">产品管理</c:set>
-<c:set var="title1">产品信息添加</c:set>
 <head>
-	<title>产品</title>
+	<%@ include file="../common/website.jsp"%>
+	<title>${viewinfo.info.title}</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/product.css'/>"
 		type="text/css" />
 	<link media="screen" type="text/css"
@@ -20,7 +19,7 @@
 		});
     </script>
 </head>
-<body>
+<body>${viewinfo.info.title}
 	<div class="container mt">
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
@@ -28,9 +27,9 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/product/">${title}</a> <span
+					<li><a href="${ctx}/admin/product/">产品管理</a> <span
 						class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li class="active">${viewinfo.info.title }</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

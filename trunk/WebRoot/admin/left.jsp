@@ -18,7 +18,7 @@
         
         <li><a href="<c:url value='/admin/album'/>"><i class="icon-file"></i>  相册</a></li>
         
-        <li><a href="<c:url value='/admin/photo'/>"><i class="icon-picture"></i>  相片</a></li>
+        <li><a href="<c:url value='/admin/photo'/>"><i class="icon-picture"></i>  图片</a></li>
         
         <li class="nav-header">系统管理</li>
 

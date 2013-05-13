@@ -4,8 +4,6 @@
 <c:set var="myid">
 	<authz:authentication operation='id' />
 </c:set>
-<c:set var="title1">日志管理</c:set>
-<c:set var="title2">日志模块</c:set>
 <s:action name="category!view" id="view" executeResult="false" />
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
 <head>
@@ -21,9 +19,9 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/blog/">${title1}</a> <span
+					<li><a href="${ctx}/admin/blog/">日志管理</a> <span
 						class="divider">/</span></li>
-					<li class="active">${title2}</li>
+					<li class="active">日志模块</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

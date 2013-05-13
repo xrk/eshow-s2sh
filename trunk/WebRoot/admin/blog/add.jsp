@@ -1,8 +1,6 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title1">日志管理</c:set>
-<c:set var="title2">添加日志</c:set>
 <head>
 	<title>日志添加</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/blog.css'/>"
@@ -35,10 +33,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/blog/">${title1}</a> <span
+					<li><a href="${ctx}/admin/blog/">日志管理</a> <span
 						class="divider">/</span>
 					</li>
-					<li class="active">${title2}</li>
+					<li class="active">添加日志</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

@@ -1,25 +1,23 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="myid">
-	<authz:authentication operation='id' />
-</c:set>
-<c:set var="title2">信息中心</c:set>
-<c:set var="title1">信息列表</c:set>
+
+<%@ include file="../common/website.jsp"%>
 <head>
 	<title>信息</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/info.css'/>"
 		type="text/css" />
 </head>
 <body>
+	${website}
 	<div class="container mt">
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
 			<div class="span10">
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span></li>
-					<li><a href="${ctx}/admin/info/">${title2}</a> <span class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li><a href="${ctx}/admin/info/">信息中心</a> <span class="divider">/</span></li>
+					<li class="active">信息列表</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
@@ -32,7 +30,9 @@
 						<ul id="myTab" class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab" href="<c:url value='/admin/info'/>">信息列表</a></li>
 						</ul>
-						<s:action name="info!search" id="infoList" executeResult="false"></s:action>
+						<s:action name="info!search" id="infoList" executeResult="false">
+							<s:param name="query.website">${website}</s:param>
+						</s:action>
 								<table
 									class="table table-striped table-bordered table-condensed">
 									<thead>

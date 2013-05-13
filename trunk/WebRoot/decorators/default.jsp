@@ -7,11 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>首页_EShow开源框架</title>
-<link href="${ctx}/bootstrap/css/bootstrap.css" rel="stylesheet" />
-<link href="${ctx}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+<link href="${ctx}/components/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="${ctx}/components/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
 <link href="${ctx}/styles/style.css" rel="stylesheet" />
-<script src="${ctx}/bootstrap/js/jquery-1.9.1.min.js" />
-<script src="${ctx}/bootstrap/js/bootstrap-carousel.js"></script>
+<script src="${ctx}/components/bootstrap/js/jquery-1.9.1.min.js" />
+<script src="${ctx}/components/bootstrap/js/bootstrap-carousel.js"></script>
 <decorator:head />
 </head>
 <body

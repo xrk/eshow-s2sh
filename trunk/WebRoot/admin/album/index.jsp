@@ -4,8 +4,6 @@
 <c:set var="myid">
 	<authz:authentication operation='id' />
 </c:set>
-<c:set var="title">相册</c:set>
-<c:set var="title1">相册列表</c:set>
 <head>
 	<title>相册</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/album.css'/>"
@@ -19,8 +17,8 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/album/">${title}</a> <span class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li><a href="${ctx}/admin/album/">相册</a> <span class="divider">/</span></li>
+					<li class="active">相册列表</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

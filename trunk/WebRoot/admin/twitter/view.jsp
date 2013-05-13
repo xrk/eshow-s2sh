@@ -4,8 +4,6 @@
 <c:set var="myid">
 	<authz:authentication operation='id' />
 </c:set>
-<c:set var="title1">微博管理</c:set>
-<c:set var="title2">查看微博</c:set>
 <s:action name="twitter!view" id="view" executeResult="false"></s:action>
 <c:if test="${view.twitter.id==null}">
 	<script>location.href="<c:url value='/admin/twitter'/>";</script>
@@ -35,9 +33,9 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/twitter/">${title1}</a> <span
+					<li><a href="${ctx}/admin/twitter/">微博管理</a> <span
 						class="divider">/</span></li>
-					<li class="active">${title2}</li>
+					<li class="active">查看微博</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

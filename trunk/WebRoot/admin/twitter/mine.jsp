@@ -1,8 +1,6 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title1">微博管理</c:set>
-<c:set var="title2">我的微博</c:set>
 <s:action name="user!view" id="view" executeResult="false" />
 <head>
 	<title>我的微博客</title>
@@ -17,10 +15,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/twitter/">${title1}</a> <span
+					<li><a href="${ctx}/admin/twitter/">微博管理</a> <span
 						class="divider">/</span>
 					</li>
-					<li class="active">${title2}</li>
+					<li class="active">我的微博</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

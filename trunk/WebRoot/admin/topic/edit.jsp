@@ -2,8 +2,6 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="http://java.fckeditor.net" prefix="FCK"%>
-<c:set var="title">话题管理</c:set>
-<c:set var="title1">话题修改</c:set>
 <s:action name="topic!view" id="view" executeResult="false" />
 <head>
 	<title>讨论区</title>
@@ -25,10 +23,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/topic/">${title}</a> <span
+					<li><a href="${ctx}/admin/topic/">话题修改</a> <span
 						class="divider">/</span>
 					</li>
-					<li class="active">${title1}</li>
+					<li class="active">话题管理</li>
 				</ul>
 
 				<div class="well com">

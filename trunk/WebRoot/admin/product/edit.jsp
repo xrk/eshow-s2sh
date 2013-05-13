@@ -1,8 +1,6 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title">产品管理</c:set>
-<c:set var="title1">产品信息修改</c:set>
 <s:action name="product!view" id="view" executeResult="false" />
 <head>
 	<title>修改产品</title>
@@ -29,8 +27,8 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/product/">${title}</a> <span class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li><a href="${ctx}/admin/product/">产品管理</a> <span class="divider">/</span></li>
+					<li class="active">产品修改</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
@@ -76,8 +74,8 @@
 							<div class="control-group">
 								<label class="control-label" for="input01">选择图片</label>
 								<div class="controls">
-									<input type="file" class="input-xlarge" name="product.img"
-										id="password">
+									<input type="file" class="input-xlarge" name="file"
+										id="password" value="${view.product.img}">
 									<p style="margin-top: 10px; color: #999;">图片大小不能超过2M，支持
 										.jpeg .jpg .gif .bmp .png 格式</p>
 								</div>

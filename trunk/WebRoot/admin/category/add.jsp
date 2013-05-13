@@ -26,7 +26,7 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li class="active">分类管理</li>
 				</ul>
 				<s:include value="../title.jsp"></s:include>
 

@@ -1,8 +1,6 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title1">角色管理</c:set>
-<c:set var="title2">修改角色</c:set>
 <s:action name="role!view" id="view" executeResult="false" />
 <head>
 	<title>修改角色</title>
@@ -17,8 +15,8 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/role/">${title1}</a> <span class="divider">/</span></li>
-					<li class="active">${title2}</li>
+					<li><a href="${ctx}/admin/role/">角色管理</a> <span class="divider">/</span></li>
+					<li class="active">修改角色</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

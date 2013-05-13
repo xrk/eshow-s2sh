@@ -18,7 +18,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/topic/">话题管理</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">话题列表</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

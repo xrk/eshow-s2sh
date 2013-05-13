@@ -37,9 +37,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li class="active">${title}</li>
+					<li><a href="${ctx}/admin/photo/">图片管理</a> <span class="divider">/</span>
+					</li>
+					<li class="active">查看图片</li>
 				</ul>
-				<s:include value="../title.jsp"></s:include>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">

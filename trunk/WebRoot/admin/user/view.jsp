@@ -6,8 +6,6 @@
 <c:set var="myid">
 	<authz:authentication operation='id' />
 </c:set>
-<c:set var="title">用户管理</c:set>
-<c:set var="title1">查看用户</c:set>
 <head>
 	<title>查看${view.user.nickname}的信息</title>
 	<link rel="stylesheet"
@@ -21,8 +19,8 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/user/">${title}</a> <span class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li><a href="${ctx}/admin/user/">用户管理</a> <span class="divider">/</span></li>
+					<li class="active">查看用户</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

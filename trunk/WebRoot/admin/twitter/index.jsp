@@ -4,8 +4,6 @@
 <c:set var="myid">
 	<authz:authentication operation='id' />
 </c:set>
-<c:set var="title1">微博管理</c:set>
-<c:set var="title2">微博列表</c:set>
 <head>
 <title>微博客</title>
 <link rel="stylesheet" href="<c:url value='/admin/styles/twitter.css'/>"
@@ -19,10 +17,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/twitter/">${title1}</a> <span
+					<li><a href="${ctx}/admin/twitter/">微博管理</a> <span
 						class="divider">/</span>
 					</li>
-					<li class="active">${title2}</li>
+					<li class="active">微博列表</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

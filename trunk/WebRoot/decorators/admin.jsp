@@ -25,11 +25,9 @@
       <div class="nav-collapse">
         <ul class="nav">
           <li class="active"><a href="${ctx }/admin/index">首 页</a></li>
-          <li class=""><a href="${ctx }/index">返回前台</a></li>
+          <li class=""><a href="${ctx }/">返回前台</a></li>
         </ul>
-        <form class="navbar-search pull-left" action="">
-          <input type="text" class="search-query span2" placeholder="搜索"/>
-        </form>
+        
         <p class="navbar-text pull-right"> 欢迎： <a href="" class="navbar-link"><span>
 					<security:authentication property="principal.realname" />  
 				</span></a>&nbsp;&nbsp; <a href="" class="navbar-link">退出</a> </p>

@@ -1,8 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title">相册</c:set>
-<c:set var="title1">相片列表</c:set>
+<c:set var="title"></c:set>
+<c:set var="title1"></c:set>
 <head>
 	<title>相册</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/album.css'/>"
@@ -16,10 +16,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/album/">${title}</a> <span
+					<li><a href="${ctx}/admin/album/">相册</a> <span
 						class="divider">/</span>
 					</li>
-					<li class="active">${title1}</li>
+					<li class="active">图片列表</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
@@ -27,7 +27,7 @@
 							<a href="<c:url value='/admin/photo/add'/>"
 								class="btn btn-primary"> 添加</a>
 						</div>
-						<h3 class="yahei">相片列表</h3>
+						<h3 class="yahei">图片列表</h3>
 					</div>
 					<div id="celebrity">
 						<s:action name="photo!search" id="photoList" executeResult="false">

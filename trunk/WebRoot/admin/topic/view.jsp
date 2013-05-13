@@ -4,8 +4,6 @@
 <c:set var="myid">
 	<authz:authentication operation='id' />
 </c:set>
-<c:set var="title2">话题管理</c:set>
-<c:set var="title1">查看话题</c:set>
 <s:action name="topic!view" id="view" executeResult="false" />
 <head>
 <title>${view.topic.title}</title>
@@ -20,9 +18,9 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/topic/">${title2}</a> <span
+					<li><a href="${ctx}/admin/topic/">话题管理</a> <span
 						class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li class="active">查看话题</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

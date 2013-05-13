@@ -1,8 +1,6 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title">产品类型管理</c:set>
-<c:set var="title1">产品类型修改</c:set>
 <s:action name="product-category!view" id="view" executeResult="false"></s:action>
 <head>
 	<title>修改产品分类</title>
@@ -29,10 +27,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/productType/">${title}</a> <span
+					<li><a href="${ctx}/admin/productType/">产品类型管理</a> <span
 						class="divider">/</span>
 					</li>
-					<li class="active">${title1}</li>
+					<li class="active">产品类型修改</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

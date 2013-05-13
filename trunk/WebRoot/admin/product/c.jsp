@@ -2,8 +2,6 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
-<c:set var="title">产品管理</c:set>
-<c:set var="title1">产品列表</c:set>
 <s:action name="productCategory!view" id="view" executeResult="false">
 </s:action>
 <head>
@@ -19,8 +17,8 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/product/">${title}</a> <span class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li><a href="${ctx}/admin/product/">产品管理</a> <span class="divider">/</span></li>
+					<li class="active">产品列表</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

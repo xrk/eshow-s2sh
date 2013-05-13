@@ -5,8 +5,6 @@
 <c:set var="myid">
 	<authz:authentication operation='id' />
 </c:set>
-<c:set var="title2">话题管理</c:set>
-<c:set var="title1">话题列表</c:set>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
 <head>
 	<title>讨论区</title>
@@ -21,10 +19,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/topic/">${title2}</a> <span
+					<li><a href="${ctx}/admin/topic/">话题管理</a> <span
 						class="divider">/</span>
 					</li>
-					<li class="active">${title1}</li>
+					<li class="active">话题列表</li>
 				</ul>
 
 				<div class="well com">

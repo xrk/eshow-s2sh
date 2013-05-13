@@ -1,7 +1,6 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-
 <%@ include file="../common/website.jsp"%>
 <head>
 	<title>信息</title>
@@ -9,7 +8,6 @@
 		type="text/css" />
 </head>
 <body>
-	${website}
 	<div class="container mt">
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>

@@ -12,7 +12,7 @@
         
         <li><a href="<c:url value='/admin/blog'/>"><i class="icon-pencil"></i>  日志</a></li>
         
-        <li><a href="<c:url value='/admin/topic'/>"><i class="icon-list"></i> 讨论区</a></li>
+        <li><a href="<c:url value='/admin/topic'/>"><i class="icon-list"></i>  讨论区</a></li>
         
         <li class="nav-header">图片管理</li>
         
@@ -28,7 +28,7 @@
         
 		<li><a href="<c:url value='/admin/info'/>"><i class="icon-book"></i>  信息页</a></li>
         
-        <li><a href="<c:url value='/admin/product'/>"><i class="icon-share"></i> 产品</a></li> 
+        <li><a href="<c:url value='/admin/product'/>"><i class="icon-share"></i>  产品</a></li> 
 		
 	</ul>
 </div>

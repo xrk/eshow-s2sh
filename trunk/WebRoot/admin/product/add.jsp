@@ -19,7 +19,7 @@
 		});
     </script>
 </head>
-<body>${viewinfo.info.title}
+<body>
 	<div class="container mt">
 		<div class="row-fluid">
 			<s:include value="../left.jsp"></s:include>
@@ -29,7 +29,7 @@
 					</li>
 					<li><a href="${ctx}/admin/product/">产品管理</a> <span
 						class="divider">/</span></li>
-					<li class="active">${viewinfo.info.title }</li>
+					<li class="active">添加产品</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
@@ -72,8 +72,8 @@
 								<div class="control-group">
 									<label class="control-label" for="input01">选择图片</label>
 									<div class="controls">
-										<input type="file" class="input-xlarge" name="product.img"
-											id="password">
+										<input type="file" class="input-xlarge" name="file"
+											id="password"/>
 										<p style="margin-top: 10px; color: #999;">图片大小不能超过2M，支持
 											.jpeg .jpg .gif .bmp .png 格式</p>
 									</div>

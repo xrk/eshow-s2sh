@@ -4,8 +4,6 @@
 <s:action name="user!view" id="view" executeResult="false">
 	<s:param name="id">${param.id}</s:param>
 </s:action>
-<c:set var="title1">微博管理</c:set>
-<c:set var="title2">${view.user.nickname}的微博</c:set>
 <head>
 	<title>${view.user.nickname}微博客</title>
 	<link rel="stylesheet"
@@ -19,10 +17,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/twitter/">${title1}</a> <span
+					<li><a href="${ctx}/admin/twitter/">微博管理</a> <span
 						class="divider">/</span>
 					</li>
-					<li class="active">${title2}</li>
+					<li class="active">${view.user.nickname}的微博</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

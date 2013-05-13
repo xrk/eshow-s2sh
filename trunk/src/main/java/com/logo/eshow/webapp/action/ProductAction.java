@@ -61,7 +61,6 @@ public class ProductAction extends BaseFileUploadAction {
 	}
 
 	public String view() {
-System.out.println("进入view()方法");
 		if (id != null) {
 			product = productManager.get(id);
 		} else {

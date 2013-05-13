@@ -1,8 +1,6 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title2">话题管理</c:set>
-<c:set var="title1">话题板块</c:set>
 <head>
 	<title>话题板块</title>
 	<link rel="stylesheet"
@@ -16,10 +14,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/topic/">${title2}</a> <span
+					<li><a href="${ctx}/admin/topic/">话题管理</a> <span
 						class="divider">/</span>
 					</li>
-					<li class="active">${title1}</li>
+					<li class="active">话题板块</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

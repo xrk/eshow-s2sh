@@ -2,8 +2,6 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <s:action name="info!view" id="view" executeResult="false" />
-<c:set var="title2">信息中心</c:set>
-<c:set var="title1">修改信息</c:set>
 <head>
 	<title>修改信息${view.info.title}</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/info.css'/>"
@@ -25,9 +23,9 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/info/">${title2}</a> <span
+					<li><a href="${ctx}/admin/info/">信息中心</a> <span
 						class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li class="active">修改信息</li>
 				</ul>
 				<div class="well com">
 					<ul id="myTab" class="nav nav-tabs">

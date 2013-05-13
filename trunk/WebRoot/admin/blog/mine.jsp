@@ -2,8 +2,6 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
-<c:set var="title1"></c:set>
-<c:set var="title2">我的日志</c:set>
 <s:action name="user!view" id="view" executeResult="false">
 	<s:if test="id">${param.id}</s:if>
 </s:action>

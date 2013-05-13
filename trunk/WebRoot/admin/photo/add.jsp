@@ -1,8 +1,6 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title">相册</c:set>
-<c:set var="title1">添加相片</c:set>
 <head>
 	<title>上传图片</title>
 	<link rel="stylesheet" href="<c:url value='/admin/styles/album.css'/>"
@@ -28,10 +26,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/album/">${title}</a> <span
+					<li><a href="${ctx}/admin/album/">相册</a> <span
 						class="divider">/</span>
 					</li>
-					<li class="active">${title1}</li>
+					<li class="active">添加图片</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">

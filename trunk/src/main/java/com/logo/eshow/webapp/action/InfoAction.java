@@ -33,14 +33,6 @@ public class InfoAction extends BaseAction {
 		infos = infoManager.list(query);
 		return LIST;
 	}
-
-	public String title() {
-		infos = infoManager.list(query);
-		if(!infos.isEmpty()){
-			info = infos.get(0);
-		}
-		return LIST;
-	}
 	
 	public String search() {
 		Page<Info> page = infoManager.search(query);

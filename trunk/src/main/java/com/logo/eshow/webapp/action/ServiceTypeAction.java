@@ -18,8 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "admin/serviceType/view/${id}"),
-		@Result(name = "delete", type = "redirect", location = "admin/serviceType/"),
+		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class ServiceTypeAction extends BaseAction {
 	/**
@@ -69,9 +68,6 @@ public class ServiceTypeAction extends BaseAction {
 	public String view() {
 		if (id != null) {
 			serviceType = serviceTypeManager.get(id);
-		} else {
-			return INDEX;
-
 		}
 		return NONE;
 	}
@@ -88,7 +84,7 @@ public class ServiceTypeAction extends BaseAction {
 	public String save() throws Exception {
 		serviceTypeManager.save(serviceType);
 		saveMessage("添加成功");
-		id = serviceType.getId(); 	
+		id = serviceType.getId();
 		return "delete";
 	}
 

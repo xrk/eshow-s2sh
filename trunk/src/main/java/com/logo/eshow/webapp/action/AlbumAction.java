@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "/album/view/${id}"),
+		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class AlbumAction extends BaseAction {
 	/** 	
@@ -50,10 +50,7 @@ public class AlbumAction extends BaseAction {
 	public String view() {
 		if (id != null) {
 			album = albumManager.get(id);
-		} else {
-			album = new Album();
 		}
-
 		return NONE;
 	}
 

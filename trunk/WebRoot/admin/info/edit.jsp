@@ -3,17 +3,15 @@
 <%@ include file="/common/taglibs.jsp"%>
 <s:action name="info!view" id="view" executeResult="false" />
 <head>
-	<title>修改信息${view.info.title}</title>
-	<link rel="stylesheet" href="<c:url value='/admin/styles/info.css'/>"
-		type="text/css" />
-	<script type="text/javascript" charset="utf-8"
-		src="<c:url value="/components/kindeditor/kindeditor.js"/>"></script>
-	<%@ include file="/common/validate.jsp"%>
-	<script type="text/javascript">
-		window.addEvent('domready', function() {
-			new FormCheck('infoForm');
-		});
-    </script>
+<title>修改信息${view.info.title}</title>
+<link rel="stylesheet" href="<c:url value='/admin/styles/info.css'/>"
+	type="text/css" />
+<%@ include file="/common/validate.jsp"%>
+<script type="text/javascript">
+	window.addEvent('domready', function() {
+		new FormCheck('infoForm');
+	});
+</script>
 </head>
 <body>
 	<div class="container mt">
@@ -29,14 +27,12 @@
 				</ul>
 				<div class="well com">
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/info'/>">信息列表</a>
+						<li class="active"><a data-toggle="tab"
+							href="${ctx}/admin/info">信息列表</a>
 						</li>
 					</ul>
-					
-					<form class="form-horizontal" action="info!update" method="post"
-						id="infoForm">
+					<s:form id="infoForm" cssClass="form-horizontal" action="info!update" method="post" namespace="">
 						<s:hidden name="id" value="%{#view.info.id}"></s:hidden>
-						<input name="redirect" type="hidden" value="admin/info/" />
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="input01">信息URL</label>
@@ -64,7 +60,7 @@
 								<button class="btn" onclick="javascript:history.back();">取消</button>
 							</div>
 						</fieldset>
-					</form>
+					</s:form>
 				</div>
 			</div>
 		</div>

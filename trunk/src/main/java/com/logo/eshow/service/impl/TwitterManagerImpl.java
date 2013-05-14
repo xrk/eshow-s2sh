@@ -30,9 +30,9 @@ public class TwitterManagerImpl extends GenericManagerImpl<Twitter, Integer> imp
 	public List<Twitter> list(TwitterQuery query) {
 		return twitterDao.list(query);
 	}
-	
+
 	public Page<Twitter> search(TwitterQuery query) {
 		return twitterDao.search(query);
 	}
-	
+
 }

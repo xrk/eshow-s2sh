@@ -15,8 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "admin/info/view/${id}"),
-		@Result(name = "delete", type = "redirect", location = "admin/info/"),
+		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class InfoAction extends BaseAction {
 	/**
@@ -33,7 +32,7 @@ public class InfoAction extends BaseAction {
 		infos = infoManager.list(query);
 		return LIST;
 	}
-	
+
 	public String search() {
 		Page<Info> page = infoManager.search(query);
 		infos = page.getDataList();
@@ -42,16 +41,17 @@ public class InfoAction extends BaseAction {
 	}
 
 	public String delete() {
-		infoManager.remove(id);
-		saveMessage("删除成功");
-		return "delete";
+		info = infoManager.get(id);
+		if (info != null) {
+			info.setEnabled(Boolean.FALSE);
+			saveMessage("删除成功");
+		}
+		return LIST;
 	}
 
 	public String view() {
 		if (id != null) {
 			info = infoManager.get(id);
-		} else {
-			return INDEX;
 		}
 		return NONE;
 	}

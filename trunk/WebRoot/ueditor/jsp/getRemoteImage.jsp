@@ -60,7 +60,7 @@
     	Iterator<String> type = Arrays.asList(fileType).iterator();
     	while(type.hasNext()){
     		String t = type.next();
-    		if(fileName.endsWith(t)){
+    		if(fileName.lastIndexOf(t)>0){
     			return t;
     		}
     	}

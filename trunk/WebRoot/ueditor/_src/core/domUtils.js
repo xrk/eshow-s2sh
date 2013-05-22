@@ -969,8 +969,8 @@ var domUtils = dom.domUtils = {
      * @grammar UE.dom.domUtils.removeStyle(element,name)        删除的样式名称
      */
     removeStyle:function (element, name) {
-        if(browser.ie && browser.version > 8){
-            element.style.cssText = element.style.cssText.replace(new RegExp(name + '\s*:\s*[^;]+;?'),'')
+        if(browser.ie ){
+            element.style.cssText = element.style.cssText.replace(new RegExp(name + '[^:]*:[^;]+;?','ig'),'')
         }else{
             if (element.style.removeProperty) {
                 element.style.removeProperty (name);
@@ -1000,6 +1000,9 @@ var domUtils = dom.domUtils = {
      */
     setStyle:function (element, name, value) {
         element.style[utils.cssStyleToDomStyle(name)] = value;
+        if(!utils.trim(element.style.cssText)){
+            this.removeAttributes(element,'style')
+        }
     },
     /**
      * 为元素element设置样式属性值
@@ -1171,8 +1174,8 @@ var domUtils = dom.domUtils = {
         }
         return flag && !domUtils.isBody(tmpRange.startContainer) ? 1 : 0;
     },
-    isEmptyBlock:function (node) {
-        var reg = new RegExp('[ \t\r\n' + domUtils.fillChar + ']', 'g');
+    isEmptyBlock:function (node,reg) {
+        reg = reg || new RegExp('[ \t\r\n' + domUtils.fillChar + ']', 'g');
         if (node[browser.ie ? 'innerText' : 'textContent'].replace(reg, '').length > 0) {
             return 0;
         }

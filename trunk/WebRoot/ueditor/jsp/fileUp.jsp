@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="com.logo.eshow.components.ueditor.Uploader" %>
+<%@ page import="ueditor.Uploader" %>
 
 
 <%

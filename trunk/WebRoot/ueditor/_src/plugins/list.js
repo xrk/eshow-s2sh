@@ -60,8 +60,19 @@ UE.plugins['list'] = function () {
         },
         listDefaultPaddingLeft : '30',
         listiconpath : 'http://bs.baidu.com/listicon/',
-        maxListLevel : 3//-1不限制
+        maxListLevel : -1//-1不限制
     } );
+    function listToArray(list){
+        var arr = [];
+        for(var p in list){
+            arr.push(p)
+        }
+        return arr;
+    }
+    var listStyle = {
+        'OL':listToArray(me.options.insertorderedlist),
+        'UL':listToArray(me.options.insertunorderedlist)
+    };
     var liiconpath = me.options.listiconpath;
 
     //根据用户配置，调整customStyle
@@ -120,42 +131,197 @@ UE.plugins['list'] = function () {
         //如果不给宽度会在自定应样式里出现滚动条
         utils.cssRule('list', 'ol,ul{margin:0;pading:0;'+(browser.ie ? '' : 'width:95%')+'}li{clear:both;}'+customCss.join('\n'), me.document);
     });
+    //单独处理剪切的问题
+    me.ready(function(){
+        domUtils.on(me.body,'cut',function(){
+            setTimeout(function(){
+                var rng = me.selection.getRange(),li;
+                if(li = domUtils.findParentByTagName(rng.startContainer,'li',true)){
+                    if(!li.nextSibling && domUtils.isEmptyBlock(li)){
+                        var pn = li.parentNode,node;
+                        if(node = pn.previousSibling){
+                            domUtils.remove(pn);
+                            rng.setStartAtLast(node).collapse(true);
+                            rng.select(true);
+                        }else if(node = pn.nextSibling){
+                            domUtils.remove(pn);
+                            rng.setStartAtFirst(node).collapse(true);
+                            rng.select(true);
+                        }else{
+                            var tmpNode = me.document.createElement('p');
+                            domUtils.fillNode(me.document,tmpNode);
+                            pn.parentNode.insertBefore(tmpNode,pn);
+                            domUtils.remove(pn);
+                            rng.setStart(tmpNode,0).collapse(true);
+                            rng.select(true);
+                        }
+                    }
+                }
+            })
+        })
+    });
 
     function getStyle(node){
         var cls = node.className;
         if(domUtils.hasClass(node,/custom_/)){
             return cls.match(/custom_(\w+)/)[1]
         }
-        return ''
+        return domUtils.getStyle(node, 'list-style-type')
+
     }
 
-//    function checkCustomStyle(list){
-//        if(domUtils.hasClass(list,/custom_/)){
-//            return ''
-//        }
-//        var style;
-//        utils.each(list.childNodes,function(li){
-//            if(li.tagName == 'LI'){
-//                if(domUtils.hasClass(li,/list-/)){
-//                    var tmpStyle = li.className.match(/list-(\w+)-(\d+)?/);
-//                    style = tmpStyle[1]+(tmpStyle[2] && tmpStyle[2] != '1'?  tmpStyle[2]:'');
-//                    return false
-//                }
-//            }
-//        })
-//        return style;
-//    }
+    me.addListener('beforepaste',function(type,html){
+        var me = this,
+            rng = me.selection.getRange(),li;
+        var root = UE.htmlparser(html.html,true);
+        if(li = domUtils.findParentByTagName(rng.startContainer,'li',true)){
+            var list = li.parentNode,tagName = list.tagName == 'OL' ? 'ul':'ol';
+            utils.each(root.getNodesByTagName(tagName),function(n){
+                n.tagName = list.tagName;
+                n.setAttr();
+                if(n.parentNode === root){
+                    type = getStyle(list) || (list.tagName == 'OL' ? 'decimal' : 'disc')
+                }else{
+                    var className = n.parentNode.getAttr('class');
+                    if(className && /custom_/.test(className)){
+                        type = className.match(/custom_(\w+)/)[1]
+                    }else{
+                        type = n.parentNode.getStyle('list-style-type');
+                    }
+                    if(!type){
+                        type = list.tagName == 'OL' ? 'decimal' : 'disc';
+                    }
+                }
+                var index = utils.indexOf(listStyle[list.tagName], type);
+                if(n.parentNode !== root)
+                    index = index + 1 == listStyle[list.tagName].length ? 0 : index + 1;
+                var currentStyle = listStyle[list.tagName][index];
+                if(customStyle[currentStyle]){
+                    n.setAttr('class', 'custom_' + currentStyle)
+
+                }else{
+                    n.setStyle('list-style-type',currentStyle)
+                }
+            })
+
+        }
+
+        html.html = root.toHtml();
+    });
+    //进入编辑器的li要套p标签
+    me.addInputRule(function(root){
+        utils.each(root.getNodesByTagName('li'),function(li){
+            var tmpP = UE.uNode.createElement('p');
+            for(var i= 0,ci;ci=li.children[i];){
+                if(ci.type == 'text' || dtd.p[ci.tagName]){
+                    tmpP.appendChild(ci);
+                }else{
+                    if(tmpP.firstChild()){
+                        li.insertBefore(tmpP,ci);
+                        tmpP = UE.uNode.createElement('p');
+                        i = i + 2;
+                    }else{
+                        i++;
+                    }
+
+                }
+            }
+            if(tmpP.firstChild() && !tmpP.parentNode || !li.firstChild()){
+                li.appendChild(tmpP);
+            }
+        });
+        var orderlisttype = {
+                'num1':/^\d+\)/,
+                'decimal':/^\d+\./,
+                'lower-alpha':/^[a-z]+\)/,
+                'upper-alpha':/^[A-Z]+\./,
+                'cn':/^[\u4E00\u4E8C\u4E09\u56DB\u516d\u4e94\u4e03\u516b\u4e5d]+[\u3001]/,
+                'cn2':/^\([\u4E00\u4E8C\u4E09\u56DB\u516d\u4e94\u4e03\u516b\u4e5d]+\)/
+            },
+            unorderlisttype = {
+                'square':'n'
+            };
+        function checkListType(content,container){
+            var span = container.firstChild();
+            if(span &&  span.type == 'element' && span.tagName == 'span' && /Wingdings|Symbol/.test(span.getStyle('font-family'))){
+                for(var p in unorderlisttype){
+                    if(unorderlisttype[p] == span.data){
+                        return p
+                    }
+                }
+                return 'disc'
+            }
+            for(var p in orderlisttype){
+                if(orderlisttype[p].test(content)){
+                    return p;
+                }
+            }
+
+        }
+        utils.each(root.getNodesByTagName('p'),function(node){
+            if(node.getAttr('class') != 'MsoListParagraph'){
+                return
+            }
+            node.setAttr('class','');
+            function appendLi(list,p,type){
+                if(list.tagName == 'ol'){
+                    p.innerHTML(p.innerHTML().replace(orderlisttype[type],''));
+                }else{
+                    p.removeChild(p.firstChild())
+                }
+
+                var li = UE.uNode.createElement('li');
+                li.appendChild(p);
+                list.appendChild(li);
+            }
+            var tmp = node,type;
+
+            if(node.parentNode.tagName != 'li' && (type = checkListType(node.innerText(),node))){
+
+                var list = UE.uNode.createElement(me.options.insertorderedlist.hasOwnProperty(type) ? 'ol' : 'ul');
+                if(customStyle[type]){
+                    list.setAttr('class','custom_'+type)
+                }else{
+                    list.setStyle('list-style-type',type)
+                }
+                while(node && node.parentNode.tagName != 'li' && checkListType(node.innerText(),node)){
+                    tmp = node.nextSibling();
+                    if(!tmp){
+                        node.parentNode.insertBefore(list,node)
+                    }
+                    appendLi(list,node,type);
+                    node = tmp;
+                }
+                if(!list.parentNode && node && node.parentNode){
+                    node.parentNode.insertBefore(list,node)
+                }
+            }
+        })
+    });
+
     //调整索引标签
     me.addListener('contentchange',function(){
-        utils.each(domUtils.getElementsByTagName(me.document,'ol ul'),function(node){
+        adjustListStyle(me.document)
+    });
 
-            if(!domUtils.inDoc(node,me.document))
+    function adjustListStyle(doc,ignore){
+        utils.each(domUtils.getElementsByTagName(doc,'ol ul'),function(node){
+
+            if(!domUtils.inDoc(node,doc))
                 return;
-//            var style;
-//            if(style = checkCustomStyle(node)){
-//                node.className = 'custom_' + style;
-//            }
-            var index = 0,type = 2,parent = node.parentNode;
+
+            var parent = node.parentNode;
+            if(parent.tagName == node.tagName){
+                var nodeStyleType = getStyle(node) || (node.tagName == 'OL' ? 'decimal' : 'disc'),
+                    parentStyleType = getStyle(parent) || (parent.tagName == 'OL' ? 'decimal' : 'disc');
+                if(nodeStyleType == parentStyleType){
+                    var styleIndex = utils.indexOf(listStyle[node.tagName], nodeStyleType);
+                    styleIndex = styleIndex + 1 == listStyle[node.tagName].length ? 0 : styleIndex + 1;
+                    setListStyle(node,listStyle[node.tagName][styleIndex])
+                }
+
+            }
+            var index = 0,type = 2;
             if( domUtils.hasClass(node,/custom_/)){
                 if(!(/[ou]l/i.test(parent.tagName) && domUtils.hasClass(parent,/custom_/))){
                     type = 1;
@@ -165,8 +331,9 @@ UE.plugins['list'] = function () {
                     type = 3;
                 }
             }
-            style = domUtils.getStyle(node, 'list-style-type');
-            node.style.cssText = style ? 'list-style-type:' + style : '';
+
+            var style = domUtils.getStyle(node, 'list-style-type');
+            style && (node.style.cssText = 'list-style-type:' + style);
             node.className = utils.trim(node.className.replace(/list-paddingleft-\w+/,'')) + ' list-paddingleft-' + type;
             utils.each(domUtils.getElementsByTagName(node,'li'),function(li){
                 li.style.cssText && (li.style.cssText = '');
@@ -210,11 +377,9 @@ UE.plugins['list'] = function () {
                     domUtils.removeAttributes(li,'class')
                 }
             });
-            adjustList(node,node.tagName.toLowerCase(),getStyle(node)||domUtils.getStyle(node, 'list-style-type'),true)
+            !ignore && adjustList(node,node.tagName.toLowerCase(),getStyle(node)||domUtils.getStyle(node, 'list-style-type'),true);
         })
-    });
-
-
+    }
     function adjustList(list, tag, style,ignoreEmpty) {
         var nextList = list.nextSibling;
         if (nextList && nextList.nodeType == 1 && nextList.tagName.toLowerCase() == tag && (getStyle(nextList) || domUtils.getStyle(nextList, 'list-style-type') || (tag == 'ol' ? 'decimal' : 'disc')) == style) {
@@ -234,6 +399,9 @@ UE.plugins['list'] = function () {
             domUtils.remove(preList);
         }
         !ignoreEmpty && domUtils.isEmptyBlock(list) && domUtils.remove(list);
+        if(getStyle(list)){
+            adjustListStyle(list.ownerDocument,true)
+        }
     }
 
     function setListStyle(list,style){
@@ -275,6 +443,19 @@ UE.plugins['list'] = function () {
         }
         var keyCode = evt.keyCode || evt.which;
         if (keyCode == 13 && !evt.shiftKey) {//回车
+            var rng = me.selection.getRange(),
+                parent = domUtils.findParent(rng.startContainer,function(node){return domUtils.isBlockElm(node)},true),
+                li = domUtils.findParentByTagName(rng.startContainer,'li',true);
+            if(parent && parent.tagName != 'PRE' && !li){
+                var html = parent.innerHTML.replace(new RegExp(domUtils.fillChar, 'g'),'');
+                if(/^\s*1\s*\.[^\d]/.test(html)){
+                    parent.innerHTML = html.replace(/^\s*1\s*\./,'');
+                    rng.setStartAtLast(parent).collapse(true).select();
+                    me.__hasEnterExecCommand = true;
+                    me.execCommand('insertorderedlist');
+                    me.__hasEnterExecCommand = false;
+                }
+            }
             var range = me.selection.getRange(),
                 start = findList(range.startContainer,function (node) {
                     return node.tagName == 'TABLE';
@@ -422,9 +603,10 @@ UE.plugins['list'] = function () {
 
 
             }
+
+
         }
         if (keyCode == 8) {
-
             //修中ie中li下的问题
             range = me.selection.getRange();
             if (range.collapsed && domUtils.isStartInblock(range)) {
@@ -536,20 +718,20 @@ UE.plugins['list'] = function () {
         }
     });
 
+    me.addListener('keyup',function(type, evt){
+        var keyCode = evt.keyCode || evt.which;
+        if (keyCode == 8) {
+            var rng = me.selection.getRange(),list;
+            if(list = domUtils.findParentByTagName(rng.startContainer,['ol', 'ul'],true)){
+                adjustList(list,list.tagName.toLowerCase(),getStyle(list)||domUtils.getComputedStyle(list,'list-style-type'),true)
+            }
+        }
+    });
     //处理tab键
     me.addListener('tabkeydown',function(){
-        function listToArray(list){
-            var arr = [];
-            for(var p in list){
-                arr.push(p)
-            }
-            return arr;
-        }
-        var range = me.selection.getRange(),
-            listStyle = {
-                'OL':listToArray(me.options.insertorderedlist),
-                'UL':listToArray(me.options.insertunorderedlist)
-            };
+
+        var range = me.selection.getRange();
+
         //控制级数
         function checkLevel(li){
             if(me.options.maxListLevel != -1){
@@ -639,7 +821,17 @@ UE.plugins['list'] = function () {
         }
 
     });
-
+    function getLi(start){
+        while(start && !domUtils.isBody(start)){
+            if(start.nodeName == 'TABLE'){
+                return null;
+            }
+            if(start.nodeName == 'LI'){
+                return start
+            }
+            start = start.parentNode;
+        }
+    }
     me.commands['insertorderedlist'] =
     me.commands['insertunorderedlist'] = {
             execCommand:function (command, style) {
@@ -658,9 +850,9 @@ UE.plugins['list'] = function () {
                 //range.shrinkBoundary();//.adjustmentBoundary();
                 range.adjustmentBoundary().shrinkBoundary();
                 var bko = range.createBookmark(true),
-                    start = domUtils.findParentByTagName(me.document.getElementById(bko.start), 'li'),
+                    start = getLi(me.document.getElementById(bko.start)),
                     modifyStart = 0,
-                    end = domUtils.findParentByTagName(me.document.getElementById(bko.end), 'li'),
+                    end =  getLi(me.document.getElementById(bko.end)),
                     modifyEnd = 0,
                     startParent, endParent,
                     list, tmp;
@@ -888,7 +1080,7 @@ UE.plugins['list'] = function () {
                 list.appendChild(frag);
                 range.insertNode(list);
                 //当前list上下看能否合并
-                adjustList(list, tag, style,true);
+                adjustList(list, tag, style);
                 //去掉冗余的tmpDiv
                 for (var i = 0, ci, tmpDivs = domUtils.getElementsByTagName(list, 'div'); ci = tmpDivs[i++];) {
                     if (ci.getAttribute('tmpDiv')) {
@@ -899,10 +1091,33 @@ UE.plugins['list'] = function () {
 
             },
             queryCommandState:function (command) {
-                return domUtils.filterNodeList(this.selection.getStartElementPath(), command.toLowerCase() == 'insertorderedlist' ? 'ol' : 'ul') ? 1 : 0;
+                var tag = command.toLowerCase() == 'insertorderedlist' ? 'ol' : 'ul';
+                var path = this.selection.getStartElementPath();
+                for(var i= 0,ci;ci = path[i++];){
+                    if(ci.nodeName == 'TABLE'){
+                        return 0
+                    }
+                    if(tag == ci.nodeName.toLowerCase()){
+                        return 1
+                    };
+                }
+                return 0;
+
             },
             queryCommandValue:function (command) {
-                var node = domUtils.filterNodeList(this.selection.getStartElementPath(), command.toLowerCase() == 'insertorderedlist' ? 'ol' : 'ul');
+                var tag = command.toLowerCase() == 'insertorderedlist' ? 'ol' : 'ul';
+                var path = this.selection.getStartElementPath(),
+                    node;
+                for(var i= 0,ci;ci = path[i++];){
+                    if(ci.nodeName == 'TABLE'){
+                        node = null;
+                        break;
+                    }
+                    if(tag == ci.nodeName.toLowerCase()){
+                        node = ci;
+                        break;
+                    };
+                }
                 return node ? getStyle(node) || domUtils.getComputedStyle(node, 'list-style-type') : null;
             }
         };

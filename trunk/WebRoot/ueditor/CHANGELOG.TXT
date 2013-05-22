@@ -1,4 +1,48 @@
-Ueditor Change List
+UEditor Change List
+
+Version 1.2.6
+    1.优化了编辑器路径的设置，可以不用手动设置路径，自动识别相关路径，解决路径设置繁琐的问题
+    2.重写了过滤粘贴机制，采用黑白名单，可以书写符合自己需求的过滤规则，可以完全定义标签的属性，甚至是style上的某个属性及其数值
+    3.优化了拖拽机制，处理浮动图片拖拽不能跟指定的某行对齐
+    4.数据同步改为失去焦点就执行，可以不再使用sync方法手动同步数据
+    5.添加了字体边框
+    6.优化了backspace/del键的操作
+    7.重写了插入代码功能，插入代码编写支持tab和回车键
+    8.表格支持排序和隔行显示
+    9.改使用closure的压缩工具
+    10.优化了undo/redo操作
+    11.优化了ui界面
+
+
+Version 1.2.5
+新增功能
+  . table整体重构
+  . table支持插入表头和标题
+  . table支持拷贝
+  . table支持任意调整宽高
+  . table支持任意前插后插行列
+  . table键盘操作仿word用户体验
+  . 添加table平均分布行、列
+  . 添加table单元格对齐方式
+  . 添加table对齐方式
+  . 添加选中部分表格,点击backspace或delete删除功能
+  . 重写表格属性、单元格属性dialog
+  . 粘贴支持纯文本,源码,纯标签3个模式选择
+  . 添加计算字数的getContentLength接口
+  . 添加计算字数事件wordcount
+  . 图片上传支持参数动态绑定
+  . 重写了list功能，支持一,一),(一),1),(1),——等新的列表标签
+  . 调整了list中tab键的逻辑
+  . 添加了可以限制列表的层级
+  . 全屏快捷键 ALT+Z
+  . 添加了uparse.js展示页加载器
+
+优化修复
+  . 优化了插入代码功能
+  . ie下默认禁用源码模式下的代码高亮
+  . 截图功能支持非ie浏览器
+  . 修正了非ie下中文输入时回退不准确的问题
+  . 改进了键盘输入时做回退的操作
 
 Version 1.2.4
 新增功能
@@ -27,7 +71,7 @@ Version 1.2.3
    . 新增国际化支持
    . 新增涂鸦功能
    . 新增大小写功能
-   . 新增getAllHtml方法，可以将整个页面的内容打出来,可以在editor_config.js里通过配置allHtmlEnabled,来配置在提交时是否使用getAllHtml来得到内容
+   . 新增getAllHtml方法，可以将整个页面的内容打出来,可以在ueditor.config.js里通过配置allHtmlEnabled,来配置在提交时是否使用getAllHtml来得到内容
    . 新增插入模板的功能
    . 新增背景功能
    . 新增UE.instants全局对象，下边挂接了所有实例化的编辑器对象
@@ -59,7 +103,7 @@ Version 1.2.2
 Version 1.2.1
 1.插入表情时，按住CTRL键可连续插入多个表情
 2.按住CTRL+Enter提交表单
-3.增加readonly属性在editor_config.js，编辑器实例上增加setEnabled,setDisabled方法，设置编辑区域是否可以编辑
+3.增加readonly属性在ueditor.config.js，编辑器实例上增加setEnabled,setDisabled方法，设置编辑区域是否可以编辑
 4.Editor上添加了getPlainTxt方法，得到编辑器的纯文本内容，但会保留段落格式
 5.修正了initialContent赋值失效的问题，赋值顺序以标签内容为先，如果没有再看initialContent内容。
 6.为insertHtml命令添加了过滤机制
@@ -147,7 +191,7 @@ Version 1.1.7.3
 
 
 version 1.1.7.2
-1.去掉了iframe.css 改为在editor_config.js中配置，避免css文件找不到的问题
+1.去掉了iframe.css 改为在ueditor.config.js中配置，避免css文件找不到的问题
 2.给下拉菜单添加了默认的文字说明
 3.Ueditor.css去掉了对外部页面css的影响
 4.修正了ie9下，编辑器的高度不随着内容缩短的问题
@@ -173,7 +217,7 @@ version 1.1.7.2
 24.优化了源码模式下的代码格式
 
 version 1.1.6.1
-1.去掉了iframe.css 改为在editor_config.js中配置，避免css文件找不到的问题
+1.去掉了iframe.css 改为在ueditor.config.js中配置，避免css文件找不到的问题
 2.给下拉菜单添加了默认的文字说明
 3.Ueditor.css去掉了对外部页面css的影响
 4.修正了ie9下，编辑器的高度不随着内容缩短的问题

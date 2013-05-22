@@ -37,7 +37,7 @@
     utils.inherits(ColorPicker, UIBase);
 
     var COLORS = (
-            'ffffff,000000,eeece1,1f497d,4f81bd,c0504d,9bbb59,8064a2,4bacc6,f79646,' +
+        'ffffff,000000,eeece1,1f497d,4f81bd,c0504d,9bbb59,8064a2,4bacc6,f79646,' +
             'f2f2f2,7f7f7f,ddd9c3,c6d9f0,dbe5f1,f2dcdb,ebf1dd,e5e0ec,dbeef3,fdeada,' +
             'd8d8d8,595959,c4bd97,8db3e2,b8cce4,e5b9b7,d7e3bc,ccc1d9,b7dde8,fbd5b5,' +
             'bfbfbf,3f3f3f,938953,548dd4,95b3d7,d99694,c3d69b,b2a2c7,92cddc,fac08f,' +
@@ -48,8 +48,8 @@
     function genColorPicker(noColorText,editor){
         var html = '<div id="##" class="edui-colorpicker %%">' +
             '<div class="edui-colorpicker-topbar edui-clearfix">' +
-             '<div unselectable="on" id="##_preview" class="edui-colorpicker-preview"></div>' +
-             '<div unselectable="on" class="edui-colorpicker-nocolor" onclick="$$._onPickNoColor(event, this);">'+ noColorText +'</div>' +
+            '<div unselectable="on" id="##_preview" class="edui-colorpicker-preview"></div>' +
+            '<div unselectable="on" class="edui-colorpicker-nocolor" onclick="$$._onPickNoColor(event, this);">'+ noColorText +'</div>' +
             '</div>' +
             '<table  class="edui-box" style="border-collapse: collapse;" onmouseover="$$._onTableOver(event, this);" onmouseout="$$._onTableOut(event, this);" onclick="return $$._onTableClick(event, this);" cellspacing="0" cellpadding="0">' +
             '<tr style="border-bottom: 1px solid #ddd;font-size: 13px;line-height: 25px;color:#39C;padding-top: 2px"><td colspan="10">'+editor.getLang("themeColor")+'</td> </tr>'+
@@ -59,14 +59,14 @@
                 html += '</tr>'+(i==60?'<tr style="border-bottom: 1px solid #ddd;font-size: 13px;line-height: 25px;color:#39C;"><td colspan="10">'+editor.getLang("standardColor")+'</td></tr>':'')+'<tr'+(i==60?' class="edui-colorpicker-tablefirstrow"':'')+'>';
             }
             html += i<70 ? '<td style="padding: 0 2px;"><a hidefocus title="'+COLORS[i]+'" onclick="return false;" href="javascript:" unselectable="on" class="edui-box edui-colorpicker-colorcell"' +
-                        ' data-color="#'+ COLORS[i] +'"'+
-                        ' style="background-color:#'+ COLORS[i] +';border:solid #ccc;'+
-                        (i<10 || i>=60?'border-width:1px;':
-                         i>=10&&i<20?'border-width:1px 1px 0 1px;':
+                ' data-color="#'+ COLORS[i] +'"'+
+                ' style="background-color:#'+ COLORS[i] +';border:solid #ccc;'+
+                (i<10 || i>=60?'border-width:1px;':
+                    i>=10&&i<20?'border-width:1px 1px 0 1px;':
 
                         'border-width:0 1px 0 1px;')+
-                        '"' +
-                    '></a></td>':'';
+                '"' +
+                '></a></td>':'';
         }
         html += '</tr></table></div>';
         return html;

@@ -175,6 +175,106 @@ UE.plugins['contextmenu'] = function () {
                     ]
                 },
                 {
+                    group:lang.tablesort,
+                    icon:'tablesort',
+                    subMenu:[
+                        {
+                            label:lang.reversecurrent,
+                            cmdName:'sorttable',
+                            value:1
+                        },
+                        {
+                            label:lang.orderbyasc,
+                            cmdName:'sorttable'
+                        },
+                        {
+                            label:lang.reversebyasc,
+                            cmdName:'sorttable',
+                            exec:function(){
+                                this.execCommand("sorttable",function(td1,td2){
+                                    var value1 = td1.innerHTML,
+                                        value2 = td2.innerHTML;
+                                    return value2.localeCompare(value1);
+                                });
+                            }
+                        },
+                        {
+                            label:lang.orderbynum,
+                            cmdName:'sorttable',
+                            exec:function(){
+                                this.execCommand("sorttable",function(td1,td2){
+                                    var value1 = td1.innerHTML.match(/\d+/),
+                                        value2 = td2.innerHTML.match(/\d+/);
+                                    if(value1) value1 = +value1[0];
+                                    if(value2) value2 = +value2[0];
+                                    return (value1||0) - (value2||0);
+                                });
+                            }
+                        },
+                        {
+                            label:lang.reversebynum,
+                            cmdName:'sorttable',
+                            exec:function(){
+                                this.execCommand("sorttable",function(td1,td2){
+                                    var value1 = td1.innerHTML.match(/\d+/),
+                                        value2 = td2.innerHTML.match(/\d+/);
+                                    if(value1) value1 = +value1[0];
+                                    if(value2) value2 = +value2[0];
+                                    return (value2||0) - (value1||0);
+                                });
+                            }
+                        }
+                    ]
+                },
+                {
+                    group:lang.borderbk,
+                    icon:'borderBack',
+                    subMenu:[
+                        {
+                            label:lang.setcolor,
+                            cmdName:"interlacetable",
+                            exec:function(){
+                                this.execCommand("interlacetable");
+                            }
+                        },
+                        {
+                            label:lang.unsetcolor,
+                            cmdName:"uninterlacetable",
+                            exec:function(){
+                                this.execCommand("uninterlacetable");
+                            }
+                        },
+                        {
+                            label:lang.setbackground,
+                            cmdName:"settablebackground",
+                            exec:function(){
+                                this.execCommand("settablebackground",{repeat:true,colorList:["#bbb","#ccc"]});
+                            }
+                        },
+                        {
+                            label:lang.unsetbackground,
+                            cmdName:"cleartablebackground",
+                            exec:function(){
+                                this.execCommand("cleartablebackground");
+                            }
+                        },
+                        {
+                            label:lang.redandblue,
+                            cmdName:"settablebackground",
+                            exec:function(){
+                                this.execCommand("settablebackground",{repeat:true,colorList:["red","blue"]});
+                            }
+                        },
+                        {
+                            label:lang.threecolorgradient,
+                            cmdName:"settablebackground",
+                            exec:function(){
+                                this.execCommand("settablebackground",{repeat:true,colorList:["#aaa","#bbb","#ccc"]});
+                            }
+                        }
+                    ]
+                },
+                {
                     group:lang.aligntd,
                     icon:'aligntd',
                     subMenu:[
@@ -222,18 +322,21 @@ UE.plugins['contextmenu'] = function () {
                     subMenu:[
                         {
                             cmdName:'tablealignment',
+                            className: 'left',
                             label:lang.tableleft,
-                            value:['float','left']
+                            value:"left"
                         },
                         {
                             cmdName:'tablealignment',
+                            className: 'center',
                             label:lang.tablecenter,
-                            value:['margin','0 auto']
+                            value:"center"
                         },
                         {
                             cmdName:'tablealignment',
+                            className: 'right',
                             label:lang.tableright,
-                            value:['float','right']
+                            value:"right"
                         }
                     ]
                 },
@@ -281,7 +384,9 @@ UE.plugins['contextmenu'] = function () {
         return;
     }
     var uiUtils = UE.ui.uiUtils;
+
     me.addListener( 'contextmenu', function ( type, evt ) {
+
         var offset = uiUtils.getViewportOffsetByEvent( evt );
         me.fireEvent( 'beforeselectionchange' );
         if ( menu ) {
@@ -308,7 +413,7 @@ UE.plugins['contextmenu'] = function () {
                                         (subItem.query ? subItem.query() : me.queryCommandState( subItem.cmdName )) > -1 ) {
                                     subMenu.push( {
                                         'label':subItem.label || me.getLang( "contextMenu." + subItem.cmdName + (subItem.value || '') )||"",
-                                        'className':'edui-for-' +subItem.cmdName,
+                                        'className':'edui-for-' +subItem.cmdName + ( subItem.className ? ( ' edui-for-' + subItem.cmdName + '-' + subItem.className ) : '' ),
                                         onclick:subItem.exec ? function () {
                                                 subItem.exec.call( me );
                                         } : function () {
@@ -330,6 +435,10 @@ UE.plugins['contextmenu'] = function () {
                                     return me.getLang("contextMenu.aligntd");
                                 case "aligntable":
                                     return me.getLang("contextMenu.aligntable");
+                                case "tablesort":
+                                    return lang.tablesort;
+                                case "borderBack":
+                                    return lang.borderbk;
                                 default :
                                     return '';
                             }
@@ -376,6 +485,7 @@ UE.plugins['contextmenu'] = function () {
         if ( contextItems[contextItems.length - 1] == '-' ) {
             contextItems.pop();
         }
+
         menu = new UE.ui.Menu( {
             items:contextItems,
             editor:me

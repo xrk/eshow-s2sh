@@ -116,7 +116,7 @@
 /**
  * 清除当前选中文字上的所有样式或者指定样式
  * @name removeFormat
- * @grammar editor.execCommand("removeFormat")   //根据editor_config.js里的removeFormatTags，removeFormatAttributes两个属性作为规则
+ * @grammar editor.execCommand("removeFormat")   //根据ueditor.config.js里的removeFormatTags，removeFormatAttributes两个属性作为规则
  * @grammar editor.execCommand("removeFormat",tags,style);   //清除指定tags上的指定style
  * @example
  * editor.execCommand("removeFormat",'span,a','color,background-color')
@@ -173,7 +173,7 @@
  * @example
  * editor.execCommand("link",{
  *     href: "http://ueditor.baidu.com",         //超链地址，必选
- *     data_ue_src: "http://ueditor.baidu.com",  //UE内部使用参数，与href保持一致即可，可选
+ *     _src: "http://ueditor.baidu.com",  //UE内部使用参数，与href保持一致即可，可选
  *     target: "_self",                          //目标窗口，可选
  *     textValue: "UEditor",                     //链接显示文本，可选
  *     title: "百度开源富文本编辑器UEditor官网"     //标题，可选
@@ -186,7 +186,7 @@
  * @example
  * editor.execCommand("insertImage",{
  *     src: "http://ueditor.baidu.com/logo.jpg",          //图片链接地址,必选
- *     data_ue_src: "http://ueditor.baidu.com/logo.jpg",  //UE内部使用参数，与src保持一致即可，可选
+ *     _src: "http://ueditor.baidu.com/logo.jpg",  //UE内部使用参数，与src保持一致即可，可选
  *     width: 300,                                        //图片显示宽度，可选
  *     height: 400,                                       //图片显示高度，可选
  *     border: 2,                                         //图片边框，可选

@@ -31,7 +31,7 @@
 							href="${ctx}/admin/info">信息列表</a>
 						</li>
 					</ul>
-					<s:form id="infoForm" cssClass="form-horizontal" action="info!update" method="post" namespace="">
+					<s:form id="infoForm" cssClass="form-horizontal" action="info!update.action" method="post">
 						<s:hidden name="id" value="%{#view.info.id}"></s:hidden>
 						<fieldset>
 							<div class="control-group">

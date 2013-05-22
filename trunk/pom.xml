@@ -13,7 +13,7 @@
     <properties>
         <spring.version>3.2.2.RELEASE</spring.version>
         <security.version>3.1.4.RELEASE</security.version>
-        <hibernate.version>4.1.12.Final</hibernate.version>
+        <hibernate.version>4.2.1.Final</hibernate.version>
         <hibernate-search.version>4.2.0.Final</hibernate-search.version>
         <hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
         <struts2.version>2.3.14</struts2.version>

@@ -56,37 +56,20 @@ UE.plugins['enterkey'] = function() {
                 }
                 //没有站位符，会出现多行的问题
                 browser.opera &&  range.select();
+            }else{
+                me.fireEvent('saveScene',true,true)
             }
-//            if(browser.ie){
-//                range = me.selection.getRange();
-//                start = range.startContainer;
-//                while(start){
-//                    if(start.nodeType == 1 && start.tagName == 'P'){
-//                        break;
-//                    }
-//                    start = start.parentNode;
-//                }
-//                if(start && domUtils.isEmptyBlock(start)){
-//                    start.innerHTML = '&nbsp;';
-//                    var rng = me.selection.getRange();
-//                    rng.setStart(start,0).setCursor(false,true);
-//                }
-//            }
-
-
-            setTimeout(function() {
-                me.selection.getRange().scrollToView(me.autoHeightEnabled, me.autoHeightEnabled ? domUtils.getXY(me.iframe).y : 0);
-            }, 50);
-
         }
     });
 
     me.addListener('keydown', function(type, evt) {
         var keyCode = evt.keyCode || evt.which;
         if (keyCode == 13) {//回车
-            if (me.undoManger) {
-                me.undoManger.save();
+            if(me.fireEvent('beforeenterkeydown')){
+                domUtils.preventDefault(evt);
+                return;
             }
+            me.fireEvent('saveScene',true,true);
             hTag = '';
 
 

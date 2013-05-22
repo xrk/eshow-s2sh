@@ -102,7 +102,8 @@
                             }),
                             range = editor.selection.getRange();
                         range.insertNode(span);
-                        pastePop.showAnchor(span);
+                        var tmp= getDomNode(span, 'firstChild', 'previousSibling');
+                        pastePop.showAnchor(tmp.nodeType == 3 ? tmp.parentNode : tmp);
                         domUtils.remove(span);
                         delete editor.ui._isTransfer;
                         isPaste = false;
@@ -277,7 +278,7 @@
                     if (editor.ui._dialogs.linkDialog) {
                         var link = editor.queryCommandValue('link');
                         var url;
-                        if (link && (url = (link.getAttribute('data_ue_src') || link.getAttribute('href', 2)))) {
+                        if (link && (url = (link.getAttribute('_href') || link.getAttribute('href', 2)))) {
                             var txt = url;
                             if (url.length > 30) {
                                 txt = url.substring(0, 20) + "...";
@@ -319,7 +320,6 @@
                         if (toolbarItem == '|') {
                             toolbarItem = 'Separator';
                         }
-
                         if (baidu.editor.ui[toolbarItem]) {
                             toolbarItemUi = new baidu.editor.ui[toolbarItem](editor);
                         }
@@ -404,15 +404,19 @@
                     this._bakBodyOverflow = document.body.style.overflow;
                     this._bakAutoHeight = this.editor.autoHeightEnabled;
                     this._bakScrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+
+                    this._bakEditorContaninerWidth = editor.iframe.parentNode.offsetWidth;
                     if (this._bakAutoHeight) {
                         //当全屏时不能执行自动长高
                         editor.autoHeightEnabled = false;
                         this.editor.disableAutoHeight();
                     }
+
                     document.documentElement.style.overflow = 'hidden';
                     document.body.style.overflow = 'hidden';
                     this._bakCssText = this.getDom().style.cssText;
                     this._bakCssText1 = this.getDom('iframeholder').style.cssText;
+                    editor.iframe.parentNode.style.width = '';
                     this._updateFullScreen();
                 } else {
                     while (container.tagName != "BODY") {
@@ -428,9 +432,10 @@
 
                     document.documentElement.style.overflow = this._bakHtmlOverflow;
                     document.body.style.overflow = this._bakBodyOverflow;
+                    editor.iframe.parentNode.style.width = this._bakEditorContaninerWidth + 'px';
                     window.scrollTo(0, this._bakScrollTop);
                 }
-                if (baidu.editor.browser.gecko) {
+                if (baidu.editor.browser.gecko && editor.body.contentEditable === 'true') {
                     var input = document.createElement('input');
                     document.body.appendChild(input);
                     editor.body.contentEditable = false;
@@ -444,8 +449,11 @@
                         }, 0)
                     }, 0)
                 }
-                this.editor.fireEvent('fullscreenchanged', fullscreen);
-                this.triggerLayout();
+                if(editor.body.contentEditable === 'true'){
+                    this.editor.fireEvent('fullscreenchanged', fullscreen);
+                    this.triggerLayout();
+                }
+
             }
         },
         _updateFullScreen:function () {
@@ -454,7 +462,10 @@
                 this.getDom().style.cssText = 'border:0;position:absolute;left:0;top:' + (this.editor.options.topOffset || 0) + 'px;width:' + vpRect.width + 'px;height:' + vpRect.height + 'px;z-index:' + (this.getDom().style.zIndex * 1 + 100);
                 uiUtils.setViewportOffset(this.getDom(), { left:0, top:this.editor.options.topOffset || 0 });
                 this.editor.setHeight(vpRect.height - this.getDom('toolbarbox').offsetHeight - this.getDom('bottombar').offsetHeight - (this.editor.options.topOffset || 0));
-
+                //不手动调一下，会导致全屏失效
+                if(browser.gecko){
+                    window.onresize();
+                }
             }
         },
         _updateElementPath:function () {
@@ -647,7 +658,7 @@
         var editor = new baidu.editor.Editor(options);
         editor.options.editor = editor;
         utils.loadFile(document, {
-            href:editor.options.themePath + editor.options.theme + "/css/ueditor.css",
+            href:editor.options.themePath + editor.options.theme + "/_css/ueditor.css",
             tag:"link",
             type:"text/css",
             rel:"stylesheet"
@@ -696,13 +707,36 @@
                     }
                     domUtils.addClass(holder, "edui-" + editor.options.theme);
                     editor.ui.render(holder);
-                    var iframeholder = editor.ui.getDom('iframeholder');
+                    var opt = editor.options;
                     //给实例添加一个编辑器的容器引用
                     editor.container = editor.ui.getDom();
-                    var options=editor.options;
-                    var width =Math.max(options.initialFrameWidth,options.minFrameWidth) ;
-                    editor.container.style.cssText = "z-index:" + options.zIndex + ";width:" + width+"px";
-                    oldRender.call(editor, iframeholder);
+                    var parents = domUtils.findParents(holder,true);
+                    var displays = [];
+                    for(var i = 0 ,ci;ci=parents[i];i++){
+                        displays[i] = ci.style.display;
+                        ci.style.display = 'block'
+                    }
+                    if (opt.initialFrameWidth) {
+                        opt.minFrameWidth = opt.initialFrameWidth;
+                    } else {
+                        opt.minFrameWidth = opt.initialFrameWidth = holder.offsetWidth;
+                    }
+                    if (opt.initialFrameHeight) {
+                        opt.minFrameHeight = opt.initialFrameHeight;
+                    } else {
+                        opt.initialFrameHeight = opt.minFrameHeight = holder.offsetHeight;
+                    }
+                    for(var i = 0 ,ci;ci=parents[i];i++){
+                        ci.style.display =  displays[i]
+                    }
+                    //编辑器最外容器设置了高度，会导致，编辑器不占位
+                    //todo 先去掉，没有找到原因
+                    if(holder.style.height){
+                        holder.style.height = ''
+                    }
+                    editor.container.style.width = opt.initialFrameWidth+ 'px';
+                    editor.container.style.zIndex = opt.zIndex;
+                    oldRender.call(editor, editor.ui.getDom('iframeholder'));
 
                 }
             })

@@ -17,56 +17,51 @@ UE.plugins['video'] = function (){
      * @param toEmbed 是否以flash代替显示
      * @param addParagraph  是否需要添加P 标签
      */
-    function creatInsertStr(url,width,height,align,toEmbed,addParagraph){
+    function creatInsertStr(url,width,height,id,align,toEmbed){
         return  !toEmbed ?
-                (addParagraph? ('<p '+ (align && align !="none" ? ( align == "center"? ' style="text-align:center;" ':' style="float:"'+ align ) : '') + '>'): '') +
-                '<img align="'+align+'" width="'+ width +'" height="' + height + '" _url="'+url+'" class="edui-faked-video"' +
-                ' src="' + me.options.UEDITOR_HOME_URL+'themes/default/images/spacer.gif" style="background:url('+me.options.UEDITOR_HOME_URL+'themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;" />' +
-                (addParagraph?'</p>':'')
+
+                '<img ' + (id ? 'id="' + id+'"' : '') + ' width="'+ width +'" height="' + height + '" _url="'+url+'" class="edui-faked-video"'  +
+                ' src="' + me.options.UEDITOR_HOME_URL+'themes/default/images/spacer.gif" style="background:url('+me.options.UEDITOR_HOME_URL+'themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;'+(align ? 'float:' + align + ';': '')+'" />'
+
                 :
                 '<embed type="application/x-shockwave-flash" class="edui-faked-video" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
-                ' src="' + url + '" width="' + width  + '" height="' + height  + '" align="' + align + '"' +
-                ( align && align !="none" ? ' style= "'+ ( align == "center"? "display:block;":" float: "+ align )  + '"' :'' ) +
+                ' src="' + url + '" width="' + width  + '" height="' + height  + '"'  + (align ? ' style="float:' + align + '"': '') +
                 ' wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true" >';
     }
 
-    function switchImgAndEmbed(img2embed){
-        var tmpdiv,
-            nodes =domUtils.getElementsByTagName(me.document, !img2embed ? "embed" : "img");
-        for(var i=0,node;node = nodes[i++];){
-            if(node.className!="edui-faked-video"){
-                continue;
+    function switchImgAndEmbed(root,img2embed){
+        utils.each(root.getNodesByTagName(img2embed ? 'img' : 'embed'),function(node){
+            if(node.getAttr('class') == 'edui-faked-video'){
+
+                var html = creatInsertStr( img2embed ? node.getAttr('_url') : node.getAttr('src'),node.getAttr('width'),node.getAttr('height'),null,node.getStyle('float') || '',img2embed);
+                node.parentNode.replaceChild(UE.uNode.createElement(html),node)
             }
-            tmpdiv = me.document.createElement("div");
-            //先看float在看align,浮动有的是时候是在float上定义的
-            var align = domUtils.getComputedStyle(node,'float');
-            align = align == 'none' ? (node.getAttribute('align') || '') : align;
-            tmpdiv.innerHTML = creatInsertStr(img2embed ? node.getAttribute("_url"):node.getAttribute("src"),node.width,node.height,align,img2embed);
-            node.parentNode.replaceChild(tmpdiv.firstChild,node);
-        }
+        })
     }
-    me.addListener("beforegetcontent",function(){
-        switchImgAndEmbed(true);
+
+    me.addOutputRule(function(root){
+        switchImgAndEmbed(root,true)
     });
-    me.addListener('aftersetcontent',function(){
-        switchImgAndEmbed(false);
-    });
-    me.addListener('aftergetcontent',function(cmdName){
-        if(cmdName == 'aftergetcontent' && me.queryCommandState('source')){
-            return;
-        }
-        switchImgAndEmbed(false);
+    me.addInputRule(function(root){
+        switchImgAndEmbed(root)
     });
 
     me.commands["insertvideo"] = {
         execCommand: function (cmd, videoObjs){
             videoObjs = utils.isArray(videoObjs)?videoObjs:[videoObjs];
-            var html = [];
+            var html = [],id = 'tmpVedio';
             for(var i=0,vi,len = videoObjs.length;i<len;i++){
                  vi = videoObjs[i];
-                 html.push(creatInsertStr( vi.url, vi.width || 420,  vi.height || 280, vi.align||"none",false,true));
+                 html.push(creatInsertStr( vi.url, vi.width || 420,  vi.height || 280, id + i,null,false));
             }
-            me.execCommand("inserthtml",html.join(""));
+            me.execCommand("inserthtml",html.join(""),true);
+            var rng = this.selection.getRange();
+            for(var i= 0,len=videoObjs.length;i<len;i++){
+                var img = this.document.getElementById('tmpVedio'+i);
+                domUtils.removeAttributes(img,'id');
+                rng.selectNode(img).select();
+                me.execCommand('imagefloat',videoObjs[i].align)
+            }
         },
         queryCommandState : function(){
             var img = me.selection.getRange().getClosedNode(),

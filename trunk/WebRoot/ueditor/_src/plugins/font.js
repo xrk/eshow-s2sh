@@ -17,8 +17,10 @@ UE.plugins['font'] = function() {
             'fontsize':'font-size',
             'fontfamily':'font-family',
             'underline':'text-decoration',
-            'strikethrough':'text-decoration'
-        };
+            'strikethrough':'text-decoration',
+            'fontborder':'border'
+        },
+        needCmd = {'underline':1,'strikethrough':1,'fontborder':1};
     me.setOpt({
         'fontfamily':[
             { name:'songti',val:'宋体,SimSun'},
@@ -35,12 +37,185 @@ UE.plugins['font'] = function() {
           ],
         'fontsize':[10, 11, 12, 14, 16, 18, 20, 24, 36]
     });
-
+//    function mergesibling(range,me){
+//        var collapsed = range.collapsed,
+//            bk = range.createBookmark(),common;
+//        if(collapsed){
+//            common = bk.start.parentNode;
+//            while(dtd.$inline[common.tagName]){
+//                common = common.parentNode;
+//            }
+//        }else{
+//
+//            common = domUtils.getCommonAncestor(bk.start,bk.end);
+//        }
+//
+//        utils.each(domUtils.getElementsByTagName(common,'span'),function(node){
+//            if(!node.parentNode){
+//                return;
+//            }
+//            function isBorder(n){
+//                if(!n)
+//                    return false;
+//                if(n.tagName != 'SPAN')
+//                    return false;
+//                var val;
+//                if(val = domUtils.getComputedStyle( n, 'border' )){
+//                    if(/1px/.test(val) && /solid/.test(val)){
+//                        return true;
+//                    }
+//                }
+//                return false;
+//            }
+//            function nextSibling(node){
+//                var next = node.nextSibling;
+//                if(next && domUtils.isBookmarkNode(next)){
+//                    next = next.nextSibling;
+//                }
+//                return next;
+//            }
+//
+//            var span = me.document.createElement('span');
+//            span.style.cssText = 'border:1px solid #000';
+//            node.parentNode.insertBefore(span,node);
+//            while(isBorder(node) && isBorder(nextSibling(node))){
+//                var val = utils.trim(node.style.cssText.replace(/border[^:]+:[^;]+;?/gi,''));
+//                node.style.cssText = val;
+//                var tmp  = node.nextSibling;
+//                if(!val){
+//                    while(node.firstChild){
+//                        if(isBorder(node.firstChild)){
+//                            node.firstChild.style.cssText = node.firstChild.style.cssText.replace(/border[^:]+:[^;]+;?/gi,'');
+//                        }
+//                        span.appendChild(node.firstChild)
+//                    }
+//                    domUtils.remove(node)
+//                }else{
+//                    span.appendChild(node);
+//                }
+//                if(domUtils.isBookmarkNode(tmp)){
+//                    node = tmp.nextSibling;
+//                    span.appendChild(tmp)
+//                }else{
+//                    node = tmp;
+//                }
+//            }
+//            if(!span.firstChild){
+//                domUtils.remove(span)
+//            }else{
+//                if(isBorder(span) && isBorder(nextSibling(span))){
+//                    node = span.nextSibling;
+//                    var val = utils.trim(node.style.cssText.replace(/border[^:]+:[^;]+;?/gi,''));
+//                    node.style.cssText = val;
+//
+//                    if(!val){
+//                        while(node.firstChild){
+//                            if(isBorder(node.firstChild)){
+//                                node.firstChild.style.cssText = node.firstChild.style.cssText.replace(/border[^:]+:[^;];?/,'');
+//                            }
+//                            span.appendChild(node.firstChild)
+//                        }
+//                        domUtils.remove(node)
+//                    }else{
+//                        span.appendChild(node);
+//                    }
+//                }
+//            }
+//            if(isBorder(node)){
+//                var tmpParent = node.parentNode;
+//                while(dtd.$inline[tmpParent.tagName]){
+//                    if(isBorder(tmpParent)){
+//                        var val = utils.trim(node.style.cssText.replace(/border[^:]+:[^;]+;?/gi,''));
+//                        node.style.cssText = val;
+//                        if(!val){
+//                            domUtils.remove(node,true)
+//                        }
+//                        break;
+//                    }
+//                    tmpParent = tmpParent.parentNode;
+//
+//                }
+//
+//            }
+//
+//        });
+//        range.moveToBookmark(bk);
+//    }
+    function mergesibling(rng){
+        var collapsed = rng.collapsed,
+            bk = rng.createBookmark(),common;
+        if(collapsed){
+            common = bk.start.parentNode;
+            while(dtd.$inline[common.tagName]){
+                common = common.parentNode;
+            }
+        }else{
+            common = domUtils.getCommonAncestor(bk.start,bk.end);
+        }
+        utils.each(domUtils.getElementsByTagName(common,'span'),function(span){
+            if(!span.parentNode || domUtils.isBookmarkNode(span))return;
+            if(/^\s*border\s*:\s*none;\s*/i.test(span.style.cssText)){
+                domUtils.remove(span,true);
+                return
+            }
+            if(/border/i.test(span.style.cssText) && span.parentNode.tagName == 'SPAN' && /border/i.test(span.parentNode.style.cssText)){
+                span.style.cssText = span.style.cssText.replace(/border[^:]*:[^;]+;?/gi,'');
+            }
+            var next = span.nextSibling;
+            while(next && next.nodeType == 1 && next.tagName == 'SPAN'){
+                if(domUtils.isBookmarkNode(next)){
+                    span.appendChild(next);
+                }else{
+                    if(next.style.cssText == span.style.cssText){
+                        domUtils.moveChild(next,span);
+                        domUtils.remove(next);
+                    }
+                }
+                if(span.nextSibling === next)
+                    break;
+                next = span.nextSibling;
+            }
+        });
+        rng.moveToBookmark(bk);
+    }
+    me.addInputRule(function(root){
+        utils.each(root.getNodesByTagName('u s del font'),function(node){
+            if(node.tagName == 'font'){
+                var cssStyle = [];
+                for(var p in node.attrs){
+                    switch (p){
+                        case 'size':
+                            cssStyle.push('font-size:' + node.attrs[p] + 'px');
+                            break;
+                        case 'color':
+                            cssStyle.push('color:'+ node.attrs[p]);
+                            break;
+                        case 'face':
+                            cssStyle.push('font-family:'+ node.attrs[p]);
+                            break;
+                        case 'style':
+                            cssStyle.push(node.attrs[p]);
+                    }
+                }
+                node.attrs = {
+                    'style' : cssStyle.join(';')
+                };
+            }else{
+                var val = node.tagName == 'u' ? 'underline' : 'line-through';
+                node.attrs = {
+                    'style' : (node.getAttr('style') || '') + 'text-decoration:'+val+';'
+                }
+            }
+            node.tagName = 'span';
+        });
+    });
     for ( var p in fonts ) {
         (function( cmd, style ) {
             UE.commands[cmd] = {
                 execCommand : function( cmdName, value ) {
-                    value = value || (this.queryCommandState(cmdName) ? 'none' : cmdName == 'underline' ? 'underline' : 'line-through');
+                    value = value || (this.queryCommandState(cmdName) ? 'none' : cmdName == 'underline' ? 'underline' :
+                        cmdName == 'fontborder' ? '1px solid #000' :
+                       'line-through');
                     var me = this,
                         range = this.selection.getRange(),
                         text;
@@ -60,14 +235,15 @@ UE.plugins['font'] = function() {
 
 
                     } else {
-
                             if ( !range.collapsed ) {
-                                if((cmd == 'underline'||cmd=='strikethrough') && me.queryCommandValue(cmd)){
+                                if(needCmd[cmd] && me.queryCommandValue(cmd)){
                                      me.execCommand( 'removeFormat', 'span,a', style );
                                 }
                                 range = me.selection.getRange();
 
-                                range.applyInlineStyle( 'span', {'style':style + ':' + value} ).select();
+                                range.applyInlineStyle( 'span', {'style':style + ':' + value} );
+                                mergesibling(range,me);
+                                range.select();
                             } else {
 
                                 var span = domUtils.findParentByTagName(range.startContainer,'span',true);
@@ -75,7 +251,7 @@ UE.plugins['font'] = function() {
                                 if(span && !span.children.length && !span[browser.ie ? 'innerText':'textContent'].replace(fillCharReg,'').length){
                                     //for ie hack when enter
                                     range.insertNode(text);
-                                     if(cmd == 'underline'||cmd=='strikethrough'){
+                                     if(needCmd[cmd]){
                                          range.selectNode(text).select();
                                          me.execCommand( 'removeFormat','span,a', style, null );
 
@@ -83,7 +259,7 @@ UE.plugins['font'] = function() {
                                          range.setStartBefore(text);
 
                                     }
-                                    span.style.cssText += ';' + style + ':' + value;
+                                    span && (span.style.cssText += ';' + style + ':' + value);
                                     range.collapse(true).select();
 
 
@@ -92,7 +268,7 @@ UE.plugins['font'] = function() {
                                     range.selectNode(text).select();
                                     span = range.document.createElement( 'span' );
 
-                                    if(cmd == 'underline'||cmd=='strikethrough'){
+                                    if(needCmd[cmd]){
                                         //a标签内的不处理跳过
                                         if(domUtils.findParentByTagName(text,'a',true)){
                                             range.setStartBefore(text).setCursor();
@@ -119,18 +295,21 @@ UE.plugins['font'] = function() {
                                     }
 
 
+
                                     if(opera){
                                         setTimeout(function(){
-                                            range.setStart(span,0).setCursor();
+                                            range.setStart(span,0).collapse(true);
+                                            mergesibling(range,me);
+                                            range.select();
                                         });
                                     }else{
-                                        range.setStart(span,0).setCursor();
+                                        range.setStart(span,0).collapse(true);
+                                        mergesibling(range,me);
+                                        range.select();
                                     }
 
                                     //trace:981
                                     //domUtils.mergeToParent(span)
-
-
                                 }
                                 domUtils.remove(text);
                             }
@@ -158,17 +337,33 @@ UE.plugins['font'] = function() {
                         }
                         return 'none';
                     }
+                    if(cmdName == 'fontborder'){
+                        var tmp = startNode,val;
+                        while(tmp && dtd.$inline[tmp.tagName]){
+                            if(val = domUtils.getComputedStyle( tmp, 'border' )){
+                                if( /1px/.test(val) && /solid/.test(val)){
+                                    return val;
+                                }
+                            }
+                            tmp = tmp.parentNode;
+                        }
+                        return ''
+                    }
                     return  domUtils.getComputedStyle( startNode, style );
                 },
                 queryCommandState : function(cmdName){
-                    if(!(cmdName == 'underline'||cmdName=='strikethrough')){
+                    if(!needCmd[cmdName])
                         return 0;
+                    var val = this.queryCommandValue(cmdName);
+                    if(cmdName == 'fontborder'){
+                        return /1px/.test(val) && /solid/.test(val)
+                    }else{
+                        return  val == (cmdName == 'underline' ?
+                            'underline' : 'line-through');
                     }
-                    return this.queryCommandValue(cmdName) == (cmdName == 'underline' ? 'underline' : 'line-through');
+
                 }
             };
         })( p, fonts[p] );
     }
-
-
 };

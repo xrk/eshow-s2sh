@@ -10,6 +10,7 @@
         Popup = baidu.editor.ui.Popup,
         Stateful = baidu.editor.ui.Stateful,
         CellAlignPicker = baidu.editor.ui.CellAlignPicker,
+
         Menu = baidu.editor.ui.Menu = function (options) {
             this.initOptions(options);
             this.initMenu();
@@ -49,6 +50,8 @@
             return menuSeparator;
         },
         createItem:function (item) {
+            //新增一个参数menu, 该参数存储了menuItem所对应的menu引用
+            item.menu = this;
             return new MenuItem(item);
         },
         _Popup_getContentHtmlTpl:Popup.prototype.getContentHtmlTpl,
@@ -117,6 +120,10 @@
     };
     utils.inherits(Menu, Popup);
 
+    /**
+     * @update 2013/04/03 hancong03 新增一个参数menu, 该参数存储了menuItem所对应的menu引用
+     * @type {Function}
+     */
     var MenuItem = baidu.editor.ui.MenuItem = function (options) {
         this.initOptions(options);
         this.initUIBase();
@@ -124,6 +131,10 @@
         if (this.subMenu && !(this.subMenu instanceof Menu)) {
             if (options.className && options.className.indexOf("aligntd") != -1) {
                 var me = this;
+
+                //获取单元格对齐初始状态
+                this.subMenu.selected = this.editor.queryCommandValue( 'cellalignment' );
+
                 this.subMenu = new Popup({
                     content:new CellAlignPicker(this.subMenu),
                     parentMenu:me,

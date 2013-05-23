@@ -7,8 +7,6 @@
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
 <head>
 	<title>讨论区</title>
-	<link rel="stylesheet"
-		href="<c:url value='/admin/styles/topic.css'/>" type="text/css" />
 </head>
 <body>
 	<div class="container mt">
@@ -29,7 +27,9 @@
 							<a href="<c:url value='/admin/tipic/add'/>" class="btn btn-primary">  添加</a>
 						</div>
 						<h3 class="yahei">信息修改</h3>
-						<ul id="myTab" class="nav nav-tabs">
+						<div class="navbar">
+			              <div class="navbar-inner">
+						<ul class="nav">
 							<li  class="active"><a data-toggle="tab"
 								href="<c:url value='/admin/topic/'/>">话题列表</a></li>
 							<li><a data-toggle="tab"
@@ -44,8 +44,12 @@
 								href="<c:url value='/admin/board'/>">话题板块</a></li>
 						</ul>
 					</div>
+				</div>
+					</div>
+
+
 					<div id="analysis">
-						<div class="subnav">
+						<div class="subnav yahei">
 							<c:if test="${param.squence==1}">
 								<a href="<c:url value='/admin/topic'/>">全部</a>
 							</c:if>

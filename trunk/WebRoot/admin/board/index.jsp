@@ -27,20 +27,18 @@
 						</div>
 						<h3 class="yahei">话题板块列表</h3>
 					</div>
-						<ul id="myTab" class="nav nav-tabs">
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/'/>">信息列表</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/audit'/>">未审核</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
-							<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
-								<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
-							<li  class="active"><a data-toggle="tab"
-								href="<c:url value='/admin/board'/>">话题板块</a></li>
+					<div class="navbar">
+			              <div class="navbar-inner">
+						<ul class="nav">
+							<li><a href="<c:url value='/admin/topic/'/>">信息列表</a></li>
+							<li><a href="<c:url value='/admin/topic/audit'/>">未审核</a></li>
+							<li><a href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
+							<li><a href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
+							<li><a href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
+							<li  class="active"><a href="<c:url value='/admin/board'/>">话题板块</a></li>
 						</ul>
+					</div>
+				</div>
 						<s:action name="board!list" id="boardList" executeResult="false"></s:action>	
 				<table class="table table-striped table-bordered table-condensed">
 					<thead>

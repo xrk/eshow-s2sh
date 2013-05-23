@@ -37,12 +37,16 @@
 						</div>
 						<h3 class="yahei">修改资料</h3>
 					</div>
-						<ul id="myTab" class="nav nav-tabs">
-							<li><a data-toggle="tab" href="<c:url value='/admin/user'/>">用户列表</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/user/edit'/>">修改资料</a></li>
-							<li><a data-toggle="tab" href="<c:url value='/admin/user/password'/>">修改密码</a></li>
-							<li  class="active"><a data-toggle="tab" href="<c:url value='/admin/user/setphoto'/>">修改头像</a></li>
+					<div class="navbar">
+			          <div class="navbar-inner"> 
+						<ul class="nav">
+							<li><a href="<c:url value='/admin/user'/>">用户列表</a></li>
+							<li><a href="<c:url value='/admin/user/edit'/>">修改资料</a></li>
+							<li><a href="<c:url value='/admin/user/password'/>">修改密码</a></li>
+							<li  class="active"><a href="<c:url value='/admin/user/setphoto'/>">修改头像</a></li>
 						</ul>
+					</div>
+				</div>
 						<%@ include file="/common/messages.jsp"%>
 						
 						<form class="form-horizontal"  action="user!photo" id="userForm" method="post" validate="false">

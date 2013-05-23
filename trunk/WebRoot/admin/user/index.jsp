@@ -26,12 +26,16 @@
 						</div>
 						<h3 class="yahei">用户管理</h3>
 					</div>
-					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/user'/>">用户列表</a></li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/user/edit'/>">修改资料</a></li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/user/password'/>">修改密码</a></li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/user/setphoto'/>">修改头像</a></li>
-					</ul>
+					<div class="navbar">
+			          <div class="navbar-inner"> 
+							<ul id="myTab" class="nav">
+								<li class="active"><a href="<c:url value='/admin/user'/>">用户列表</a></li>
+								<li><a href="<c:url value='/admin/user/edit'/>">修改资料</a></li>
+								<li><a href="<c:url value='/admin/user/password'/>">修改密码</a></li>
+								<li><a href="<c:url value='/admin/user/setphoto'/>">修改头像</a></li>
+							</ul>
+						</div>
+					</div>
 					<s:action name="user!search" id="userList" executeResult="false">
 						<s:param name="query.pagesize">10</s:param>
 					</s:action>

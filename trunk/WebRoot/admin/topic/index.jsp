@@ -8,8 +8,6 @@
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
 <head>
 	<title>讨论区</title>
-	<link rel="stylesheet" href="<c:url value='/admin/styles/topic.css'/>"
-		type="text/css" />
 </head>
 <body>
 	<div class="container mt">
@@ -32,17 +30,23 @@
 						</div>
 						<h3 class="yahei">讨论中心</h3>
 					</div>
-					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/topic/'/>">话题列表</a></li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/topic/audit'/>">未审核</a></li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
-						<li><a data-toggle="tab"
-								href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/board'/>">话题板块</a></li>
-					</ul>
-					<div id="analysis">
-						<div class="subnav">
+
+					<div class="navbar">
+			              <div class="navbar-inner"> 
+							<ul class="nav">
+								<li class="active"><a data-toggle="tab" href="<c:url value='/admin/topic/'/>">话题列表</a></li>
+								<li><a data-toggle="tab" href="<c:url value='/admin/topic/audit'/>">未审核</a></li>
+								<li><a data-toggle="tab" href="<c:url value='/admin/topic/mine'/>">我发表的话题</a></li>
+								<li><a data-toggle="tab" href="<c:url value='/admin/topic/replied'/>">我参与的话题</a></li>
+								<li><a data-toggle="tab"
+										href="<c:url value='/admin/topic/workmate'/>">周围的话题</a></li>
+								<li><a data-toggle="tab" href="<c:url value='/admin/board'/>">话题板块</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div id="analysis"> 
+						<div class="subnav yahei">
 							<strong>全部</strong>
 							<s:action name="board!list" id="boardList" executeResult="false">
 							</s:action>

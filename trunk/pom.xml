@@ -16,7 +16,7 @@
         <hibernate.version>4.2.1.Final</hibernate.version>
         <hibernate-search.version>4.2.0.Final</hibernate-search.version>
         <hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
-        <struts2.version>2.3.14</struts2.version>
+        <struts2.version>2.3.14.2</struts2.version>
 		<lucene.version>3.6.2</lucene.version>
 
         <quartz.version>2.1.6</quartz.version>

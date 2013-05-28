@@ -1,17 +1,15 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <%@ include file="/common/taglibs.jsp"%>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>首页_EShow开源框架</title>
-<link href="${ctx}/components/bootstrap/css/bootstrap.css" rel="stylesheet" />
-<link href="${ctx}/components/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
-<link href="${ctx}/styles/style.css" rel="stylesheet" />
-<script src="${ctx}/components/bootstrap/js/jquery-1.9.1.min.js" />
-<script src="${ctx}/components/bootstrap/js/bootstrap-carousel.js"></script>
+
+<link href="${static}/styles/style.css" rel="stylesheet" />
+<%@ include file="/common/jquery.jsp"%>
+<script src="${static}/bootstrap/js/bootstrap-carousel.js"></script>
 <decorator:head />
 </head>
 <body
@@ -23,16 +21,11 @@
 	<p class="pull-right">
 		<a href="#">回到顶端</a>
 	</p>
-
-
 	<p>ICP备案编号：苏ICP备10018847号</p>
 	<p class="links">
-		<a href="${ctx}/info/about">关于我们</a>
-		<a href="${ctx}/info/feedback">汇报Bug</a>
-		<a href="${ctx}/info/team">团队成员</a>
-		<a href="${ctx}/info/svn">源码</a> 
-		<a href="${ctx}/info/joinus">加入我们</a>
-		<a href="${ctx}/info/link">友情链接</a>
+		<a href="${ctx}/info/about">关于我们</a> <a href="${ctx}/info/feedback">汇报Bug</a>
+		<a href="${ctx}/info/team">团队成员</a> <a href="${ctx}/info/svn">源码</a> <a
+			href="${ctx}/info/joinus">加入我们</a> <a href="${ctx}/info/link">友情链接</a>
 	</p>
 	<p>
 		Copyright © 2009 www.eshow.org.cn All rights reserved.

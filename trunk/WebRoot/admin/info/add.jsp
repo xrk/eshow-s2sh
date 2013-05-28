@@ -3,14 +3,12 @@
 <%@ include file="/common/taglibs.jsp"%>
 <head>
 <title>添加信息</title>
-<script type="text/javascript" charset="utf-8"
-	src="<c:url value="/components/kindeditor/kindeditor.js"/>"></script>
 <%@ include file="/common/validate.jsp"%>
 <script type="text/javascript">
-		window.addEvent('domready', function() {
-			new FormCheck('infoForm');
-		});
-    </script>
+	window.addEvent('domready', function() {
+		new FormCheck('infoForm');
+	});
+</script>
 </head>
 <body>
 	<div class="container mt">
@@ -21,16 +19,15 @@
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
 					<li><a href="${ctx}/admin/info/">信息中心</a> <span
-						class="divider">/</span>
-					</li>
+						class="divider">/</span></li>
 					<li class="active">添加信息</li>
 				</ul>
 				<div class="well com">
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="<c:url value='/admin/info'/>">信息列表</a>
-						</li>
+						<li class="active"><a data-toggle="tab"
+							href="<c:url value='/admin/info'/>">信息列表</a></li>
 					</ul>
-					<form class="form-horizontal" action="info!save" method="post" id="infoForm">
+					<s:form id="infoForm" cssClass="form-horizontal" action="info!save.action" method="post">
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="input01">信息URL</label>
@@ -58,7 +55,7 @@
 								<button class="btn" onclick="javascript:history.back();">取消</button>
 							</div>
 						</fieldset>
-					</form>
+					</s:form>
 				</div>
 			</div>
 		</div>

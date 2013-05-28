@@ -23,10 +23,4 @@
         <property name="templateName" value="accountCreated.vm"/>
     </bean>
     
-    <bean id="passwordHintAction" class="com.logo.eshow.webapp.action.PasswordHintAction" scope="prototype">
-        <property name="userManager" ref="userManager"/>
-        <property name="mailEngine" ref="mailEngine"/>
-        <property name="mailMessage" ref="mailMessage"/>
-    </bean>
-    
 </beans>

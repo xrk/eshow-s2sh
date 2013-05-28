@@ -10,12 +10,10 @@
 		$('.carousel').carousel({
 			interval : 2000
 		});
-	})
+	});
 </script>
 </head>
-
 <body>
-
 	<header id="header">
 		<div class="hero-unit showcase">
 			<div class="container">

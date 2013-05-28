@@ -1,12 +1,12 @@
 ﻿package com.logo.eshow.webapp.action;
 
 import com.logo.eshow.bean.query.ProductQuery;
+import com.logo.eshow.common.CommonVar;
 import com.logo.eshow.common.page.Page;
+import com.logo.eshow.components.upyun.UpYunUtil;
 import com.logo.eshow.model.Product;
 import com.logo.eshow.service.ProductManager;
 import com.logo.eshow.service.ProductCategoryManager;
-import com.logo.eshow.util.DateUtil;
-import com.logo.eshow.util.ImageUtil;
 import com.logo.eshow.util.PageUtil;
 
 import java.util.Date;
@@ -18,8 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "admin/product/view/${id}"),
-		@Result(name = "delete", type = "redirect", location = "admin/product/index"),
+		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class ProductAction extends BaseFileUploadAction {
 	/**
@@ -44,28 +43,19 @@ public class ProductAction extends BaseFileUploadAction {
 		Page<Product> page = productManager.search(query);
 		products = page.getDataList();
 		saveRequest("page", PageUtil.conversion(page));
-		return LIST;
-	}
-	
-	public String serachproduct(){
-		Page<Product> page = productManager.search(query);
-		products = page.getDataList();
-		saveRequest("page", PageUtil.conversion(page));
 		return REDIRECT;
 	}
 
-	public String delete() {
-		productManager.remove(id);
-		saveMessage("删除成功");
-		return "delete";
+	public void delete() {
+		product = productManager.get(id);
+		if (getSessionUser().equals(product.getUser())) {
+			productManager.remove(id);
+		}
 	}
 
 	public String view() {
 		if (id != null) {
 			product = productManager.get(id);
-		} else {
-			return INDEX;
-
 		}
 		return NONE;
 	}
@@ -78,13 +68,8 @@ public class ProductAction extends BaseFileUploadAction {
 		if (productCategoryId != null) {
 			old.setProductCategory(productCategoryManager.get(productCategoryId));
 		}
-
 		if (file != null) {
-			String path = "upload/product/" + DateUtil.getDateTime("yyyyMMdd", old.getAddTime())
-					+ "/";
-			ImageUtil.uploadImage(path, old.getId().toString(), file);
-			old.setImg(old.getId() + ".jpg");
-			// 根据缩略图规则进行缩略图生成
+			old.setImg(UpYunUtil.upload(file));
 		}
 		productManager.save(old);
 		saveMessage("修改成功");
@@ -98,16 +83,13 @@ public class ProductAction extends BaseFileUploadAction {
 			product.setProductCategory(productCategoryManager.get(productCategoryId));
 		}
 		product.setUser(getSessionUser());
-		product = productManager.save(product);
+		product.setCount(CommonVar.DEFAULT);
+		product.setSequence(0);
+		product.setEnabled(Boolean.TRUE);
 		if (file != null) {
-			String path = "upload/product/"
-					+ DateUtil.getDateTime("yyyyMMdd", product.getAddTime()) + "/";
-			ImageUtil.uploadImage(path, product.getId().toString(), file);
-			product.setImg(product.getId() + ".jpg");
-			// 根据缩略图规则进行缩略图生成
-			productManager.save(product);
+			product.setImg(UpYunUtil.upload(file));
 		}
-
+		productManager.save(product);
 		saveMessage("添加成功");
 		id = product.getId();
 		return SUCCESS;
@@ -120,7 +102,6 @@ public class ProductAction extends BaseFileUploadAction {
 	public void setProductManager(ProductManager productManager) {
 		this.productManager = productManager;
 	}
-
 
 	public List<Product> getProducts() {
 		return products;

@@ -45,7 +45,7 @@ public class ServiceTypeAction extends BaseAction {
 		return LIST;
 	}
 
-	public String delete() {
+	public void delete() {
 		// 根据ID得到服务分类
 		ServiceType serviceType = serviceTypeManager.get(id);
 		if (serviceType != null) {
@@ -62,7 +62,6 @@ public class ServiceTypeAction extends BaseAction {
 			serviceTypeManager.remove(id);
 			saveMessage("删除成功");
 		}
-		return "delete";
 	}
 
 	public String view() {
@@ -78,14 +77,14 @@ public class ServiceTypeAction extends BaseAction {
 		old.setRemark(serviceType.getRemark());
 		serviceTypeManager.save(old);
 		saveMessage("修改成功");
-		return "delete";
+		return LIST;
 	}
 
 	public String save() throws Exception {
 		serviceTypeManager.save(serviceType);
 		saveMessage("添加成功");
 		id = serviceType.getId();
-		return "delete";
+		return LIST;
 	}
 
 	public ServiceTypeManager getServiceTypeManager() {

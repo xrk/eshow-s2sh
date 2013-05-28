@@ -1,39 +1,33 @@
 package com.logo.eshow.components.upyun;
 
-import java.net.URL;
+import java.io.File;
+import java.util.Date;
 
-import com.logo.eshow.model.Service;
 import com.logo.eshow.util.DateUtil;
 import com.logo.eshow.util.FileUtil;
 
 public class UpYunUtil {
 
 	/**
-	 * 上传图片到服务空间
-	 * 
-	 * @param service服务
-	 * @param step版本库是否增加
+	 * 上传图片
 	 * 
 	 * @return 上传后地址
 	 */
-	public static String upload(Service service, int step) {
+	public static String upload(File file) {
 		try {
 			// 初始化空间
-			UpYun upyun = new UpYun("bangqu-service", UpYunConfig.USERNAME, UpYunConfig.PASSWORD);
-			String url = service.getImg().replace(".middle.jpg", "");
-			String filePath = "/" + DateUtil.getDateTime("yyyy/MM/dd", service.getAddTime()) + "/"
-					+ service.getId() + "-" + (step) + FileUtil.getFileExt(url);// 又拍云存储的位置
-			if (upyun.writeFile(filePath,
-					FileUtil.inputStreamToByte(new URL(url).openConnection().getInputStream()),
-					true))// 上传图片到又拍云存储
+			UpYun upyun = new UpYun("eshow", UpYunConfig.USERNAME, UpYunConfig.PASSWORD);
+			String path = "/" + DateUtil.getDateTime("yyyy/MM/dd", new Date()) + "/"
+					+ System.currentTimeMillis() + FileUtil.getFileExt(file.getName());// 又拍云存储的位置
+			if (upyun.writeFile(path, file, true))// 上传图片到又拍云存储
 			{
-				service.setImg(UpYunConfig.IMG + filePath);
+				return UpYunConfig.IMG + path;
 			} else {
-				service.setImg(UpYunConfig.IMG + "/default.jpg");// 服务默认图片
+				return "";
 			}
 		} catch (Exception e) {
-			service.setImg(UpYunConfig.IMG + "/default.jpg");// 服务默认图片
+			return "";
 		}
-		return service.getImg();
 	}
+
 }

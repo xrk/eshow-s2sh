@@ -41,10 +41,14 @@ public class AlbumAction extends BaseAction {
 		return LIST;
 	}
 
-	public String delete() {
-		albumManager.remove(id);
-		saveMessage("删除成功");
-		return LIST;
+	public void delete() {
+		album = albumManager.get(id);
+		if (album.getUser().equals(getSessionUser())) {
+			albumManager.remove(id);
+			success("删除成功");
+		} else {
+			failure("删除失败");
+		}
 	}
 
 	public String view() {

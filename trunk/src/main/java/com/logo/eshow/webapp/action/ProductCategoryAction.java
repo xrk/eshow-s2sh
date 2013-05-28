@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
 		@Result(name = "success", type = "redirect", location = "view/${id}"),
-		@Result(name = "delete", type = "redirect", location = "admin/productCategory/"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class ProductCategoryAction extends BaseAction {
 	/**
@@ -60,14 +59,12 @@ public class ProductCategoryAction extends BaseAction {
 			productCategoryManager.remove(id);
 			saveMessage("删除成功");
 		}
-		return "delete";
+		return LIST;
 	}
 
 	public String view() {
 		if (id != null) {
 			productCategory = productCategoryManager.get(id);
-		} else {
-			return INDEX;
 		}
 		return NONE;
 	}
@@ -78,21 +75,20 @@ public class ProductCategoryAction extends BaseAction {
 		old.setDescription(productCategory.getDescription());
 		productCategoryManager.save(old);
 		saveMessage("修改成功");
-		return "delete";
+		return LIST;
 	}
 
 	public String save() throws Exception {
 		productCategoryManager.save(productCategory);
 		saveMessage("添加成功");
-		return "delete";
+		return LIST;
 	}
 
 	public ProductCategoryManager getProductCategoryManager() {
 		return productCategoryManager;
 	}
 
-	public void setProductCategoryManager(
-			ProductCategoryManager productCategoryManager) {
+	public void setProductCategoryManager(ProductCategoryManager productCategoryManager) {
 		this.productCategoryManager = productCategoryManager;
 	}
 

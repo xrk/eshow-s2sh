@@ -40,13 +40,14 @@ public class InfoAction extends BaseAction {
 		return LIST;
 	}
 
-	public String delete() {
+	public void delete() {
 		info = infoManager.get(id);
 		if (info != null) {
 			info.setEnabled(Boolean.FALSE);
-			saveMessage("删除成功");
+			success("删除成功");
+		} else {
+			failure("参数不正确");
 		}
-		return LIST;
 	}
 
 	public String view() {
@@ -73,8 +74,8 @@ public class InfoAction extends BaseAction {
 
 	public String save() throws Exception {
 		info = infoManager.save(info);
-		saveMessage("添加成功");
 		id = info.getId();
+		saveMessage("添加成功");
 		return SUCCESS;
 	}
 

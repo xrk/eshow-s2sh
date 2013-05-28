@@ -46,7 +46,7 @@ public class TopicAction extends BaseAction {
 		return LIST;
 	}
 
-	public String delete() {
+	public void delete() {
 		Topic old = topicManager.get(id);
 		if (old.getUser().getId().equals(getSessionUser().getId())) {
 			if (old.getCommentSize() == 0) {
@@ -58,7 +58,6 @@ public class TopicAction extends BaseAction {
 		} else {
 			saveMessage("无权删除");
 		}
-		return LIST;
 	}
 
 	public String view() {

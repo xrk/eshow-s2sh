@@ -13,10 +13,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.logo.eshow.Constants;
+import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.User;
 import com.logo.eshow.service.MailEngine;
 import com.logo.eshow.service.RoleManager;
 import com.logo.eshow.service.UserManager;
+import com.logo.eshow.util.JacksonUtil;
+import com.logo.eshow.webapp.util.Struts2Utils;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
@@ -246,6 +249,73 @@ public class BaseAction extends ActionSupport {
 			user = (User) auth.getPrincipal();
 		}
 		return user;
+	}
+	
+	/**
+	 * 返回成功信息
+	 */
+	public void success() {
+		Struts2Utils.renderText("{\"status\":\"1\"}");
+	}
+
+	/**
+	 * 返回成功信息及提示
+	 */
+	public void success(String msg) {
+		Struts2Utils.renderText("{\"status\":\"1\",\"msg\":\"" + msg + "\"}");
+	}
+
+	/**
+	 * 返回成功信息及提示及对应的PO
+	 */
+	public void success(String msg, Object object) {
+		Struts2Utils.renderText("{\"status\":\"1\",\"msg\":\"" + msg + "\",\""
+				+ object.getClass().getSimpleName().toLowerCase() + "\":"
+				+ JacksonUtil.toJson(object) + "}");
+	}
+
+	/**
+	 * 返回失败信息
+	 */
+	public void failure() {
+		Struts2Utils.renderText("{\"status\":\"0\"}");
+	}
+
+	/**
+	 * 返回失败信息及提示
+	 */
+	public void failure(String msg) {
+		Struts2Utils.renderText("{\"status\":\"0\",\"msg\":\"" + msg + "\"}");
+	}
+
+	/**
+	 * 输出列表JSONArray
+	 * 
+	 * @param page
+	 */
+	public void list(String name, String msg, List<Object> list) {
+		if (list.isEmpty()) {
+			failure("没有数据");
+		} else {
+			Struts2Utils.renderText("{\"status\":\"1\",\"msg\":\"" + msg + "\",\"" + name + "\":"
+					+ JacksonUtil.toJson(list) + "}");
+		}
+	}
+
+	/**
+	 * 输出分页JSONArray
+	 * 
+	 * @param page
+	 */
+	public void search(String name, String msg, Page<Object> page) {
+		if (page.getDataList().isEmpty()) {
+			failure("没有数据");
+		} else {
+			Struts2Utils.renderText("{\"status\":\"1\",\"msg\":\"" + msg + "\",\"total\":"
+					+ page.getTotal() + ",\"totalPage\":" + page.getTotalPage() + ",\"pageSize\":"
+					+ page.getPageSize() + ",\"" + name + "\":"
+					+ JacksonUtil.toJson(page.getDataList()) + "}");
+		}
 	}
 
 	public void setUserManager(UserManager userManager) {

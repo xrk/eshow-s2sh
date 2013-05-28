@@ -2,11 +2,10 @@ package com.logo.eshow.webapp.action;
 
 import com.logo.eshow.bean.query.ServiceQuery;
 import com.logo.eshow.common.page.Page;
+import com.logo.eshow.components.upyun.UpYunUtil;
 import com.logo.eshow.model.Service;
 import com.logo.eshow.service.ServiceManager;
 import com.logo.eshow.service.ServiceTypeManager;
-import com.logo.eshow.util.DateUtil;
-import com.logo.eshow.util.ImageUtil;
 import com.logo.eshow.util.PageUtil;
 
 import java.util.Date;
@@ -18,8 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Results({ @Result(name = "input", location = "add"),
 		@Result(name = "list", type = "redirect", location = ""),
-		@Result(name = "success", type = "redirect", location = "admin/service/view/${id}"),
-		@Result(name = "delete", type = "redirect", location = "admin/service/"),
+		@Result(name = "success", type = "redirect", location = "view/${id}"),
 		@Result(name = "redirect", type = "redirect", location = "${redirect}") })
 public class ServiceAction extends BaseFileUploadAction {
 	/**
@@ -56,9 +54,6 @@ public class ServiceAction extends BaseFileUploadAction {
 	public String view() {
 		if (id != null) {
 			service = serviceManager.get(id);
-		} else {
-			return INDEX;
-
 		}
 		return NONE;
 	}
@@ -71,11 +66,7 @@ public class ServiceAction extends BaseFileUploadAction {
 			old.setServiceType(serviceTypeManager.get(serviceTypeId));
 		}
 		if (file != null) {
-			String path = "upload/service/" + DateUtil.getDateTime("yyyyMMdd", old.getAddTime())
-					+ "/";
-			ImageUtil.uploadImage(path, old.getId().toString(), file);
-			old.setImg(old.getId() + ".jpg");
-			// 根据缩略图规则进行缩略图生成
+			old.setImg(UpYunUtil.upload(file));
 		}
 		serviceManager.save(old);
 		saveMessage("修改成功");
@@ -89,16 +80,10 @@ public class ServiceAction extends BaseFileUploadAction {
 			service.setServiceType(serviceTypeManager.get(serviceTypeId));
 		}
 		service.setUser(getSessionUser());
-		service = serviceManager.save(service);
 		if (file != null) {
-			String path = "upload/service/"
-					+ DateUtil.getDateTime("yyyyMMdd", service.getAddTime()) + "/";
-			ImageUtil.uploadImage(path, service.getId().toString(), file);
-			service.setImg(service.getId() + ".jpg");
-			// 根据缩略图规则进行缩略图生成
-			serviceManager.save(service);
+			service.setImg(UpYunUtil.upload(file));
 		}
-
+		serviceManager.save(service);
 		saveMessage("添加成功");
 		id = service.getId();
 		return SUCCESS;
@@ -119,7 +104,6 @@ public class ServiceAction extends BaseFileUploadAction {
 	public void setServiceTypeManager(ServiceTypeManager serviceTypeManager) {
 		this.serviceTypeManager = serviceTypeManager;
 	}
-
 
 	public List<Service> getServices() {
 		return services;

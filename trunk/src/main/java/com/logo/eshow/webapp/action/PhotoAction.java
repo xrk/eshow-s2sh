@@ -7,11 +7,10 @@ import com.logo.eshow.service.PhotoManager;
 import com.logo.eshow.model.Album;
 import com.logo.eshow.model.User;
 import com.logo.eshow.util.CommonUtil;
-import com.logo.eshow.util.DateUtil;
-import com.logo.eshow.util.ImageUtil;
 import com.logo.eshow.util.PageUtil;
 import com.logo.eshow.common.CommonVar;
 import com.logo.eshow.common.page.Page;
+import com.logo.eshow.components.upyun.UpYunUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -79,11 +78,7 @@ public class PhotoAction extends BaseFileUploadAction {
 			old.setAlbum(albumManager.get(albumId));
 		}
 		if (file != null) {
-			String path = "upload/photo/"
-					+ DateUtil.getDateTime("yyyyMMdd", old.getAddTime()) + "/";
-			ImageUtil.uploadImage(path, old.getId().toString(), file);
-			old.setImg(old.getId() + ".jpg");
-			// 根据缩略图规则进行缩略图生成
+			old.setImg(UpYunUtil.upload(file));
 		}
 		photoManager.save(old);
 		saveMessage("图片修改成功");
@@ -98,22 +93,16 @@ public class PhotoAction extends BaseFileUploadAction {
 		photo.setCommentSize(CommonVar.DEFAULT);
 		User user = getSessionUser();
 		photo.setUser(user);
-		photo = photoManager.save(photo);
 
 		if (file != null) {
-			String path = "upload/photo/"
-					+ DateUtil.getDateTime("yyyyMMdd", photo.getAddTime())
-					+ "/";
-			ImageUtil.uploadImage(path, photo.getId().toString(), file);
-			photo.setImg(photo.getId() + ".jpg");
-			// 根据缩略图规则进行缩略图生成
+			photo.setImg(UpYunUtil.upload(file));
 			album.setPhotoSize(CommonUtil.count(album.getPhotoSize()));
 			album.setPhoto(photo);
 			album.setUpdateTime(new Date());
 			photo.setAlbum(album);
-			photoManager.save(photo);
-		}
 
+		}
+		photoManager.save(photo);
 		saveMessage("新图片上传成功");
 		id = photo.getId();
 		return SUCCESS;
@@ -134,7 +123,6 @@ public class PhotoAction extends BaseFileUploadAction {
 	public void setAlbumManager(AlbumManager albumManager) {
 		this.albumManager = albumManager;
 	}
-
 
 	public List<Photo> getPhotos() {
 		return photos;

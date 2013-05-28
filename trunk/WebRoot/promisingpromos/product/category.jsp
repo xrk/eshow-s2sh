@@ -53,8 +53,8 @@
 					<s:param name="query.productCategoryId">${param.id}</s:param>
 				</s:action>
 				<ul class="product clearfix yahei">
-					<s:iterator value="%{#products.products}">
-						<li><a href="http://www.promisingpromos.com/product/view/${id}"> <img src="${img}" />
+					<s:iterator value="%{#products.products}" status="rowStatus" var="product">
+						<li><a href="http://www.promisingpromos.com/product/view/${id}"> <img src="${product.img}" />
 								<p>
 									<span class="name str">${name}</span><br> Item# ${code }<br>
 									As low as <span class="price str">$${price}</span>

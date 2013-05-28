@@ -37,8 +37,8 @@
 				<div class="hotproduct">
 					<h3 class="yahei">HOT PRODUCTS</h3>
 					<ul class="clearfix">
-						<s:iterator value="%{#productsByCount.products}">
-							<li><a href="http://www.promisingpromos.com/product/view/${id}"><img src="${img}" />
+						<s:iterator value="%{#productsByCount.products}" status="rowStatus" var="product">
+							<li><a href="http://www.promisingpromos.com/product/view/${id}"><img src="${product.img}" />
 							</a>
 							</li>
 						</s:iterator>
@@ -58,8 +58,8 @@
 				</div>
 				<s:action name="product!list" id="products" executeResult="false" />
 				<ul class="product clearfix yahei">
-					<s:iterator value="%{#products.products}">
-						<li><a href="http://www.promisingpromos.com/product/view/${id}"> <img src="${img}" />
+					<s:iterator value="%{#products.products}" status="rowStatus" var="product">
+						<li><a href="http://www.promisingpromos.com/product/view/${id}"> <img src="${product.img}!small.jpg" />
 								<p>
 									<span class="name str">${name}</span><br> Item# ${code }<br>
 									As low as <span class="price str">$${price}</span>

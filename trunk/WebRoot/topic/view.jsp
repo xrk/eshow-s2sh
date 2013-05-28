@@ -6,13 +6,8 @@
 <title>${view.topic.title }</title>
 <meta name="keywords" content="${view.topic.title }" />
 <meta name="description" content="${view.topic.title }" />
-<link rel="stylesheet" href="<c:url value='/styles/topic.css'/>"
-	type="text/css" />
-<link rel="stylesheet" href="<c:url value='/styles/topiccomment.css'/>"
-	type="text/css" />
+<link rel="stylesheet" href="${static}/styles/topic.css" type="text/css" />
 <script type="text/javascript" src="<c:url value='/scripts/delete.js'/>"></script>
-<script type="text/javascript" charset="utf-8"
-	src="<c:url value="/components/kindeditor/kindeditor.js"/>"></script>
 </head>
 <body>
 	<div id="page-wrapper">
@@ -101,11 +96,13 @@
 																			src="${pageContext.request.contextPath}/upload/user/<s:date name='%{#view.topic.user.addTime}' format='yyyyMMdd' />/${view.topic.user.photo}"
 																			alt="${view.topic.user.nickname}" width="50"
 																			height="50" /> </a>
-																	</c:if></li>
+																	</c:if>
+																</li>
 																<li style="float:left;display: block;">
 																	${view.topic.content}</li>
 															</ul>
-														</div></li>
+														</div>
+													</li>
 												</ul>
 												<div class="reply" style="clear: both"
 													style="margin-left:5px;">
@@ -194,7 +191,8 @@
 								</div>
 							</div>
 						</div>
-					</div></td>
+					</div>
+				</td>
 			</tr>
 		</table>
 		<table cellspacing="0" cellpadding="0"

@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>首页_EShow开源框架</title>
-
+<%@ include file="/common/style/bootstrap.jsp"%>
 <link href="${static}/styles/style.css" rel="stylesheet" />
 <%@ include file="/common/jquery.jsp"%>
 <script src="${static}/bootstrap/js/bootstrap-carousel.js"></script>

@@ -3,21 +3,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 <head>
 <title>添加产品分类</title>
-<link rel="stylesheet"
-	href="<c:url value='/admin/styles/productCategory.css'/>"
+<link rel="stylesheet" href="${ctx}/admin/styles/productCategory.css"
 	type="text/css" />
-<link media="screen" type="text/css"
-	href="<c:url value='/scripts/validate/theme/grey/formcheck.css'/>"
-	rel="stylesheet" />
-<script type="text/javascript"
-	src="<c:url value='/scripts/validate/lang/zh-CN.js'/>"></script>
-<script type="text/javascript"
-	src="<c:url value='/scripts/validate/formcheck.js'/>"></script>
-<script type="text/javascript">
-	window.addEvent('domready', function() {
-		new FormCheck('productCategoryForm');
-	});
-</script>
 </head>
 <body>
 	<div class="container mt">
@@ -28,27 +15,23 @@
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
 					<li><a href="${ctx}/admin/productType/">产品类型管理</a> <span
-						class="divider">/</span>
-					</li>
+						class="divider">/</span></li>
 					<li class="active">产品类型添加</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/productCategory/add'/>"
+							<a href="${ctx}/admin/productCategory/add"
 								class="btn btn-primary">添加</a>
 						</div>
 						<h3 class="yahei">产品类型添加</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
-						<li><a data-toggle="tab"
-							href="<c:url value='/admin/product'/>"> 产品列表</a>
-						</li>
+						<li><a data-toggle="tab" href="${ctx}/admin/product">
+								产品列表</a></li>
 						<li class="active"><a data-toggle="tab"
-							href="<c:url value='/admin/productCategory'/>"> 产品分类</a>
-						</li>
+							href="${ctx}/admin/productCategory"> 产品分类</a></li>
 					</ul>
-
 					<form class="form-horizontal" id="productCategoryForm"
 						action="product-category!save" method="post">
 						<div class="control-group">
@@ -78,4 +61,3 @@
 		</div>
 	</div>
 </body>
-

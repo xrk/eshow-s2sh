@@ -3,14 +3,13 @@
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
 <head>
-<title>首页_EShow开源框架</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>案例展示</title>
 <script>
 	jQuery(document).ready(function() {
 		$('.carousel').carousel({
 			interval : 2000
 		});
-	})
+	});
 </script>
 </head>
 <body>
@@ -37,8 +36,7 @@
 							</h4>
 							<a href="">SNS社会化媒体</a> <a href="">北京</a> <br> <span
 								class="less-important">简介：</span>eTourer易途乐创立于2012年5月，是一个中文自助游服务平台，提供旅游计划制订、线路分享、目的地攻略、结伴同行等服务。
-						</div>
-					</li>
+						</div></li>
 					<li>
 						<div class="screenshot-container">
 							<a href=""><img
@@ -51,8 +49,7 @@
 							</h4>
 							<a href="">SNS社会化媒体</a> <a href="">北京</a> <br> <span
 								class="less-important">简介：</span>eTourer易途乐创立于2012年5月，是一个中文自助游服务平台，提供旅游计划制订、线路分享、目的地攻略、结伴同行等服务。
-						</div>
-					</li>
+						</div></li>
 					<li>
 						<div class="screenshot-container">
 							<a href=""><img
@@ -65,8 +62,7 @@
 							</h4>
 							<a href="">SNS社会化媒体</a> <a href="">北京</a> <br> <span
 								class="less-important">简介：</span>eTourer易途乐创立于2012年5月，是一个中文自助游服务平台，提供旅游计划制订、线路分享、目的地攻略、结伴同行等服务。
-						</div>
-					</li>
+						</div></li>
 					<li>
 						<div class="screenshot-container">
 							<a href=""><img
@@ -79,17 +75,22 @@
 							</h4>
 							<a href="h">SNS社会化媒体</a> <a href="">北京</a> <br> <span
 								class="less-important">简介：</span>eTourer易途乐创立于2012年5月，是一个中文自助游服务平台，提供旅游计划制订、线路分享、目的地攻略、结伴同行等服务。
-						</div>
-					</li>
+						</div></li>
 				</ul>
 				<div class="pagination">
 					<ul>
-						<li class="disabled"><a href="#">«</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">»</a></li>
+						<li class="disabled"><a href="#">«</a>
+						</li>
+						<li class="active"><a href="#">1</a>
+						</li>
+						<li><a href="#">2</a>
+						</li>
+						<li><a href="#">3</a>
+						</li>
+						<li><a href="#">4</a>
+						</li>
+						<li><a href="#">»</a>
+						</li>
 					</ul>
 				</div>
 			</div>

@@ -8,11 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="" />
-<link href="${static}/bootstrap/css/bootstrap.css" rel="stylesheet" />
-<link href="${static}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+<link href="${dll}/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<link href="${dll}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
 <link rel="stylesheet" href="${ctx}/admin/styles/styleadmin.css" />
-<script src="${static}/bootstrap/js/jquery-1.9.1.min.js"></script>
-<script src="${static}/bootstrap/js/bootstrap-carousel.js"></script>
+<script src="${dll}/bootstrap/js/jquery-1.9.1.min.js"></script>
+<script src="${dll}/bootstrap/js/bootstrap-carousel.js"></script>
 <decorator:head />
 </head>
 <body

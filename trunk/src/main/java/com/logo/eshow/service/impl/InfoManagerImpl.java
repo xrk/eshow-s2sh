@@ -33,4 +33,13 @@ public class InfoManagerImpl extends GenericManagerImpl<Info, Integer> implement
 		return infoDao.search(query);
 	}
 
+	@Override
+	public Info browse(InfoQuery query) {
+		List<Info> infos = infoDao.list(query);
+		if (!infos.isEmpty()) {
+			return infos.get(0);
+		}
+		return new Info();
+	}
+
 }

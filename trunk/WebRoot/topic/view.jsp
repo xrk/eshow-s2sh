@@ -6,7 +6,7 @@
 <title>${view.topic.title }</title>
 <meta name="keywords" content="${view.topic.title }" />
 <meta name="description" content="${view.topic.title }" />
-<link rel="stylesheet" href="${static}/styles/topic.css" type="text/css" />
+<link rel="stylesheet" href="${dll}/styles/topic.css" type="text/css" />
 <script type="text/javascript" src="<c:url value='/scripts/delete.js'/>"></script>
 </head>
 <body>

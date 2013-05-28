@@ -12,8 +12,7 @@
 		<div class="hero-unit showcase">
 			<div class="container">
 				<h1 class="yahei">
-					技术支持 <a class="btn btn-small btn-primary"
-						href="${ctx}/topic/add">发布话题</a>
+					技术支持 <a class="btn btn-small btn-primary" href="${ctx}/topic/add">发布话题</a>
 				</h1>
 			</div>
 		</div>
@@ -21,18 +20,17 @@
 	<div class="container">
 		<div class="subnav">
 			<ul class="nav nav-pills">
-				<li class="active"><a href="<c:url value='/topic'/>">全部话题</a>
-				</li>
+				<li class="active"><a href="<c:url value='/topic'/>">全部话题</a></li>
 				<s:action name="board!list" id="boardList" executeResult="false">
-					<s:param name="boardQueryBean.order">addTime</s:param>
-					<s:param name="boardQueryBean.desc">true</s:param>
+					<s:param name="query.order">addTime</s:param>
+					<s:param name="query.desc">true</s:param>
 				</s:action>
 				<s:iterator value="%{#boardList.boards}" status="rowStatus">
 					<li><a href="<c:url value="/topic/board/${id}"/>"
-						style="color: #0187c5; text-decoration: none;">${name} </a></li>
+						style="color: #0187c5; text-decoration: none;">${name} </a>
+					</li>
 				</s:iterator>
-				<li><a href="<c:url value='/topic/mine'/>">我的话题</a>
-				</li>
+				<li><a href="<c:url value='/topic/mine'/>">我的话题</a></li>
 			</ul>
 
 		</div>
@@ -50,20 +48,20 @@
 				</thead>
 				<tbody>
 					<s:action name="topic!search" id="topicList" executeResult="false">
-						<s:param name="queryBean.order">addTime</s:param>
-						<s:param name="queryBean.desc">true</s:param>
+						<s:param name="query.order">addTime</s:param>
+						<s:param name="query.desc">true</s:param>
 					</s:action>
 					<s:iterator value="%{#topicList.topics}" status="rowStatus">
 						<tr>
-							<td><a href="view/${id }">${util:preview(title,50)}</a></td>
+							<td><a href="view/${id }">${util:preview(title,50)}</a>
+							</td>
 							<td>${board.name}</td>
 							<td><a href="<c:url value='/user/view?id=${user.id}'/>">${user.nickname}</a>
 							</td>
 							<td>${commentSize}</td>
 							<td>${count}</td>
 							<td><small><s:date name="addTime"
-										format="yyyy-MM-dd HH:mm" /> </small>
-							</td>
+										format="yyyy-MM-dd HH:mm" /> </small></td>
 						</tr>
 					</s:iterator>
 				</tbody>

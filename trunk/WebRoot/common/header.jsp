@@ -9,7 +9,7 @@
 				data-toggle="collapse"> <span class="icon-bar"></span> <span
 				class="icon-bar"></span> <span class="icon-bar"></span> </a> <a
 				class="logo" href="${ctx}/" title="Fleetio homepage"> <img alt="logo"
-				width="155" height="22" src="${static}/images/logo.png" />
+				width="155" height="22" src="${dll}/images/logo.png" />
 			</a>
 			<div class="pull-right">
 				<a class="btn btn-inverse" href="${ctx}/user/login" title="Log in to Fleetio">

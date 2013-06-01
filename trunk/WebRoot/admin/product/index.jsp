@@ -35,6 +35,7 @@
 					</ul>
 					<div>
 						<s:action name="product!search" id="productList" executeResult="false">
+							<s:param name="query.website">promisingpromos</s:param>
 							<s:param name="query.order">addTime</s:param>
 							<s:param name="query.desc">true</s:param>
 						</s:action>
@@ -43,7 +44,7 @@
 								<li class="productlist" id="product${id}">
 									<div class="avatar">
 										<c:if test="${product.img == null}">
-											
+											<a href="${ctx}/product/view/${id}"><img src="${ctx}/admin/images/default.jpg" width="80" height="80" /></a>
 										</c:if>
 										<c:if test="${product.img != null}">
 											<a href="${ctx}/product/view/${id}"><img src="${product.img}!small.jpg" width="80" height="80" /></a>

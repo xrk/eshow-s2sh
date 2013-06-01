@@ -67,6 +67,7 @@ public class InfoAction extends BaseAction {
 		old.setTitle(info.getTitle());
 		old.setContent(info.getContent());
 		old.setUrl(info.getUrl());
+		old.setRemark(info.getRemark());
 		infoManager.save(old);
 		saveMessage("修改成功");
 		return SUCCESS;

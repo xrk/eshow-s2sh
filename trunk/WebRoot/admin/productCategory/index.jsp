@@ -1,6 +1,7 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<%@ include file="../common/website.jsp"%>
 <head>
 <title>产品类型</title>
 </head>
@@ -44,8 +45,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<s:action name="product-category!list" id="productCategoryList"
-								executeResult="false" />
+							<s:action name="product-category!list" id="productCategoryList" executeResult="false" >
+								<s:param name="query.website">promisingpromos</s:param>
+							</s:action>
 							<s:iterator value="%{#productCategoryList.productCategories}"
 								status="rowStatus">
 								<tr id="market20">

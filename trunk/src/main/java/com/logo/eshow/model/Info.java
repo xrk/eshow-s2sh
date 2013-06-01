@@ -3,7 +3,10 @@ package com.logo.eshow.model;
 import com.logo.eshow.model.BaseObject;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import javax.persistence.GeneratedValue;
@@ -27,10 +30,12 @@ public class Info extends BaseObject implements Serializable {
 
 	private static final long serialVersionUID = 8595503517379467249L;
 	private Integer id;// 信息ID
+	private User user;// 用户ID
 	private String type;// 类型
 	private String title;// 标题
 	private String url;// 链接
 	private String content;// 内容
+	private String remark;// 备注
 	private Boolean enabled;// 是否可用
 	private String website;// 网站
 
@@ -42,6 +47,16 @@ public class Info extends BaseObject implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId", nullable = false)
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Column(name = "type", length = 20)
@@ -78,6 +93,15 @@ public class Info extends BaseObject implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@Column(name = "remark", length = 400)
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	@Column(name = "enabled")

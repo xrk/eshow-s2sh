@@ -2,12 +2,8 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
-<c:set var="title">服务中心</c:set>
-<c:set var="title1">服务列表</c:set>
 <head>
-	<title>服务</title>
-	<link rel="stylesheet" href="<c:url value='/admin/styles/service.css'/>"
-		type="text/css" />
+<title>服务</title>
 </head>
 <body>
 	<div class="container mt">
@@ -17,67 +13,68 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/service/">${title}</a> <span
-						class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li><a href="${ctx}/admin/service/">服务中心</a> <span
+						class="divider">/</span>
+					</li>
+					<li class="active">服务列表</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/service/add'/>"
-								class="btn btn-primary"> 添加</a>
+							<a href="${ctx}/admin/service/add"
+								class="btn btn-primary"> 添加服务</a>
 						</div>
 						<h3 class="yahei">服务列表</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a href="<c:url value='/admin/service'/>" data-toggle="tab">服务列表</a>
-						</li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
-						</li>
+						<li class="active"><a href="${ctx}/admin/service" data-toggle="tab">服务列表</a></li>
+						<li><a data-toggle="tab" href="${ctx}/admin/serviceType">服务类型</a></li>
 					</ul>
-					<div id="analysis">
-							<s:action name="service!search" id="serviceList"
-								executeResult="false">
-								<s:param name="query.order">addTime</s:param>
-								<s:param name="query.desc">true</s:param>
-							</s:action>
-							<ul class="flist">
-								<s:iterator value="%{#serviceList.services}" status="rowStatus">
-									<li onmouseover='this.style.backgroundColor ="#f9f9f9"'
-										onmouseout='this.style.backgroundColor =""' id="service${id}">
-										<div class="avatar">
-											<a href="<c:url value='service/view/${id}'/>"><img
-													src="${pageContext.request.contextPath}/upload/service/<s:date name='%{addTime}' format='yyyyMMdd'/>/${img}"
-													width="50" height="50" /> </a>
+					<div>
+						<s:action name="service!search" id="serviceList" executeResult="false">
+							<s:param name="query.website">promisingpromos</s:param>
+							<s:param name="query.order">addTime</s:param>
+							<s:param name="query.desc">true</s:param>
+						</s:action>
+						<ul>
+							<s:iterator value="%{#serviceList.services}" status="rowStatus" var="service">
+								<li class="servicelist" id="service${id}">
+									<div class="avatar">
+										<c:if test="${service.img == null}">
+											<a href="${ctx}/service/view/${id}"><img src="${ctx}/admin/images/default.jpg" width="80" height="80" /></a>
+										</c:if>
+										<c:if test="${service.img != null}">
+											<a href="${ctx}/service/view/${id}"><img src="${service.img}!small.jpg" width="80" height="80" /></a>
+										</c:if>
+									</div>
+									<div class="list-content">
+										<h4>${title}</h4>
+										<div class="contxt">
+											${util:preview(content,100)}
+											<a href="${ctx}/admin/service/view/${id}">查看全文</a>
 										</div>
-										<div class="cont">
-											<div class="title">
-												<a href="<c:url value='/admin/service/view/${id}'/>">${title}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-											</div>
-											<div class="tips">
-												<a href="<c:url value='/admin/service/edit/${id }'/>">修改</a>
-												&nbsp;&nbsp;|&nbsp;&nbsp;
-												<a href="${ctx }/service!delete.action?id=${id}"
-													onclick="return deleteData('service',${id});">删除</a>
-											</div>
-											<div class="time">
-												类型:${serviceType.name}&nbsp;&nbsp;|&nbsp;&nbsp;${user.username}&nbsp;发表于
-												<s:date name='%{addTime}' format='yyyy-MM-dd HH:mm:ss' />
-
-											</div>
-											<div class="contxt" style="margin-top: -5px;">
-												${util:preview(content,100)}
-												<p class="r">
-													<a href="<c:url value='/admin/service/view/${id}'/>">查看全文</a>
-												</p>
-											</div>
+										<div class="time">
+											类型:
+											<c:if test="${serviceType.name == null}">
+											无&nbsp;&nbsp;|&nbsp;&nbsp;
+											</c:if>
+											<c:if test="${serviceType.name != null}">
+											${serviceType.name}&nbsp;&nbsp;|&nbsp;&nbsp;
+											</c:if>
+											${user.nickname}&nbsp;&nbsp;发表于
+											<s:date name='%{addTime}' format='yyyy-MM-dd HH:mm:ss' />
+											<span class="del fr"> <i class="icon-pencil"></i> <a
+												href="${ctx}/admin/service/edit/${id }">修改</a>
+												&nbsp;&nbsp;|&nbsp;&nbsp;<i class="icon-trash"></i> <a
+												href="${ctx}/service!delete.action?id=${id}"
+												onclick="return deleteData('service',${id});">删除</a> </span>
 										</div>
-										<div class="c"></div>
-									</li>
-								</s:iterator>
-							</ul>
-						</div>
-					
+									</div>
+								</li>
+							</s:iterator>
+						</ul>
+						<%@ include file="/common/page.jsp"%>
+					</div>
 				</div>
 			</div>
 		</div>

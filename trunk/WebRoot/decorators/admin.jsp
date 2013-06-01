@@ -25,15 +25,12 @@
 				<a class="brand yahei" href="${ctx}/admin/index">网站管理平台</a>
 				<div class="nav-collapse">
 					<ul class="nav">
-						<li class="active"><a href="${ctx}/admin/index">首 页</a>
-						</li>
-						<li class=""><a href="${ctx}/">返回前台</a>
-						</li>
+						<li class="active"><a href="${ctx}/admin/index">首 页</a></li>
 					</ul>
 					<p class="navbar-text pull-right">
 						欢迎： <a href="" class="navbar-link"><span> <security:authentication
-									property="principal.realname" /> </span>
-						</a>&nbsp;&nbsp; <a href="" class="navbar-link">退出</a>
+									property="principal.nickname" /> </span>
+						</a>&nbsp;&nbsp; <a href="${ctx}/user/logout" class="navbar-link">退出</a>
 					</p>
 				</div>
 			</div>

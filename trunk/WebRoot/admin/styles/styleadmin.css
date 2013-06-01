@@ -51,3 +51,13 @@ li{list-style:none}
 .productlist .time{color:#999;}
 .productlist .del{display: none;padding-right:10px;}
 .productlist:hover .del{display: block;}
+
+/*service14*/
+.servicelist{padding:10px 0;}
+.servicelist:hover{background: #f5f5f5}
+.servicelist .avatar{width:80px;float:left;}
+.servicelist .list-content{margin-left:100px}
+.servicelist h4{font-size:14px;}
+.servicelist .time{color:#999;}
+.servicelist .del{display: none;padding-right:10px;}
+.servicelist:hover .del{display: block;}

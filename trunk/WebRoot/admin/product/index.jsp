@@ -4,8 +4,7 @@
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
 <head>
 	<title>产品</title>
-	<link rel="stylesheet"
-		href="<c:url value='/admin/styles/product.css'/>" type="text/css" />
+	
 </head>
 <body>
 	<div class="container mt">
@@ -40,32 +39,27 @@
 						</s:action>
 						<ul>
 							<s:iterator value="%{#productList.products}" status="rowStatus">
-								<li class="list"
-									onmouseover="this.style.backgroundColor='#f9f9f9';"
-									onmouseout="this.style.backgroundColor='#ffffff';"
-									id="product${id}">
-									<div class="box">
+								<li class="productlist" id="product${id}">
+									 
 										<div class="avatar">
 										<c:if test="${photo == null}">
 											<img  src="${pageContext.request.contextPath}/images/base/user50-50.jpg"
-													  alt="${nickname}" width="50" height="50" />
+													  alt="${nickname}" width="80" height="80" />
 										</c:if>
 										<c:if test="${photo != null}">
 											<a href="<c:url value='product/view/${id}'/>"><img
 													src="${pageContext.request.contextPath}/upload/product/<s:date name='%{addTime}' format='yyyyMMdd' />/${img}"
-													width="50" height="50" /> </a>
+													width="80" height="80" /> </a>
 										</c:if>
-										</div>
-										<div class="name">
-											<a href="/StockMatch/Stock?MatchId=2&uid=100397">${user.username}</a>
-										</div>
-									</div>
-									<div class="list_content">
-										<div>
-											名称：
-											<span class="c333">${name}</span>
-										</div>
-										<div class="time">
+										</div> 
+									<div class="list-content">
+ 										<h4>${name}</h4> 
+										
+										<div class="contxt">
+											 ${util:preview(content,100)} 
+												<a href="<c:url value='/admin/product/view/${id}'/>">查看全文</a> 
+										</div> 
+											<div class="time"> 
 											分类:
 											<c:if test="${productCategory.name == null}">
 											默认类&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -74,22 +68,15 @@
 											${productCategory.name}&nbsp;&nbsp;|&nbsp;&nbsp;
 											</c:if>
 											${user.username}&nbsp;&nbsp;发表于
-											<s:date name='%{addTime}' format='yyyy-MM-dd HH:mm:ss' />
-											
-										</div>
-										<div class="tips">
-											<a href="<c:url value='/admin/product/edit/${id }'/>">修改</a>
-											&nbsp;&nbsp;|&nbsp;&nbsp;
+											<s:date name='%{addTime}' format='yyyy-MM-dd HH:mm:ss' /> 
+											<span class="del fr">
+									<i class="icon-pencil"></i>
+										<a href="<c:url value='/admin/product/edit/${id }'/>">修改</a>
+											&nbsp;&nbsp;|&nbsp;&nbsp;<i class="icon-trash"></i>
 											<a href="<c:url value='/product!delete.action?id=${id}'/>"
 												onclick="return deleteData('product',${id});">删除</a>
-										</div>
-
-										<div class="contxt">
-											${util:preview(content,100)}
-											<p class="r">
-												<a href="<c:url value='/admin/product/view/${id}'/>">查看全文</a>
-											</p>
-										</div>
+											</span>
+										</div> 
 									</div>
 								</li>
 							</s:iterator>

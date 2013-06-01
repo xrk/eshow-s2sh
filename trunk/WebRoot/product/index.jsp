@@ -11,7 +11,7 @@
 	<meta name="keywords" content="开发日志" />
 	<meta name="description" content="开发日志" />
 	<link rel="stylesheet" href="<c:url value='/styles/blog.css'/>"
-		type="text/css" media="screen" />
+		 media="screen" />
 </head>
 <body>
 	<div id="page-wrapper">

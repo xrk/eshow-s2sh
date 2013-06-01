@@ -39,7 +39,7 @@
 							value="<fmt:message key='button.login'/>" />
 					</div>
 				</div>
-				<div class="control-group">
+				<!-- div class="control-group">
 					<div class="controls">
 						<fmt:message key="login.signup">
 							<fmt:param>
@@ -47,7 +47,7 @@
 							</fmt:param>
 						</fmt:message>
 					</div>
-				</div>
+				</div -->
 		</div>
 	</div>
 </body>

@@ -8,7 +8,7 @@ import java.util.Date;
  * @author leida
  * 
  */
-public class ProductQuery extends BaseQuery{
+public class ProductQuery extends BaseQuery {
 	public Date addTime;
 	public String name;
 	public String content;
@@ -18,7 +18,8 @@ public class ProductQuery extends BaseQuery{
 	public Integer count;
 	public Double price;
 	public String code;
-	
+	public String website;
+
 	public Integer getCount() {
 		return count;
 	}
@@ -82,13 +83,21 @@ public class ProductQuery extends BaseQuery{
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	
+
 	public String getCode() {
 		return code;
 	}
-	
+
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
 }

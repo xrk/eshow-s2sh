@@ -1,12 +1,9 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<s:action name="product!view" id="view" executeResult="false">
-</s:action>
+<s:action name="product!view" id="view" executeResult="false" />
 <head>
-	<title>${view.product.name}</title>
-	<link rel="stylesheet"
-		href="<c:url value='/admin/styles/product.css'/>" type="text/css" />
+<title>${view.product.name}</title>
 </head>
 <body>
 	<div class="container mt">
@@ -16,11 +13,10 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/product/index">产品管理</a> <span class="divider">/</span>
-					</li>
+					<li><a href="${ctx}/product/index">产品管理</a> <span
+						class="divider">/</span></li>
 					<li class="active">查看产品</li>
 				</ul>
-
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
@@ -31,31 +27,27 @@
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab"
-							href="<c:url value='/admin/product'/>"> 产品列表</a></li>
+							href="<c:url value='/admin/product'/>"> 产品列表</a>
+						</li>
 						<li><a data-toggle="tab"
-							href="<c:url value='/admin/productCategory'/>"> 产品分类</a></li>
+							href="<c:url value='/admin/productCategory'/>"> 产品分类</a>
+						</li>
 					</ul>
-					<div id="productView">
-						<s:form action="product!view.html" method="post"
-							cssClass="creat_form clearfix">
-							<input type="hidden" name="id" value="${view.product.id}" />
-							<div class="title">
-								<span>${view.product.name}<br/></span><span class="r" style=" color: #999; font-size: 12px;"><a href="<c:url value='/admin/product/edit/${view.product.id}'/>">修改</a>
-								</span>
-								<span style="font-weight: bold; color: #999; font-size: 12px;">&nbsp;&nbsp;${view.product.user.username}&nbsp;&nbsp;&nbsp;发布于${view.product.addTime}</span>
-							</div>
-							<br />
+					<div>
+						<input type="hidden" name="id" value="${view.product.id}" />
+						<div class="title">
+							<span>${view.product.name}<br /> </span><span class="r"
+								style=" color: #999; font-size: 12px;"><a
+								href="<c:url value='/admin/product/edit/${view.product.id}'/>">修改</a>
+							</span> <span style="font-weight: bold; color: #999; font-size: 12px;">&nbsp;&nbsp;${view.product.user.username}&nbsp;&nbsp;&nbsp;发布于${view.product.addTime}</span>
+						</div>
+						<br />
+						<c:if test="${view.product.img != null}">
 							<div align="center">
-								<img
-									src="${pageContext.request.contextPath}/upload/product/<s:date name='%{#view.product.addTime}' format='yyyyMMdd' />/${view.product.img}"
-									width="200" height="200" />
-
+								<img src="${view.product.img}!middle.jpg" />
 							</div>
-							<div class="c"></div>
-							<div class="contxt">
-								&nbsp;&nbsp;${view.product.content}
-							</div>
-						</s:form>
+						</c:if>
+						<p>&nbsp;&nbsp;${view.product.content}</p>
 					</div>
 				</div>
 			</div>

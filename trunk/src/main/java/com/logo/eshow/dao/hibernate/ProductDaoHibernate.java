@@ -42,7 +42,6 @@ public class ProductDaoHibernate extends GenericDaoHibernate<Product, Integer> i
 		return page(rule);
 	}
 
-	
 	public EnhancedRule setRule(EnhancedRule rule, ProductQuery query) {
 		if (query != null) {
 			if (query.addTime != null) {
@@ -71,6 +70,9 @@ public class ProductDaoHibernate extends GenericDaoHibernate<Product, Integer> i
 			}
 			if (query.code != null) {
 				rule.add(Restrictions.eq("code", query.code));
+			}
+			if (query.website != null) {
+				rule.add(Restrictions.eq("website", query.website));
 			}
 			if (query.getOrder() != null) {
 				rule.addOrder(query.getDesc() ? Order.desc(query.getOrder()) : Order.asc(query

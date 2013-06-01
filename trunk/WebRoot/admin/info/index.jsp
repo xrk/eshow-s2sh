@@ -39,7 +39,7 @@
 						<thead>
 							<tr>
 								<th>标题</th>
-								<th>URL</th>
+								<th>访问URL</th>
 								<th>操作</th>
 							</tr>
 						</thead>

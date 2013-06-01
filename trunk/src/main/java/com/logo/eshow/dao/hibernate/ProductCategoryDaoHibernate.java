@@ -54,6 +54,9 @@ public class ProductCategoryDaoHibernate extends GenericDaoHibernate<ProductCate
 			if (query.sequence != null) {
 				rule.add(Restrictions.eq("sequence", query.sequence));
 			}
+			if (query.website != null) {
+				rule.add(Restrictions.eq("website", query.website));
+			}
 		}
 		return rule;
 	}

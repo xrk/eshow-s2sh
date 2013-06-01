@@ -32,17 +32,17 @@
 						<s:hidden name="id" value="%{#view.info.id}"></s:hidden>
 						<fieldset>
 							<div class="control-group">
-								<label class="control-label" for="input01">信息URL</label>
-								<div class="controls">
-									<input type="text" class="input-xlarge" id="title"
-										name="info.url" value="${view.info.url}">
-								</div>
-							</div>
-							<div class="control-group">
 								<label class="control-label" for="input01">信息标题 </label>
 								<div class="controls">
 									<input type="text" class="input-xlarge" id="title"
 										name="info.title" value="${view.info.title}">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="input01">访问URL</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" id="title"
+										name="info.url" value="${view.info.url}"> 无需修改
 								</div>
 							</div>
 							<div class="control-group">

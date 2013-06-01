@@ -1,6 +1,7 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<%@ include file="../common/website.jsp"%>
 <head>
 <title>服务类型</title>
 </head>
@@ -31,8 +32,9 @@
 						<li class="active"><a data-toggle="tab"
 							href="${ctx}/admin/serviceType">服务类型</a></li>
 					</ul>
-					<s:action name="service-type!list" id="serviceTypeList"
-						executeResult="false"></s:action>
+					<s:action name="service-type!list" id="serviceTypeList" executeResult="false">
+						<s:param name="query.website">${website}</s:param>
+					</s:action>
 					<table class="table table-striped table-bordered table-condensed">
 						<thead>
 							<tr>

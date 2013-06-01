@@ -17,11 +17,10 @@ import com.logo.eshow.model.Info;
 /**
  * 
  * @author leida
- *
+ * 
  */
 @Repository("infoDao")
-public class InfoDaoHibernate extends GenericDaoHibernate<Info, Integer>
-		implements InfoDao {
+public class InfoDaoHibernate extends GenericDaoHibernate<Info, Integer> implements InfoDao {
 
 	public InfoDaoHibernate() {
 		super(Info.class);
@@ -46,32 +45,27 @@ public class InfoDaoHibernate extends GenericDaoHibernate<Info, Integer>
 	public EnhancedRule setRule(EnhancedRule rule, InfoQuery query) {
 		if (query != null) {
 			if (query.type != null) {
-				rule.add(Restrictions.like("type", query.type,
-						MatchMode.ANYWHERE));
+				rule.add(Restrictions.like("type", query.type, MatchMode.ANYWHERE));
 			}
 			if (query.url != null) {
-				rule.add(Restrictions.like("url", query.url,
-						MatchMode.ANYWHERE));
+				rule.add(Restrictions.like("url", query.url, MatchMode.ANYWHERE));
 			}
 			if (query.title != null) {
-				rule.add(Restrictions.like("title", query.title,
-						MatchMode.ANYWHERE));
+				rule.add(Restrictions.like("title", query.title, MatchMode.ANYWHERE));
 			}
 			if (query.website != null) {
-				rule.add(Restrictions.like("website", query.website,
-						MatchMode.ANYWHERE));
+				rule.add(Restrictions.eq("website", query.website));
 			}
 			if (query.content != null) {
-				rule.add(Restrictions.like("content", query.content,
-						MatchMode.ANYWHERE));
+				rule.add(Restrictions.like("content", query.content, MatchMode.ANYWHERE));
 			}
 			if (query.enable != null) {
 				rule.add(Restrictions.eq("enable", query.enable));
 			}
-			
+
 			if (query.getOrder() != null) {
-				rule.addOrder(query.getDesc() ? Order.desc(query
-						.getOrder()) : Order.asc(query.getOrder()));
+				rule.addOrder(query.getDesc() ? Order.desc(query.getOrder()) : Order.asc(query
+						.getOrder()));
 			}
 		}
 		return rule;

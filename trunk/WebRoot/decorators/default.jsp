@@ -5,7 +5,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>首页_EShow开源框架</title>
+<title><decorator:title />_EShow开源框架</title>
 <%@ include file="/common/style/bootstrap.jsp"%>
 <link href="${dll}/styles/style.css" rel="stylesheet" />
 <%@ include file="/common/jquery.jsp"%>

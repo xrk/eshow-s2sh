@@ -6,9 +6,11 @@ package com.logo.eshow.bean.query;
  * @author leida
  * 
  */
-public class ServiceTypeQuery extends BaseQuery{
+public class ServiceTypeQuery extends BaseQuery {
+
 	public String name;
 	public String remark;
+	public String website;
 	public Integer sequence;
 
 	public String getName() {
@@ -25,6 +27,14 @@ public class ServiceTypeQuery extends BaseQuery{
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 
 	public Integer getSequence() {

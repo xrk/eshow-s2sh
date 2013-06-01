@@ -14,6 +14,7 @@ public class ServiceQuery extends BaseQuery {
 	public String title;
 	public String content;
 	public Integer sequence;
+	public String website;
 	public Integer serviceTypeId;
 	public Integer userId;
 
@@ -55,6 +56,14 @@ public class ServiceQuery extends BaseQuery {
 
 	public void setSequence(Integer sequence) {
 		this.sequence = sequence;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 
 	public Integer getServiceTypeId() {

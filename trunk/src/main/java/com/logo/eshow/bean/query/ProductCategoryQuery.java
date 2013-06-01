@@ -10,6 +10,7 @@ public class ProductCategoryQuery extends BaseQuery {
 	public String name;
 	public String description;
 	public Integer sequence;
+	public String website;
 
 	public String getName() {
 		return name;
@@ -33,6 +34,14 @@ public class ProductCategoryQuery extends BaseQuery {
 
 	public void setSequence(Integer sequence) {
 		this.sequence = sequence;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 
 }

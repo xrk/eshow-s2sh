@@ -46,49 +46,42 @@
 							<s:param name="query.desc">true</s:param>
 						</s:action>
 						<ul>
-							<s:iterator value="%{#productList.products}" status="rowStatus">
-								<li class="list"
-									onmouseover="this.style.backgroundColor='#f9f9f9';"
-									onmouseout="this.style.backgroundColor='#ffffff';"
-									id="product${id}">
-									<div class="box">
-										<div class="avatar">
-											<a href="<c:url value='product/view/${id}'/>"><img
-												src="${pageContext.request.contextPath}/upload/product/<s:date name='%{addTime}' format='yyyyMMdd' />/${img}"
-												width="50" height="50" /> </a>
-										</div>
-										<div class="name">
-											<a href="/StockMatch/Stock?MatchId=2&uid=100397">kzyuyi</a>
-										</div>
+							<s:iterator value="%{#productList.products}" status="rowStatus" var="product">
+								<li class="productlist" id="product${id}">
+									<div class="avatar">
+										<c:if test="${product.img == null}">
+											
+										</c:if>
+										<c:if test="${product.img != null}">
+											<a href="${ctx}/product/view/${id}"><img src="${img}!small.jpg" width="80" height="80" /></a>
+										</c:if>
 									</div>
-									<div class="list_content">
-										<div>
-											产品名称： <span class="c333">${name }</span>
-										</div>
-										<div class="time">
-											<c:if test="${productCategory.name == null}">
-											默认分类&nbsp;&nbsp;|&nbsp;&nbsp;
-											</c:if>
-											${productCategory.name}&nbsp;&nbsp;|&nbsp;&nbsp;发表于
-											<s:date name='%{addTime}' format='yyyy-MM-dd HH:mm:ss' />
-
-										</div>
-										<div class="tips">
-											<a href="<c:url value='/admin/product/edit/${id }'/>">修改</a>
-											&nbsp;&nbsp;|&nbsp;&nbsp; <a href="javascript:void(0);"
-												onclick="return deleteData('product',${id});">删除</a>
-										</div>
-
+									<div class="list-content">
+										<h4>${name}</h4>
 										<div class="contxt">
 											${util:preview(content,100)}
-											<p class="r">
-												<a href="<c:url value='/admin/product/view/${id}'/>">查看全文</a>
-											</p>
+											<a href="${ctx}/admin/product/view/${id}">查看全文</a>
 										</div>
-									</div></li>
+										<div class="time">
+											分类:
+											<c:if test="${productCategory.name == null}">
+											无&nbsp;&nbsp;|&nbsp;&nbsp;
+											</c:if>
+											<c:if test="${productCategory.name != null}">
+											${productCategory.name}&nbsp;&nbsp;|&nbsp;&nbsp;
+											</c:if>
+											${user.nickname}&nbsp;&nbsp;发表于
+											<s:date name='%{addTime}' format='yyyy-MM-dd HH:mm:ss' />
+											<span class="del fr"> <i class="icon-pencil"></i> <a
+												href="${ctx}/admin/product/edit/${id }">修改</a>
+												&nbsp;&nbsp;|&nbsp;&nbsp;<i class="icon-trash"></i> <a
+												href="${ctx}/product!delete.action?id=${id}"
+												onclick="return deleteData('product',${id});">删除</a> </span>
+										</div>
+									</div>
+								</li>
 							</s:iterator>
 						</ul>
-						<div class="c"></div>
 					</div>
 				</div>
 			</div>

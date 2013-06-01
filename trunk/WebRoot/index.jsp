@@ -5,6 +5,7 @@
 <head>
 <title>首页_EShow开源框架</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%@ include file="/common/website.jsp"%>
 <script>
 	jQuery(document).ready(function() {
 		$('.carousel').carousel({

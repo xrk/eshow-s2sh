@@ -43,7 +43,7 @@
 	<div class="footer">
 		<footer class="container">
 		<p align="center">
-			无锡到群软件科技有限公司版权所有 <br> 苏ICP备10018847号 Copyright 2009-2013© daoqun.com Inc. All rights reserved 
+			无锡到群软件科技有限公司技术支持 <br> 苏ICP备10018847号 Copyright 2009-2013© daoqun.com Inc. All rights reserved 
 		</p>
 		</footer>
 	</div>

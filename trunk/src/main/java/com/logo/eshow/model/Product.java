@@ -32,20 +32,21 @@ public class Product extends BaseObject implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;//商品ID
-	private User user;//用户
-	private ProductCategory productCategory;//商品类型
-	private Date addTime;//添加时间
-	private String name;//名称
-	private String content;//内容
-	private String img;//图片
-	private Integer sequence;//序号
-	private Boolean enabled;//是否可用
-	private Date updateTime;//更新时间
-	private String website;//网站
-	private Integer count;//访问次数
-	private Double price;//商品价格
-	private String code;//商品型号
+	private Integer id;// 商品ID
+	private User user;// 用户
+	private ProductCategory productCategory;// 商品类型
+	private Date addTime;// 添加时间
+	private String name;// 名称
+	private String code;// 型号
+	private String content;// 内容
+	private String img;// 图片地址
+	private Integer sequence;// 序号
+	private Boolean enabled;// 是否可用
+	private Date updateTime;// 更新时间
+	private String website;// 网站
+	private Integer count;// 访问次数
+	private Double price;// 商品价格
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer getId() {
@@ -56,7 +57,7 @@ public class Product extends BaseObject implements Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")
 	public User getUser() {
 		return user;
@@ -66,7 +67,7 @@ public class Product extends BaseObject implements Serializable {
 		this.user = user;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "productCategoryId")
 	public ProductCategory getProductCategory() {
 		return productCategory;
@@ -93,6 +94,15 @@ public class Product extends BaseObject implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Column(name = "code", length = 50)
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	@Column(name = "content")
 	public String getContent() {
@@ -103,7 +113,7 @@ public class Product extends BaseObject implements Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "img", length = 100)
+	@Column(name = "img", length = 200)
 	public String getImg() {
 		return img;
 	}
@@ -134,44 +144,38 @@ public class Product extends BaseObject implements Serializable {
 	public Date getUpdateTime() {
 		return updateTime;
 	}
+
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	
-	@Column(name = "website",length=20)
+
+	@Column(name = "website", length = 20)
 	public String getWebsite() {
 		return website;
 	}
+
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	
+
 	@Column(name = "price")
 	public Double getPrice() {
 		return price;
 	}
-	
+
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
-	@Column(name = "count",length=11)
+
+	@Column(name = "count", length = 11)
 	public Integer getCount() {
 		return count;
 	}
-	
+
 	public void setCount(Integer count) {
 		this.count = count;
 	}
-	
-	@Column(name = "code",length=11)
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	
+
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -180,13 +184,11 @@ public class Product extends BaseObject implements Serializable {
 
 		Product pojo = (Product) o;
 
-		if (addTime != null ? !addTime.equals(pojo.addTime)
-				: pojo.addTime != null)
+		if (addTime != null ? !addTime.equals(pojo.addTime) : pojo.addTime != null)
 			return false;
 		if (name != null ? !name.equals(pojo.name) : pojo.name != null)
 			return false;
-		if (content != null ? !content.equals(pojo.content)
-				: pojo.content != null)
+		if (content != null ? !content.equals(pojo.content) : pojo.content != null)
 			return false;
 		if (img != null ? !img.equals(pojo.img) : pojo.img != null)
 			return false;

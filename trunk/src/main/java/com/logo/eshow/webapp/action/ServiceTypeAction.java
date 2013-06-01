@@ -60,7 +60,7 @@ public class ServiceTypeAction extends BaseAction {
 				serviceManager.save(service);
 			}
 			serviceTypeManager.remove(id);
-			saveMessage("删除成功");
+			success("删除成功");
 		}
 	}
 

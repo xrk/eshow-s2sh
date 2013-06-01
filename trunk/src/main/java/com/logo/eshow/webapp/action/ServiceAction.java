@@ -83,7 +83,7 @@ public class ServiceAction extends BaseFileUploadAction {
 		if (file != null) {
 			service.setImg(UpYunUtil.upload(file));
 		}
-		serviceManager.save(service);
+		service = serviceManager.save(service);
 		saveMessage("添加成功");
 		id = service.getId();
 		return SUCCESS;

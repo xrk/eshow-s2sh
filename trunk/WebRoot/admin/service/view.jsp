@@ -1,14 +1,9 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title">服务中心</c:set>
-<c:set var="title1">查看服务</c:set>
-<s:action name="service!view" id="view" executeResult="false">
-</s:action>
+<s:action name="service!view" id="view" executeResult="false" />
 <head>
-	<title>${view.service.title}</title>
-	<link rel="stylesheet"
-		href="<c:url value='/admin/styles/service.css'/>" type="text/css" />
+<title>${view.service.title}</title>
 </head>
 <body>
 	<div class="container mt">
@@ -18,22 +13,21 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/service/">${title}</a> <span
+					<li><a href="${ctx}/admin/service/">服务中心</a> <span
 						class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li class="active">查看服务</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/service/add'/>"
-								class="btn btn-primary"> 添加</a>
+							<a href="/admin/service/add" class="btn btn-primary"> 添加服务</a>
 						</div>
-						<h3 class="yahei">话题板块添加</h3>
+						<h3 class="yahei">服务详情</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a href="<c:url value='/admin/service'/>" data-toggle="tab">服务列表</a>
+						<li class="active"><a href="${ctx}/admin/service" data-toggle="tab">服务列表</a>
 						</li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
+						<li><a data-toggle="tab" href="${ctx}/admin/serviceType">服务类型</a>
 						</li>
 					</ul>
 					<div id="serviceView">
@@ -44,29 +38,17 @@
 								<span>${view.service.title}<br /> </span><span class="r"
 									style="color: #999; font-size: 12px;"><a
 									href="<c:url value='/admin/service/edit/${view.service.id}'/>">修改</a>
-								</span>
-								<span style="font-weight: bold; color: #999; font-size: 12px;">类型:${view.service.serviceType.name}&nbsp;&nbsp;${view.service.user.username}&nbsp;&nbsp;&nbsp;发布于${view.service.addTime}</span>
+								</span> <span style="font-weight: bold; color: #999; font-size: 12px;">类型:${view.service.serviceType.name}&nbsp;&nbsp;${view.service.user.username}&nbsp;&nbsp;&nbsp;发布于${view.service.addTime}</span>
 							</div>
 							<br />
-							<div align="center">
-								<c:if test="${view.service.img == null}">
-									<img
-										src="${pageContext.request.contextPath}/images/base/user50-50.jpg"
-										width="200" height="200" />
-								</c:if>
+							<p align="center">
 								<c:if test="${view.service.img != null}">
-									<img
-										src="${pageContext.request.contextPath}/upload/service/<s:date name='%{#view.service.addTime}' format='yyyyMMdd' />/${view.service.img}"
-										width="200" height="200" />
+									<img class="img-rounded" src="${view.service.img}!middle.jpg" />
 								</c:if>
-							</div>
-							<div class="c"></div>
-							<div class="contxt">
-								&nbsp;&nbsp;${view.service.content}
-							</div>
+							</p>
+							<p>&nbsp;&nbsp;${view.service.content}</p>
 						</s:form>
 					</div>
-					
 				</div>
 			</div>
 		</div>

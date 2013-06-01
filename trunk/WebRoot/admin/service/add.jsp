@@ -1,25 +1,9 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title">服务中心</c:set>
-<c:set var="title1">添加服务</c:set>
 <head>
-	<title>添加服务</title>
-	<link rel="stylesheet"
-		href="<c:url value='/admin/styles/service.css'/>" type="text/css" />
-	<%@ include file="/common/formcheck.jsp"%>
-	<script type="text/javascript">
-	 	window.addEvent('domready', function() {
-			new FormCheck('serviceForm');
-		});
-    </script>
-	<script type="text/javascript" charset="utf-8"
-		src="<c:url value="/components/kindeditor/kindeditor.js"/>"></script>
-	<script type="text/javascript">
-	    KE.show({
-	        id : 'ke-text'
-	    });
-	</script>
+<title>添加服务</title>
+<%@ include file="/common/ueditor.jsp"%>
 </head>
 <body>
 	<div class="container mt">
@@ -29,40 +13,42 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/service/">${title}</a> <span
+					<li><a href="${ctx}/admin/service/">服务中心</a> <span
 						class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li class="active">添加服务</li>
 				</ul>
-
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/service/add'/>"
-								class="btn btn-primary"> 添加</a>
+							<a href="${ctx}/admin/service/add" class="btn btn-primary">
+								添加</a>
 						</div>
 						<h3 class="yahei">服务添加</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a href="<c:url value='/admin/service'/>" data-toggle="tab">服务列表</a>
+						<li class="active"><a href="${ctx}/admin/service"
+							data-toggle="tab">服务列表</a>
 						</li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
+						<li><a data-toggle="tab"
+							href="/admin/serviceType">服务类型</a>
 						</li>
 					</ul>
-					<form class="form-horizontal" action="service!save" method="post"
-						id="serviceForm">
+					<s:form id="serviceForm" cssClass="form-horizontal" action="service!save.action" enctype="multipart/form-data" method="post">
 						<fieldset>
 							<div class="control-group">
-								<label class="control-label" for="input01">服务标题 </label>
+								<label class="control-label" for="title">服务标题 </label>
 								<div class="controls">
 									<input type="text" class="input-xlarge" id="title"
-										name="service.title" >
+										name="service.title">
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="select01">服务类型</label>
-								<s:action name="service-type!list" id="serviceTypeList" executeResult="false" />
+								<label class="control-label" for="serviceTypeId">服务类型</label>
+								<s:action name="service-type!list" id="serviceTypeList"
+									executeResult="false" />
 								<div class="controls">
-									<select  id="serviceTypeId" name="service.serviceType.id">
+									<select id="serviceTypeId" name="serviceTypeId">
+										<option value="">无</option>
 										<s:iterator value="%{#serviceTypeList.serviceTypes}"
 											status="rowStatus">
 											<option value="${id}">${name}</option>
@@ -71,24 +57,49 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="fileInput">选择图片</label>
+								<label class="control-label" for="file">选择图片</label>
 								<div class="controls">
-									<input class="input-file" id="fileInput" type="file" name="service.img">
+									<input class="input-file" id="file" type="file" name="file">
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="textarea">服务内容</label>
 								<div class="controls">
-									<textarea class="input-xlarge" id="textarea" rows="3"
-										style="width: 600px; height: 100px;" name="service.content"></textarea>
+									<textarea id="content" name="service.content" class="content"></textarea>
+									<script type="text/javascript">
+										var editorOption = {
+											toolbars : [ [ 'Bold', 'underline',
+													'forecolor', 'Undo',
+													'Redo', 'insertimage',
+													'link', 'unlink',
+													'justifyleft',
+													'justifycenter',
+													'justifyright',
+													'insertunorderedlist',
+													'insertorderedlist', '|',
+													'AutoTypeSet',
+													'FormatMatch',
+													'RemoveFormat', '|',
+													'highlightcode', 'Source',
+													'FullScreen' ] ],
+											wordCount : false,
+											initialContent : '',
+											elementPathEnabled : false,
+											minFrameHeight : 341,
+											maxInputCount : 20
+										};
+										var _editor = new baidu.editor.ui.Editor(
+												editorOption);
+										_editor.render('content');
+									</script>
 								</div>
 							</div>
 							<div class="form-actions">
 								<button type="submit" class="btn btn-primary">保存</button>
-								<button class="btn" onclick="javascript:history.back();">取消</button>
+								<a class="btn" onclick="javascript:history.back();">取消</a>
 							</div>
 						</fieldset>
-					</form>
+					</s:form>
 				</div>
 			</div>
 		</div>

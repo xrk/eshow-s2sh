@@ -12,6 +12,7 @@
 <link href="${dll}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
 <link rel="stylesheet" href="${ctx}/admin/styles/styleadmin.css" />
 <script src="${dll}/bootstrap/js/jquery-1.9.1.min.js"></script>
+<script src="${ctx}/admin/scripts/admin.js"></script>
 <script src="${dll}/bootstrap/js/bootstrap-carousel.js"></script>
 <decorator:head />
 </head>

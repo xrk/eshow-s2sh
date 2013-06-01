@@ -1,26 +1,10 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<c:set var="title">服务中心</c:set>
-<c:set var="title1">修改服务</c:set>
 <s:action name="service!view" id="view" executeResult="false" />
 <head>
-	<title>修改服务</title>
-	<link rel="stylesheet"
-		href="<c:url value='/admin/styles/service.css'/>" type="text/css" />
-	<%@ include file="/common/formcheck.jsp"%>
-	<script type="text/javascript">
-	 	window.addEvent('domready', function() {
-			new FormCheck('serviceForm');
-		});
-    </script>
-	<script type="text/javascript" charset="utf-8"
-		src="<c:url value="/components/kindeditor/kindeditor.js"/>"></script>
-	<script type="text/javascript">
-	    KE.show({
-	        id : 'ke-text'
-	    });
-	</script>
+<title>修改服务</title>
+<%@ include file="/common/ueditor.jsp"%>
 </head>
 <body>
 	<div class="container mt">
@@ -30,68 +14,90 @@
 				<ul class="breadcrumb">
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
-					<li><a href="${ctx}/admin/service/">${title}</a> <span
+					<li><a href="${ctx}/admin/service/">服务中心</a> <span
 						class="divider">/</span></li>
-					<li class="active">${title1}</li>
+					<li class="active">修改服务</li>
 				</ul>
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/service/add'/>"
-								class="btn btn-primary"> 添加</a>
+							<a href="${ctx}/admin/service/add" class="btn btn-primary">
+								添加</a>
 						</div>
 						<h3 class="yahei">服务修改</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"> <a href="<c:url value='/admin/service'/>" data-toggle="tab">服务列表</a>
+						<li class="active"><a href="${ctx}/admin/service"
+							data-toggle="tab">服务列表</a>
 						</li>
-						<li><a data-toggle="tab" href="<c:url value='/admin/serviceType'/>">服务类型</a>
+						<li><a data-toggle="tab" href="${ctx}/admin/serviceType">服务类型</a>
 						</li>
 					</ul>
-					<form class="form-horizontal" action="service!update" method="post"
-						id="infoForm">
-						<input type="hidden" name="id" value="${view.service.id }"/>
+					<s:form id="serviceForm" cssClass="form-horizontal" action="service!update.action" enctype="multipart/form-data" method="post">
+						<s:hidden name="id" value="%{#view.service.id}"></s:hidden>
 						<fieldset>
 							<div class="control-group">
-								<label class="control-label" for="input01">服务标题 </label>
+								<label class="control-label" for="title">服务标题 </label>
 								<div class="controls">
 									<input type="text" class="input-xlarge" id="title"
 										name="service.title" value="${view.service.title}">
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="select01">服务类型</label>
-								<s:action name="service-type!search" id="serviceTypeList"
-									executeResult="false" />
+								<label class="control-label" for="serviceTypeId">服务类型</label>
+								<s:action name="service-type!search" id="serviceTypeList" executeResult="false" />
 								<div class="controls">
-									<select  id="serviceTypeId" name="service.serviceType.id">
-										<s:iterator value="%{#serviceTypeList.serviceTypes}"
-											status="rowStatus">
-											<option value="${id}"
-												<c:if test="${view.service.serviceType.id==id}">selected="selected"</c:if>>
-												${name}</option>
+									<select id="serviceTypeId" name="serviceTypeId">
+										<option value="">无</option>
+										<s:iterator value="%{#serviceTypeList.serviceTypes}" status="rowStatus">
+											<option value="${id}" <c:if test="${view.service.serviceType.id==id}">selected="selected"</c:if>>
+												${name}
+											</option>
 										</s:iterator>
 									</select>
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="fileInput">选择图片</label>
+								<label class="control-label" for="file">选择图片</label>
 								<div class="controls">
-									<input class="input-file" id="fileInput" type="file" name="service.img">
-									<span class="l">&nbsp; <c:if test="${view.service.img == null}">
-										<img
-											src="${pageContext.request.contextPath}/images/base/user50-50.jpg" />
-									</c:if> <c:if test="${view.service.img != null}">
-										<img
-											src="${pageContext.request.contextPath}/upload/service/<s:date name='%{#view.service.addTime}' format='yyyyMMdd'/>/${view.service.img}" />
-									</c:if> </span>
+									<input class="input-file" id="file" type="file" name="file">
+									<p>
+										<c:if test="${view.service.img != null}">
+											<img class="img-rounded" src="${view.service.img}!small.jpg" />
+										</c:if>
+									</p>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="textarea">服务内容</label>
 								<div class="controls">
-									<textarea class="input-xlarge" id="textarea" rows="3"
-										style="width: 600px; height: 100px;" name="service.content">${view.service.content}</textarea>
+									<textarea id="content" name="service.content" class="content">${view.service.content}</textarea>
+									<script type="text/javascript">
+										var editorOption = {
+											toolbars : [ [ 'Bold', 'underline',
+													'forecolor', 'Undo',
+													'Redo', 'insertimage',
+													'link', 'unlink',
+													'justifyleft',
+													'justifycenter',
+													'justifyright',
+													'insertunorderedlist',
+													'insertorderedlist', '|',
+													'AutoTypeSet',
+													'FormatMatch',
+													'RemoveFormat', '|',
+													'highlightcode', 'Source',
+													'FullScreen' ] ],
+											wordCount : false,
+											initialContent : '',
+											elementPathEnabled : false,
+											minFrameHeight : 341,
+											maxInputCount : 20
+										};
+										var _editor = new baidu.editor.ui.Editor(
+												editorOption);
+										_editor.render('content');
+									</script>
 								</div>
 							</div>
 							<div class="form-actions">
@@ -99,8 +105,7 @@
 								<button class="btn" onclick="javascript:history.back();">取消</button>
 							</div>
 						</fieldset>
-					</form>
-
+					</s:form>
 				</div>
 			</div>
 		</div>

@@ -32,18 +32,18 @@ public class Service extends BaseObject implements Serializable {
 	 * 服务
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;//服务ID
-	private User user;//用户
-	private ServiceType serviceType;//服务类型
-	private Date addTime;//添加时间
-	private Date updateTime;//更新时间
-	private String title;//标题
-	private String content;//内容
-	private String img;//图片
-	private Integer sequence;//序号
-	private String website;//网站
-	private Boolean enabled;//是否可用
-	
+	private Integer id;// 服务ID
+	private User user;// 用户
+	private ServiceType serviceType;// 服务类型
+	private Date addTime;// 添加时间
+	private Date updateTime;// 更新时间
+	private String title;// 标题
+	private String content;// 内容
+	private String img;// 图片地址
+	private Integer sequence;// 序号
+	private String website;// 网站
+	private Boolean enabled;// 是否可用
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer getId() {
@@ -54,7 +54,7 @@ public class Service extends BaseObject implements Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId")
 	public User getUser() {
 		return user;
@@ -64,7 +64,7 @@ public class Service extends BaseObject implements Serializable {
 		this.user = user;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "serviceTypeId")
 	public ServiceType getServiceType() {
 		return serviceType;
@@ -110,7 +110,7 @@ public class Service extends BaseObject implements Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "img", length = 50)
+	@Column(name = "img", length = 200)
 	public String getImg() {
 		return img;
 	}
@@ -128,14 +128,15 @@ public class Service extends BaseObject implements Serializable {
 		this.sequence = sequence;
 	}
 
-	@Column(name = "website",length=20)
+	@Column(name = "website", length = 20)
 	public String getWebsite() {
 		return website;
 	}
+
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	
+
 	@Column(name = "enabled")
 	public Boolean getEnabled() {
 		return enabled;
@@ -144,7 +145,7 @@ public class Service extends BaseObject implements Serializable {
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
-	
+
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -153,16 +154,13 @@ public class Service extends BaseObject implements Serializable {
 
 		Service pojo = (Service) o;
 
-		if (addTime != null ? !addTime.equals(pojo.addTime)
-				: pojo.addTime != null)
+		if (addTime != null ? !addTime.equals(pojo.addTime) : pojo.addTime != null)
 			return false;
-		if (updateTime != null ? !updateTime.equals(pojo.updateTime)
-				: pojo.updateTime != null)
+		if (updateTime != null ? !updateTime.equals(pojo.updateTime) : pojo.updateTime != null)
 			return false;
 		if (title != null ? !title.equals(pojo.title) : pojo.title != null)
 			return false;
-		if (content != null ? !content.equals(pojo.content)
-				: pojo.content != null)
+		if (content != null ? !content.equals(pojo.content) : pojo.content != null)
 			return false;
 		if (img != null ? !img.equals(pojo.img) : pojo.img != null)
 			return false;
@@ -190,8 +188,7 @@ public class Service extends BaseObject implements Serializable {
 		sb.append(" [");
 		sb.append("id").append("='").append(getId()).append("', ");
 		sb.append("addTime").append("='").append(getAddTime()).append("', ");
-		sb.append("updateTime").append("='").append(getUpdateTime()).append(
-				"', ");
+		sb.append("updateTime").append("='").append(getUpdateTime()).append("', ");
 		sb.append("title").append("='").append(getTitle()).append("', ");
 		sb.append("content").append("='").append(getContent()).append("', ");
 		sb.append("img").append("='").append(getImg()).append("', ");

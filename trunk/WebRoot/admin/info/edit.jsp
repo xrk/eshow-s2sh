@@ -4,14 +4,8 @@
 <s:action name="info!view" id="view" executeResult="false" />
 <head>
 <title>修改信息${view.info.title}</title>
-<link rel="stylesheet" href="<c:url value='/admin/styles/info.css'/>"
-	type="text/css" />
 <%@ include file="/common/validate.jsp"%>
-<script type="text/javascript">
-	window.addEvent('domready', function() {
-		new FormCheck('infoForm');
-	});
-</script>
+<%@ include file="/common/ueditor.jsp"%>
 </head>
 <body>
 	<div class="container mt">
@@ -27,8 +21,11 @@
 				</ul>
 				<div class="well com">
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab"
+						<li><a data-toggle="tab"
 							href="${ctx}/admin/info">信息列表</a>
+						</li>
+						<li class="active"><a data-toggle="tab"
+							href="${ctx}/admin/info">修改信息</a>
 						</li>
 					</ul>
 					<s:form id="infoForm" cssClass="form-horizontal" action="info!update.action" method="post">
@@ -51,8 +48,22 @@
 							<div class="control-group">
 								<label class="control-label" for="textarea">信息内容</label>
 								<div class="controls">
-									<textarea class="input-xlarge" id="textarea" rows="3"
-										style="width: 600px; height: 300px;" name="info.content">${view.info.content}</textarea>
+									<textarea id="content" name="info.content" class="content">${view.info.content}</textarea>
+									<script type="text/javascript">
+										var editorOption = {
+											toolbars : [ [ 'Bold', 'underline', 'forecolor', 'Undo', 'Redo',
+													'insertimage', 'link', 'unlink', 'justifyleft',
+													'justifycenter', 'justifyright', 'insertunorderedlist',
+													'insertorderedlist','|','AutoTypeSet','FormatMatch','RemoveFormat','|', 'highlightcode', 'Source', 'FullScreen' ] ],
+											wordCount : false,
+											initialContent:'',
+											elementPathEnabled : false,
+											minFrameHeight : 341,
+											maxInputCount:20 
+										};
+										var _editor = new baidu.editor.ui.Editor(editorOption);
+										_editor.render('content');
+									</script>
 								</div>
 							</div>
 							<div class="form-actions">

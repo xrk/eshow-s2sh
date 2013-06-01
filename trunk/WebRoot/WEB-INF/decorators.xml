@@ -5,7 +5,8 @@
 		<pattern>/*ajax=true*</pattern>
 		<pattern>/struts/dojo/*</pattern>
 		<pattern>/resources/*</pattern>
-		<pattern>/components/*</pattern>
+		<pattern>/ueditor/*</pattern>
+		<pattern>/static/*</pattern>
 	</excludes>
 
 	<decorator name="default" page="default.jsp">

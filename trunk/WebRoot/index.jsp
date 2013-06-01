@@ -23,7 +23,7 @@
 							<h1 class="normal ac">基于Appfuse的Web2.0开源SSH框架</h1>
 							<h3 class="normal ac">功能齐全，SSH框架学习者第一选择</h3>
 							<p class="ac">
-								<img alt="" width="770" height="360" src="images/ss-main.jpg">
+								<img alt="" width="770" height="360" src="${dll}/images/ss-main.jpg">
 							</p>
 						</div>
 					</div>

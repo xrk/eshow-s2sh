@@ -4,11 +4,7 @@
 <head>
 <title>添加信息</title>
 <%@ include file="/common/validate.jsp"%>
-<script type="text/javascript">
-	window.addEvent('domready', function() {
-		new FormCheck('infoForm');
-	});
-</script>
+<%@ include file="/common/ueditor.jsp"%>
 </head>
 <body>
 	<div class="container mt">
@@ -46,8 +42,22 @@
 							<div class="control-group">
 								<label class="control-label" for="textarea">信息内容</label>
 								<div class="controls">
-									<textarea class="input-xlarge" id="textarea" rows="3"
-										style="width: 600px; height: 300px;" name="info.content"></textarea>
+									<textarea id="content" name="info.content" class="content"></textarea>
+									<script type="text/javascript">
+										var editorOption = {
+											toolbars : [ [ 'Bold', 'underline', 'forecolor', 'Undo', 'Redo',
+													'insertimage', 'link', 'unlink', 'justifyleft',
+													'justifycenter', 'justifyright', 'insertunorderedlist',
+													'insertorderedlist','|','AutoTypeSet','FormatMatch','RemoveFormat','|', 'highlightcode', 'Source', 'FullScreen' ] ],
+											wordCount : false,
+											initialContent:'',
+											elementPathEnabled : false,
+											minFrameHeight : 341,
+											maxInputCount:20 
+										};
+										var _editor = new baidu.editor.ui.Editor(editorOption);
+										_editor.render('content');
+									</script>
 								</div>
 							</div>
 							<div class="form-actions">

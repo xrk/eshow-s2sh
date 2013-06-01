@@ -25,11 +25,11 @@
 							<a href="<c:url value='/admin/info/add'/>"
 								class="btn btn-primary"> 添加</a>
 						</div>
-						<h3 class="yahei">服务列表</h3>
+						<h3 class="yahei">信息列表</h3>
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab"
-							href="<c:url value='/admin/info'/>">信息列表</a>
+							href="${ctx}/admin/info">信息列表</a>
 						</li>
 					</ul>
 					<s:action name="info!search" id="infoList" executeResult="false">
@@ -57,14 +57,12 @@
 									</td>
 								</tr>
 							</s:iterator>
-
 						</tbody>
 					</table>
 					<%@ include file="/common/page.jsp"%>
 				</div>
 				<div class="c"></div>
 			</div>
-
 		</div>
 	</div>
 </body>

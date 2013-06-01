@@ -21,12 +21,12 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand yahei" href="${ctx }/admin/index">EShow管理平台</a>
+				<a class="brand yahei" href="${ctx}/admin/index">网站管理平台</a>
 				<div class="nav-collapse">
 					<ul class="nav">
-						<li class="active"><a href="${ctx }/admin/index">首 页</a>
+						<li class="active"><a href="${ctx}/admin/index">首 页</a>
 						</li>
-						<li class=""><a href="${ctx }/">返回前台</a>
+						<li class=""><a href="${ctx}/">返回前台</a>
 						</li>
 					</ul>
 					<p class="navbar-text pull-right">

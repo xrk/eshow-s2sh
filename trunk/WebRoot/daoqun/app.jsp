@@ -134,6 +134,16 @@
 					<span class="color7f">基于移动互联网的本地化生活搜索工具</span>
 				</p>
 			</div>
+			<div class="fl list yahei">
+				<a href=""><img src="./images/app/jiequtao.jpg" width="200"
+					height="300"> </a>
+				<h6>
+					<a class="black" href="">街区淘</a>
+				</h6>
+				<p>
+					<span class="color7f">小区生活服务平台</span>
+				</p>
+			</div>
 			<p class="clearfix">以做自己产品的心态做好每一个案例。我们将客户需求，技术架构，用户体验融入应用的每一个细节，提高产品价值。</p>
 		</div>
 	</div>

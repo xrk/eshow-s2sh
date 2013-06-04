@@ -74,6 +74,9 @@ public class ProductDaoHibernate extends GenericDaoHibernate<Product, Integer> i
 			if (query.website != null) {
 				rule.add(Restrictions.eq("website", query.website));
 			}
+			if (query.enabled != null) {
+				rule.add(Restrictions.eq("enabled", query.enabled));
+			}
 			if (query.getOrder() != null) {
 				rule.addOrder(query.getDesc() ? Order.desc(query.getOrder()) : Order.asc(query
 						.getOrder()));

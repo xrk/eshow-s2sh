@@ -49,7 +49,11 @@ public class ProductAction extends BaseFileUploadAction {
 	public void delete() {
 		product = productManager.get(id);
 		if (getSessionUser().equals(product.getUser())) {
-			productManager.remove(id);
+			product.setEnabled(Boolean.FALSE);
+			productManager.save(product);
+			success("删除成功");
+		} else {
+			failure("无权删除");
 		}
 	}
 
@@ -89,7 +93,7 @@ public class ProductAction extends BaseFileUploadAction {
 		if (file != null) {
 			product.setImg(UpYunUtil.upload(file));
 		}
-		productManager.save(product);
+		product = productManager.save(product);
 		saveMessage("添加成功");
 		id = product.getId();
 		return SUCCESS;

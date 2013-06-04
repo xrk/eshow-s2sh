@@ -36,8 +36,8 @@ public class Info extends BaseObject implements Serializable {
 	private String url;// 链接
 	private String content;// 内容
 	private String remark;// 备注
-	private Boolean enabled;// 是否可用
 	private String website;// 网站
+	private Boolean enabled;// 是否可用
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -104,15 +104,6 @@ public class Info extends BaseObject implements Serializable {
 		this.remark = remark;
 	}
 
-	@Column(name = "enabled")
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
 	@Column(name = "website", length = 20)
 	public String getWebsite() {
 		return website;
@@ -120,6 +111,15 @@ public class Info extends BaseObject implements Serializable {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public boolean equals(Object o) {

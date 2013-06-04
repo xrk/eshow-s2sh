@@ -1,8 +1,8 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<head>
 <%@ include file="../common/website.jsp"%>
+<head>
 <title>${viewinfo.info.title}</title>
 <%@ include file="/common/ueditor.jsp"%>
 </head>
@@ -39,6 +39,7 @@
 					</div>
 					<div id="productEdit">
 						<s:form cssClass="form-horizontal" id="productForm" action="product!save" method="post" enctype="multipart/form-data">
+							<input type="hidden" id="website" name="product.website" value="${website}" />
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="name">产品名称</label>

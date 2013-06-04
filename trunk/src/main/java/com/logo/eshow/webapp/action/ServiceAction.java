@@ -45,10 +45,15 @@ public class ServiceAction extends BaseFileUploadAction {
 		return LIST;
 	}
 
-	public String delete() {
-		serviceManager.remove(id);
-		saveMessage("删除成功");
-		return "delete";
+	public void delete() {
+		service = serviceManager.get(id);
+		if (getSessionUser().equals(service.getUser())) {
+			service.setEnabled(Boolean.FALSE);
+			serviceManager.save(service);
+			success("删除成功");
+		} else {
+			failure("无权删除");
+		}
 	}
 
 	public String view() {

@@ -22,7 +22,12 @@
 					<a href="http://www.promisingpromos.com/">Home</a> > <a href="http://www.promisingpromos.com/product/">${view.info.title}</a>
 
 				</div>
-				<s:action name="product!list" id="products" executeResult="false" />
+				<s:action name="product!search" id="products" executeResult="false">
+					<s:param name="query.website">promisingpromos</s:param>
+					<s:param name="query.enabled">true</s:param>
+					<s:param name="query.order">addTime</s:param>
+					<s:param name="query.desc">true</s:param>
+				</s:action>
 				<ul class="product clearfix yahei">
 					<s:iterator value="%{#products.products}" status="rowStatus" var="product">
 						<li><a href="http://www.promisingpromos.com/product/view/${id}"> <img src="${product.img}!small.jpg" />

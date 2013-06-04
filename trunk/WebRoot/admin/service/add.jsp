@@ -1,6 +1,7 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<%@ include file="../common/website.jsp"%>
 <head>
 <title>添加服务</title>
 <%@ include file="/common/ueditor.jsp"%>
@@ -34,6 +35,7 @@
 						</li>
 					</ul>
 					<s:form id="serviceForm" cssClass="form-horizontal" action="service!save.action" enctype="multipart/form-data" method="post">
+						<input type="hidden" id="website" name="service.website" value="${website}" />
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="title">服务标题 </label>

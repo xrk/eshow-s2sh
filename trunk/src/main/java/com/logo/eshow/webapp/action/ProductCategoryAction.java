@@ -45,7 +45,7 @@ public class ProductCategoryAction extends BaseAction {
 		return LIST;
 	}
 
-	public String delete() {
+	public void delete() {
 		ProductCategory productCategory = productCategoryManager.get(id);
 		if (productCategory != null) {
 			// 查询当前分类下的产品类别
@@ -57,9 +57,10 @@ public class ProductCategoryAction extends BaseAction {
 				productManager.save(product);
 			}
 			productCategoryManager.remove(id);
-			saveMessage("删除成功");
+			success("删除成功");
+		} else {
+			failure("参数不正确");
 		}
-		return LIST;
 	}
 
 	public String view() {

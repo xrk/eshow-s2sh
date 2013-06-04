@@ -19,6 +19,7 @@ public class ProductQuery extends BaseQuery {
 	public Double price;
 	public String code;
 	public String website;
+	public Boolean enabled;
 
 	public Integer getCount() {
 		return count;
@@ -98,6 +99,14 @@ public class ProductQuery extends BaseQuery {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 }

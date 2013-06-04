@@ -18,6 +18,7 @@
 		<s:param name="query.order">count</s:param>
 		<s:param name="query.desc">true</s:param>
 		<s:param name="query.pagesize">6</s:param>
+		<s:param name="query.enabled">true</s:param>
 	</s:action>
 	<div class="hotproduct">
 		<h3 class="yahei">HOT PRODUCTS</h3>

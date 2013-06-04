@@ -15,6 +15,7 @@ public class ServiceQuery extends BaseQuery {
 	public String content;
 	public Integer sequence;
 	public String website;
+	public Boolean enabled;
 	public Integer serviceTypeId;
 	public Integer userId;
 
@@ -64,6 +65,14 @@ public class ServiceQuery extends BaseQuery {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public Integer getServiceTypeId() {

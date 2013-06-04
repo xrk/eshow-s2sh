@@ -61,6 +61,9 @@ public class ServiceDaoHibernate extends GenericDaoHibernate<Service, Integer> i
 			if (query.website != null) {
 				rule.add(Restrictions.eq("website", query.website));
 			}
+			if (query.enabled != null) {
+				rule.add(Restrictions.eq("enabled", query.enabled));
+			}
 			if (query.serviceTypeId != null) {
 				rule.add(Restrictions.eq("serviceType.id", query.serviceTypeId));
 			}

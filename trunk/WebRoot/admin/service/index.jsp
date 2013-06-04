@@ -2,6 +2,7 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
+<%@ include file="../common/website.jsp"%>
 <head>
 <title>服务</title>
 </head>
@@ -32,7 +33,7 @@
 					</ul>
 					<div>
 						<s:action name="service!search" id="serviceList" executeResult="false">
-							<s:param name="query.website">promisingpromos</s:param>
+							<s:param name="query.website">${website}</s:param>
 							<s:param name="query.order">addTime</s:param>
 							<s:param name="query.desc">true</s:param>
 						</s:action>

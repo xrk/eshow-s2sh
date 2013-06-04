@@ -61,6 +61,8 @@ public class ServiceTypeAction extends BaseAction {
 			}
 			serviceTypeManager.remove(id);
 			success("删除成功");
+		} else {
+			failure("参数不正确");
 		}
 	}
 

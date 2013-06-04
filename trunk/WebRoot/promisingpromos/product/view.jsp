@@ -2,26 +2,24 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
-<s:action name="info!browse" id="productview" executeResult="false">
-	<s:param name="query.url">productview</s:param>
-	<s:param name="query.website">promisingpromos</s:param>
-</s:action>
 <s:action name="product!view" id="view" executeResult="false" />
 <head>
-<title>${productview.info.title }</title>
-<meta name="keywords" content="${productview.info.title }" />
-<meta name="description" content="${productview.info.title }" />
+<title>${view.product.name}</title>
+<meta name="keywords" content="${view.product.name}" />
+<meta name="description" content="${view.product.name}" />
 </head>
 <body>
-	<c:set var="current">product</c:set>
 	<section>
+		<c:set var="current">product</c:set>
 		<%@ include file="../common/header.jsp"%>
 		<div class="w1000 pt10 clearfix">
 			<%@ include file="../include/left.jsp"%>
 			<div class="main fr">
 				<div class="crumbnav yahei">
-					<a href="http://www.promisingpromos.com/">Home</a> > <a
-						href="http://www.promisingpromos.com/product/">${productview.info.title}</a>
+					<a href="http://www.promisingpromos.com/">Home</a> > 
+					<a href="http://www.promisingpromos.com/product/">Products</a> > 
+					<a href="http://www.promisingpromos.com/product/category/${view.product.productCategory.id}">${view.product.productCategory.name}</a> > 
+					<a href="http://www.promisingpromos.com/product/view/${view.product.id}">${view.product.name}</a>
 				</div>
 				<div class="view clearfix yahei">
 					<div class="v-pic fl">
@@ -29,15 +27,11 @@
 					</div>
 					<div class="v-unit fr yahei">
 						<ul class="clearfix">
-							<li>GET A SAMPLE</li>
-							<li>PRINT SPECS</li>
-							<li>ADD TO WISH LIST</li>
-							<li>EMAIL A FRIEND</li>
+							<li><a href="javascript:;" onclick="javascript:window.print();" style="color:#fff">PRINT SPECS</a></li>
 						</ul>
 						<div class="pcs">
-							<a href="">Quantity(pcs)</a> <a href="">Unit Price($)</a>
+							<a href="javascript:;">CODE : ${view.product.code }</a> <a href="javascript:;">As low as : ${view.product.price}$</a>
 						</div>
-
 					</div>
 				</div>
 				<dl class="v-info yahei">

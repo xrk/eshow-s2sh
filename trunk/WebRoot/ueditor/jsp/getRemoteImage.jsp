@@ -36,9 +36,9 @@
 		    	continue;
 		    }
 		    String savePath = "/" + DateUtil.getDateTime("yyyy/MM/dd",new Date());
-    		outSrc[i]="http://img.bangqu.com" + savePath +"/"+ saveName+"!middle.jpg";
+    		outSrc[i] = UpYunConfig.IMG + savePath + "/" + saveName + "!middle.jpg";
     		// 初始化空间
-			UpYun upyun = new UpYun("bangqu", UpYunConfig.USERNAME, UpYunConfig.PASSWORD);
+			UpYun upyun = new UpYun(UpYunConfig.BUCKET, UpYunConfig.USERNAME, UpYunConfig.PASSWORD);
     		try {
     			upyun.writeFile(savePath + "/" + saveName, FileUtil.inputStreamToByte(conn.getInputStream()), true);
     		} catch (Exception e) {

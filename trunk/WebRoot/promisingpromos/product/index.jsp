@@ -2,25 +2,20 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
-<s:action name="info!browse" id="view" executeResult="false">
-	<s:param name="query.url">productindex</s:param>
-	<s:param name="query.website">promisingpromos</s:param>
-</s:action>
 <head>
-<title>${view.info.title }</title>
-<meta name="keywords" content="${view.info.title }" />
-<meta name="description" content="${view.info.title }" />
+<title>Products</title>
+<meta name="keywords" content="Products" />
+<meta name="description" content="Products" />
 </head>
 <body>
-	<c:set var="current">product</c:set>
 	<section>
+		<c:set var="current">product</c:set>
 		<%@ include file="../common/header.jsp"%>
 		<div class="w1000 pt10 clearfix">
 			<%@ include file="../include/left.jsp"%>
 			<div class="main fr">
 				<div class="crumbnav yahei">
-					<a href="http://www.promisingpromos.com/">Home</a> > <a href="http://www.promisingpromos.com/product/">${view.info.title}</a>
-
+					<a href="http://www.promisingpromos.com/">Home</a> > <a href="http://www.promisingpromos.com/product/">Products</a>
 				</div>
 				<s:action name="product!search" id="products" executeResult="false">
 					<s:param name="query.website">promisingpromos</s:param>

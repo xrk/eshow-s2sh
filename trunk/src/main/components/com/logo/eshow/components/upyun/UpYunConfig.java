@@ -17,6 +17,11 @@ public class UpYunConfig {
 	public final static String IMG = "http://eshow.b0.upaiyun.com";
 
 	/**
+	 * 空间名
+	 */
+	public final static String BUCKET = "eshow";
+
+	/**
 	 * 操作员用户名
 	 */
 	public final static String USERNAME = "eshow";

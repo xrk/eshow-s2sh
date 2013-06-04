@@ -11,23 +11,18 @@
 <meta name="description" content="${view.info.title}" />
 </head>
 <body>
-	<c:set var="current">about</c:set>
 	<section>
+		<c:set var="current">about</c:set>
 		<%@ include file="common/header.jsp"%>
 		<div class="w1000 pt10 clearfix">
 			<%@ include file="include/left.jsp"%>
 			<div class="main fr">
 				<div class="crumbnav yahei">
-					<a href="http://www.promisingpromos.com/">Home</a> > <a
-						href="${view.info.url}">${view.info.url}</a>
-
+					<a href="http://www.promisingpromos.com/">Home</a> > <a href="http://www.promisingpromos.com/${view.info.url}">${view.info.title}</a>
 				</div>
 				<div class="text clearfix yahei">
 					<h1>${view.info.title}</h1>
 					<div class="text-c">
-						<p class="t-c">
-							<img src="http://www.promisingpromos.com/images/bud.jpg" />
-						</p>
 						${view.info.content}
 					</div>
 				</div>

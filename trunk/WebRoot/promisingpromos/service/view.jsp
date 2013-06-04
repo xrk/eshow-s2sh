@@ -2,15 +2,14 @@
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
 <%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
-<s:action name="info!browse" id="serviceview" executeResult="false">
-	<s:param name="query.url">serviceview</s:param>
+<s:action name="info!browse" id="info" executeResult="false">
+	<s:param name="query.url">service-index</s:param>
 	<s:param name="query.website">promisingpromos</s:param>
 </s:action>
-<s:action name="product!view" id="view" executeResult="false" />
 <head>
-<title>${serviceview.info.title }</title>
-<meta name="keywords" content="${serviceview.info.title }" />
-<meta name="description" content="${serviceview.info.title }" />
+<title>${info.info.title }</title>
+<meta name="keywords" content="${info.info.title}" />
+<meta name="description" content="${info.info.title}" />
 </head>
 <body>
 	<c:set var="current">service</c:set>
@@ -23,15 +22,14 @@
 					<a href="http://www.promisingpromos.com/">Home</a> > <a
 						href="http://www.promisingpromos.com/service/">${serviceview.info.title}</a>
 				</div>
-				<s:action name="service!view" id="serviceview">
-				</s:action>
+				<s:action name="service!view" id="view" executeResult="false"/>
 				<div class="text clearfix yahei">
 					<div class="text-c">
 						<p>
-							${serviceview.service.id}.&nbsp; <a
-								href="http://www.promisingpromos.com/service/view/${serviceview.service.id}">${serviceview.service.title}</a>
+							${view.service.id}.&nbsp; <a
+								href="http://www.promisingpromos.com/service/view/${view.service.id}">${view.service.title}</a>
 						</p>
-						${serviceview.service.content}
+						${view.service.content}
 					</div>
 				</div>
 			</div>

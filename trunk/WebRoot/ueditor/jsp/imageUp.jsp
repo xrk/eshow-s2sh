@@ -9,7 +9,7 @@
     String[] fileType = {".gif" , ".png" , ".jpg" , ".jpeg" , ".bmp"};
     up.setAllowFiles(fileType);
     up.setMaxSize(10000); //单位KB
-    up.upload("eshow");
+    up.upload(UpYunConfig.BUCKET);
     up.setUrl(UpYunConfig.IMG + up.getUrl() + "!middle.jpg");
     up.setTitle(up.getTitle().replace("&", "&amp;").replace("'", "&qpos;").replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;"));
     response.getWriter().print("{'original':'"+up.getOriginalName()+"','url':'"+up.getUrl()+"','title':'"+up.getTitle()+"','state':'"+up.getState()+"'}");

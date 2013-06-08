@@ -47,7 +47,7 @@ public class ServiceAction extends BaseFileUploadAction {
 
 	public void delete() {
 		service = serviceManager.get(id);
-		if (getSessionUser().equals(service.getUser())) {
+		if (getSessionUser().getId().equals(service.getUser().getId())) {
 			service.setEnabled(Boolean.FALSE);
 			serviceManager.save(service);
 			success("删除成功");

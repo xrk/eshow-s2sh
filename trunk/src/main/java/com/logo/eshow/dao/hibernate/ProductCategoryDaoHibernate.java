@@ -3,6 +3,7 @@ package com.logo.eshow.dao.hibernate;
 import java.util.List;
 
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -56,6 +57,10 @@ public class ProductCategoryDaoHibernate extends GenericDaoHibernate<ProductCate
 			}
 			if (query.website != null) {
 				rule.add(Restrictions.eq("website", query.website));
+			}
+			if (query.getOrder() != null) {
+				rule.addOrder(query.getDesc() ? Order.desc(query.getOrder()) : Order.asc(query
+						.getOrder()));
 			}
 		}
 		return rule;

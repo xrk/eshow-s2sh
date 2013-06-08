@@ -50,11 +50,11 @@
 								<div class="control-group">
 									<label class="control-label" for="productCategoryId">产品分类</label>
 									<div class="controls">
-										<s:action name="product-category!search"
-											id="productCategoryList" executeResult="false" />
+										<s:action name="product-category!list" id="productCategoryList" executeResult="false">
+											<s:param name="query.enabled">true</s:param>
+										</s:action>
 										<select id="productCategoryId" name="productCategoryId">
-											<s:iterator value="%{#productCategoryList.productCategories}"
-												status="rowStatus">
+											<s:iterator value="%{#productCategoryList.productCategories}" status="rowStatus">
 												<option value="${id}">${name}</option>
 											</s:iterator>
 										</select>
@@ -73,6 +73,12 @@
 									</div>
 								</div>
 								<div class="control-group">
+									<label class="control-label" for="unit">计量单位</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="unit" name="product.unit" value="">
+									</div>
+								</div>
+								<div class="control-group">
 									<label class="control-label" for="file">选择图片</label>
 									<div class="controls">
 										<input type="file" class="input-xlarge" name="file"
@@ -84,7 +90,84 @@
 								<div class="control-group">
 									<label class="control-label" for="content">产品描述</label>
 									<div class="controls">
-										<textarea id="content" name="product.content" class="content"></textarea>
+										<textarea id="content" name="product.content" class="content">
+											<ul class=" list-paddingleft-2">
+											    <li>
+											        <p>
+											            <span class="tit">Minimum Order Quantity :</span> &nbsp;<span class="cc">xxx(pcs)</span>
+											        </p>
+											    </li>
+											    <li>
+											        <p>
+											            <span class="tit">Colors :</span> &nbsp;<span class="cc">Red, Blue, Green</span>
+											        </p>
+											    </li>
+											    <li>
+											        <p>
+											            <span class="tit">Material :</span> &nbsp;<span class="cc">ABS and PS</span>
+											        </p>
+											    </li>
+											    <li>
+											        <p>
+											            <span class="tit">Size :</span> &nbsp;<span class="cc">2.72x0.16cm</span>
+											        </p>
+											    </li>
+											    <li>
+											        <p>
+											            <span class="tit">Imprint Method : </span> &nbsp;<span class="cc">Silkscreen</span>
+											        </p>
+											    </li>
+											    <li>
+											        <p>
+											            <span class="tit">Description :</span> &nbsp;<span class="cc">Identification card slip located in the translucence material. Buckle strap attaches easily for hassle-free travel. </span>
+											        </p>
+											    </li>
+											</ul>
+											<p>
+												<br />
+											</p>
+											<table width="100%">
+												<tbody>
+													<tr>
+														<td valign="top" style="border-color:#92cddc;" width="20%">
+															<br />
+														</td>
+														<td valign="top" style="border-color:#92cddc;" width="20%">
+															<br />
+														</td>
+														<td valign="top" style="border-color:#92cddc;" width="20%">
+															<br />
+														</td>
+														<td valign="top" style="border-color:#92cddc;" width="20%">
+															<br />
+														</td>
+														<td valign="top" style="border-color:#92cddc;" width="20%">
+															<br />
+														</td>
+													</tr>
+													<tr>
+														<td valign="top" style="border-color:#92cddc;" width="20%">
+															<br />
+														</td>
+														<td valign="top" style="border-color:#92cddc;" width="20%">
+															<br />
+														</td>
+														<td valign="top" style="border-color:#92cddc;" width="20%">
+															<br />
+														</td>
+														<td valign="top" style="border-color:#92cddc;" width="20%">
+															<br />
+														</td>
+														<td valign="top" style="border-color:#92cddc;" width="20%">
+															<br />
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<p>
+												<br />
+											</p>
+										</textarea>
 										<script type="text/javascript">
 											var editorOption = {
 												toolbars : [ [ 'Bold', 'underline',

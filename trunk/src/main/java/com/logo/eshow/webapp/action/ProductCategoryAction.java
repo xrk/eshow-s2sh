@@ -56,7 +56,8 @@ public class ProductCategoryAction extends BaseAction {
 				product.setProductCategory(null);
 				productManager.save(product);
 			}
-			productCategoryManager.remove(id);
+			productCategory.setEnabled(Boolean.TRUE);
+			productCategoryManager.save(productCategory);
 			success("删除成功");
 		} else {
 			failure("参数不正确");

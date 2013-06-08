@@ -59,7 +59,8 @@ public class ServiceTypeAction extends BaseAction {
 				service.setServiceType(null);
 				serviceManager.save(service);
 			}
-			serviceTypeManager.remove(id);
+			serviceType.setEnabled(Boolean.FALSE);
+			serviceTypeManager.save(serviceType);
 			success("删除成功");
 		} else {
 			failure("参数不正确");

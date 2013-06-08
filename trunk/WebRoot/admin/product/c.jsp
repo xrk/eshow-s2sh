@@ -44,6 +44,7 @@
 							<s:param name="query.productCategoryId">${param.id}</s:param>
 							<s:param name="query.order">addTime</s:param>
 							<s:param name="query.desc">true</s:param>
+							<s:param name="query.enabled">true</s:param>
 						</s:action>
 						<ul>
 							<s:iterator value="%{#productList.products}" status="rowStatus" var="product">

@@ -32,13 +32,13 @@ public class ServiceType extends BaseObject implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;//服务类型ID
-	private String name;//名称
-	private String remark;//注释
-	private Integer sequence;//序号
-	private String website;//网站
-	private Boolean enabled;//是否可用
-	private Set<Service> services = new HashSet<Service>(0);//服务列表
+	private Integer id;// 服务类型ID
+	private String name;// 名称
+	private String remark;// 注释
+	private Integer sequence;// 序号
+	private String website;// 网站
+	private Boolean enabled;// 是否可用
+	private Set<Service> services = new HashSet<Service>(0);// 服务列表
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -85,15 +85,16 @@ public class ServiceType extends BaseObject implements Serializable {
 	public void setService(Set<Service> services) {
 		this.services = services;
 	}
-	
-	@Column(name = "website",length=20)
+
+	@Column(name = "website", length = 20)
 	public String getWebsite() {
 		return website;
 	}
+
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	
+
 	@Column(name = "enabled")
 	public Boolean getEnabled() {
 		return enabled;
@@ -102,7 +103,6 @@ public class ServiceType extends BaseObject implements Serializable {
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
-	
 
 	public boolean equals(Object o) {
 		if (this == o)

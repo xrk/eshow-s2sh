@@ -1,6 +1,7 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<%@ taglib uri="/WEB-INF/stringutil.tld" prefix="util"%>
 <%@ include file="../common/website.jsp"%>
 <head>
 <title>产品类型</title>
@@ -39,7 +40,7 @@
 							<tr>
 								<th>#</th>
 								<th>分类名称</th>
-								<th>备注</th>
+								<th width="50%">备注</th>
 								<th>产品</th>
 								<th>操作</th>
 							</tr>
@@ -53,7 +54,7 @@
 								<tr id="market20">
 									<td id="productCategory${id}">${id }</td>
 									<td>${name }</td>
-									<td>${description }</td>
+									<td>${description}</td>
 									<td><a href="<c:url value='/admin/product/c/${id}'/>">产品列表</a>
 									</td>
 									<td><a

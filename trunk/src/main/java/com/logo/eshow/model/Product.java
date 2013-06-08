@@ -36,16 +36,17 @@ public class Product extends BaseObject implements Serializable {
 	private User user;// 用户
 	private ProductCategory productCategory;// 商品类型
 	private Date addTime;// 添加时间
+	private Date updateTime;// 更新时间
 	private String name;// 名称
 	private String code;// 型号
+	private Double price;// 商品价格
+	private String unit;// 计量单位
 	private String content;// 内容
 	private String img;// 图片地址
-	private Integer sequence;// 序号
-	private Boolean enabled;// 是否可用
-	private Date updateTime;// 更新时间
-	private String website;// 网站
 	private Integer count;// 访问次数
-	private Double price;// 商品价格
+	private Integer sequence;// 序号
+	private String website;// 网站
+	private Boolean enabled;// 是否可用
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -86,6 +87,15 @@ public class Product extends BaseObject implements Serializable {
 		this.addTime = addTime;
 	}
 
+	@Column(name = "updateTime")
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
 	@Column(name = "name", length = 40, nullable = false)
 	public String getName() {
 		return name;
@@ -94,7 +104,7 @@ public class Product extends BaseObject implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	@Column(name = "code", length = 50)
 	public String getCode() {
 		return code;
@@ -102,6 +112,24 @@ public class Product extends BaseObject implements Serializable {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	@Column(name = "price", scale = 2)
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	@Column(name = "unit")
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 	@Column(name = "content")
@@ -122,6 +150,15 @@ public class Product extends BaseObject implements Serializable {
 		this.img = img;
 	}
 
+	@Column(name = "count", length = 11)
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
 	@Column(name = "sequence")
 	public Integer getSequence() {
 		return sequence;
@@ -129,24 +166,6 @@ public class Product extends BaseObject implements Serializable {
 
 	public void setSequence(Integer sequence) {
 		this.sequence = sequence;
-	}
-
-	@Column(name = "enabled")
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	@Column(name = "updateTime")
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
 	}
 
 	@Column(name = "website", length = 20)
@@ -158,22 +177,13 @@ public class Product extends BaseObject implements Serializable {
 		this.website = website;
 	}
 
-	@Column(name = "price")
-	public Double getPrice() {
-		return price;
+	@Column(name = "enabled")
+	public Boolean getEnabled() {
+		return enabled;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	@Column(name = "count", length = 11)
-	public Integer getCount() {
-		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public boolean equals(Object o) {

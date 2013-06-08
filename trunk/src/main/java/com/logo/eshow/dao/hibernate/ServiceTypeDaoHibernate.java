@@ -2,6 +2,7 @@ package com.logo.eshow.dao.hibernate;
 
 import java.util.List;
 
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -54,6 +55,10 @@ public class ServiceTypeDaoHibernate extends GenericDaoHibernate<ServiceType, In
 			}
 			if (query.sequence != null) {
 				rule.add(Restrictions.eq("sequence", query.sequence));
+			}
+			if (query.getOrder() != null) {
+				rule.addOrder(query.getDesc() ? Order.desc(query.getOrder()) : Order.asc(query
+						.getOrder()));
 			}
 		}
 		return rule;

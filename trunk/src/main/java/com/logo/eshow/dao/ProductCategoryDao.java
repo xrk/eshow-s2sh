@@ -8,10 +8,10 @@ import com.logo.eshow.dao.GenericDao;
 import com.logo.eshow.model.ProductCategory;
 
 /**
- * An interface that provides a data management interface to the ProductCategory
- * table.
+ * An interface that provides a data management interface to the ProductCategory table.
  */
 public interface ProductCategoryDao extends GenericDao<ProductCategory, Integer> {
+
 	List<ProductCategory> list(ProductCategoryQuery query);
 
 	Page<ProductCategory> search(ProductCategoryQuery query);

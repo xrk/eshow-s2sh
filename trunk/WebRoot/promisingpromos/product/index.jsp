@@ -20,18 +20,23 @@
 				<s:action name="product!search" id="products" executeResult="false">
 					<s:param name="query.website">promisingpromos</s:param>
 					<s:param name="query.enabled">true</s:param>
+					<s:param name="query.pagesize">20</s:param>
 					<s:param name="query.order">addTime</s:param>
 					<s:param name="query.desc">true</s:param>
 				</s:action>
 				<ul class="product clearfix yahei">
 					<s:iterator value="%{#products.products}" status="rowStatus" var="product">
-						<li><a href="http://www.promisingpromos.com/product/view/${id}"> <img src="${product.img}!small.jpg" />
+						<li>
+							<a href="http://www.promisingpromos.com/product/view/${id}"> <img src="${product.img}!small.jpg" title="${name}"/>
 								<p>
-									<span class="name str">${name}</span><br> Item# ${code }<br>
+									<span class="name str">${util:preview(name,15)}</span><br> Item# ${code}<br>
 									As low as <span class="price str">$${price}</span>
-								</p> </a></li>
+								</p>
+							</a>
+						</li>
 					</s:iterator>
 				</ul>
+				<%@ include file="/common/page.jsp"%>
 			</div>
 		</div>
 	</section>

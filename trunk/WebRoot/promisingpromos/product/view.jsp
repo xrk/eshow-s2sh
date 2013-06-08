@@ -27,19 +27,17 @@
 					</div>
 					<div class="v-unit fr yahei">
 						<ul class="clearfix">
-							<li><a href="javascript:;" onclick="javascript:window.print();" style="color:#fff">PRINT SPECS</a></li>
+							<li><a href="javascript:window.print();" style="color:#fff">PRINT SPECS</a></li>
+							<li><a href="mailto:csr@promisingpromos.com?subject=inquiry for ${view.product.name}&body=<p>Hi CSR,</p><p><br /></p><p>I'm looking to get a quote. </p><p><br /></p><p><strong>Contact Name:</strong></p><p><strong>Company Name:</strong></p><p>    <strong>Phone Number:</strong></p><p><strong>Fax Number:</strong></p><p><strong>Email Address:</strong></p><p><br /></p><p><strong>Product #:</strong></p><p><strong>Product Name:</strong></p><p><strong>Quantity:</strong></p><p><strong> Imprint Info:</strong></p><p><br /></p><p><strong>Desired In-Hands Date</strong>: </p><p><strong>Shipping City or Zip Code:</strong></p><p><strong>Other Details or Any Special Requirements:</strong></p>" style="color:#fff">BUY OR GET A QUOTE</a></li>
 						</ul>
 						<div class="pcs">
 							<a href="javascript:;">CODE : ${view.product.code }</a> <a href="javascript:;">As low as : ${view.product.price}$</a>
 						</div>
 					</div>
 				</div>
-				<dl class="v-info yahei">
-					<dt>${view.product.name } (${view.product.code })</dt>
-					<dd>
-						<span class="tit">PRICE :</span> <span class="cc">$${view.product.price}</span>
-					</dd>
-					<dd>${view.product.content }</dd>
+				<div class="v-info yahei">
+					<div class="v-info-title">${view.product.name } (${view.product.code })</div>
+					<div>${view.product.content }</div>
 				</dl>
 			</div>
 		</div>

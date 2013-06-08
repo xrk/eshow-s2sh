@@ -34,7 +34,7 @@
 				<div class="control-group">
 					<div class="controls">
 						<label class="checkbox"> <input type="checkbox"
-							name="rememberMe" id="rememberMe" checked="checked" /> 让系统记住我 </label> <input
+							name="_spring_security_remember_me" id="rememberMe" checked="checked" /> 让系统记住我 </label> <input
 							type="submit" name="login" class="btn"
 							value="<fmt:message key='button.login'/>" />
 					</div>

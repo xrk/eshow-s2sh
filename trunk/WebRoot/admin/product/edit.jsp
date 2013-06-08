@@ -50,8 +50,8 @@
 							<div class="control-group">
 								<label class="control-label" for="select01">产品分类</label>
 								<div class="controls">
-									<s:action name="product-category!list" id="productCategoryList"
-										executeResult="false" />
+									<s:action name="product-category!list" id="productCategoryList" executeResult="false">
+									</s:action>
 									<select id="productCategoryId" name="productCategoryId">
 										<option id="">无</option>
 										<s:iterator value="%{#productCategoryList.productCategories}" status="rowStatus">
@@ -74,6 +74,12 @@
 									<input type="text" class="input-xlarge" id="price" name="product.price" value="${view.product.price}"> 数字
 								</div>
 							</div>
+							<div class="control-group">
+									<label class="control-label" for="unit">计量单位</label>
+									<div class="controls">
+										<input type="text" class="input-xlarge" id="unit" name="product.unit" value="${view.product.unit}">
+									</div>
+								</div>
 							<div class="control-group">
 								<label class="control-label" for="file">选择图片</label>
 								<div class="controls">

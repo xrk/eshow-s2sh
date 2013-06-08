@@ -1,16 +1,17 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
-<s:action name="product-category!list" id="productCategorys"
-	executeResult="false" />
+
 <div class="side fl">
 	<div class="yahei cate">
 		<h3>CATEGORIES</h3>
 		<ul>
+			<s:action name="product-category!list" id="productCategorys" executeResult="false" >
+				<s:param name="query.order">name</s:param>
+				<s:param name="query.desc">false</s:param>
+			</s:action>
 			<s:iterator value="%{#productCategorys.productCategories}">
-				<li><a
-					href="http://www.promisingpromos.com/product/category/${id}"
-					title="${name }">${name }</a></li>
+				<li><a href="http://www.promisingpromos.com/product/category/${id}" title="${name}">${name}</a></li>
 			</s:iterator>
 		</ul>
 	</div>
@@ -24,8 +25,9 @@
 		<h3 class="yahei">HOT PRODUCTS</h3>
 		<ul class="clearfix">
 			<s:iterator value="%{#productsByCount.products}" status="rowStatus" var="product">
-				<li><a href="http://www.promisingpromos.com/product/view/${id}"><img
-						src="${product.img}!small.jpg" /> </a></li>
+				<li>
+					<a href="http://www.promisingpromos.com/product/view/${id}"><img src="${product.img}!small.jpg" title="${title}"/></a>
+				</li>
 			</s:iterator>
 		</ul>
 	</div>

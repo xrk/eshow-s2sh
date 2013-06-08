@@ -1,10 +1,9 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<%@ include file="../common/website.jsp"%>
 <head>
 <title>添加产品分类</title>
-<link rel="stylesheet" href="${ctx}/admin/styles/productCategory.css"
-	type="text/css" />
 </head>
 <body>
 	<div class="container mt">
@@ -15,7 +14,8 @@
 					<li><a href="${ctx}/admin/index">首页</a> <span class="divider">/</span>
 					</li>
 					<li><a href="${ctx}/admin/productType/">产品类型管理</a> <span
-						class="divider">/</span></li>
+						class="divider">/</span>
+					</li>
 					<li class="active">产品类型添加</li>
 				</ul>
 				<div class="well com">
@@ -28,12 +28,14 @@
 					</div>
 					<ul id="myTab" class="nav nav-tabs">
 						<li><a data-toggle="tab" href="${ctx}/admin/product">
-								产品列表</a></li>
+								产品列表</a>
+						</li>
 						<li class="active"><a data-toggle="tab"
-							href="${ctx}/admin/productCategory"> 产品分类</a></li>
+							href="${ctx}/admin/productCategory"> 产品分类</a>
+						</li>
 					</ul>
-					<form class="form-horizontal" id="productCategoryForm"
-						action="product-category!save" method="post">
+					<s:form cssClass="form-horizontal" id="productCategoryForm" action="product-category!save" method="post">
+						<input type="hidden" id="website" name="productCategory.website" value="${website}" />
 						<div class="control-group">
 							<label class="control-label" for="input01">分类名称</label>
 							<div class="controls">
@@ -52,10 +54,9 @@
 						</div>
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary">保存</button>
-							<button class="btn">取消</button>
+							<a class="btn" onclick="javascript:history.back();">取消</a>
 						</div>
-					</form>
-					<div class="c"></div>
+					</s:form>
 				</div>
 			</div>
 		</div>

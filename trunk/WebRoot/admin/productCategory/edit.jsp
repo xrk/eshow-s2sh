@@ -1,23 +1,10 @@
 <%@ page language="java" errorPage="/error.jsp" pageEncoding="UTF-8"
 	contentType="text/html;charset=utf-8"%>
 <%@ include file="/common/taglibs.jsp"%>
+<%@ include file="../common/website.jsp"%>
 <s:action name="product-category!view" id="view" executeResult="false"></s:action>
 <head>
 	<title>修改产品分类</title>
-	<link rel="stylesheet"
-		href="<c:url value='/admin/styles/productCategory.css'/>" type="text/css" />
-	<link media="screen" type="text/css"
-		href="<c:url value='/scripts/validate/theme/grey/formcheck.css'/>"
-		rel="stylesheet" />
-	<script type="text/javascript"
-		src="<c:url value='/scripts/validate/lang/zh-CN.js'/>"></script>
-	<script type="text/javascript"
-		src="<c:url value='/scripts/validate/formcheck.js'/>"></script>
-	<script type="text/javascript">
-	 	window.addEvent('domready', function() {
-			new FormCheck('productCategoryForm');
-		});
-    </script>
 </head>
 <body>
 	<div class="container mt">
@@ -35,7 +22,7 @@
 				<div class="well com">
 					<div class="page-header">
 						<div class="pull-right">
-							<a href="<c:url value='/admin/productCategory/add'/>"
+							<a href="${ctx}/admin/productCategory/add"
 								class="btn btn-primary">添加</a>
 						</div>
 						<h3 class="yahei">产品类型添加</h3>
@@ -47,21 +34,20 @@
 							href="<c:url value='/admin/productCategory'/>"> 产品分类</a></li>
 					</ul>
 					<div id="securitiesTxt">
-						<form class="form-horizontal" id="productCategoryForm"
-							action="product-category!update" method="post">
+						<s:form cssClass="form-horizontal" id="productCategoryForm" action="product-category!update" method="post">
 							<input type="hidden" name="id" value="${view.productCategory.id}" />
 							<div class="control-group">
 								<label class="control-label" for="input01">分类名称</label>
 								<div class="controls">
 									<input type="text" class="input-xlarge"
-										name="productCategory.name" value="${view.productCategory.name }"><span class="t"><font
+										name="productCategory.name" value="${view.productCategory.name}"><span class="t"><font
 										color="red">*</font>必填</span>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="textarea">产品描述</label>
 								<div class="controls">
-									<textarea class="input-xlarge" id="textarea" rows="3"
+									<textarea class="input-xlarge" id="textarea" rows="5" cols="60"
 										name="productCategory.description">${view.productCategory.description}</textarea>
 									<span class="t"><font color="red">*</font>必填</span>
 								</div>
@@ -70,7 +56,7 @@
 								<button type="submit" class="btn btn-primary">修改</button>
 								<button class="btn">取消</button>
 							</div>
-						</form>
+						</s:form>
 					</div>
 				</div>
 			</div>

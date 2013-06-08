@@ -45,7 +45,9 @@
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="serviceTypeId">服务类型</label>
-								<s:action name="service-type!search" id="serviceTypeList" executeResult="false" />
+								<s:action name="service-type!search" id="serviceTypeList" executeResult="false">
+									<s:param name="query.enabled">true</s:param>
+								</s:action>
 								<div class="controls">
 									<select id="serviceTypeId" name="serviceTypeId">
 										<option value="">无</option>

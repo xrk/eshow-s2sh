@@ -48,7 +48,7 @@ public class ProductAction extends BaseFileUploadAction {
 
 	public void delete() {
 		product = productManager.get(id);
-		if (getSessionUser().equals(product.getUser())) {
+		if (getSessionUser().getId().equals(product.getUser().getId())) {
 			product.setEnabled(Boolean.FALSE);
 			productManager.save(product);
 			success("删除成功");
@@ -68,6 +68,9 @@ public class ProductAction extends BaseFileUploadAction {
 		Product old = productManager.get(id);
 		old.setUpdateTime(new Date());
 		old.setName(product.getName());
+		old.setPrice(product.getPrice());
+		old.setCode(product.getCode());
+		old.setUnit(product.getUnit());
 		old.setContent(product.getContent());
 		if (productCategoryId != null) {
 			old.setProductCategory(productCategoryManager.get(productCategoryId));

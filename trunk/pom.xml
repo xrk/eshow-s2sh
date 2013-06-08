@@ -11,21 +11,25 @@
 
     <!-- 主要依赖库的版本定义 -->
     <properties>
-        <spring.version>3.2.2.RELEASE</spring.version>
+    	<struts2.version>2.3.14.3</struts2.version>
+        <spring.version>3.2.3.RELEASE</spring.version>
         <security.version>3.1.4.RELEASE</security.version>
         <hibernate.version>4.2.2.Final</hibernate.version>
         <hibernate-search.version>4.2.0.Final</hibernate-search.version>
         <hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
-        <struts2.version>2.3.14.2</struts2.version>
+        
 		<lucene.version>3.6.2</lucene.version>
 
-        <quartz.version>2.1.6</quartz.version>
-        <ehcache-core.version>2.6.6</ehcache-core.version>
+        
+        <ehcache.version>2.7.1</ehcache.version>
         <ehcache-web.version>2.0.4</ehcache-web.version>
         <oscache.version>2.4.1</oscache.version>
+        
+        <quartz.version>2.1.6</quartz.version>
         <jackson.version>2.2.0</jackson.version>
         <slf4j.version>1.7.2</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
+        
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <commons-lang.version>2.6</commons-lang.version>
         <commons-lang3.version>3.1</commons-lang3.version>
@@ -34,19 +38,20 @@
         <commons-collections.version>3.2.1</commons-collections.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
         <commons-beanutils.version>1.8.3</commons-beanutils.version>
-        <httpclient.version>4.2.3</httpclient.version>
+        
+        <httpclient.version>4.2.5</httpclient.version>
+        <htmlparser.version>2.1</htmlparser.version>
         <freemarker.version>2.3.19</freemarker.version>
         <jsp.version>2.1</jsp.version>
         <junit.version>4.10</junit.version>
         <javax.version>6.0</javax.version>
         <javax.servlet.version>1.2</javax.servlet.version>
         <aspectj.version>1.7.1</aspectj.version>
-        <mysql.version>5.1.21</mysql.version>
-        <htmlparser.version>2.1</htmlparser.version>
+        <mysql.version>5.1.25</mysql.version>
+        
         <mail.version>1.4.5</mail.version>
         <dom4j.version>1.6.1</dom4j.version>
         <sitemesh.version>2.4.2</sitemesh.version>
-        <httpclient.vesrion>4.2.2</httpclient.vesrion>
         <urlrewritefilter.version>4.0.3</urlrewritefilter.version>
         <cglib.version>2.2.2</cglib.version>
         <velocity.version>1.7</velocity.version>
@@ -54,6 +59,7 @@
         <activation.version>1.1.1</activation.version>
         <jakarta-regexp.version>1.4</jakarta-regexp.version>
         <jsoup.version>1.6.3</jsoup.version>
+        <jmagick.version>6.2.4</jmagick.version>
     </properties>
 
     <dependencies>
@@ -321,8 +327,8 @@
         <!-- ehcache -->
         <dependency>
             <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
-            <version>${ehcache-core.version}</version>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sf.ehcache</groupId>
@@ -472,7 +478,7 @@
 		<dependency>
 			<groupId>jmagick</groupId>
 			<artifactId>jmagick</artifactId>
-			<version>6.2.4</version>
+			<version>${jmagick.version}</version>
 		</dependency>
 
         <!-- GENERAL UTILS end -->
@@ -528,7 +534,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>${httpclient.vesrion}</version>
+			<version>${httpclient.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>commons-logging</groupId>

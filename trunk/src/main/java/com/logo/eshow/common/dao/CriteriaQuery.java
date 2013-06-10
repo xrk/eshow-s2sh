@@ -64,8 +64,7 @@ public class CriteriaQuery implements Serializable {
 	 * 
 	 * @param clazz
 	 */
-	@SuppressWarnings("unchecked")
-	public CriteriaQuery(Class clazz) {
+	public CriteriaQuery(Class<?> clazz) {
 
 		detachedCriteria = DetachedCriteria.forClass(clazz);
 	}
@@ -76,8 +75,7 @@ public class CriteriaQuery implements Serializable {
 	 * @param clazz
 	 * @param alias
 	 */
-	@SuppressWarnings("unchecked")
-	public CriteriaQuery(Class clazz, String alias) {
+	public CriteriaQuery(Class<?> clazz, String alias) {
 
 		detachedCriteria = DetachedCriteria.forClass(clazz, alias);
 	}
@@ -227,8 +225,7 @@ public class CriteriaQuery implements Serializable {
 	 */
 	public Criteria getCriteria(Session session) {
 
-		Criteria criteria = this.detachedCriteria
-				.getExecutableCriteria(session);
+		Criteria criteria = this.detachedCriteria.getExecutableCriteria(session);
 		if (firstResult > 0) {
 			criteria.setFirstResult(this.firstResult);
 		}

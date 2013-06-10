@@ -116,7 +116,7 @@ public class EnhancedRule implements Serializable {
 	 * @param session
 	 * @return Criteria
 	 */
-	public Criteria getCriteria(Class clazz, Session session) {
+	public Criteria getCriteria(Class<?> clazz, Session session) {
 		Criteria criteria = session.createCriteria(clazz);
 		for (int i = 0; i < criterionList.size(); i++) {
 			Criterion criterion = criterionList.get(i);
@@ -143,7 +143,7 @@ public class EnhancedRule implements Serializable {
 	 * @param session
 	 * @return Criteria
 	 */
-	public Criteria getCountCriteria(Class clazz, Session session) {
+	public Criteria getCountCriteria(Class<?> clazz, Session session) {
 		Criteria criteria = session.createCriteria(clazz);
 		for (int i = 0; i < criterionList.size(); i++) {
 			Criterion criterion = criterionList.get(i);

@@ -53,14 +53,15 @@ public class InfoDaoHibernate extends GenericDaoHibernate<Info, Integer> impleme
 			if (query.title != null) {
 				rule.add(Restrictions.like("title", query.title, MatchMode.ANYWHERE));
 			}
-			if (query.website != null) {
-				rule.add(Restrictions.eq("website", query.website));
-			}
+			
 			if (query.content != null) {
 				rule.add(Restrictions.like("content", query.content, MatchMode.ANYWHERE));
 			}
-			if (query.enable != null) {
-				rule.add(Restrictions.eq("enable", query.enable));
+			if (query.website != null) {
+				rule.add(Restrictions.eq("website", query.website));
+			}
+			if (query.enabled != null) {
+				rule.add(Restrictions.eq("enabled", query.enabled));
 			}
 
 			if (query.getOrder() != null) {

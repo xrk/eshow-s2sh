@@ -7,12 +7,13 @@ package com.logo.eshow.bean.query;
  * 
  */
 public class InfoQuery extends BaseQuery {
+	
 	public String type;
 	public String url;
 	public String title;
 	public String content;
-	public Boolean enable;
 	public String website;
+	public Boolean enabled;
 
 	public String getType() {
 		return type;
@@ -46,14 +47,6 @@ public class InfoQuery extends BaseQuery {
 		this.content = content;
 	}
 
-	public Boolean getEnable() {
-		return enable;
-	}
-
-	public void setEnable(Boolean enable) {
-		this.enable = enable;
-	}
-
 	public String getWebsite() {
 		return website;
 	}
@@ -61,4 +54,13 @@ public class InfoQuery extends BaseQuery {
 	public void setWebsite(String website) {
 		this.website = website;
 	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 }

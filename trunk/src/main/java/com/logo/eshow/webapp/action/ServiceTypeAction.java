@@ -1,12 +1,10 @@
 package com.logo.eshow.webapp.action;
 
 import com.logo.eshow.bean.query.ServiceTypeQuery;
-import com.logo.eshow.bean.query.ServiceQuery;
 import com.logo.eshow.common.page.Page;
 import com.logo.eshow.model.ServiceType;
 import com.logo.eshow.service.ServiceTypeManager;
 import com.logo.eshow.webapp.action.BaseAction;
-import com.logo.eshow.model.Service;
 import com.logo.eshow.service.ServiceManager;
 import com.logo.eshow.util.PageUtil;
 
@@ -46,19 +44,9 @@ public class ServiceTypeAction extends BaseAction {
 	}
 
 	public void delete() {
-		// 根据ID得到服务分类
 		ServiceType serviceType = serviceTypeManager.get(id);
 		if (serviceType != null) {
-			// 查询当前服务分类的服务类别
-			ServiceQuery serviceQuery = new ServiceQuery();
-			serviceQuery.setServiceTypeId(id);
-			// 查询出当前分类所有的服务
-			List<Service> services = serviceManager.list(serviceQuery);
-			// 循环每一条服务,后更改服务的ID为NULL
-			for (Service service : services) {
-				service.setServiceType(null);
-				serviceManager.save(service);
-			}
+			serviceManager.update(serviceType.getId());// 设置原服务的类型为空
 			serviceType.setEnabled(Boolean.FALSE);
 			serviceTypeManager.save(serviceType);
 			success("删除成功");

@@ -1,9 +1,7 @@
 package com.logo.eshow.webapp.action;
 
 import com.logo.eshow.bean.query.ProductCategoryQuery;
-import com.logo.eshow.bean.query.ProductQuery;
 import com.logo.eshow.common.page.Page;
-import com.logo.eshow.model.Product;
 import com.logo.eshow.model.ProductCategory;
 import com.logo.eshow.service.ProductCategoryManager;
 import com.logo.eshow.webapp.action.BaseAction;
@@ -48,14 +46,7 @@ public class ProductCategoryAction extends BaseAction {
 	public void delete() {
 		ProductCategory productCategory = productCategoryManager.get(id);
 		if (productCategory != null) {
-			// 查询当前分类下的产品类别
-			ProductQuery productQuery = new ProductQuery();
-			productQuery.setProductCategoryId(id);
-			List<Product> products = productManager.list(productQuery);
-			for (Product product : products) {
-				product.setProductCategory(null);
-				productManager.save(product);
-			}
+			productManager.update(productCategory.getId());// 设置原产品的分类为空
 			productCategory.setEnabled(Boolean.TRUE);
 			productCategoryManager.save(productCategory);
 			success("删除成功");

@@ -79,8 +79,9 @@ i,.icon{display:inline-block;zoom:1;vertical-align:-2px;text-shadow:none;color:t
 .hire .margin{margin:15px 0}
 .phone{padding-bottom:100px}
 .phone h3{font-size:24px;font-weight:400;padding:20px 0}
-.phone .list{width:300px}
+.phone .list{width:280px}
 .phone .list h6 a{color:#333;font-size:20px;display:inline-block;font-weight:400}
+.phone .tip{padding-top:20px;}
 .core{padding:50px 0}
 .c_box{text-align:center}
 .c_box a{width:128px;height:180px;display:inline-block;color:#999;opacity:0.5;margin:0 25px}

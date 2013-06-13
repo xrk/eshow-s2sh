@@ -27,6 +27,7 @@
 		<h3 class="yahei text-center">那些曾经开发的网站与APP</h3>
 		<div class="core clearfix">
 			<h3 class="yahei">APP应用类</h3>
+			<div class="clearfix">
 			<div class="fl list yahei">
 				<a href=""><img src="./images/app/baobao.jpg" width="200"
 					height="300"> </a>
@@ -67,33 +68,33 @@
 					<span class="color7f">小区生活服务平台</span>
 				</p>
 			</div>
-			<p class="clearfix">以做自己产品的心态做好每一个案例。我们将客户需求，技术架构，用户体验融入应用的每一个细节，提高产品价值。</p>
+			</div>
+			<p class="clearfix tip yahei">以做自己产品的心态做好每一个案例。我们将客户需求，技术架构，用户体验融入应用的每一个细节，提高产品价值。</p>
 		</div>
 		<div class="core clearfix">
 			<h3 class="yahei">网站开发类</h3>
+			<div class="clearfix">
 			<div class="fl list yahei">
-				<a href=""><img src="./images/app/baobao.jpg" width="200"
-					height="300"> </a>
+				<a href=""><img src="./images/web_1.jpg" width="250"
+					> </a>
 				<h6>
 					<a class="black" href="">帮趣网</a>
 				</h6>
 				<p>
-					<span class="color7f">一款通过照片+语音的宝宝学习应用</span>
+					<span class="color7f">社会化知识服务平台</span>
 				</p>
 			</div>
 			<div class="fl list yahei">
-				<a href=""><img src="./images/app/wawa.jpg" width="200"
-					height="300"> </a>
+				<a href=""><img src="./images/web_2.jpg" width="250" > </a>
 				<h6>
 					<a class="black" href="">街区淘</a>
 				</h6>
 				<p>
-					<span class="color7f">高端母婴导购APP</span>
+					<span class="color7f">这里有为你送货（服务）上门的商家</span>
 				</p>
 			</div>
 			<div class="fl list yahei">
-				<a href=""><img src="./images/app/bukuai.jpg" width="200"
-					height="300"> </a>
+				<a href=""><img src="./images/web_1.jpg" width="250" >  </a>
 				<h6>
 					<a class="black" href="">HiNet旅游网</a>
 				</h6>
@@ -101,17 +102,9 @@
 					<span class="color7f">基于移动互联网的本地化生活搜索工具</span>
 				</p>
 			</div>
-			<div class="fl list yahei">
-				<a href=""><img src="./images/app/jiequtao.jpg" width="200"
-					height="300"> </a>
-				<h6>
-					<a class="black" href="">微博</a>
-				</h6>
-				<p>
-					<span class="color7f">小区生活服务平台</span>
-				</p>
+			
 			</div>
-			<p class="clearfix">以做自己产品的心态做好每一个案例。我们将客户需求，技术架构，用户体验融入应用的每一个细节，提高产品价值。</p>
+			<p class="clearfix tip yahei">以做自己产品的心态做好每一个案例。我们将客户需求，技术架构，用户体验融入应用的每一个细节，提高产品价值。</p>
 		</div>
 	</div>
 </body>

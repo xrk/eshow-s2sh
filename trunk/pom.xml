@@ -11,7 +11,7 @@
 
     <!-- 主要依赖库的版本定义 -->
     <properties>
-    	<struts2.version>2.3.14.3</struts2.version>
+    	<struts2.version>2.3.15</struts2.version>
         <spring.version>3.2.3.RELEASE</spring.version>
         <security.version>3.1.4.RELEASE</security.version>
         <hibernate.version>4.2.2.Final</hibernate.version>
@@ -19,13 +19,12 @@
         <hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
         
 		<lucene.version>3.6.2</lucene.version>
-
         
         <ehcache.version>2.7.1</ehcache.version>
         <ehcache-web.version>2.0.4</ehcache-web.version>
         <oscache.version>2.4.1</oscache.version>
         
-        <quartz.version>2.1.6</quartz.version>
+        <quartz.version>2.1.7</quartz.version>
         <jackson.version>2.2.0</jackson.version>
         <slf4j.version>1.7.2</slf4j.version>
         <log4j.version>1.2.17</log4j.version>

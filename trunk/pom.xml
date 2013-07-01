@@ -15,10 +15,10 @@
         <spring.version>3.2.3.RELEASE</spring.version>
         <security.version>3.1.4.RELEASE</security.version>
         <hibernate.version>4.2.2.Final</hibernate.version>
-        <hibernate-search.version>4.2.0.Final</hibernate-search.version>
+        <hibernate-search.version>4.3.0.Final</hibernate-search.version>
         <hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
         
-		<lucene.version>3.6.2</lucene.version>
+		<lucene.version>4.3.1</lucene.version>
         
         <ehcache.version>2.7.1</ehcache.version>
         <ehcache-web.version>2.0.4</ehcache-web.version>
@@ -26,14 +26,14 @@
         
         <quartz.version>2.1.7</quartz.version>
         <jackson.version>2.2.0</jackson.version>
-        <slf4j.version>1.7.2</slf4j.version>
+        <slf4j.version>1.7.5</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
         
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <commons-lang.version>2.6</commons-lang.version>
         <commons-lang3.version>3.1</commons-lang3.version>
         <commons-io.version>2.4</commons-io.version>
-        <commons-codec.version>1.7</commons-codec.version>
+        <commons-codec.version>1.8</commons-codec.version>
         <commons-collections.version>3.2.1</commons-collections.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
         <commons-beanutils.version>1.8.3</commons-beanutils.version>
@@ -56,8 +56,7 @@
         <velocity.version>1.7</velocity.version>
         <asm.version>3.3.1</asm.version>
         <activation.version>1.1.1</activation.version>
-        <jakarta-regexp.version>1.4</jakarta-regexp.version>
-        <jsoup.version>1.6.3</jsoup.version>
+        <jsoup.version>1.7.2</jsoup.version>
         <jmagick.version>6.2.4</jmagick.version>
     </properties>
 
@@ -266,7 +265,17 @@
         </dependency>
         <dependency>
             <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-common</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-highlighter</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
             <version>${lucene.version}</version>
         </dependency>
 		
@@ -541,11 +550,6 @@
                 </exclusion>
             </exclusions>
 		</dependency>
-		<dependency>
-			<groupId>jakarta-regexp</groupId>
-			<artifactId>jakarta-regexp</artifactId>
-			<version>${jakarta-regexp.version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>commons-httpclient</groupId>
@@ -576,8 +580,8 @@
         <dependency>
 			<groupId>ik-analyzer</groupId>
 			<artifactId>ik-analyzer</artifactId>
-			<version>2.3.8</version>
-			<systemPath>${basedir}/WebRoot/WEB-INF/lib/IKAnalyzer3.2.8.jar</systemPath>
+			<version>2012FF_u1</version>
+			<systemPath>${basedir}/WebRoot/WEB-INF/lib/IKAnalyzer2012FF_u1.jar</systemPath>
 			<scope>system</scope>
 		</dependency>
 

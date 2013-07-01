@@ -1,5 +1,6 @@
 package com.logo.eshow.dao.hibernate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,9 +10,10 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.index.FieldInfo;
 import org.apache.lucene.index.FieldInfos;
+import org.apache.lucene.index.Fields;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.queryParser.MultiFieldQueryParser;
-import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.MatchAllDocsQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.util.Version;
@@ -23,115 +25,124 @@ import org.hibernate.search.SearchFactory;
 import org.hibernate.search.indexes.IndexReaderAccessor;
 
 /**
- * Utility class to generate lucene queries for hibernate search and perform full reindexing.
- *
- * @author jgarcia
+ * Utility class to generate lucene queries for hibernate search and perform
+ * full reindexing.
+ * 
+ * @author leida
  */
 class HibernateSearchTools {
-    protected static final Log log = LogFactory.getLog(HibernateSearchTools.class);
+	
+	protected static final Log log = LogFactory.getLog(HibernateSearchTools.class);
 
-    /**
-     * Generates a lucene query to search for a given term in all the indexed fields of a class
-     *
-     * @param searchTerm the term to search for
-     * @param searchedEntity the class searched
-     * @param sess the hibernate session
-     * @param defaultAnalyzer the default analyzer for parsing the search terms
-     * @return
-     * @throws ParseException
-     */
-    public static Query generateQuery(String searchTerm, Class searchedEntity, Session sess, Analyzer defaultAnalyzer) throws ParseException {
-        Query qry = null;
+	/**
+	 * Generates a lucene query to search for a given term in all the indexed
+	 * fields of a class
+	 * 
+	 * @param searchTerm the term to search for
+	 * @param searchedEntity the class searched
+	 * @param sess the hibernate session
+	 * @param defaultAnalyzer the default analyzer for parsing the search terms
+	 * @return
+	 * @throws ParseException
+	 * @throws  
+	 */
+	public static Query generateQuery(String searchTerm, Class searchedEntity, Session sess,
+			Analyzer defaultAnalyzer) throws ParseException {
+		Query qry = null;
 
-        if (searchTerm.equals("*")) {
-            qry = new MatchAllDocsQuery();
-        } else {
-            // Search in all indexed fields
+		if (searchTerm.equals("*")) {
+			qry = new MatchAllDocsQuery();
+		} else {
+			// Search in all indexed fields
 
-            IndexReaderAccessor readerAccessor = null;
-            IndexReader reader = null;
-            try {
-                FullTextSession txtSession = Search.getFullTextSession(sess);
+			IndexReaderAccessor readerAccessor = null;
+			IndexReader reader = null;
+			try {
+				FullTextSession txtSession = Search.getFullTextSession(sess);
 
-                // obtain analyzer to parse the query:
-                Analyzer analyzer;
-                if (searchedEntity == null) {
-                    analyzer = defaultAnalyzer;
-                } else {
-                    analyzer = txtSession.getSearchFactory().getAnalyzer(searchedEntity);
-                }
+				// obtain analyzer to parse the query:
+				Analyzer analyzer;
+				if (searchedEntity == null) {
+					analyzer = defaultAnalyzer;
+				} else {
+					analyzer = txtSession.getSearchFactory().getAnalyzer(searchedEntity);
+				}
 
-                // search on all indexed fields: generate field list, removing internal hibernate search field name: _hibernate_class
-                // TODO: possible improvement: cache the fields of each entity
-                SearchFactory searchFactory = txtSession.getSearchFactory();
-                readerAccessor = searchFactory.getIndexReaderAccessor();
-                reader = readerAccessor.open(searchedEntity);
-                FieldInfos fieldInfos = reader.getFieldInfos();
-                Iterator<FieldInfo> it = fieldInfos.iterator();
-                String[] fnames = new String[0];
-                List<String> fieldNames = new ArrayList<String>();
-                while(it.hasNext()){
-                	FieldInfo fi = it.next();
-                	if(fi.name.equals("_hibernate_class"))
-                		break;
-                	fieldNames.add(fi.name);
-                }
-                fnames = fieldNames.toArray(fnames);
+				SearchFactory searchFactory = txtSession.getSearchFactory();
+				readerAccessor = searchFactory.getIndexReaderAccessor();
+				reader = readerAccessor.open(searchedEntity);
+				Fields fields = reader.getTermVectors(0);
+				Iterator<String> it = fields.iterator();
+				String[] fnames = new String[0];
+				List<String> fieldNames = new ArrayList<String>();
+				while (it.hasNext()) {
+					String fi = it.next();
+					if (fi.equals("_hibernate_class"))
+						break;
+					fieldNames.add(fi);
+				}
+				fnames = fieldNames.toArray(fnames);
 
-                // To search on all fields, search the term in all fields
-                String[] queries = new String[fnames.length];
-                for (int i = 0; i < queries.length; ++i) {
-                    queries[i] = searchTerm;
-                }
+				// To search on all fields, search the term in all fields
+				String[] queries = new String[fnames.length];
+				for (int i = 0; i < queries.length; ++i) {
+					queries[i] = searchTerm;
+				}
 
-                qry = MultiFieldQueryParser.parse(Version.LUCENE_36, queries, fnames, analyzer);
-            } finally {
-                if (readerAccessor != null && reader != null) {
-                    readerAccessor.close(reader);
-                }
-            }
-        }
-        return qry;
-    }
+				qry = MultiFieldQueryParser.parse(Version.LUCENE_43, queries, fnames, analyzer);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (readerAccessor != null && reader != null) {
+					readerAccessor.close(reader);
+				}
+			}
+		}
+		return qry;
+	}
 
-    /**
-     * Regenerates the index for a given class
-     *
-     * @param clazz the class
-     * @param sess the hibernate session
-     */
-    public static void reindex(Class clazz, Session sess) {
-        FullTextSession txtSession = Search.getFullTextSession(sess);
-        MassIndexer massIndexer = txtSession.createIndexer(clazz);
-        try {
-            massIndexer.startAndWait();
-        } catch (InterruptedException e) {
-            log.error("mass reindexing interrupted: " + e.getMessage());
-        } finally {
-            txtSession.flushToIndexes();
-        }
-    }
+	/**
+	 * Regenerates the index for a given class
+	 * 
+	 * @param clazz
+	 *            the class
+	 * @param sess
+	 *            the hibernate session
+	 */
+	public static void reindex(Class clazz, Session sess) {
+		FullTextSession txtSession = Search.getFullTextSession(sess);
+		MassIndexer massIndexer = txtSession.createIndexer(clazz);
+		try {
+			massIndexer.startAndWait();
+		} catch (InterruptedException e) {
+			log.error("mass reindexing interrupted: " + e.getMessage());
+		} finally {
+			txtSession.flushToIndexes();
+		}
+	}
 
-    /**
-     * Regenerates all the indexed class indexes
-     *
-     * @param async true if the reindexing will be done as a background thread
-     * @param sess the hibernate session
-     */
-    public static void reindexAll(boolean async, Session sess) {
-        FullTextSession txtSession = Search.getFullTextSession(sess);
-        MassIndexer massIndexer = txtSession.createIndexer();
-        massIndexer.purgeAllOnStart(true);
-        try {
-            if (!async) {
-                massIndexer.startAndWait();
-            } else {
-                massIndexer.start();
-            }
-        } catch (InterruptedException e) {
-            log.error("mass reindexing interrupted: " + e.getMessage());
-        } finally {
-            txtSession.flushToIndexes();
-        }
-    }
+	/**
+	 * Regenerates all the indexed class indexes
+	 * 
+	 * @param async
+	 *            true if the reindexing will be done as a background thread
+	 * @param sess
+	 *            the hibernate session
+	 */
+	public static void reindexAll(boolean async, Session sess) {
+		FullTextSession txtSession = Search.getFullTextSession(sess);
+		MassIndexer massIndexer = txtSession.createIndexer();
+		massIndexer.purgeAllOnStart(true);
+		try {
+			if (!async) {
+				massIndexer.startAndWait();
+			} else {
+				massIndexer.start();
+			}
+		} catch (InterruptedException e) {
+			log.error("mass reindexing interrupted: " + e.getMessage());
+		} finally {
+			txtSession.flushToIndexes();
+		}
+	}
 }

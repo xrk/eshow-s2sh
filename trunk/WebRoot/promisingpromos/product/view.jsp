@@ -7,6 +7,7 @@
 <title>${view.product.name}</title>
 <meta name="keywords" content="${view.product.name}" />
 <meta name="description" content="${view.product.name}" />
+<%@ include file="/common/style/fancybox.jsp"%>
 </head>
 <body>
 	<section>
@@ -23,7 +24,7 @@
 				</div>
 				<div class="view clearfix yahei">
 					<div class="v-pic fl">
-						<img src="${view.product.img}!middle.jpg">
+						<a class="fancybox" href="${view.product.img}"><img src="${view.product.img}!middle.jpg"></a>
 					</div>
 					<div class="v-unit fr yahei">
 						<ul class="clearfix">
@@ -42,4 +43,10 @@
 			</div>
 		</div>
 	</section>
+	<%@ include file="/common/script/fancybox.jsp"%>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".fancybox").fancybox();
+		});
+	</script>
 </body>

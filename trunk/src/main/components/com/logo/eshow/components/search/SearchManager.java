@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.lucene.queryParser.ParseException;
-import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
 import org.apache.lucene.search.highlight.QueryScorer;
@@ -66,8 +66,7 @@ public class SearchManager<T> {
 		Transaction tx = fullTextSession.beginTransaction();
 
 		IKAnalyzer analyzer = new IKAnalyzer(true);
-		org.apache.lucene.queryParser.QueryParser parser = new QueryParser(Version.LUCENE_35,
-				"title", analyzer);
+		QueryParser parser = new QueryParser(Version.LUCENE_43, "title", analyzer);
 		try {
 			org.apache.lucene.search.Query luceneQuery = parser.parse("title:" + keyword);
 			org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery,

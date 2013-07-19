@@ -393,7 +393,7 @@ UE.I18N['en'] = {
         'static':{
             'lang_input_about':'About',
             'lang_input_shortcuts':'Shortcuts',
-            'lang_input_version':'Version:1.2.5',
+            'lang_input_version':'Version:1.2.6',
             'lang_input_introduction':"UEditor is developed by Baidu Co.ltd.  It is lightweight, customizable , focusing on user experience and etc. , UEditor is based on open source BSD license , allowing free use and redistribution.",
             'lang_Txt_shortcuts':'Shortcuts',
             'lang_Txt_func':'Function',
@@ -449,6 +449,8 @@ UE.I18N['en'] = {
             lang_search1:"Search",
             lang_search2:"Search",
             lang_replace:"Replace",
+            lang_searchReg:'Support regular expression ,which starts and ends with a slash ,for example "/expression/"',
+            lang_searchReg1:'Support regular expression ,which starts and ends with a slash ,for example "/expression/"',
             lang_case_sensitive1:"Case sense",
             lang_case_sensitive2:"Case sense",
             nextFindBtn:{value:"Next"},

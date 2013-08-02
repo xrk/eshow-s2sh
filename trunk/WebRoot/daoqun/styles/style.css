@@ -92,5 +92,27 @@ i,.icon{display:inline-block;zoom:1;vertical-align:-2px;text-shadow:none;color:t
 .core p{font-size:14px}
 .text{border-bottom:1px solid #eee;padding:20px 0 33px}
 .text dl dt{font-size:20px;padding:10px 0}
-.intro h3,.job h3{font-weight:400;float:left;font-size:33px;line-height:40px;width:80px;margin:0}
+.intro h3,.job h3,.team h3,.context h3{font-weight:400;float:left;font-size:33px;line-height:40px;width:80px;margin:0}
 .intro h5,.jober{margin:0 0 0 110px;padding:0}
+
+
+
+/*Context*/
+ .context{margin-top:30px; min-height:500px;}
+.rightContext{margin-left:110px;}
+.rightContext h4{font-size:22px;font-weight: normal;}
+.rightContext p{font-size: 14px;}
+.rightContext .last{padding-bottom:15px;}
+ 
+
+
+/*team*/
+.team{margin-top:30px; }
+.teams-box h4,.teams-box h5{font-size: 18px;font-weight: normal;}
+.teams-box{margin-left:110px;padding-top:5px;}
+.teams-box .t-li{clear:both;margin:20px 0;}
+.teams-box .t-li .span2{width:120px;height:120px;float:left;}
+.teams-box .t-li .span2 img{width:120px;height:120px;border:4px;border-radius: 4px;}
+.teams-box .t-li .span9{margin-left:140px;height:120px;}
+.teams-box .t-li .span9 h4{margin:0;font-size: 18px}
+.teams-box .t-li .span9 p{margin:0;font-size: 14px}
